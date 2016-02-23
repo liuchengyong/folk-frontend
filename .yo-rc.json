@@ -1,0 +1,7 @@
+{
+  "generator-react-webpack": {
+    "appName": "luotengFrontend",
+    "style": "scss",
+    "postcss": true
+  }
+}
