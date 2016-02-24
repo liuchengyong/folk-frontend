@@ -1,6 +1,6 @@
-var reducer = require('../../src/reducers/hotTopics');
+var reducer = require('../../src/reducers/home');
 
-describe('hotTopics', () => {
+describe('home', () => {
 
   it('should not change the passed state', (done) => {
 

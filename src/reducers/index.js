@@ -8,5 +8,7 @@
  */
 import { combineReducers } from 'redux';
 /* Populated by react-webpack-redux:reducer */
-const reducers = { hotTopics: require('../reducers/hotTopics.js') };
+const reducers = {
+  home: require('../reducers/home.js')
+};
 module.exports = combineReducers(reducers);

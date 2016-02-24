@@ -14,8 +14,8 @@ import Main from '../components/Main';
 /* Populated by react-webpack-redux:reducer */
 class App extends Component {
   render() {
-    const {actions, hotTopics} = this.props;
-    return <Main actions={actions} hotTopics={hotTopics}/>;
+    const {actions, home} = this.props;
+    return <Main actions={actions}  home={home}/>;
   }
 }
 /* Populated by react-webpack-redux:reducer
@@ -25,18 +25,20 @@ class App extends Component {
  */
 App.propTypes = {
   actions: PropTypes.object.isRequired,
-  hotTopics: PropTypes.object.isRequired
+  home: PropTypes.object.isRequired
 };
 function mapStateToProps(state) {
   /* Populated by react-webpack-redux:reducer */
-  const props = { hotTopics: state.hotTopics };
+  const props = {
+    home: state.home
+  };
   return props;
 }
 function mapDispatchToProps(dispatch) {
   /* Populated by react-webpack-redux:action */
   const actions = {
-    fetchHotTopics: require('../actions/hotTopics/fetchHotTopics.js'),
-    receiveHotTopics: require('../actions/hotTopics/receiveHotTopics.js')
+    fetchHomeData: require('../actions/home/fetchHomeData.js'),
+    receiveHomeData: require('../actions/home/receiveHomeData.js')
   };
   const actionMap = { actions: bindActionCreators(actions, dispatch) };
   return actionMap;
