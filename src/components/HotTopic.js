@@ -24,6 +24,6 @@ class HotTopic extends React.Component {
       </div>
     )
   }
-};
+}
 
 export default HotTopic;

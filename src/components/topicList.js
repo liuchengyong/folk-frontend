@@ -3,7 +3,7 @@
  */
 import React from 'react';
 import HotTopic from './HotTopic';
-;
+
 class topicList extends React.Component {
   render() {
     let topicList = this.props.topicList;

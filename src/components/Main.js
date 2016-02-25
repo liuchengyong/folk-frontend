@@ -9,7 +9,7 @@ import Banner from './Banner';
 
 class AppComponent extends React.Component {
   render() {
-    console.log(this.props);
+    //console.log(this.props);
     let articleList = this.props.home.articleList;
     return (
       <div className="index">

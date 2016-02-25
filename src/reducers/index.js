@@ -7,8 +7,12 @@
  *          you edit them, they are not updated again.
  */
 import { combineReducers } from 'redux';
+import { routerReducer } from 'react-router-redux'
+const _ = require('lodash');
+
 /* Populated by react-webpack-redux:reducer */
 const reducers = {
   home: require('../reducers/home.js')
 };
-module.exports = combineReducers(reducers);
+
+module.exports = combineReducers(_.extend(reducers, {routing: routerReducer}));
