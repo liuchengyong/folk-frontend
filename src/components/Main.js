@@ -8,9 +8,10 @@ import HotTopic from './HotTopic';
 
 class AppComponent extends React.Component {
   render() {
+    let topicList = this.props.home.topicList;
     return (
       <div className="index">
-        {this.props.home.topicList.map(list => {
+        {topicList && topicList.map(list => {
           let topic = list.topic;
           return <HotTopic key={topic.id} {...topic}/>;
         })}
