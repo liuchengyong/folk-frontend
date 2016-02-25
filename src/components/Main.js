@@ -22,7 +22,6 @@ class AppComponent extends React.Component {
           return <RecommendExpert key={list.user.id} {...list} />
         })}
         <TopicList topicList={this.props.home.topicList}/>;
-        {}
       </div>
     );
   }
