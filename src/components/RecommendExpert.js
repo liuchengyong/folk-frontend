@@ -1,13 +1,11 @@
 /**
- * Created by luowei on 2/25/16.
+ * Created by HuangGuorui on 2/25/16.
  */
 import React from 'react';
 
 class RecommendExpert extends React.Component {
   render() {
     let expert = this.props.user;
-    console.log(expert);
-    console.log('---------------');
     return (
       <div className="expert-item">
         <img src={expert.avatar} className="avatar" />
@@ -16,6 +14,6 @@ class RecommendExpert extends React.Component {
       </div>
     )
   }
-};
+}
 
 export default RecommendExpert;
