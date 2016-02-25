@@ -1,8 +1,25 @@
-.hot-topic {
-  &_title {
-    color: rebeccapurple;
-  }
-  &_desc {
-    color: #00d4b4;
+.hot-topic-container {
+  .hot-topic {
+    position: relative;
+    &_title {
+      color: rebeccapurple;
+    }
+    &_desc {
+      color: #00d4b4;
+    }
+    .hot-topic-preview {
+      position: relative;
+      display: inline-block;
+      width: 15%;
+      img {
+        width: 100%;
+        height: 100px;
+      }
+    }
+    .hot-topic-detail {
+      width: 85%;
+      position: relative;
+      display: inline-block;
+    }
   }
 }
