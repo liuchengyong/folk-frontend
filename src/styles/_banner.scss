@@ -1,11 +1,8 @@
 .banner {
-  &_cover {
+  .cover {
     width: 150px;
   }
-  &_des {
-    color: red;
+  .desc {
+    color: blue;
   }
-}
-.banner-cover {
-  width: 150px;
 }
