@@ -5,14 +5,19 @@ import React from 'react';
 import TopicList from './TopicList';
 import Banner from './Banner';
 import RecommendExpert from './RecommendExpert';
+import Loading from './Loading';
 
 //let yeomanImage = require('../images/yeoman.png');
 
 class AppComponent extends React.Component {
   render() {
-    //console.log(this.props);
+    console.log(this.props);
     let articleList = this.props.home.articleList;
     let expertList = this.props.home.expertList;
+
+    if(this.props.home.isFetching) {
+      return <Loading />
+    }
     return (
       <div className="index">
         {articleList && articleList.map(list => {
