@@ -4,11 +4,13 @@
 
 import {default as config} from 'config';
 const receiveKeyWordData = require('./receiveKeyWordData');
+const requestKeyWordData = require('./requestKeyWordData');
 
 module.exports = function(key) {
   return dispatch => {
-    return fetch(config.apiUrl + config.hotSchoolData + key +'&page=0&pageSize=20')
+  	dispatch(requestKeyWordData());
+    return fetch(config.apiUrl + config.found + key +'&page=0&pageSize=20')
       .then(response => response.json())
-      .then(json => dispatch(receiveHotSchoolData(json)));
+      .then(json => dispatch(receiveKeyWordData(json)));
   }
 };
