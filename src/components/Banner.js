@@ -1,5 +1,5 @@
 /**
- * Created by luowei on 2/24/16.
+ * Created by HuangGuorui on 2/24/16.
  */
 import React from 'react';
 import config from 'config';

@@ -13,7 +13,8 @@ const _ = require('lodash');
 /* Populated by react-webpack-redux:reducer */
 const reducers = {
   home: require('../reducers/home.js'),
-  school: require('../reducers/found.js')
+  school: require('../reducers/found.js'),
+  topic: require('../reducers/topic.js')
 };
 
 module.exports = combineReducers(_.extend(reducers, {routing: routerReducer}));

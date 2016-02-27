@@ -11,7 +11,6 @@ import Loading from './Loading';
 
 class AppComponent extends React.Component {
   render() {
-    console.log(this.props);
     let articleList = this.props.home.articleList;
     let expertList = this.props.home.expertList;
 

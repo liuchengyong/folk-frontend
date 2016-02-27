@@ -11,7 +11,7 @@ module.exports = function(state = initialState, action) {
   switch(action.type) {
     case 'RECEIVE_KEY_WORD_DATA': {
       console.log('RECEIVE_HOME_DATA');
-      return action.parameter.success ? Object.assign({}, action.parameter.param, {isFetching: false}) : {isFetching: false};
+      return action.parameter.success ? Object.assign({}, action.parameter.param, {isFetching: false}) : {isFetching: true};
     } break;
     case 'REQUEST_KEY_WORD_DATA': {
       return Object.assign({}, state, {isFetching: true});
