@@ -15,6 +15,7 @@ const reducers = {
   home: require('../reducers/home.js'),
   school: require('../reducers/found.js'),
   topic: require('../reducers/topic.js')
+  coupon: require('../reducers/coupon.js')
 };
 
 module.exports = combineReducers(_.extend(reducers, {routing: routerReducer}));
