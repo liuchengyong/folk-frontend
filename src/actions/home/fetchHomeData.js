@@ -4,7 +4,7 @@ const requestHomeData = require('./requestHomeData');
 
 module.exports = function() {
   return dispatch => {
-  	dispatch(requestHomeData())
+  	dispatch(requestHomeData());
     return fetch(config.apiUrl + config.homeData)
       .then(response => response.json())
       .then(json => dispatch(receiveHomeData(json)));
