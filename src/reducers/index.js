@@ -15,6 +15,7 @@ const reducers = {
   home: require('../reducers/home.js'),
   school: require('../reducers/found.js'),
   topic: require('../reducers/topic.js'),
+  dialog: require('../reducers/dialog.js'),
   coupon: require('../reducers/coupon.js')
 };
 

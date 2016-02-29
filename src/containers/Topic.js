@@ -14,11 +14,11 @@ import Topic from '../components/Topic';
 /* Populated by react-webpack-redux:reducer */
 class TopicContainer extends Component {
   render() {
-    const {actions, topic, params} = this.props;
+    const {actions, topic, params, dialog} = this.props;
     // if(this.props.topic.isFetching) {
       // return <div>loading</div>
     // } else {
-      return <Topic actions={actions} topic={topic} params={params}/>;
+      return <Topic actions={actions} topic={topic} params={params} dialog={dialog} />;
     // }
   }
 }
@@ -35,7 +35,8 @@ TopicContainer.propTypes = {
 function mapStateToProps(state) {
   /* Populated by react-webpack-redux:reducer */
   const props = {
-    topic: state.topic
+    topic: state.topic,
+    dialog: state.dialog
   };
   return props;
 }
@@ -44,7 +45,11 @@ function mapDispatchToProps(dispatch) {
   const actions = {
     fetchTopicData: require('../actions/topic/fetchTopicData.js'),
     requestTopicData: require('../actions/topic/requestTopicData.js'),
-    receiveTopicData: require('../actions/topic/receiveTopicData.js')
+    receiveTopicData: require('../actions/topic/receiveTopicData.js'),
+
+    openDialog: require('../actions/dialog/openDialog.js'),
+    closeDialog: require('../actions/dialog/closeDialog.js'),
+    setDialogStatus: require('../actions/dialog/setDialogStatus.js')
   };
   const actionMap = { actions: bindActionCreators(actions, dispatch) };
   return actionMap;

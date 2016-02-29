@@ -4,11 +4,37 @@
  */
 
 import React from 'react';
+import ReactDOM from 'react-dom';
+import Dialog from './Dialog';
 
 class LatestComment extends React.Component {
+
+	DownApp() {
+		// console.log(this.props);
+		// get dialog status
+		// re render status
+		// 
+		this.props.actions.setDialogStatus(true);
+	}
+
+	CloseDialog() {
+		this.props.actions.setDialogStatus(true);
+	}
+
   render() {
 
     let comment = this.props.comment.results[0];
+    let dialog = null;
+
+    console.log('----------------------------');
+    console.log(this.props.dialog.isOpening);
+		console.log(this.props);
+		console.log('------------------------------');
+    if(this.props.dialog.isOpening) {
+    	dialog = <Dialog actions={this.props.actions}/>
+    } else {
+    	dialog = null;
+    };
 
     return (
  	 		<div>
@@ -27,8 +53,9 @@ class LatestComment extends React.Component {
 		      	</div>
 		     	</div>
 	     		<div className="more-comment">
-	      		<span>更多评论</span>
+	      		<span ref="moreComment" onClick={this.DownApp.bind(this)} >更多评论</span>
 	      	</div>
+	      	{dialog}
 	    	</div>
 	    </div>
 

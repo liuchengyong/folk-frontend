@@ -3,7 +3,6 @@
  * Created by HuangGuorui on 2/26/16.
  */
 import React from 'react';
-// import ''
 
 class Banner extends React.Component {
   render() {

@@ -5,8 +5,7 @@
 .topic-wrapper {
 	width: 100%;
 	min-height: 900px;
-	padding: 0 11px;
-	padding-top: 25px;
+	padding: 25px 11px;
 	box-sizing: border-box;
 	background: #f0f0f0;
 }
@@ -21,10 +20,7 @@
 	border-radius: 8px;
 	.desc-header {
 		width: 100%;
-		// padding: 0 19px;
 		padding-top: 19px;
-		padding-bottom: 10px;
-		// border: 1px solid red;
 		box-sizing: border-box;
 		.expert-text {
 			display: table-cell;
@@ -96,7 +92,7 @@
 
 
 //latestComment
-.comment-wrap {
+.comment-wrap, .msg-wrap {
 	width: 100%;
 	height: auto;
 	margin-top: 0 atuo;
@@ -114,11 +110,11 @@
 		padding-left: 8px;
 		font-size: 15px;
 	}
-	.comment-user-info {
+	.comment-user-info, .msg-user-info {
 		border-top: 1px solid #f0f0f0;
 		padding-top: 19px;
 	}
-	.comment-info {
+	.comment-info, .msg-info {
 		width: 100%;
 		// padding: 0 19px;
 		padding-top: 19px;
@@ -126,16 +122,16 @@
 		// border: 1px solid red;
 		box-sizing: border-box;
 		border-bottom: 1px solid #f0f0f0;
-		.comment-text {
+		.comment-text, .msg-text {
 			display: table-cell;
 			height: 55px;
 			vertical-align: middle;
 			padding-left: 10px;
-			.comment-name {
+			.comment-name, .msg-name {
 				font-size: 15px;  
 				color: #333;
 			}
-			.comment-time {
+			.comment-time, .msg-time {
 				font-size: 11px;
 				margin-top: 8px;
 				color: #999;
@@ -157,7 +153,7 @@
 			}
 		}
 	}
-	.comment-content {
+	.comment-content, .msg-content {
 		p {
 			color: #666;
 			font-size: 15px;
@@ -180,6 +176,13 @@
 			margin-top: 15px;
 			cursor: pointer;
 		}
+	}
+}
+
+//最新留言
+.msg-wrap {
+	.msg-info {
+		border-bottom: none;
 	}
 }
 
