@@ -14,7 +14,7 @@ const _ = require('lodash');
 const reducers = {
   home: require('../reducers/home.js'),
   school: require('../reducers/found.js'),
-  topic: require('../reducers/topic.js')
+  topic: require('../reducers/topic.js'),
   coupon: require('../reducers/coupon.js')
 };
 

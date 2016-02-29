@@ -10,7 +10,6 @@ class LatestComment extends React.Component {
 
     let comment = this.props.comment.results[0];
 
-    console.log(this.props);
     return (
  	 		<div>
 	      <div className="comment-wrap">

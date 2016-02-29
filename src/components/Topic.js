@@ -8,7 +8,6 @@ import LatestComment from './LatestComment';
 
 class TopicComponent extends React.Component {
   render() {
-    console.log(this.props);
 
     let topic = this.props.topic.topic;
     let expert = this.props.topic.expert;

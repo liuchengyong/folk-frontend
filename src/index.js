@@ -4,11 +4,8 @@ import { Provider } from 'react-redux';
 import configureStore from './stores';
 import App from './containers/App';
 import Found from './containers/Found';
-<<<<<<< HEAD
 import Topic from './containers/Topic';
-=======
 import Coupon from './containers/Coupon';
->>>>>>> bd9b366a61aa8eb5702db7fa86c89e400d793637
 import { Router, Route, browserHistory } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
 import injectTapEventPlugin from 'react-tap-event-plugin';
