@@ -11,7 +11,7 @@ class Coupon extends React.Component {
         <section className="hb-cover">
           <div className="company-head">
             <div className="logo">
-              <img src="/img/coupon-logo.png" />
+              <img src="/img/coupon-logo.png"/>
             </div>
             <h1 className="title">指点</h1>
             <h2 className="des">传递真实透明的教育资讯</h2>
@@ -19,7 +19,7 @@ class Coupon extends React.Component {
         </section>
         <div className="used-wrap">
           <div className="used-avatar">
-            <div className="user-avatar-wrap"><img src="" /></div>
+            <div className="user-avatar-wrap"><img src=""/></div>
           </div>
           <div className="used-msg">
             <div className="used-name">
@@ -30,48 +30,12 @@ class Coupon extends React.Component {
             </div>
           </div>
         </div>
-        //红包不可抢
-        //领过
-        <div className="used-wrap">
-          <div className="used-avatar">
-            <div className="user-avatar-wrap"><img src="" /></div>
-          </div>
-          <div className="used-msg">
-            <div className="used-name">
-              Hi, 我是
-            </div>
-            <div className="admin-notice">
-              这是你已经领过的红包了哦~
-            </div>
-          </div>
-        </div>
-        <div className="used-header">
-          <div className="used-word"><span className="coupon-unit">￥</span> <span className="my-money"></span>
-          </div>
-        </div>
-        <div className="used-wrap">
-          <div className="used-avatar">
-            <img src="" />
-          </div>
-          <div className="used-msg">
-            <div className="used-name">
-              Hi,我是
-            </div>
-            <div className="admin-notice">
-              下次来早点~优惠券都被抢光了
-            </div>
-          </div>
-        </div>
-        <div className="used-header">
-          <span>下次早点来~</span>
-          //过期
-          <span>空空如也~~~</span>
-        </div>
         <div className="content-wrapper">
           <input type="tel" className="phone" id="phone" placeholder="输入电话号码"/>
           <input type="hidden" name="package" value="<%= ret.package_id %>"/>
           <button className="get-hb btn" id="btnCoupon" disabled="disabled">立即领取</button>
-          <a href="http://a.app.qq.com/o/simple.jsp?pkgname=com.luoteng.folk" className="btn btn-block btn-primary btn-open"
+          <a href="http://a.app.qq.com/o/simple.jsp?pkgname=com.luoteng.folk"
+             className="btn btn-block btn-primary btn-open"
              id="btnShare">
             <button className="down-app btn">下载指点客户端</button>
           </a>
