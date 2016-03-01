@@ -19,7 +19,7 @@ class Coupon extends React.Component {
         </section>
         <div className="used-wrap">
           <div className="used-avatar">
-            <div className="user-avatar-wrap"><img src="<%= ret.share_user.avatar %>" /></div>
+            <div className="user-avatar-wrap"><img src="" /></div>
           </div>
           <div className="used-msg">
             <div className="used-name">
@@ -34,7 +34,7 @@ class Coupon extends React.Component {
         //领过
         <div className="used-wrap">
           <div className="used-avatar">
-            <div className="user-avatar-wrap"><img src="<%= ret.share_user.avatar %>" /></div>
+            <div className="user-avatar-wrap"><img src="" /></div>
           </div>
           <div className="used-msg">
             <div className="used-name">
@@ -51,7 +51,7 @@ class Coupon extends React.Component {
         </div>
         <div className="used-wrap">
           <div className="used-avatar">
-            <img src="<%= ret.share_user.avatar %>" />
+            <img src="" />
           </div>
           <div className="used-msg">
             <div className="used-name">

@@ -1,16 +1,43 @@
 <!doctype html>
 <html>
 <head>
-  <meta charset="utf-8">
-  <title>React Webpack Template Title</title>
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <meta name="description" content="">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <title>React Webpack Template Title</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 </head>
 <body>
-  <div id="app"></div>
+<div id="app"></div>
 
-  <script>__REACT_DEVTOOLS_GLOBAL_HOOK__ = parent.__REACT_DEVTOOLS_GLOBAL_HOOK__</script>
-  <script type="text/javascript" src="/assets/app.js"></script>
+<script>__REACT_DEVTOOLS_GLOBAL_HOOK__ = parent.__REACT_DEVTOOLS_GLOBAL_HOOK__</script>
+<script type="text/javascript" src="/assets/app.js"></script>
+<script type="text/javascript">
+    var wechatServer = 'http://localhost:3000/weixin/config';
+    var wechatSDK = 'http://res.wx.qq.com/open/js/jweixin-1.0.0.js';
+    var ua = navigator.userAgent.toLowerCase();
+    if (ua.match(/MicroMessenger/i) == 'micromessenger' && location.pathname === '/coupon') {
+        var fileref = document.createElement('script');
+        fileref.setAttribute('type', 'text/javascript');
+        fileref.setAttribute('src', wechatSDK);
+        fileref.onload = function(e) {
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', wechatServer);
+            xhr.send(null);
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    wx.config(JSON.parse(xhr.responseText));
+                    wx.ready(function() {
+                        console.log(arguments);
+                    });
+                } else {
+                    console.log('Error: ' + xhr.status);
+                }
+            };
+
+        }
+    }
+    document.getElementsByTagName("head")[0].appendChild(fileref);
+</script>
 </body>
 </html>
