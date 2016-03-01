@@ -1,19 +1,15 @@
 /**
  * 最新评价
  * @date 2/26/2016
+ * @author	HuangGuorui
  */
 
 import React from 'react';
-import ReactDOM from 'react-dom';
 import Dialog from './Dialog';
 
 class LatestComment extends React.Component {
 
 	DownApp() {
-		// console.log(this.props);
-		// get dialog status
-		// re render status
-		// 
 		this.props.actions.setDialogStatus(true);
 	}
 
@@ -26,15 +22,11 @@ class LatestComment extends React.Component {
     let comment = this.props.comment.results[0];
     let dialog = null;
 
-    console.log('----------------------------');
-    console.log(this.props.dialog.isOpening);
-		console.log(this.props);
-		console.log('------------------------------');
     if(this.props.dialog.isOpening) {
     	dialog = <Dialog actions={this.props.actions}/>
     } else {
     	dialog = null;
-    };
+    }
 
     return (
  	 		<div>

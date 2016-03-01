@@ -7,10 +7,10 @@ const closeDialog = require('./closeDialog');
 
 module.exports = function(open) {
 	if(open) {
-		return dispatch => 
+		return dispatch =>
 			dispatch(openDialog());
 	} else {
 		return dispatch =>
 			dispatch(closeDialog());
-	};
+	}
 };

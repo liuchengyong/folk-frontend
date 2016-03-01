@@ -14,17 +14,27 @@ class TopicComponent extends React.Component {
     let topic = this.props.topic.topic;
     let expert = this.props.topic.expert;
     let comment = this.props.topic.comment;
+    let message = this.props.topic.relateMessages;
+
     let dialog = this.props.dialog;
 
     if(this.props.topic.isFetching) {
       return <Loading />
     }
+
+    //没有评论
+    let _LatestComment = '';
+    if(comment.results.length > 0) {
+      _LatestComment = <LatestComment comment={comment} dialog={dialog} actions={this.props.actions}/>;
+    }
+
+
     return (
       <div className="topic-wrapper">
         <TopicDesc topic={topic} expert={expert}/>
-        <LatestComment comment={comment} dialog={dialog} actions={this.props.actions}/>
-        <LatestMsg comment={comment}/>
-        <Menu />
+        { _LatestComment }
+        <LatestMsg message={message}/>
+        <Menu dialog={dialog} actions={this.props.actions} />
       </div>
     );
   }

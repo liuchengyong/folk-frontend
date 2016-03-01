@@ -13,7 +13,7 @@ module.exports = function(state = initialState, action) {
   /* Keep the reducer clean - do not mutate the original state. */
   //let nextState = Object.assign({}, state);
   switch(action.type) {
-    case 'OPEN_DIALOG': { 
+    case 'OPEN_DIALOG': {
       return {isOpening: true};
     } break;
     case 'CLOSE_DIALOG': {
