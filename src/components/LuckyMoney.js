@@ -2,35 +2,16 @@
  * Created by luowei on 2/27/16.
  */
 import React from 'react';
-let couponLogo = require('../images/coupon-logo.png');
+import Header from './LuckyMoney/Header';
+import Banner from './LuckyMoney/Banner';
 
 class Coupon extends React.Component {
   render() {
     return (
       <div>
         <div className="top-bg"></div>
-        <section className="hb-cover">
-          <div className="company-head">
-            <div className="logo">
-              <img src={couponLogo}/>
-            </div>
-            <h1 className="title">指点</h1>
-            <h2 className="des">传递真实透明的教育资讯</h2>
-          </div>
-        </section>
-        <div className="used-wrap">
-          <div className="used-avatar">
-            <div className="user-avatar-wrap"><img src=""/></div>
-          </div>
-          <div className="used-msg">
-            <div className="used-name">
-              Hi, 我是
-            </div>
-            <div className="admin-notice">
-              赶快领取属于你的优惠大礼包~
-            </div>
-          </div>
-        </div>
+        <Header />
+        <Banner />
         <div className="content-wrapper">
           <input type="tel" className="phone" id="phone" placeholder="输入电话号码"/>
           <button className="get-hb btn" id="btnCoupon" disabled="disabled">立即领取</button>
