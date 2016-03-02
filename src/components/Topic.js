@@ -28,7 +28,6 @@ class TopicComponent extends React.Component {
       _LatestComment = <LatestComment comment={comment} dialog={dialog} actions={this.props.actions}/>;
     }
 
-
     return (
       <div className="topic-wrapper">
         <TopicDesc topic={topic} expert={expert}/>
