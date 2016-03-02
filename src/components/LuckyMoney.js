@@ -2,6 +2,7 @@
  * Created by luowei on 2/27/16.
  */
 import React from 'react';
+let couponLogo = require('../images/coupon-logo.png');
 
 class Coupon extends React.Component {
   render() {
@@ -11,7 +12,7 @@ class Coupon extends React.Component {
         <section className="hb-cover">
           <div className="company-head">
             <div className="logo">
-              <img src="/img/coupon-logo.png"/>
+              <img src={couponLogo}/>
             </div>
             <h1 className="title">指点</h1>
             <h2 className="des">传递真实透明的教育资讯</h2>
@@ -32,7 +33,6 @@ class Coupon extends React.Component {
         </div>
         <div className="content-wrapper">
           <input type="tel" className="phone" id="phone" placeholder="输入电话号码"/>
-          <input type="hidden" name="package" value="<%= ret.package_id %>"/>
           <button className="get-hb btn" id="btnCoupon" disabled="disabled">立即领取</button>
           <a href="http://a.app.qq.com/o/simple.jsp?pkgname=com.luoteng.folk"
              className="btn btn-block btn-primary btn-open"
