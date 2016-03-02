@@ -196,9 +196,10 @@ li {
   list-style: none;
 }
 
-.top-bg {
-  background: #02B3FC;
+.coupon-container {
+  background: #d5eff9;
   width: 100%;
+  height: 100%;
 }
 
 .hb-cover {
@@ -211,7 +212,8 @@ li {
   height: 450px;
   min-height: 250px;
   width: 100%;
-  z-index: 1;
+  z-index: 0;
+  position: relative;
 }
 
 .logo {
@@ -246,9 +248,11 @@ li {
 .used-wrap {
   display: table;
   height: 100px;
-  margin: 0px auto 20px;
+  margin: -150px auto 20px;
   padding-left: 30px;
   width: 320px;
+  z-index: 1;
+  position: relative;
 }
 
 .used-wrap .used-avatar {
@@ -336,6 +340,8 @@ li {
   height: auto;
   margin: 0 auto;
   width: 320px;
+  position: relative;
+  z-index: 1;
 }
 
 .content-header {

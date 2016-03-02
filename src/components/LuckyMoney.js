@@ -8,8 +8,7 @@ import Banner from './LuckyMoney/Banner';
 class Coupon extends React.Component {
   render() {
     return (
-      <div>
-        <div className="top-bg"></div>
+      <div className="coupon-container">
         <Header />
         <Banner />
         <div className="content-wrapper">
