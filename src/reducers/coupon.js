@@ -14,7 +14,7 @@ module.exports = function(state = initialState, action) {
   console.log(action);
   switch(action.type) {
     case 'RECEIVE_WECHAT_CONFIG': {
-      return action.parameter.success ? Object.assign({}, action.parameter.param, {isFetching: false}) : {isFetching: false};
+      return Object.assign({}, action.parameter, {isFetching: false});
     } break;
     case 'REQUEST_WECHAT_CONFIG': {
       return Object.assign({}, state, {isFetching: true});

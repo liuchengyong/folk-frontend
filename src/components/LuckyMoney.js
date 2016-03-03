@@ -13,19 +13,42 @@ import Loading from './Loading';
 const wechatAPI = config.wechatAPI;
 
 class Coupon extends React.Component {
+
+  constructor() {
+    super();
+    this.state = {
+      loadedSDK: false
+    }
+  }
+
   render() {
-    //this.props.fetchWechatConfig
-    if (this.props.coupon.isFetching) {
+    let states = this.props.coupon;
+    let coupon = states.coupon;
+    let sdkConfig = states.sdkConfig;
+    if (states.isFetching) {
       return <Loading />
     }
+
+    let self = this;
+    if (!this.state.loadedSDK) {
+      wx.config(sdkConfig);
+      wx.ready(() => {
+        self.setState({loadedSDK: true});
+      });
+      wx.error(()=> {
+        console.log('wechat config error');
+      });
+      return <Loading />
+    }
+
     return (
       <section className="coupon-container">
         <Header />
-        <Banner />
-        <Content />
+        <Banner coupon={coupon}/>
+        <Content coupon={coupon}/>
         <Footer />
       </section>
-    )
+    );
   }
 
   componentDidMount() {
