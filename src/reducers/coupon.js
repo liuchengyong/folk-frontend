@@ -11,6 +11,7 @@ const initialState = {isFetching: true};
 module.exports = function(state = initialState, action) {
   /* Keep the reducer clean - do not mutate the original state. */
   //let nextState = Object.assign({}, state);
+  console.log(action);
   switch(action.type) {
     case 'RECEIVE_WECHAT_CONFIG': {
       return action.parameter.success ? Object.assign({}, action.parameter.param, {isFetching: false}) : {isFetching: false};

@@ -11,17 +11,11 @@ import Footer from './LuckyMoney/Footer';
 import Loading from './Loading';
 
 const wechatAPI = config.wechatAPI;
-let ua = navigator.userAgent.toLowerCase();
-if (ua.match(/MicroMessenger/i) == 'micromessenger') {
-  //check code or pid
-  if (!/code|pid/.test(location.search)) {
-     location.href = wechatAPI.auth;
-  }
-}
 
 class Coupon extends React.Component {
   render() {
-    if(this.props.coupon.isFetching) {
+    //this.props.fetchWechatConfig
+    if (this.props.coupon.isFetching) {
       return <Loading />
     }
     return (
@@ -32,6 +26,17 @@ class Coupon extends React.Component {
         <Footer />
       </section>
     )
+  }
+
+  componentDidMount() {
+    let ua = navigator.userAgent.toLowerCase();
+    if (ua.match(/MicroMessenger/i) == 'micromessenger') {
+      //check code or pid
+      if (!/code|pid/.test(location.search)) {
+        location.href = config.wechatServer + wechatAPI.auth;
+      }
+      this.props.actions.fetchWechatConfig();
+    }
   }
 }
 
