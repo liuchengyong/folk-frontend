@@ -4,5 +4,10 @@
 export default {
   homeData: '/api/v2/home',
   found: '/api/v1/topic/list/keyword?keyword=',
-  TopicData: '/api/v1/topic/'
+  TopicData: '/api/v1/topic/',
+  wechatAPI: {
+    config: 'wechat/config',
+    auth: 'wechat/oauth',
+    SDK: 'http://res.wx.qq.com/open/js/jweixin-1.0.0.js'
+  }
 }

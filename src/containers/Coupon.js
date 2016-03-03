@@ -22,7 +22,11 @@ function mapStateToProps(state) {
   return props;
 }
 function mapDispatchToProps(dispatch) {
-  const actions = {};
+  const actions = {
+    fetchWechatConfig: require('../actions/coupon/fetchWechatConfig.js'),
+    requestWechatConfig: require('../actions/coupon/requestWechatConfig.js'),
+    receiveWechatConfig: require('../actions/coupon/receiveWechatConfig.js')
+  };
   const actionMap = { actions: bindActionCreators(actions, dispatch) };
   return actionMap;
 }
