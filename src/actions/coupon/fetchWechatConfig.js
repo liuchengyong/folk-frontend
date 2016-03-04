@@ -8,7 +8,7 @@ import requestWechatConfig from './requestWechatConfig';
 module.exports = () => {
   return dispatch => {
     dispatch(requestWechatConfig());
-    return fetch(config.wechatServer + config.wechatAPI.config + location.search)
+    return fetch(config.baseUrl + config.wechatAPI.config + location.search, {credentials: 'same-origin'})
       .then(response => response.json())
       .then(json => dispatch(receiveWechatConfig(json)));
   }

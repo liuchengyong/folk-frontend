@@ -56,7 +56,7 @@ class Coupon extends React.Component {
     if (ua.match(/MicroMessenger/i) == 'micromessenger') {
       //check code or pid
       if (!/code|pid/.test(location.search)) {
-        location.href = config.wechatServer + wechatAPI.auth;
+        location.href = config.baseUrl + wechatAPI.auth;
       }
       this.props.actions.fetchWechatConfig();
     }

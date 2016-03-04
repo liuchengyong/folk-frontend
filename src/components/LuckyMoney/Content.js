@@ -10,7 +10,7 @@ class Content extends React.Component {
     return (
       <div className="content-wrapper">
         <input type="tel" className="phone" id="phone" placeholder="输入电话号码"/>
-        <button className="get-hb btn" id="btnCoupon" disabled="disabled">立即领取</button>
+        <button className="get-hb btn" id="btnCoupon">立即领取</button>
         <a href="http://a.app.qq.com/o/simple.jsp?pkgname=com.luoteng.folk"
            className="btn btn-block btn-primary btn-open"
            id="btnShare">

@@ -6,8 +6,8 @@ export default {
   found: '/api/v1/topic/list/keyword?keyword=',
   TopicData: '/api/v1/topic/',
   wechatAPI: {
-    config: 'wechat/config',
-    auth: 'wechat/oauth',
+    config: '/api/wechat/config',
+    auth: '/api/wechat/oauth',
     SDK: 'http://res.wx.qq.com/open/js/jweixin-1.0.0.js'
   }
 }
