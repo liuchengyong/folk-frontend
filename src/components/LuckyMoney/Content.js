@@ -2,16 +2,23 @@
  * Created by luowei on 3/2/16.
  */
 import React from 'react';
+import ReactDOM from 'react-dom';
 import Friend from './Friend';
 
 class Content extends React.Component {
+
+  fetchCoupon() {
+    this.props.fetchCoupon(ReactDOM.findDOMNode(this.refs.mobile).value);
+  }
+
   render() {
     let param = this.props.coupon.param;
     let friends = param && param.list ? param.list.results : [];
     return (
       <div className="content-wrapper">
-        <input type="tel" className="phone" id="phone" placeholder="输入电话号码"/>
-        <button className="get-hb btn" id="btnCoupon">立即领取</button>
+        <input type="tel" className="phone" id="phone" ref="mobile" placeholder="输入电话号码"/>
+        <button className="get-hb btn" id="btnCoupon"
+                onClick={this.fetchCoupon.bind(this)}>立即领取</button>
         <a href="http://a.app.qq.com/o/simple.jsp?pkgname=com.luoteng.folk"
            className="btn btn-block btn-primary btn-open"
            id="btnShare">

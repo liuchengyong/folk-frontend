@@ -1,16 +1,16 @@
 import React, { Component, PropTypes } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import LuckyMoney from '../components/LuckyMoney';
+import Coupon from '../components/Coupon';
 
-class Coupon extends Component {
+class CouponContainer extends Component {
   render() {
     const {actions, coupon} = this.props;
-    return <LuckyMoney actions={actions} coupon={coupon}/>;
+    return <Coupon actions={actions} coupon={coupon}/>;
   }
 }
 
-Coupon.propTypes = {
+CouponContainer.propTypes = {
   actions: PropTypes.object.isRequired,
   coupon: PropTypes.object.isRequired
 };
@@ -24,10 +24,9 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   const actions = {
     fetchWechatConfig: require('../actions/coupon/fetchWechatConfig.js'),
-    requestWechatConfig: require('../actions/coupon/requestWechatConfig.js'),
-    receiveWechatConfig: require('../actions/coupon/receiveWechatConfig.js')
+    fetchCoupon: require('../actions/coupon/fetchCoupon')
   };
   const actionMap = { actions: bindActionCreators(actions, dispatch) };
   return actionMap;
 }
-export default connect(mapStateToProps, mapDispatchToProps)(Coupon);
+export default connect(mapStateToProps, mapDispatchToProps)(CouponContainer);

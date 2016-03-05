@@ -5,15 +5,22 @@ import config from 'config';
 import receiveCoupon from './receiveCoupon';
 import requestCoupon from './requestCoupon';
 
-module.exports = (body) => {
+module.exports = (mobile) => {
   return dispatch => {
     dispatch(requestCoupon());
     return fetch(config.baseUrl + config.wechatAPI.coupon, {
       method: 'post',
-      body: body,
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ mobile: mobile }),
       credentials: 'same-origin'
     })
-      .then(response => response.json())
+      .then(response => {
+        "use strict";
+        return response.json();
+      })
       .then(json => dispatch(receiveCoupon(json)));
   }
 };

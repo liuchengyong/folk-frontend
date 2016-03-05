@@ -10,12 +10,11 @@ import Content from './LuckyMoney/Content';
 import Footer from './LuckyMoney/Footer';
 import Loading from './Loading';
 
-const wechatAPI = config.wechatAPI;
-
 class Coupon extends React.Component {
 
   constructor() {
     super();
+    //todo merge state into redux
     this.state = {
       loadedSDK: false
     }
@@ -25,6 +24,8 @@ class Coupon extends React.Component {
     let states = this.props.coupon;
     let coupon = states.coupon;
     let sdkConfig = states.sdkConfig;
+    let actions = this.props.actions;
+    
     if (states.isFetching) {
       return <Loading />
     }
@@ -48,7 +49,7 @@ class Coupon extends React.Component {
         {
           (()=> {
             if (coupon.param) {
-              return <Content coupon={coupon}/>
+              return <Content coupon={coupon} fetchCoupon={actions.fetchCoupon}/>
             }
           })()
         }
