@@ -3,22 +3,49 @@
  */
 import React from 'react';
 import ReactDOM from 'react-dom';
+import {default as classNames} from 'classnames';
 import Friend from './Friend';
 
 class Content extends React.Component {
+
+  constructor() {
+    super();
+    this.state = {
+      disabled: true
+    }
+  }
 
   fetchCoupon() {
     this.props.fetchCoupon(ReactDOM.findDOMNode(this.refs.mobile).value);
   }
 
+  checkPhoneNumber() {
+    if (/^1[35678]\d{9}$|^147\d{8}$/.test(ReactDOM.findDOMNode(this.refs.mobile).value)) {
+      this.setState({
+        disabled: false
+      })
+    } else {
+      this.setState({
+        disabled: true
+      })
+    }
+  }
+
   render() {
+    let btnClass = classNames({
+      'get-hb': true,
+      'btn': true,
+      'disabled': this.state.disabled
+    });
     let param = this.props.coupon.param;
     let friends = param && param.list ? param.list.results : [];
     return (
       <div className="content-wrapper">
-        <input type="tel" className="phone" id="phone" ref="mobile" placeholder="输入电话号码"/>
-        <button className="get-hb btn" id="btnCoupon"
-                onClick={this.fetchCoupon.bind(this)}>立即领取</button>
+        <input type="tel" className="phone" id="phone" ref="mobile"
+               onKeyUp={this.checkPhoneNumber.bind(this)} placeholder="输入电话号码"/>
+        <button className={btnClass} id="btnCoupon"
+                onClick={this.fetchCoupon.bind(this)} {...this.state}>立即领取
+        </button>
         <a href="http://a.app.qq.com/o/simple.jsp?pkgname=com.luoteng.folk"
            className="btn btn-block btn-primary btn-open"
            id="btnShare">
@@ -32,7 +59,7 @@ class Content extends React.Component {
           </div>
           <ul className="friends-group">
             {friends.map((friend) => {
-              return <Friend key={friend.owner.id} friend={friend} />
+              return <Friend key={friend.owner.id} friend={friend}/>
             })}
           </ul>
         </div>

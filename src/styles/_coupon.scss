@@ -404,6 +404,9 @@ li {
   background: #e7817e;
   border: none;
   border-radius: 5px;
+  &.disabled {
+    background: grey;
+  }
 }
 
 .down-app {
