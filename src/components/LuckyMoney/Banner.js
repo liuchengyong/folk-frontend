@@ -6,7 +6,7 @@ import React from 'react';
 class Banner extends React.Component {
   render() {
     let coupon = this.props.coupon;
-    let shareUser = coupon.param.shareUser;
+    let shareUser = coupon.param ? coupon.param.shareUser : {};
 
     let generateBanner = (coupon) => {
       switch (coupon.code) {
@@ -36,7 +36,7 @@ class Banner extends React.Component {
     };
 
     return (
-      <div>
+      <div className="banner-content">
         <div className="used-wrap">
           <div className="used-avatar">
             <div className="user-avatar-wrap">

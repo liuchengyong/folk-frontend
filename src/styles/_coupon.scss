@@ -245,14 +245,18 @@ li {
   width: 50px;
 }
 
+.banner-content {
+  margin-top: -150px;
+  position: relative;
+}
+
 .used-wrap {
   display: table;
   height: 100px;
-  margin: -150px auto 20px;
+  margin: 0px auto 20px;
   padding-left: 30px;
   width: 320px;
   z-index: 1;
-  position: relative;
 }
 
 .used-wrap .used-avatar {
@@ -507,6 +511,8 @@ li {
   font-size: 12px;
   margin: 15px auto;
   width: 320px;
+  position: relative;
+  z-index: 1;
 }
 
 .activity-intro .title-border {

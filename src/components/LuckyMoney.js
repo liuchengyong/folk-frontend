@@ -45,7 +45,13 @@ class Coupon extends React.Component {
       <section className="coupon-container">
         <Header />
         <Banner coupon={coupon}/>
-        <Content coupon={coupon}/>
+        {
+          (()=> {
+            if (coupon.param) {
+              return <Content coupon={coupon}/>
+            }
+          })()
+        }
         <Footer />
       </section>
     );
@@ -55,9 +61,6 @@ class Coupon extends React.Component {
     let ua = navigator.userAgent.toLowerCase();
     if (ua.match(/MicroMessenger/i) == 'micromessenger') {
       //check code or pid
-      if (!/code|pid/.test(location.search)) {
-        location.href = config.baseUrl + wechatAPI.auth;
-      }
       this.props.actions.fetchWechatConfig();
     }
   }

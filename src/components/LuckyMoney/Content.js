@@ -6,7 +6,8 @@ import Friend from './Friend';
 
 class Content extends React.Component {
   render() {
-    let friends = this.props.coupon.param.list.results;
+    let param = this.props.coupon.param;
+    let friends = param && param.list ? param.list.results : [];
     return (
       <div className="content-wrapper">
         <input type="tel" className="phone" id="phone" placeholder="输入电话号码"/>
