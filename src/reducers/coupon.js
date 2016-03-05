@@ -12,16 +12,17 @@ module.exports = function(state = initialState, action) {
   /* Keep the reducer clean - do not mutate the original state. */
   //let nextState = Object.assign({}, state);
   console.log(action);
-  switch(action.type) {
-    case 'RECEIVE_WECHAT_CONFIG': {
+  switch (action.type) {
+    case 'REQUEST_COUPON':
+      return Object.assign({}, state, {fetchingCoupon: true});
+    case 'RECEIVE_COUPON':
+      return Object.assign({}, state, {fetchingCoupon: false});
+    case 'RECEIVE_WECHAT_CONFIG':
       return Object.assign({}, action.parameter, {isFetching: false});
-    } break;
-    case 'REQUEST_WECHAT_CONFIG': {
+    case 'REQUEST_WECHAT_CONFIG':
       return Object.assign({}, state, {isFetching: true});
-    } break;
-    default: {
+    default:
       /* Return original state if no actions were consumed. */
       return state;
-    }
   }
 };

@@ -8,6 +8,7 @@ export default {
   wechatAPI: {
     config: '/api/wechat/config',
     auth: '/api/wechat/oauth',
+    coupon: '/api/wechat/coupon',
     SDK: 'http://res.wx.qq.com/open/js/jweixin-1.0.0.js'
   }
 }
