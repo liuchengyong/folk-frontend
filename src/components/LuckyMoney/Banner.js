@@ -2,13 +2,16 @@
  * Created by luowei on 3/2/16.
  */
 import React from 'react';
+import config from 'config';
 
 class Banner extends React.Component {
   render() {
     let coupon = this.props.coupon;
     let shareUser = coupon.param ? coupon.param.shareUser : {};
-    let money = coupon && coupon.param && coupon.param.coupon.actualAmount || 0;
-    let generateBanner = (coupon) => {
+    let couponDetail = coupon && coupon.param && coupon.param.coupon;
+    let desc = couponDetail.status || 'DEFAULT';
+
+    const generateBanner = (coupon) => {
       switch (coupon.code) {
         case 225:
           //todo done
@@ -45,7 +48,7 @@ class Banner extends React.Component {
                     Hi, 我是 {shareUser.loginName || shareUser.name || '匿名'}
                   </div>
                   <div className="admin-notice">
-                    赶快领取属于你的优惠大礼包~
+                    {config.couponStatus[desc]}
                   </div>
                 </div>
               </div>
@@ -53,7 +56,7 @@ class Banner extends React.Component {
                 <div className="used-word">
                   <span className="coupon-unit">￥</span>
                   <span className="my-money">
-                  {money}
+                    {couponDetail.actualAmount}
                   </span>
                 </div>
               </div>

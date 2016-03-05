@@ -37,7 +37,7 @@ class Content extends React.Component {
       'btn': true,
       'disabled': this.state.disabled
     });
-    let param = this.props.coupon.param;
+    let param = this.props.param;
     let friends = param && param.list ? param.list.results : [];
     return (
       <div className="content-wrapper">

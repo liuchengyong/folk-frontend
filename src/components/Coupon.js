@@ -25,7 +25,8 @@ class Coupon extends React.Component {
     let coupon = states.coupon;
     let sdkConfig = states.sdkConfig;
     let actions = this.props.actions;
-    
+    let couponDetail = coupon && coupon.param && coupon.param.coupon || {};
+
     if (states.isFetching) {
       return <Loading />
     }
@@ -48,8 +49,8 @@ class Coupon extends React.Component {
         <Banner coupon={coupon}/>
         {
           (()=> {
-            if (coupon.param) {
-              return <Content coupon={coupon} fetchCoupon={actions.fetchCoupon}/>
+            if (coupon.code === 224) {
+              return <Content coupon={couponDetail} fetchCoupon={actions.fetchCoupon}/>
             }
           })()
         }
