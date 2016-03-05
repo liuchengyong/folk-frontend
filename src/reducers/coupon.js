@@ -16,7 +16,7 @@ module.exports = function(state = initialState, action) {
     case 'REQUEST_COUPON':
       return Object.assign({}, state, {fetchingCoupon: true});
     case 'RECEIVE_COUPON':
-      return Object.assign({}, state, {fetchingCoupon: false});
+      return Object.assign({}, state, {fetchingCoupon: false}, {coupon: action.parameter});
     case 'RECEIVE_WECHAT_CONFIG':
       return Object.assign({}, action.parameter, {isFetching: false});
     case 'REQUEST_WECHAT_CONFIG':
