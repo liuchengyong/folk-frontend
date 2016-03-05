@@ -8,7 +8,7 @@ import requestCoupon from './requestCoupon';
 module.exports = (mobile) => {
   return dispatch => {
     dispatch(requestCoupon());
-    return fetch(config.baseUrl + config.wechatAPI.coupon, {
+    return fetch(config.baseUrl + config.wechatAPI.coupon + location.search, {
       method: 'post',
       headers: {
         'Accept': 'application/json',

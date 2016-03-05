@@ -7,7 +7,7 @@ class Banner extends React.Component {
   render() {
     let coupon = this.props.coupon;
     let shareUser = coupon.param ? coupon.param.shareUser : {};
-    let money = coupon.param.coupon.actualAmount;
+    let money = coupon && coupon.param && coupon.param.coupon.actualAmount || 0;
     let generateBanner = (coupon) => {
       switch (coupon.code) {
         case 225:
