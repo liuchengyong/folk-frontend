@@ -58,8 +58,8 @@ class Content extends React.Component {
             <span className="title-border"></span>
           </div>
           <ul className="friends-group">
-            {friends.map((friend) => {
-              return <Friend key={friend.owner.id} friend={friend}/>
+            {friends.map((friend, index) => {
+              return <Friend key={friend.owner.id} friend={friend} index={index}/>
             })}
           </ul>
         </div>

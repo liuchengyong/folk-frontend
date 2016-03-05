@@ -1,12 +1,13 @@
 /**
  * Created by luowei on 3/3/16.
  */
+import config from 'config';
 import React from 'react';
 class Friend extends React.Component {
   render() {
     let owner = this.props.friend.owner;
     let coupon = this.props.friend.coupon;
-
+    let index = this.props.index;
     return (
       <li className="fd-item">
         <div className="item-info">
@@ -20,7 +21,7 @@ class Friend extends React.Component {
             </div>
             <div className="fd-content-wrap">
               <div className="fd-comment">
-                导师，我来了，带我飞吧~~~
+                {config.words[ index % config.words.length]}
               </div>
               <div className="fd-money">
                 {coupon.actualAmount}

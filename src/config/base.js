@@ -10,5 +10,14 @@ export default {
     auth: '/api/wechat/oauth',
     coupon: '/api/wechat/coupon',
     SDK: 'http://res.wx.qq.com/open/js/jweixin-1.0.0.js'
-  }
+  },
+  words: [
+    '收好红包去找导师啦~~~',
+    '钱包君做梦也会偷着笑',
+    '土豪，我们做朋友吧~',
+    '导师，我来了，带我飞吧~~~',
+    '红包领得好，知识不会少~',
+    '换个姿势，再来一次~~~',
+    '棒棒哒,拿券抵导师费,赚到啦~'
+  ]
 }
