@@ -27,6 +27,23 @@ class LatestComment extends React.Component {
     } else {
     	dialog = null;
     }
+    let star = [];
+    let stared = null;
+    for(var i = 0; i < 5; i++) {
+    	if(i < comment.comment.starCount) {
+    		star[i] = true;
+    	} else {
+    		star[i] = false;
+    	}
+    }
+		stared = star.map((bool, i) => {
+			if(bool) {
+				return <img src="/images/icon/started.png" key={i}/>
+			} else {
+				return <img src="/images/icon/star.png" />
+			}
+		})
+
 
     return (
  	 		<div>
@@ -36,10 +53,14 @@ class LatestComment extends React.Component {
 		      	<div className="comment-user-info">
 		      		<img src={comment.sender.avatar} />
 	      			<div className="comment-text">
-                <div className="comment-name">{comment.sender.name}</div>
-                <div className="comment-time">2016-02-26</div>
-          		</div>
+                		<div className="comment-name">{comment.sender.name}</div>
+                		<div className="comment-time">2016-02-26</div>
+          			</div>
+          			<div className="comment-start">
+          				{stared}
+          			</div>
 		      	</div>
+		      	<div className="clear"></div>
 		      	<div className="comment-content">
 		      		<p>{comment.comment.content}</p>
 		      	</div>

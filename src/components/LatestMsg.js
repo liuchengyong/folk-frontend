@@ -9,43 +9,33 @@ import React from 'react';
 class LatestMsg extends React.Component {
   render() {
 
-    let comment = this.props.message.results[0];
-    
-    let content = (
+    let message = this.props.message.results;//[0];
+    let content = null;
+    content = (
           <div className="no-message">
           </div>
         );
 
+    if(message) {
 
-    if(comment) {
-      content = (
-        <div>
-          <div className="msg-info">
+      content = message.map(msg => {
+
+      return (
+          <div key={msg.comment.id} className="msg-info">
               <div className="comment-user-info">
-                <img src={comment.sender.avatar} />
+                <img src={msg.sender.avatar} />
                 <div className="msg-text">
-                  <div className="msg-name">{comment.sender.name}</div>
+                  <div className="msg-name">{msg.sender.name}</div>
                   <div className="msg-time">2016-02-29</div>
                 </div>
               </div>
               <div className="msg-content">
-                <p>{comment.comment.content}</p>
+                <p>{decodeURI(msg.comment.content)}</p>
               </div>
             </div>
-            <div className="msg-info">
-              <div className="comment-user-info">
-                <img src={comment.sender.avatar} />
-                <div className="msg-text">
-                  <div className="msg-name">{comment.sender.name}</div>
-                  <div className="msg-time">2016-02-29</div>
-                </div>
-              </div>
-              <div className="msg-content">
-                <p>{comment.comment.content}</p>
-              </div>
-          </div>
-        </div>
-      );
+          );
+        })
+
     }
 
     return (

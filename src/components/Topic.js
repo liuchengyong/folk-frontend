@@ -17,7 +17,6 @@ class TopicComponent extends React.Component {
     let message = this.props.topic.relateMessages;
 
     let dialog = this.props.dialog;
-
     if(this.props.topic.isFetching) {
       return <Loading />
     }
@@ -33,7 +32,7 @@ class TopicComponent extends React.Component {
       <div className="topic-wrapper">
         <TopicDesc topic={topic} expert={expert}/>
         { _LatestComment }
-        <LatestMsg message={message}/>
+        <LatestMsg message={message} />
         <Menu dialog={dialog} actions={this.props.actions} />
       </div>
     );
