@@ -18,7 +18,7 @@ module.exports = (mobile) => {
       credentials: 'same-origin'
     })
       .then(response => {
-        "use strict";
+        'use strict';
         return response.json();
       })
       .then(json => dispatch(receiveCoupon(json)));
