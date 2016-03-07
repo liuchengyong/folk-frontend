@@ -38,9 +38,9 @@ class LatestComment extends React.Component {
     }
 		stared = star.map((bool, i) => {
 			if(bool) {
-				return <img src="/images/icon/started.png" key={i}/>
+				return <img src="../images/icon/started.png" key={i}/>
 			} else {
-				return <img src="/images/icon/star.png" />
+				return <img src="../images/icon/star.png" />
 			}
 		})
 
