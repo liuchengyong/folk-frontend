@@ -7,8 +7,6 @@ import Banner from './Banner';
 import RecommendExpert from './RecommendExpert';
 import Loading from './Loading';
 
-//let yeomanImage = require('../images/yeoman.png');
-
 class AppComponent extends React.Component {
   render() {
     let articleList = this.props.home.articleList;

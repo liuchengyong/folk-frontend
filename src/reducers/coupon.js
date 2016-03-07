@@ -11,16 +11,18 @@ const initialState = {isFetching: true};
 module.exports = function(state = initialState, action) {
   /* Keep the reducer clean - do not mutate the original state. */
   //let nextState = Object.assign({}, state);
-  switch(action.type) {
-    case 'RECEIVE_COUPON_DATA': {
-      return action.parameter.success ? Object.assign({}, action.parameter.param, {isFetching: false}) : {isFetching: false};
-    } break;
-    case 'REQUEST_COUPON_DATA': {
+  console.log(action);
+  switch (action.type) {
+    case 'REQUEST_COUPON':
+      return Object.assign({}, state, {fetchingCoupon: true});
+    case 'RECEIVE_COUPON':
+      return Object.assign({}, state, {fetchingCoupon: false}, {coupon: action.parameter});
+    case 'RECEIVE_WECHAT_CONFIG':
+      return Object.assign({}, action.parameter, {isFetching: false});
+    case 'REQUEST_WECHAT_CONFIG':
       return Object.assign({}, state, {isFetching: true});
-    } break;
-    default: {
+    default:
       /* Return original state if no actions were consumed. */
       return state;
-    }
   }
 };

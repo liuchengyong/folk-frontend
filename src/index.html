@@ -13,29 +13,35 @@
 <script>__REACT_DEVTOOLS_GLOBAL_HOOK__ = parent.__REACT_DEVTOOLS_GLOBAL_HOOK__</script>
 <script type="text/javascript" src="/assets/app.js"></script>
 <script type="text/javascript">
-    var wechatServer = 'http://wetest.zhid58.com:3000/weixin/config';
-    var wechatSDK = 'http://res.wx.qq.com/open/js/jweixin-1.0.0.js';
-    var ua = navigator.userAgent.toLowerCase();
-    if (ua.match(/MicroMessenger/i) == 'micromessenger' && location.pathname === '/coupon') {
-        var fileref = document.createElement('script');
-        fileref.setAttribute('type', 'text/javascript');
-        fileref.setAttribute('src', wechatSDK);
-        fileref.onload = function(e) {
-            var xhr = new XMLHttpRequest();
-            xhr.open('GET', wechatServer + location.search);
-            xhr.send(null);
-            xhr.onreadystatechange = function() {
-                if (xhr.readyState === 4 && xhr.status === 200) {
-                    wx.config(JSON.parse(xhr.responseText));
-                    wx.ready(function() {
-                    });
-                } else {
-                    console.log('Error: ' + xhr.status);
-                }
-            };
-        }
-    }
-    document.getElementsByTagName("head")[0].appendChild(fileref);
+//    var wechatServer = 'http://wetest.zhid58.com:3000/';
+//    var wechatConfig = wechatServer + 'wechat/config';
+//    var wechatAuth = wechatServer + 'wechat/oauth';
+//    var wechatSDK = 'http://res.wx.qq.com/open/js/jweixin-1.0.0.js';
+//    var ua = navigator.userAgent.toLowerCase();
+//    if (ua.match(/MicroMessenger/i) == 'micromessenger' && location.pathname === '/coupon') {
+//        if (!/code|pid/.test(location.search)) {
+//            location.href = wechatAuth;
+//        }
+//        var fileref = document.createElement('script');
+//        fileref.setAttribute('type', 'text/javascript');
+//        fileref.setAttribute('src', wechatSDK);
+//        fileref.onload = function(e) {
+//            var xhr = new XMLHttpRequest();
+//            xhr.open('GET', wechatConfig + location.search);
+//            xhr.send(null);
+//            xhr.onreadystatechange = function() {
+//                if (xhr.readyState === 4 && xhr.status === 200) {
+//                    var res = JSON.parse(xhr.responseText);
+//                    wx.config(res.sdkConfig);
+//                    wx.ready(function() {
+//                    });
+//                } else {
+//                    console.log('Error: ' + xhr.status);
+//                }
+//            };
+//        }
+//    }
+//    document.getElementsByTagName("head")[0].appendChild(fileref);
 </script>
 </body>
 </html>
