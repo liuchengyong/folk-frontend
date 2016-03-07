@@ -6,6 +6,8 @@
 
 import React from 'react';
 import Dialog from './Dialog';
+let hasStar = require('../images/icon/started.png');
+let noStar = require('../images/icon/star.png');
 
 class LatestComment extends React.Component {
 
@@ -38,9 +40,9 @@ class LatestComment extends React.Component {
     }
   stared = star.map((bool, i) => {
     if(bool) {
-      return <img src="../images/icon/started.png" key={i}/>
+      return <img src={hasStar} key={i}/>
     } else {
-      return <img src="../images/icon/star.png" />
+      return <img src={noStar} />
     }
   })
 

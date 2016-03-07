@@ -4,6 +4,8 @@
 import React from 'react';
 require('styles/_dialog.scss');
 
+let logo = require('../images/icon/logo_icon.png');
+
 class Dialog extends React.Component {
 
   closeDialog() {
@@ -21,7 +23,7 @@ class Dialog extends React.Component {
                 <div className="content">
                   <div className="dialog-tips" >
                     <div className="logo" >
-                      <img src="../images/icon/logo_icon.png" />
+                      <img src={logo} />
                     </div>
                     <div className="dialog-tips-text">该功能需要指点客户端支持</div>
                   </div>
