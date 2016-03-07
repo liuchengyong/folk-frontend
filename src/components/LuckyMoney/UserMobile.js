@@ -2,7 +2,6 @@
  * Created by luowei on 3/7/16.
  */
 import React from 'react';
-import config from 'config';
 import ReactDOM from 'react-dom';
 
 import {default as classNames} from 'classnames';

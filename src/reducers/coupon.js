@@ -11,7 +11,7 @@ const initialState = {isFetching: true};
 module.exports = function(state = initialState, action) {
   /* Keep the reducer clean - do not mutate the original state. */
   //let nextState = Object.assign({}, state);
-  console.log(action);
+  //console.log(action);
   switch (action.type) {
     case 'REQUEST_COUPON':
       return Object.assign({}, state, {fetchingCoupon: true});

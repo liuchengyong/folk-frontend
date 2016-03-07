@@ -10,7 +10,7 @@ module.exports = () => {
     dispatch(requestWechatConfig());
     return fetch(config.baseUrl + config.wechatAPI.config + location.search, {credentials: 'same-origin'})
       .then(response => {
-        "use strict";
+        'use strict';
         if (response.status >= 200 && response.status < 300) {
           return response;
         } else {

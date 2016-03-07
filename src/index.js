@@ -20,7 +20,7 @@ render(
       <Route path="/" component={App}></Route>
       <Route path="found" component={Found}></Route>
       <Route path="coupon" component={Coupon}></Route>
-      <Route path="/topic/:id" name="topic" component={Topic} />
+      <Route path="topic/:id" name="topic" component={Topic}/>
     </Router>
   </Provider>,
   document.getElementById('app')
