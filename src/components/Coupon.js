@@ -16,7 +16,7 @@ class Coupon extends React.Component {
     //todo merge state into redux
     this.state = {
       loadedSDK: false,
-      shareDate: {}
+      shareData: {}
     }
   }
 
@@ -25,27 +25,27 @@ class Coupon extends React.Component {
     let coupon = states.coupon;
     let sdkConfig = states.sdkConfig;
     let actions = this.props.actions;
-    let couponPackage;
-    if (coupon && coupon.param) {
-      couponPackage = coupon.param.couponPackage || {};
-    }
+    let couponPackage = coupon && coupon.param && coupon.param.couponPackage || {};
 
     if (states.isFetching) {
       return <Loading />
     }
 
     let self = this;
+
     if (!this.state.loadedSDK) {
       wx.config(sdkConfig);
       wx.ready(() => {
         self.setState({loadedSDK: true});
-        self.setState({shareDate: {
+        let shareData = {
           name: couponPackage.displayName,
           desc: couponPackage.description,
           //todo need refactor
           link: 'http://wetest.zhid58.com/coupon?pid=09E572B6-CE9A-4D85-A63E-1ED6F2465BA2',
           imgUrl: couponPackage.icon || 'http://statics.zhid58.com/img/share_hongbao.jpg'
-        }});
+        };
+        wx.onMenuShareAppMessage(shareData);
+        wx.onMenuShareTimeline(shareData);
       });
       wx.error(()=> {
         console.log('wechat config error');
