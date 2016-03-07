@@ -2,50 +2,23 @@
  * Created by luowei on 3/2/16.
  */
 import React from 'react';
-import ReactDOM from 'react-dom';
-import {default as classNames} from 'classnames';
 import Friend from './Friend';
+import UserMobile from './UserMobile';
 
 class Content extends React.Component {
 
-  constructor() {
-    super();
-    this.state = {
-      disabled: true
-    }
-  }
-
-  fetchCoupon() {
-    this.props.fetchCoupon(ReactDOM.findDOMNode(this.refs.mobile).value);
-  }
-
-  checkPhoneNumber() {
-    if (/^1[35678]\d{9}$|^147\d{8}$/.test(ReactDOM.findDOMNode(this.refs.mobile).value)) {
-      this.setState({
-        disabled: false
-      })
-    } else {
-      this.setState({
-        disabled: true
-      })
-    }
-  }
-
   render() {
-    let btnClass = classNames({
-      'get-hb': true,
-      'btn': true,
-      'disabled': this.state.disabled
-    });
-    let param = this.props.param;
+    let coupon = this.props.coupon || {};
+    let param = coupon.param || {};
     let friends = param && param.list ? param.list.results : [];
+
     return (
       <div className="content-wrapper">
-        <input type="tel" className="phone" id="phone" ref="mobile"
-               onKeyUp={this.checkPhoneNumber.bind(this)} placeholder="输入电话号码"/>
-        <button className={btnClass} id="btnCoupon"
-                onClick={this.fetchCoupon.bind(this)} {...this.state}>立即领取
-        </button>
+        {(() => {
+          if (coupon.code == 224) {
+            <UserMobile fetchCoupon={this.props.fetchCoupon}/>
+          }
+        })()}
         <a href="http://a.app.qq.com/o/simple.jsp?pkgname=com.luoteng.folk"
            className="btn btn-block btn-primary btn-open"
            id="btnShare">
