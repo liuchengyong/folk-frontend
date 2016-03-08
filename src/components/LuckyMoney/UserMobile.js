@@ -3,7 +3,6 @@
  */
 import React from 'react';
 import ReactDOM from 'react-dom';
-
 import {default as classNames} from 'classnames';
 
 class UserMobile extends React.Component {
