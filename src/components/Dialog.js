@@ -13,6 +13,7 @@ class Dialog extends React.Component {
   }
 
   render() {
+    console.log('dialog');
     return (
           <div className="show">
               <div className="dialog-bg"></div>

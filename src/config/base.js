@@ -5,6 +5,7 @@ export default {
   homeData: '/api/v2/home',
   found: '/api/v1/topic/list/keyword?keyword=',
   TopicData: '/api/v1/topic/',
+  BrokeData: '/api/v1/headline/list/descendant?commentId=',
   wechatAPI: {
     config: '/api/wechat/config',
     auth: '/api/wechat/oauth',

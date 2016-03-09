@@ -6,7 +6,7 @@ import {default as config} from 'config';
 const receiveKeyWordData = require('./receiveKeyWordData');
 const requestKeyWordData = require('./requestKeyWordData');
 
-module.exports = function(key) {
+module.exports = (key) => {
   return dispatch => {
   	dispatch(requestKeyWordData());
     return fetch(config.apiUrl + config.found + key +'&page=0&pageSize=20')

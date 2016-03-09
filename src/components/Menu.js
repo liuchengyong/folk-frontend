@@ -19,7 +19,6 @@ class Menu extends React.Component {
       mask: 'mask hide',
       show: false
     }
-    // this.msgClass = 'menu-item';
   }
   showMenu() {
     this.setState({
