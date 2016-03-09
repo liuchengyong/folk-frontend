@@ -17,11 +17,11 @@ const history = syncHistoryWithStore(browserHistory, store);
 render(
   <Provider store={store}>
     <Router history={history}>
-      <Route path="/" component={App} />
-      <Route path="found" component={Found} />
-      <Route path="coupon" component={Coupon} />
-      <Route path="topic/:id" name="topic" component={Topic}/>
-      <Redirect from="/main" to="/" />
+      <Route path="/main" component={App} />
+      <Route path="/main/found" component={Found} />
+      <Route path="/main/coupon" component={Coupon} />
+      <Route path="/main/topic/:id" name="topic" component={Topic}/>
+      <Redirect from="/" to="/main"/>
     </Router>
   </Provider>,
   document.getElementById('app')
