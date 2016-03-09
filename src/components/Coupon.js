@@ -39,14 +39,14 @@ class Coupon extends React.Component {
         let shareData = {
           name: couponPackage.displayName,
           desc: couponPackage.description,
-          link: `${config.baseUrl}/coupon?pid=${config.couponId}`,
+          link: `${config.baseUrl}/main/coupon?pid=${config.couponId}`,
           imgUrl: couponPackage.icon || config.couponIcon
         };
         wx.onMenuShareAppMessage(shareData);
         wx.onMenuShareTimeline(shareData);
       });
       wx.error(()=> {
-        console.error('wechat config error');
+        alert('wechat config error');
       });
       return <Loading />
     }

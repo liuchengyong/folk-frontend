@@ -9,7 +9,6 @@ export default {
   couponId: '09E572B6-CE9A-4D85-A63E-1ED6F2465BA2',
   wechatAPI: {
     config: '/api/wechat/config',
-    auth: '/api/wechat/oauth',
     coupon: '/api/wechat/coupon',
     SDK: 'http://res.wx.qq.com/open/js/jweixin-1.0.0.js'
   },

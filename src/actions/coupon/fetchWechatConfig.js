@@ -8,16 +8,24 @@ import requestWechatConfig from './requestWechatConfig';
 module.exports = () => {
   return dispatch => {
     dispatch(requestWechatConfig());
-    return fetch(config.baseUrl + config.wechatAPI.config + location.search, {credentials: 'same-origin'})
+    return fetch(config.baseUrl + config.wechatAPI.config + location.search, {
+      credentials: 'same-origin'
+    })
       .then(response => {
         'use strict';
         if (response.status >= 200 && response.status < 300) {
-          return response;
+          return response.json();
         } else {
-          location.href = config.baseUrl + config.wechatAPI.auth
+          return response.text();
         }
       })
-      .then(response => response.json())
-      .then(json => dispatch(receiveWechatConfig(json)));
+      .then(response => {
+        'use strict';
+        if (typeof response == 'string') {
+          return location.href = response;
+        } else {
+          return dispatch(receiveWechatConfig(response));
+        }
+      })
   }
 };
