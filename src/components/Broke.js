@@ -11,18 +11,32 @@ import Loading from './Loading';
 import DeviceAdapter from '../common/deviceAdapter';
 import TopBanner from './common/TopBanner';
 import BrokeDesc from './BrokeDesc';
+import BrokeDel from './BrokeDel';
 
 class BrokeComponent extends React.Component {
   render() {
     let dialog = this.props.dialog;
     let actions = this.props.actions;
+    console.log(this.props);
+    console.log('-----------');
+
+
     if(this.props.broke.isFetching) {
       return <Loading />
     }
+
+    let brokeData = null;
+    if(this.props.broke.results) {
+        
+      brokeData = <BrokeDesc id={this.props.params.id} actions={actions} dialog={dialog} broke={this.props.broke} />
+    } else {
+      brokeData = <BrokeDel actions={actions} dialog={dialog} />;
+    }
+
     return (
       <div className="broke">
         <TopBanner />
-        <BrokeDesc id={this.props.params.id} actions={actions} dialog={dialog} broke={this.props.broke} />
+        {brokeData}
       </div>
     );
   }

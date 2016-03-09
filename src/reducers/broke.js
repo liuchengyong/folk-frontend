@@ -9,7 +9,10 @@ module.exports = function(state = initialState, action) {
   //let nextState = Object.assign({}, state);
   switch(action.type) {
     case 'RECEIVE_BROKE_DATA': {
-      return action.parameter.success ? Object.assign({}, action.parameter.param, {isFetching: false}) : {isFetching: true};
+      //@TODO 将删除状态作为一个action
+      return (action.parameter.success ||  action.parameter.code == 303) ? 
+            Object.assign({}, action.parameter.param, {isFetching: false}) : 
+            {isFetching: true};
     } break;
     case 'REQUEST_BROKE_DATA': {
       return Object.assign({}, state, {isFetching: true});

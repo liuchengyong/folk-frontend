@@ -20,6 +20,7 @@ render(
     <Router history={history}>
       <Route path="/main" component={App} />
       <Route path="/main/found" component={Found} />
+      <Route path="/main/broke/:id" name="broke" component={Broke}/>
       <Route path="/main/coupon" component={Coupon} />
       <Route path="/main/topic/:id" name="topic" component={Topic}/>
       <Redirect from="/" to="/main"/>
