@@ -6,7 +6,7 @@ import App from './containers/App';
 import Found from './containers/Found';
 import Topic from './containers/Topic';
 import Coupon from './containers/Coupon';
-import { Router, Route, browserHistory } from 'react-router';
+import { Router, Route, browserHistory,Redirect } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 
@@ -17,10 +17,11 @@ const history = syncHistoryWithStore(browserHistory, store);
 render(
   <Provider store={store}>
     <Router history={history}>
-      <Route path="/" component={App}></Route>
-      <Route path="found" component={Found}></Route>
-      <Route path="coupon" component={Coupon}></Route>
+      <Route path="/" component={App} />
+      <Route path="found" component={Found} />
+      <Route path="coupon" component={Coupon} />
       <Route path="topic/:id" name="topic" component={Topic}/>
+      <Redirect from="/main" to="/" />
     </Router>
   </Provider>,
   document.getElementById('app')
