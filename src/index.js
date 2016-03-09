@@ -5,6 +5,7 @@ import configureStore from './stores';
 import App from './containers/App';
 import Found from './containers/Found';
 import Topic from './containers/Topic';
+import Broke from './containers/Broke';
 import Coupon from './containers/Coupon';
 import { Router, Route, browserHistory,Redirect } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
@@ -19,6 +20,7 @@ render(
     <Router history={history}>
       <Route path="/main" component={App} />
       <Route path="/main/found" component={Found} />
+      <Route path="/main/broke/:id" name="broke" component={Broke}/>
       <Route path="/main/coupon" component={Coupon} />
       <Route path="/main/topic/:id" name="topic" component={Topic}/>
       <Redirect from="/" to="/main"/>

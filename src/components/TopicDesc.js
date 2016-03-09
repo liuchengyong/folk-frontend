@@ -6,7 +6,7 @@ import React from 'react';
 import Time from '../common/timeFormate';
 
 
-class Banner extends React.Component {
+class TopicDesc extends React.Component {
   render() {
 
     let topic = this.props.topic;
@@ -54,4 +54,4 @@ class Banner extends React.Component {
   }
 }
 
-export default Banner;
+export default TopicDesc;
