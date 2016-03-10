@@ -8,7 +8,7 @@ import Header from './LuckyMoney/Header';
 import Banner from './LuckyMoney/Banner';
 import Content from './LuckyMoney/Content';
 import Footer from './LuckyMoney/Footer';
-import Loading from './Loading';
+import Loading from './Common/Loading';
 
 class Coupon extends React.Component {
 

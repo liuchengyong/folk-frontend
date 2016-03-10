@@ -3,13 +3,12 @@
  * Created by HuangGuorui on 2/26/16.
  */
 import React from 'react';
-import Dialog from './Dialog';
-import Time from '../common/timeFormate';
+import Dialog from '../Common/Dialog';
+import Time from '../../common/timeFormate';
 
 class BrokeDesc extends React.Component {
 
   DownApp() {
-  	console.log(this.props);
     this.props.actions.setDialogStatus(true);
   }
   CloseDialog() {
@@ -21,14 +20,12 @@ class BrokeDesc extends React.Component {
     let broke = this.props.broke.results;
     let id = this.props.id;
     let desc = broke[0];
-    let comment = broke;//.splice(1, broke.length);
+    let comment = broke;
 
    	let dialog = null;
     if(this.props.dialog.isOpening){
-    	console.log('test isOpening');
       dialog = <Dialog actions={this.props.actions}/>
     } else {
-    	console.log('isOpening false');
       dialog = null;
     }
 
@@ -36,7 +33,7 @@ class BrokeDesc extends React.Component {
     if(comment) {
 	    commentList = comment.map((ct, index) => {
 	    			if(index == 0) {
-	    				return false; 
+	    				return false;
 	    			}
 		      	return (
 			      		<li key={ct.comment.id} className="broke-comment-list">

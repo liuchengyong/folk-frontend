@@ -2,7 +2,7 @@
  * Created by HuangGuorui on 2/29/16.
  */
 import React from 'react';
-import Dialog from './Dialog';
+import Dialog from '../Common/Dialog';
 
 
 require('styles/_menu.scss');

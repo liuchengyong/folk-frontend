@@ -8,7 +8,7 @@ require('normalize.css');
 require('styles/App.scss');
 
 import React from 'react';
-import Loading from './Loading';
+import Loading from './Common/Loading';
 
 class AppComponent extends React.Component {
   render() {

@@ -10,8 +10,8 @@ module.exports = function(state = initialState, action) {
   switch(action.type) {
     case 'RECEIVE_BROKE_DATA': {
       //@TODO 将删除状态作为一个action
-      return (action.parameter.success ||  action.parameter.code == 303) ? 
-            Object.assign({}, action.parameter.param, {isFetching: false}) : 
+      return (action.parameter.success ||  action.parameter.code == 303) ?
+            Object.assign({}, action.parameter.param, {isFetching: false}) :
             {isFetching: true};
     } break;
     case 'REQUEST_BROKE_DATA': {

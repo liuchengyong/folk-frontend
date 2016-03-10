@@ -10,7 +10,7 @@ import React, {
 } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import Broke from '../components/Broke';
+import Broke from '../components/Broke/Broke';
 
 /* Populated by react-webpack-redux:reducer */
 class BrokeContainer extends Component {

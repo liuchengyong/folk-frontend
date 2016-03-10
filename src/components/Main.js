@@ -5,7 +5,7 @@ import React from 'react';
 import TopicList from './TopicList';
 import Banner from './Banner';
 import RecommendExpert from './RecommendExpert';
-import Loading from './Loading';
+import Loading from './Common/Loading';
 
 class AppComponent extends React.Component {
   render() {

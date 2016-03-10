@@ -1,17 +1,15 @@
 /**
- * 爆料详情
+ * 爆料被删除
  * Created by HuangGuorui on 2/26/16.
  */
 import React from 'react';
-import Dialog from './Dialog';
-import Time from '../common/timeFormate';
-let noBroke = require('../images/del_broke.png');
+import Dialog from '../Common/Dialog';
+let noBroke = require('../../images/del_broke.png');
 
 
 class BrokeDel extends React.Component {
 
   DownApp() {
-  	console.log(this.props);
     this.props.actions.setDialogStatus(true);
   }
   CloseDialog() {

@@ -4,7 +4,7 @@
 import React from 'react';
 require('styles/_dialog.scss');
 
-let logo = require('../images/icon/logo_icon.png');
+let logo = require('../../images/icon/logo_icon.png');
 
 class Dialog extends React.Component {
 
@@ -13,7 +13,6 @@ class Dialog extends React.Component {
   }
 
   render() {
-    console.log('dialog');
     return (
           <div className="show">
               <div className="dialog-bg"></div>

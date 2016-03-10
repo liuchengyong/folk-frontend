@@ -7,9 +7,9 @@ require('normalize.css');
 require('styles/_broke.scss');
 
 import React from 'react';
-import Loading from './Loading';
-import DeviceAdapter from '../common/deviceAdapter';
-import TopBanner from './common/TopBanner';
+import Loading from '../Common/Loading';
+import DeviceAdapter from '../../common/deviceAdapter';
+import TopBanner from '../Common/TopBanner';
 import BrokeDesc from './BrokeDesc';
 import BrokeDel from './BrokeDel';
 
@@ -17,9 +17,6 @@ class BrokeComponent extends React.Component {
   render() {
     let dialog = this.props.dialog;
     let actions = this.props.actions;
-    console.log(this.props);
-    console.log('-----------');
-
 
     if(this.props.broke.isFetching) {
       return <Loading />

@@ -3,7 +3,7 @@
  * Created by HuangGuorui on 2/26/16.
  */
 import React from 'react';
-import Time from '../common/timeFormate';
+import Time from '../../common/timeFormate';
 
 
 class TopicDesc extends React.Component {

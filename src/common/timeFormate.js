@@ -31,9 +31,6 @@
 	const year = date.getFullYear();
 	const month = date.getMonth() + 1;
 	const _date = date.getDate();
-	const hour = date.getHours();
-	const minute = date.getMinutes();
-	const second = date.getSeconds();
 
 	let nowDate = new Date();
 	let nowYear = date.getFullYear();

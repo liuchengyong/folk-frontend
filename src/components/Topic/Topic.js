@@ -2,11 +2,11 @@ require('normalize.css');
 require('styles/_topic.scss');
 
 import React from 'react';
-import Loading from './Loading';
+import Loading from '../Common/Loading';
 import TopicDesc from './TopicDesc';
 import LatestComment from './LatestComment';
 import LatestMsg from './LatestMsg';
-import Menu from './Menu';
+import Menu from '../Common/Menu';
 
 class TopicComponent extends React.Component {
   render() {

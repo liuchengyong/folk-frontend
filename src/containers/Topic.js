@@ -10,7 +10,7 @@ import React, {
 } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import Topic from '../components/Topic';
+import Topic from '../components/Topic/Topic';
 /* Populated by react-webpack-redux:reducer */
 class TopicContainer extends Component {
   render() {

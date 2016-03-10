@@ -5,9 +5,9 @@
  */
 
 import React from 'react';
-import Dialog from './Dialog';
-let hasStar = require('../images/icon/started.png');
-let noStar = require('../images/icon/star.png');
+import Dialog from '../Common/Dialog';
+let hasStar = require('../../images/icon/started.png');
+let noStar = require('../../images/icon/star.png');
 
 class LatestComment extends React.Component {
 
