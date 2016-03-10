@@ -13,19 +13,25 @@ import Loading from './Common/Loading';
 class Coupon extends React.Component {
 
   render() {
-    let states = this.props.coupon;
-    if (states.isFetching || !states.loadedSDK) {
+
+    let wechatStates = this.props.wechat;
+    if (wechatStates.isFetching || !wechatStates.loadedSDK) {
       return <Loading />
     }
+    let coupon = this.props.coupon;
     return (
       <section className="coupon-container">
         <Helmet title='指点微信红包' />
         <Header />
-        <Banner coupon={states.coupon}/>
-        <Content coupon={states.coupon} fetchCoupon={this.props.actions.fetchCoupon}/>
+        <Banner coupon={coupon}/>
+        <Content coupon={coupon} fetchCoupon={this.props.actions.fetchCoupon}/>
         <Footer />
       </section>
     );
+  }
+
+  componentDidMount() {
+    this.props.actions.fetchCoupon();
   }
 }
 
