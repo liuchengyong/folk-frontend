@@ -40,7 +40,7 @@ class Banner extends React.Component {
               <div className="used-wrap">
                 <div className="used-avatar">
                   <div className="user-avatar-wrap">
-                    <img src={shareUser.avatar || 'http://statics.zhid58.com/img/share_hongbao.jpg'}/>
+                    <img src={shareUser.avatar || config.couponIcon}/>
                   </div>
                 </div>
                 <div className="used-msg">
