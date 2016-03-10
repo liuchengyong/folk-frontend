@@ -2,6 +2,7 @@
  * Created by luowei on 2/27/16.
  */
 import React from 'react';
+import Helmet from "react-helmet";
 import config from 'config';
 import wx from 'weixin-js-sdk';
 import Header from './LuckyMoney/Header';
@@ -10,6 +11,7 @@ import Content from './LuckyMoney/Content';
 import Footer from './LuckyMoney/Footer';
 import Loading from './Common/Loading';
 
+const pageTitle = '指点微信红包';
 class Coupon extends React.Component {
 
   constructor() {
@@ -37,6 +39,7 @@ class Coupon extends React.Component {
       wx.ready(() => {
         self.setState({loadedSDK: true});
         let shareData = {
+          title: pageTitle,
           name: couponPackage.displayName,
           desc: couponPackage.description,
           link: `${config.baseUrl}/main/coupon?pid=${config.couponId}`,
@@ -53,6 +56,7 @@ class Coupon extends React.Component {
 
     return (
       <section className="coupon-container">
+        <Helmet title={pageTitle} />
         <Header />
         <Banner coupon={coupon}/>
         <Content coupon={coupon} fetchCoupon={actions.fetchCoupon}/>
