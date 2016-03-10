@@ -11,9 +11,6 @@ class BrokeDesc extends React.Component {
   DownApp() {
     this.props.actions.setDialogStatus(true);
   }
-  CloseDialog() {
-    this.props.actions.setDialogStatus(true);
-  }
 
   render() {
 

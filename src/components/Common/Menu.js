@@ -51,12 +51,8 @@ class Menu extends React.Component {
 
   DownApp() {
     this.props.actions.setDialogStatus(true);
+    this.toggleMenu();
   }
-
-  CloseDialog() {
-    this.props.actions.setDialogStatus(true);
-  }
-
 
   render() {
     let dialog = null;

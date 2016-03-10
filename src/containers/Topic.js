@@ -15,11 +15,7 @@ import Topic from '../components/Topic/Topic';
 class TopicContainer extends Component {
   render() {
     const {actions, topic, params, dialog} = this.props;
-    // if(this.props.topic.isFetching) {
-      // return <div>loading</div>
-    // } else {
       return <Topic actions={actions} topic={topic} params={params} dialog={dialog} />;
-    // }
   }
 }
 /* Populated by react-webpack-redux:reducer
@@ -47,8 +43,6 @@ function mapDispatchToProps(dispatch) {
     requestTopicData: require('../actions/topic/requestTopicData.js'),
     receiveTopicData: require('../actions/topic/receiveTopicData.js'),
 
-    openDialog: require('../actions/dialog/openDialog.js'),
-    closeDialog: require('../actions/dialog/closeDialog.js'),
     setDialogStatus: require('../actions/dialog/setDialogStatus.js')
   };
   const actionMap = { actions: bindActionCreators(actions, dispatch) };

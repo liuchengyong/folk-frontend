@@ -15,10 +15,6 @@ class LatestComment extends React.Component {
     this.props.actions.setDialogStatus(true);
   }
 
-  CloseDialog() {
-    this.props.actions.setDialogStatus(true);
-  }
-
   render() {
 
     let comment = this.props.comment.results[0];

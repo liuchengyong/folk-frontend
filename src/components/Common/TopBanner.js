@@ -11,9 +11,6 @@ let banner_logo = require('../../images/banner_logo.png');
 class TopBanner extends React.Component {
 
   DownApp() {
-  this.props.actions.setDialogStatus(true);
-  }
-  CloseDialog() {
     this.props.actions.setDialogStatus(true);
   }
 

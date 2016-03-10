@@ -2,7 +2,7 @@
  * Created by luowei on 2/27/16.
  */
 import React from 'react';
-import Helmet from "react-helmet";
+import Helmet from 'react-helmet';
 import config from 'config';
 import wx from 'weixin-js-sdk';
 import Header from './LuckyMoney/Header';

@@ -17,6 +17,7 @@ const reducers = {
   topic: require('../reducers/topic.js'),
   dialog: require('../reducers/dialog.js'),
   broke: require('../reducers/broke.js'),
+  expert: require('../reducers/expert.js'),
   coupon: require('../reducers/coupon.js')
 };
 
