@@ -6,9 +6,9 @@
 import React from 'react';
 import CircularProgress from 'material-ui/lib/circular-progress';
 
-const CircularProgressExampleSimple = () => (
+const CircularProgressExampleSimple = (props) => (
   <div className="loading">
-    <CircularProgress size={2} />
+    <CircularProgress size={1} />
   </div>
 );
 
