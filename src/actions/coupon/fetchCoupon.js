@@ -14,13 +14,24 @@ module.exports = (mobile) => {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({ mobile: mobile }),
+      body: JSON.stringify({mobile: mobile}),
       credentials: 'same-origin'
     })
       .then(response => {
         'use strict';
-        return response.json();
+        if (response.status >= 200 && response.status < 300) {
+          return response.json();
+        } else {
+          return response.text();
+        }
       })
-      .then(json => dispatch(receiveCoupon(json)));
+      .then(response => {
+        'use strict';
+        if (typeof response == 'string') {
+          return location.href = response;
+        } else {
+          return dispatch(receiveCoupon(response));
+        }
+      });
   }
 };

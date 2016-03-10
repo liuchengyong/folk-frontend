@@ -8,7 +8,7 @@ class Banner extends React.Component {
   render() {
     let coupon = this.props.coupon;
     let shareUser = coupon.param ? coupon.param.shareUser : {};
-    let couponDetail = coupon && coupon.param && coupon.param.coupon;
+    let couponDetail = coupon && coupon.param && coupon.param.coupon || {};
     let desc = couponDetail.status || 'DEFAULT';
 
     const generateBanner = (coupon) => {

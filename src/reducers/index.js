@@ -18,7 +18,8 @@ const reducers = {
   dialog: require('../reducers/dialog.js'),
   broke: require('../reducers/broke.js'),
   expert: require('../reducers/expert.js'),
-  coupon: require('../reducers/coupon.js')
+  coupon: require('../reducers/coupon.js'),
+  wechat: require('../reducers/wechat.js')
 };
 
 module.exports = combineReducers(_.extend(reducers, {routing: routerReducer}));
