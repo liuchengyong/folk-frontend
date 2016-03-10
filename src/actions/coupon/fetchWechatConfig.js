@@ -3,11 +3,9 @@
  */
 import config from 'config';
 import receiveWechatConfig from './receiveWechatConfig';
-import requestWechatConfig from './requestWechatConfig';
 
 module.exports = () => {
   return dispatch => {
-    dispatch(requestWechatConfig());
     return fetch(config.baseUrl + config.wechatAPI.config + location.search, {
       credentials: 'same-origin'
     })

@@ -23,7 +23,8 @@ function mapStateToProps(state) {
 }
 function mapDispatchToProps(dispatch) {
   const actions = {
-    fetchWechatConfig: require('../actions/coupon/fetchWechatConfig.js'),
+    fetchWechatConfig: require('../actions/coupon/fetchWechatConfig'),
+    doneWechatConfig: require('../actions/coupon/doneWechatConfig'),
     fetchCoupon: require('../actions/coupon/fetchCoupon')
   };
   const actionMap = { actions: bindActionCreators(actions, dispatch) };
