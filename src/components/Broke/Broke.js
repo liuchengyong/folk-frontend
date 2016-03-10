@@ -32,7 +32,7 @@ class BrokeComponent extends React.Component {
 
     return (
       <div className="broke">
-        <TopBanner />
+        <TopBanner actions={actions} dialog={dialog} />
         {brokeData}
       </div>
     );

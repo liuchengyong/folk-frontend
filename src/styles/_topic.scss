@@ -1,218 +1,230 @@
 .clear {
-	clear: both;
+  clear: both;
 }
 
 .topic-wrapper {
-	width: 100%;
-	min-height: 900px;
-	padding: 25px 11px;
-	box-sizing: border-box;
-	background: #f0f0f0;
+  width: 100%;
+  min-height: 900px;
+  top: 1rem;
+  position: relative;
+  padding: 25px 11px;
+  padding-top: 0;
+  box-sizing: border-box;
+  background: #f0f0f0;
 }
 .topic-desc {
-	width: 100%;
-	height: auto;
-	margin-top: 0 atuo;
-	padding: 0 19px;
-	box-sizing: border-box;
-	// border: 1px solid blue;
-	background: #fff;
-	border-radius: 8px;
-	padding-bottom: 15px;
-	.desc-header {
-		width: 100%;
-		padding-top: 19px;
-		box-sizing: border-box;
-		.expert-text {
-			display: table-cell;
-			height: 64px;
-			vertical-align: middle;
-			padding-left: 10px;
-			.expert-name {
-				font-size: 16px;  
-				color: #333;
-			}
-			.expert-school {
-				font-size: 11px;
-				margin-top: 8px;
-				color: #999;
-			}
-		}
-		.expert-info {
-			height: 64px;
-			img {
-				float: left;
-				width: 64px;
-				height: 64px;
-				border-radius: 50%;
-			}
-			.price {
-				display: inline-block;
-				float: right;
-				height: 64px;
-				line-height: 64px;
-				span {
-					color: #4dbafa;
-				}
-			}
-		}
+  width: 100%;
+  height: auto;
+  margin-top: 0 atuo;
+  padding: 0 19px;
+  box-sizing: border-box;
+  // border: 1px solid blue;
+  background: #fff;
+  border-radius: 8px;
+  padding-bottom: 15px;
+  .desc-header {
+    width: 100%;
+    padding-top: 19px;
+    box-sizing: border-box;
+    .expert-text {
+      display: table-cell;
+      height: 64px;
+      vertical-align: middle;
+      padding-left: 10px;
+      .expert-name {
+        font-size: 16px;  
+        color: #333;
+      }
+      .expert-school {
+        font-size: 11px;
+        margin-top: 8px;
+        color: #999;
+      }
+    }
+    .expert-info {
+      height: 64px;
+      img {
+        float: left;
+        width: 64px;
+        height: 64px;
+        border-radius: 50%;
+      }
+      .price {
+        display: inline-block;
+        float: right;
+        height: 64px;
+        line-height: 64px;
+        span {
+          font-size: 16px;
+          color: #4dbafa;
+        }
+      }
+    }
 
-	}
-	.title {
-			max-height: 60px;
-			line-height: 60px;
-			h1 {
-				font-size: 18px; 
-				font-weight: normal;	
-				color: #333;
-				margin: 0;
-				display: inline-block;
-			}
-			.order-time {
-				float: right;
-				font-size: 11px;
-				color: #999;
-			}
-	}
-	.topic-content {
-		p {
-			line-height: 1.5;
-			font-size: 15px;
-			margin: 0;
-			color: #666;
-		}
-	}
-	.order-count {
-		margin-top: 16px;
-		// margin-bottom: 16px;
-		float: right;
-		font-size: 11px;
-		color: #333;
-	}
+  }
+  .title {
+      max-height: 60px;
+      line-height: 60px;
+      h1 {
+        font-size: 16px; 
+        font-weight: bold;  
+        color: #333;
+        margin: 0;
+        display: inline-block;
+        max-width: 74%;
+        overflow:hidden;
+        white-space:nowrap;
+        text-overflow:ellipsis;
+        text-overflow: ellipsis;
+        -ms-text-overflow: ellipsis;
+        -o-text-overflow: ellipsis;
+      }
+      .order-time {
+        float: right;
+        font-size: 11px;
+        color: #999;
+      }
+  }
+  .topic-content {
+    p {
+      line-height: 1.5;
+      font-size: 15px;
+      margin: 0;
+      color: #666;
+    }
+  }
+  .order-count {
+    margin-top: 16px;
+    // margin-bottom: 16px;
+    float: right;
+    font-size: 11px;
+    color: #333;
+  }
 }
 
 
 //latestComment
 .comment-wrap, .msg-wrap {
-	width: 100%;
-	height: auto;
-	margin-top: 0 atuo;
-	padding: 20px 19px;
-	min-height: 50px;
-	box-sizing: border-box;
-	background: #fff;
-	border-radius: 8px;
-	margin-top: 15px;
-	padding-bottom: 15px;
-	.title {
-		height: 17px;
-		line-height: 17px;
-		border-left: 3px solid #18aef9;
-		padding-left: 8px;
-		font-size: 15px;
-	}
-	.comment-user-info, .msg-user-info {
-		border-top: 1px solid #f0f0f0;
-		padding-top: 19px;
-	}
+  width: 100%;
+  height: auto;
+  margin-top: 0 atuo;
+  padding: 20px 19px;
+  min-height: 50px;
+  box-sizing: border-box;
+  background: #fff;
+  border-radius: 8px;
+  margin-top: 15px;
+  padding-bottom: 15px;
+  .title {
+    height: 17px;
+    line-height: 17px;
+    border-left: 3px solid #18aef9;
+    padding-left: 8px;
+    font-size: 15px;
+  }
+  .comment-user-info, .msg-user-info {
+    border-top: 1px solid #f0f0f0;
+    padding-top: 19px;
+  }
 
-	.comment-info, .msg-info {
-		width: 100%;
-		// padding: 0 19px;
-		padding-top: 19px;
-		padding-bottom: 10px;
-		// border: 1px solid red;
-		box-sizing: border-box;
-		border-bottom: 1px solid #f0f0f0;
-		.comment-text {
-			float: left;
-			padding-top: 10px;
-		}
-		.comment-text, .msg-text {
-			display: table-cell;
-			height: 55px;
-			vertical-align: middle;
-			padding-left: 10px;
-			.comment-name, .msg-name {
-				font-size: 15px;  
-				color: #333;
-			}
-			.comment-time, .msg-time {
-				font-size: 11px;
-				margin-top: 8px;
-				color: #999;
-			}
-		}
-		.comment-start {
-			display: inline-block;
-			float: right;
-    	padding-top: 15px;
-    	box-sizing: border-box;
-			img {
-				width: 20px;
-				height: 20px;
-				border-radius: 0;
-			}
-		}
-		img {
-			float: left;
-			width: 55px;
-			height: 55px;
-			border-radius: 50%;
-		}
-		.price {
-			display: inline-block;
-			float: right;
-			height: 55px;
-			line-height: 55px;
-			span {
-				color: #4dbafa;
-			}
-		}
-	}
-	.comment-content, .msg-content {
-		p {
-			color: #666;
-			font-size: 15px;
-			line-height: 1.5;
-			word-wrap: break-word;
-		}
-	}
+  .comment-info, .msg-info {
+    width: 100%;
+    // padding: 0 19px;
+    padding-top: 19px;
+    padding-bottom: 10px;
+    // border: 1px solid red;
+    box-sizing: border-box;
+    border-bottom: 1px solid #f0f0f0;
+    .comment-text {
+      float: left;
+      padding-top: 10px;
+    }
+    .comment-text, .msg-text {
+      display: table-cell;
+      height: 55px;
+      vertical-align: middle;
+      padding-left: 10px;
+      .comment-name, .msg-name {
+        font-size: 15px;  
+        color: #333;
+      }
+      .comment-time, .msg-time {
+        font-size: 11px;
+        margin-top: 8px;
+        color: #999;
+      }
+    }
+    .comment-start {
+      display: inline-block;
+      float: right;
+      padding-top: 15px;
+      box-sizing: border-box;
+      img {
+        width: 20px;
+        height: 20px;
+        border-radius: 0;
+      }
+    }
+    img {
+      float: left;
+      width: 55px;
+      height: 55px;
+      border-radius: 50%;
+    }
+    .price {
+      display: inline-block;
+      float: right;
+      height: 55px;
+      font-size: 16px;
+      line-height: 55px;
+      span {
+        color: #4dbafa;
+      }
+    }
+  }
+  .comment-content, .msg-content {
+    p {
+      color: #666;
+      font-size: 15px;
+      line-height: 1.5;
+      word-wrap: break-word;
+    }
+  }
 
-	.more-comment {
-		width: 100%;
-		text-align: center;
-		span {
-			display: inline-block;
-			width: 77px;
-			height: 26px;
-			line-height: 26px;
-			font-size: 12px;
-			color: #18aef9;
-			border: 1px solid #18aef9;
-			border-radius: 5px;
-			margin-top: 15px;
-			cursor: pointer;
-		}
-	}
+  .more-comment {
+    width: 100%;
+    text-align: center;
+    span {
+      display: inline-block;
+      width: 77px;
+      height: 26px;
+      line-height: 26px;
+      font-size: 12px;
+      color: #18aef9;
+      border: 1px solid #18aef9;
+      border-radius: 5px;
+      margin-top: 15px;
+      cursor: pointer;
+    }
+  }
 }
 
 //最新留言
 .msg-wrap {
-	.msg-info {
-		border-bottom: none;
-	}
-	.no-message {
-		min-height: 330px;
-		background-image: url(../images/no_msg.png);
-		background-repeat: no-repeat;
-		background-position: center;
-		background-size: 25%;
-		// border: 1px solid red;
-		box-sizing: border-box;
-		margin-top: 15px;
-		border-top: 1px solid #f0f0f0;
-	}
+  .msg-info {
+    border-bottom: none;
+  }
+  .no-message {
+    min-height: 330px;
+    background-image: url(../images/no_msg.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 25%;
+    // border: 1px solid red;
+    box-sizing: border-box;
+    margin-top: 15px;
+    border-top: 1px solid #f0f0f0;
+  }
 }
 
 

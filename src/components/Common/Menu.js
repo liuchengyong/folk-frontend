@@ -4,7 +4,6 @@
 import React from 'react';
 import Dialog from '../Common/Dialog';
 
-
 require('styles/_menu.scss');
 
 

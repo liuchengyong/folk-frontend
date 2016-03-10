@@ -4,8 +4,10 @@ require('styles/_topic.scss');
 import React from 'react';
 import Loading from '../Common/Loading';
 import TopicDesc from './TopicDesc';
+import TopBanner from '../Common/TopBanner';
 import LatestComment from './LatestComment';
 import LatestMsg from './LatestMsg';
+import DeviceAdapter from '../../common/deviceAdapter';
 import Menu from '../Common/Menu';
 
 class TopicComponent extends React.Component {
@@ -17,6 +19,7 @@ class TopicComponent extends React.Component {
     let message = this.props.topic.relateMessages;
 
     let dialog = this.props.dialog;
+
     if(this.props.topic.isFetching) {
       return <Loading />
     }
@@ -29,6 +32,7 @@ class TopicComponent extends React.Component {
 
     return (
       <div className="topic-wrapper">
+        <TopBanner actions={this.props.actions} dialog={dialog} />
         <TopicDesc topic={topic} expert={expert}/>
         { _LatestComment }
         <LatestMsg message={message} />
@@ -38,6 +42,7 @@ class TopicComponent extends React.Component {
   }
 
   componentDidMount() {
+    DeviceAdapter.setFrontSize();
     this.props.actions.fetchTopicData(this.props.params.id);
   }
 }

@@ -9,15 +9,13 @@ import React from 'react';
 class LatestMsg extends React.Component {
   render() {
 
-    let message = this.props.message.results;//[0];
+    let message = this.props.message.results;
     let content = null;
     content = (
           <div className="no-message">
           </div>
         );
-
-    if(message) {
-
+    if(message.length > 0) {
       content = message.map(msg => {
 
       return (
@@ -37,7 +35,6 @@ class LatestMsg extends React.Component {
         })
 
     }
-
     return (
       <div>
         <div className="msg-wrap">
