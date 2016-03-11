@@ -26,6 +26,7 @@ function mapDispatchToProps(dispatch) {
   const actions = {
     fetchWechatConfig: require('../actions/wechat/fetchWechatConfig'),
     doneWechatConfig: require('../actions/wechat/doneWechatConfig'),
+    doneWechatShareConfig: require('../actions/wechat/doneWechatShareConfig'),
     fetchCoupon: require('../actions/coupon/fetchCoupon')
   };
   const actionMap = { actions: bindActionCreators(actions, dispatch) };

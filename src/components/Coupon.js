@@ -3,8 +3,6 @@
  */
 import React from 'react';
 import Helmet from 'react-helmet';
-import config from 'config';
-import wx from 'weixin-js-sdk';
 import WechatWrapper from './WechatWrapper';
 import Header from './LuckyMoney/Header';
 import Banner from './LuckyMoney/Banner';
