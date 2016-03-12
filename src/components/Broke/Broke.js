@@ -9,6 +9,7 @@ require('styles/_broke.scss');
 import React from 'react';
 import Loading from '../Common/Loading';
 import DeviceAdapter from '../../common/deviceAdapter';
+import WechatWrapper from '../WechatWrapper';
 import TopBanner from '../Common/TopBanner';
 import BrokeDesc from './BrokeDesc';
 import BrokeDel from './BrokeDel';
@@ -39,6 +40,7 @@ class BrokeComponent extends React.Component {
   }
 
   componentDidMount() {
+    // this.props.actions.fetchCoupon();
     DeviceAdapter.setFrontSize();
     this.props.actions.fetchBrokeData(this.props.params.id);
   }
@@ -46,4 +48,4 @@ class BrokeComponent extends React.Component {
 
 BrokeComponent.defaultProps = {};
 
-export default BrokeComponent;
+export default WechatWrapper(BrokeComponent);

@@ -2,6 +2,7 @@
 
 let path = require('path');
 let webpack = require('webpack');
+// require("font-awesome-webpack");
 let baseConfig = require('./base');
 let defaultSettings = require('./defaults');
 
@@ -36,5 +37,20 @@ config.module.loaders.push({
     [ path.join(__dirname, '/../src') ]
   )
 });
+
+//config awesome font
+
+// config.module.loaders.push({
+//   // the file-loader emits files.
+//   test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/, 
+//   loader: "url-loader?limit=10000&mimetype=application/font-woff" 
+
+// });
+
+// config.module.loaders.push({
+//   test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/, 
+//   loader: "file-loader"
+// });
+
 
 module.exports = config;

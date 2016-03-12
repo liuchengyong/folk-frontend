@@ -23,6 +23,12 @@ export default {
     '换个姿势，再来一次~~~',
     '棒棒哒,拿券抵导师费,赚到啦~'
   ],
+  eduLevelMap: {
+    'UNDERGRADUATE': '本科',
+    'MASTER': '硕士',
+    'PHD': '博士',
+    'DOCTOR': '博士后'
+  },
   couponStatus: {
     PLACED: '这是你已经领过的红包了哦~',
     USED: '红包已经使用~',
