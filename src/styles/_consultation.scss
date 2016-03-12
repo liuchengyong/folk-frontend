@@ -1,59 +1,11 @@
-.loading{
-  position: absolute;
-  display: block;
-  top: 50%;
-  left: 50%;
-  width: 60px;
-  height: 60px;
-  margin-top: -30px;
-  margin-left: -30px;
-  img{
-    width: 100%;
-    height: 100%;
-  }
-}
-
-.neterror{
-  position: absolute;
-  display: none;
-  top: 50%;
-  width: 100%;
-  height: 52px;
-  margin-top: -26px;
-  font-size: 12px;
-  line-height: 14px;
-  color: #A9A9A9;
-  span{
-    display: block;
-    width: 100%;
-    text-align: center;
-  }
-}
-.unknowerror{
-  position: absolute;
-  display: none;
-  top: 50%;
-  width: 100%;
-  height: 28px;
-  margin-top: -14px;
-  font-size: 12px;
-  line-height: 14px;
-  color: #A9A9A9;
-  span{
-    display: block;
-    width: 100%;
-    text-align: center;
-  }
-}
-
-
 
 .detailbox{
   position: relative;
+  display: block;
   width: 100%;
   height: auto;
   color: #464646;
-  padding: 23px 20px;
+  padding: 11px 11px;
   min-height: 100%;
   box-sizing: border-box;
   &:before{
@@ -77,44 +29,50 @@
     z-index: 2;
     border:solid 1px #dcdcdc;
     border-radius: 5px;
-  }
-  h2{
-    position: relative;
-    font-size: 1.7em;
-    line-height: 1.5em;
-    small{
+    h2{
       position: relative;
-      font-size: 0.7em;
-      line-height: 1.3em;
-      display: block;
-      color: #cdcdcd;
-      padding: 8px 0px 0 0;
-      & > span{
-        display: inline-block;
-        &:nth-child(1){
-          padding-right: 20px;
+      font-size: 1.7em;
+      line-height: 1.5em;
+      small{
+        position: relative;
+        font-size: 0.7em;
+        line-height: 1.3em;
+        display: block;
+        color: #cdcdcd;
+        padding: 8px 0px 0 0;
+        & > span{
+          display: inline-block;
+          &:nth-child(1){
+            padding-right: 20px;
+          }
         }
+      }
 
+    }
+    p{
+      color: #666666;
+      width: 100%;
+      line-height: 1.5em;
+      font-size: 16px;
+      display: inline-block;
+      padding: 20px 0 0 0;
+      text-align: left;
+      img{
+        display: block;
+        width: 100%;
+        height: auto;
       }
     }
+  }
 
-  }
-  p{
-    color: #666666;
-    line-height: 1.5em;
-    font-size: 16px;
-    display: block;
-    padding: 20px 0 0 0;
-    img{
-      display: block;
-      width: 100%;
-      height: auto;
-    }
-  }
+
 
 
 }
 .talkbox{
+  a {
+    text-decoration: inherit;
+  }
   display: block;
   width: 100%;
   height: auto;
@@ -124,7 +82,7 @@
   z-index: 2;
   border:solid 1px #dcdcdc;
   border-radius: 5px;
-  margin-top: 20px;
+  margin-top: 11px;
   .talk-title{
     display: block;
     padding: 0 0 10px 0;
@@ -153,7 +111,7 @@
     .talk-head{
       position: relative;
       height: auto;
-      padding: 8px 0 0 65px;
+      padding: 8px 0 0 54px;
       overflow: hidden;
       .person-headimg{
         position: absolute;
@@ -171,9 +129,9 @@
       }
       .personbox{
         min-height: 35px;
-        font-size: 1.3em;
+        font-size: 13px;
         color: #828282;
-        padding: 5px 0;
+        padding: 8px 0;
       }
 
     }
@@ -195,13 +153,14 @@
         text-align: center;
         border-radius: 15px;
         padding: 1px 0;
+        top: 8px;
       }
       .talk{
         color: #333333;
         display: block;
-        padding: 0 0 0 60px;
+        padding: 0 0 0 54px;
         line-height: 1.5em;
-        font-size: 14px;
+        font-size: 16px;
         text-align: left;
       }
     }
@@ -211,7 +170,7 @@
       display: block;
       overflow: hidden;
       height: auto;
-      padding: 0 0 0 60px;
+      padding: 0 0 0 54px;
       text-align: left;
       .answerimg{
         position: relative;
@@ -227,7 +186,4 @@
       }
     }
   }
-}
-.iframe_style{
-  width: 100%;
 }
