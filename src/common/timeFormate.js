@@ -61,16 +61,13 @@
  }
 
 /**
- * 格式化导师时间
- * @param min:分钟
- * 
+ * 日期标准化
  */
-// export.formateTopicTime = (min) => {
-//   let m = min % 60;
-//   if(m == 0) {
-//     return min/60 + '小时';
-//   } else if(min > 60) {
-    
-//   }
-// }
+ exports.formateDate = (ts) => {
+  let date = new Date(ts);
+  const year = date.getFullYear();
+  const month = date.getMonth() + 1;
+  const _date = date.getDate();
+  return year + '-' + month + '-' + _date;
+ }
 

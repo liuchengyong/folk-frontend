@@ -2,9 +2,12 @@
  * 导师详情 导师话题
  */
 import React from 'react';
+import Time from '../../common/timeFormate';
+
 let pnt_ic = require('../../images/icon/ic_number.png');
 
 class ExpertTopic extends React.Component {
+
 
   render() {
    
@@ -28,7 +31,7 @@ class ExpertTopic extends React.Component {
             </span>
         </div>
         <div className="topics_item_time">
-            <i className="fa fa-clock-o"></i> 约0.5小时
+            <i className="fa fa-clock-o"></i> {Time.duration2time(tp.duration)}
         </div>
         <div className="topics_item_content">
             {tp.description}

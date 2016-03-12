@@ -2,6 +2,7 @@
  * 导师详情 评论部分
  */
 import React from 'react';
+import Time from '../../common/timeFormate';
 
 class ExpertComment extends React.Component {
 
@@ -13,9 +14,13 @@ class ExpertComment extends React.Component {
 
    let commentCount = expert.comment.totalSize;
    let comment = commentCount && expert.comment.results[0];
-   let commentTopic = comment.topic.topic;
-    return (
-      <div className="evaluate ">
+   console.log(comment);
+   console.log('-----------');
+   let commentTopic = (comment != 0) && comment.topic.topic;
+   let commentContent = null;
+   if(comment) {
+    commentContent = (
+       <div className="evaluate ">
           <div className="evaluate_title">
               <span className="evaluate_title_text">评价</span>
           </div>
@@ -23,7 +28,7 @@ class ExpertComment extends React.Component {
               <img className="evaluate_top_head_img" src={comment.sender.avatar} />
               <span className="evaluate_top_name">
                   {comment.sender.name}
-                  <small>2016-01-20</small>
+                  <small>{Time.formateDate(comment.topic.topic.onlineRule.timeCreated)}</small>
               </span>
               <span className="evaluate_top_start evaluate_top_start--5">
                   <i className="fa fa-star-o"></i>
@@ -42,8 +47,15 @@ class ExpertComment extends React.Component {
           {commentCount > 1 &&
             <span className="evaluate_more">查看更多评论</span>
           }
+      </div> );
+   } else {
+    commentContent = null;
+   }
+    return (
+      <div >
+        {commentContent}
       </div>
-    );
+    );    
   }
 }
 
