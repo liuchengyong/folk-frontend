@@ -7,6 +7,7 @@ export default {
   TopicData: '/api/v1/topic/',
   BrokeData: '/api/v1/headline/list/descendant?commentId=',
   ExpertData: '/api/v1/expert/',
+  Consultation: '/api/v1/article/',
   couponIcon: 'http://statics.zhid58.com/img/share_hongbao.jpg',
   couponId: '09E572B6-CE9A-4D85-A63E-1ED6F2465BA2',
   wechatAPI: {

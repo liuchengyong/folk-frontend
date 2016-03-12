@@ -9,4 +9,4 @@ module.exports = (id) => {
 			.then(response => response.json())
 			.then(json => dispatch(receiveBrokeData(json)));
 	}
-}
+};

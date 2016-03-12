@@ -12,14 +12,15 @@ const _ = require('lodash');
 
 /* Populated by react-webpack-redux:reducer */
 const reducers = {
-  home: require('../reducers/home.js'),
-  school: require('../reducers/found.js'),
-  topic: require('../reducers/topic.js'),
-  dialog: require('../reducers/dialog.js'),
-  broke: require('../reducers/broke.js'),
-  expert: require('../reducers/expert.js'),
-  coupon: require('../reducers/coupon.js'),
-  wechat: require('../reducers/wechat.js')
+  home: require('../reducers/home'),
+  school: require('../reducers/found'),
+  topic: require('../reducers/topic'),
+  dialog: require('../reducers/dialog'),
+  broke: require('../reducers/broke'),
+  expert: require('../reducers/expert'),
+  coupon: require('../reducers/coupon'),
+  wechat: require('../reducers/wechat'),
+  consultation: require('../reducers/consultation')
 };
 
 module.exports = combineReducers(_.extend(reducers, {routing: routerReducer}));
