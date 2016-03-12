@@ -14,9 +14,6 @@ let WechatWrapper = InnerComponent => class extends React.Component {
     if (!states.loadedSDK && states.SDK ) {
       wx.config(states.SDK);
       nextProps.actions.doneWechatConfig();
-      wx.ready(() => {
-
-      });
       wx.error(()=> {
         alert('微信签名错误');
       });

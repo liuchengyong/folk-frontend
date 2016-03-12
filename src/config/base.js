@@ -29,5 +29,10 @@ export default {
     USED: '红包已经使用~',
     EXPIRED: '红包已经过期~',
     DEFAULT: '赶快领取属于你的优惠大礼包~'
+  },
+  roles: {
+    'STUDENT': '学生',
+    'TEACHER': '名师',
+    'PARENTS': '家长'
   }
 }
