@@ -71,6 +71,7 @@
     "exports-loader": "^0.6.3",
     "imports-loader": "^0.6.5",
     "lodash": "^4.5.1",
+    "marked": "^0.3.5",
     "material-ui": "^0.14.4",
     "normalize.css": "^3.0.3",
     "react": "^0.14.0",

@@ -8,6 +8,7 @@ import Topic from './containers/Topic';
 import Broke from './containers/Broke';
 import Expert from './containers/Expert';
 import Coupon from './containers/Coupon';
+import Consultation from './containers/Consultation'
 import { Router, Route, browserHistory,Redirect } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
 import injectTapEventPlugin from 'react-tap-event-plugin';
@@ -25,6 +26,7 @@ render(
       <Route path="/main/coupon" component={Coupon} />
       <Route path="/main/topic/:id" name="topic" component={Topic}/>
       <Route path="/main/expert/:id" name="expert" component={Expert}/>
+      <Route path="/main/consultation/:id" name="consultation" component={Consultation}/>
       <Redirect from="/" to="/main"/>
     </Router>
   </Provider>,
