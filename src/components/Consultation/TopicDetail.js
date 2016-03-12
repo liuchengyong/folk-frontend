@@ -25,12 +25,18 @@ const TopicDetail = (props) => (
         <span className='tag topics_role'>{config.roles[props.expert.expert.role]}</span>
         <span className='talk topics_description'>{props.topic.description}</span>
       </div>
-      <div className='talk-foot'>
-        <img className='answerimg' src={icPingLun}/>
-      <span className='answenum'>
-        <span className='topics_countOfComment'>{props.countOfComment}</span>
-      </span>
-      </div>
+      {(()=> {
+        if (props.countOfComment > 0) {
+          return (
+            <div className='talk-foot'>
+              <img className='answerimg' src={icPingLun}/>
+              <span className='answenum'>
+                <span className='topics_countOfComment'>{props.countOfComment}</span>
+              </span>
+            </div>
+          );
+        }
+      })()}
     </div>
   </Link>
 );
