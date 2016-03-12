@@ -13,11 +13,12 @@ let WechatWrapper = InnerComponent => class extends React.Component {
     let states = nextProps.wechat;
     if (!states.loadedSDK && states.SDK ) {
       wx.config(states.SDK);
+      nextProps.actions.doneWechatConfig();
       wx.ready(() => {
-        nextProps.actions.doneWechatConfig();
+
       });
       wx.error(()=> {
-        alert('wechat config error');
+        alert('微信签名错误');
       });
     }
     if (!states.loadedShare && states.shareData) {
