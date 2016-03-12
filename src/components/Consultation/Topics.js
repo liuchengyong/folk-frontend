@@ -11,7 +11,6 @@ const Topics = (props) => (
       <span>导师推荐</span>
     </div>
     {(() => {
-      "use strict";
       return props.topics.map((topic, index) => { return <TopicDetail key={index} {...topic} />})
     })()}
   </div>
