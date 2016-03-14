@@ -4,7 +4,6 @@
 import React from 'react';
 import config from 'config';
 import wx from 'weixin-js-sdk';
-import Loading from './Common/Loading';
 
 let WechatWrapper = InnerComponent => class extends React.Component {
   constructor() {
@@ -32,28 +31,28 @@ let WechatWrapper = InnerComponent => class extends React.Component {
   componentDidMount() {
     let ua = navigator.userAgent.toLowerCase();
     if (ua.match(/MicroMessenger/i) == 'micromessenger') {
+      let self = this;
       this.fetchWechatConfig()
         .then(response => response.json())
         .then(SDK => {
-          wx.config(SDK)
-          this.setState({loadedConfig: true});
+          wx.config(SDK);
+          wx.ready(() => {
+            self.setState({loadedConfig: true});
+          });
           wx.error((err)=> {
-            alert('微信签名错误');
+            console.log(err);
           });
         })
         .catch(err => {
           console.log(err);
-          alert('获取微信配置错误');
         });
     }
   }
 
   render() {
-    //if (!this.state.loadedConfig) {
-    //  return <Loading />;
-    //}
     return <InnerComponent {...this.props}
       loadedSharing={this.state.loadedSharing}
+      loadedConfig={this.state.loadedConfig}
       configWechatSharing={this.configWechatSharing.bind(this)}/>
   }
 };

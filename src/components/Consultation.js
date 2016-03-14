@@ -10,11 +10,10 @@ require('styles/_consultation.scss');
 
 class Consultation extends React.Component {
   render() {
-    let consultation = this.props.consultation;
-    if (consultation.isFetching) {
+    if (!this.props.loadedConfig) {
       return <Loading />;
     }
-
+    let consultation = this.props.consultation;
     let param = consultation.param || {};
     return (
       <div className='detailbox'>

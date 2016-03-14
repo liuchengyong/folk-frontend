@@ -4,6 +4,7 @@
 import React from 'react';
 import Helmet from 'react-helmet';
 import config from 'config';
+import Loading from './Common/Loading';
 import WechatWrapper from './WechatWrapper';
 import Header from './LuckyMoney/Header';
 import Banner from './LuckyMoney/Banner';
@@ -13,6 +14,11 @@ import Footer from './LuckyMoney/Footer';
 class Coupon extends React.Component {
 
   render() {
+
+    if (!this.props.loadedSharing) {
+      return <Loading />;
+    }
+
     let coupon = this.props.coupon;
     return (
       <section className="coupon-container">
