@@ -64,7 +64,8 @@
     "style-loader": "^0.13.0",
     "url-loader": "^0.5.6",
     "webpack": "^1.12.0",
-    "webpack-dev-server": "^1.12.0"
+    "webpack-dev-server": "^1.12.0",
+    "qiniu": "^6.1.9"
   },
   "dependencies": {
     "classnames": "^2.2.3",
@@ -75,7 +76,6 @@
     "marked": "^0.3.5",
     "material-ui": "^0.14.4",
     "normalize.css": "^3.0.3",
-    "qiniu": "^6.1.9",
     "react": "^0.14.0",
     "react-dom": "^0.14.0",
     "react-helmet": "^2.3.1",

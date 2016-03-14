@@ -49,9 +49,9 @@ let WechatWrapper = InnerComponent => class extends React.Component {
   }
 
   render() {
-    if (!this.state.loadedConfig) {
-      return <Loading />;
-    }
+    //if (!this.state.loadedConfig) {
+    //  return <Loading />;
+    //}
     return <InnerComponent {...this.props}
       loadedSharing={this.state.loadedSharing}
       configWechatSharing={this.configWechatSharing.bind(this)}/>

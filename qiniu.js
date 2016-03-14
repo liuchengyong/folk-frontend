@@ -14,7 +14,7 @@ const bucket = config.bucket;
 const uploadFiles = config.uploadFiles.split(',');
 
 const generateToken = (bucket, file) => {
-  let match = /(\w+)\.(\w+)$/.exec(file);
+  let match = /([\w|-]+)\.(\w+)$/.exec(file);
   if (match) {
     let key = match[0];
     let putPolicy = new qiniu.rs.PutPolicy(bucket + ":" + key);
