@@ -19,7 +19,6 @@ const reducers = {
   broke: require('../reducers/broke'),
   expert: require('../reducers/expert'),
   coupon: require('../reducers/coupon'),
-  wechat: require('../reducers/wechat'),
   consultation: require('../reducers/consultation')
 };
 

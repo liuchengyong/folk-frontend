@@ -5,29 +5,24 @@ import Coupon from '../components/Coupon';
 
 class CouponContainer extends Component {
   render() {
-    const {actions, coupon, wechat} = this.props;
-    return <Coupon actions={actions} coupon={coupon} wechat={wechat}/>;
+    const {actions, coupon} = this.props;
+    return <Coupon actions={actions} coupon={coupon}/>;
   }
 }
 
 CouponContainer.propTypes = {
   actions: PropTypes.object.isRequired,
-  coupon: PropTypes.object.isRequired,
-  wechat: PropTypes.object.isRequired
+  coupon: PropTypes.object.isRequired
 };
 
 function mapStateToProps(state) {
   const props = {
-    coupon: state.coupon,
-    wechat: state.wechat
+    coupon: state.coupon
   };
   return props;
 }
 function mapDispatchToProps(dispatch) {
   const actions = {
-    fetchWechatConfig: require('../actions/wechat/fetchWechatConfig'),
-    doneWechatConfig: require('../actions/wechat/doneWechatConfig'),
-    doneWechatShareConfig: require('../actions/wechat/doneWechatShareConfig'),
     fetchCoupon: require('../actions/coupon/fetchCoupon')
   };
   const actionMap = { actions: bindActionCreators(actions, dispatch) };

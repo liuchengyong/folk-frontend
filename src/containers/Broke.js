@@ -15,8 +15,8 @@ import Broke from '../components/Broke/Broke';
 /* Populated by react-webpack-redux:reducer */
 class BrokeContainer extends Component {
   render() {
-    const {actions, broke, params, dialog, wechat} = this.props;
-    return <Broke actions={actions} broke={broke} params={params} dialog={dialog} wechat={wechat}/>;
+    const {actions, broke, params, dialog} = this.props;
+    return <Broke actions={actions} broke={broke} params={params} dialog={dialog} />;
   }
 }
 
@@ -34,8 +34,7 @@ function mapStateToProps(state) {
   /* Populated by react-webpack-redux:reducer */
   const props = {
     broke: state.broke,
-    dialog: state.dialog,
-    wechat: state.wechat
+    dialog: state.dialog
   };
   return props;
 }
@@ -47,9 +46,6 @@ function mapDispatchToProps(dispatch) {
     receiveBrokeData: require('../actions/broke/receiveBrokeData.js'),
 
     setDialogStatus: require('../actions/dialog/setDialogStatus.js'),
-    fetchWechatConfig: require('../actions/wechat/fetchWechatConfig'),
-    doneWechatConfig: require('../actions/wechat/doneWechatConfig'),
-    doneWechatShareConfig: require('../actions/wechat/doneWechatShareConfig'),
     fetchCoupon: require('../actions/coupon/fetchCoupon')
   };
   const actionMap = { actions: bindActionCreators(actions, dispatch) };

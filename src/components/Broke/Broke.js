@@ -19,21 +19,21 @@ class BrokeComponent extends React.Component {
     let dialog = this.props.dialog;
     let actions = this.props.actions;
 
-    if(this.props.broke.isFetching) {
+    if (this.props.broke.isFetching) {
       return <Loading />
     }
 
     let brokeData = null;
-    if(this.props.broke.results) {
-        
-      brokeData = <BrokeDesc id={this.props.params.id} actions={actions} dialog={dialog} broke={this.props.broke} />
+    if (this.props.broke.results) {
+
+      brokeData = <BrokeDesc id={this.props.params.id} actions={actions} dialog={dialog} broke={this.props.broke}/>
     } else {
-      brokeData = <BrokeDel actions={actions} dialog={dialog} />;
+      brokeData = <BrokeDel actions={actions} dialog={dialog}/>;
     }
 
     return (
       <div className="broke">
-        <TopBanner actions={actions} dialog={dialog} />
+        <TopBanner actions={actions} dialog={dialog}/>
         {brokeData}
       </div>
     );

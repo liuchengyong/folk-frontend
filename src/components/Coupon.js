@@ -3,31 +3,41 @@
  */
 import React from 'react';
 import Helmet from 'react-helmet';
+import config from 'config';
 import WechatWrapper from './WechatWrapper';
 import Header from './LuckyMoney/Header';
 import Banner from './LuckyMoney/Banner';
 import Content from './LuckyMoney/Content';
 import Footer from './LuckyMoney/Footer';
-import Loading from './Common/Loading';
 
 class Coupon extends React.Component {
 
   render() {
-
-    let wechatStates = this.props.wechat;
-    if (wechatStates.isFetching || !wechatStates.loadedSDK) {
-      return <Loading />
-    }
     let coupon = this.props.coupon;
+
+
     return (
       <section className="coupon-container">
-        <Helmet title='指点微信红包' />
+        <Helmet title='指点微信红包'/>
         <Header />
         <Banner coupon={coupon}/>
         <Content coupon={coupon} fetchCoupon={this.props.actions.fetchCoupon}/>
         <Footer />
       </section>
     );
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (!nextProps.loadedSharing && nextProps.coupon.code === 0) {
+      let coupon = nextProps.coupon;
+      let couponPackage = coupon.param && coupon.param.couponPackage || {};
+      nextProps.configWechatSharing({
+        title: couponPackage.displayName,
+        desc: couponPackage.description,
+        link: `${config.baseUrl}/main/coupon?pid=${config.couponId}`,
+        imgUrl: couponPackage.icon || config.couponIcon
+      });
+    }
   }
 
   componentDidMount() {

@@ -4,7 +4,6 @@
 import config from 'config';
 import receiveCoupon from './receiveCoupon';
 import requestCoupon from './requestCoupon';
-import receiveWechatShareData from '../wechat/receiveWechatShareConfig';
 
 module.exports = (mobile) => {
   return dispatch => {
@@ -31,13 +30,6 @@ module.exports = (mobile) => {
         if (typeof response == 'string') {
           return location.href = response;
         } else {
-          let couponPackage = response.param && response.param.couponPackage || {};
-          dispatch(receiveWechatShareData({
-            title: couponPackage.displayName,
-            desc: couponPackage.description,
-            link: `${config.baseUrl}/main/coupon?pid=${config.couponId}`,
-            imgUrl: couponPackage.icon || config.couponIcon
-          }));
           dispatch(receiveCoupon(response));
         }
       });
