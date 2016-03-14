@@ -14,8 +14,6 @@ class Coupon extends React.Component {
 
   render() {
     let coupon = this.props.coupon;
-
-
     return (
       <section className="coupon-container">
         <Helmet title='指点微信红包'/>
