@@ -9,9 +9,11 @@ require('styles/expert/_expert.scss');
 import React from 'react';
 import DeviceAdapter from '../../common/deviceAdapter';
 import Loading from '../Common/Loading';
+import config from 'config';
 import TopBanner from '../Common/TopBanner';
 import ExpertHeader from './ExpertHeader';
 import ExpertDesc from './ExpertDesc';
+import WechatWrapper from '../WechatWrapper';
 import ExpertTopic from './ExpertTopic';
 import ExpertComment from './ExpertComment';
 // import Dialog from '../Common/Dialog';
@@ -38,6 +40,23 @@ class ExpertComponent extends React.Component {
     );
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (!nextProps.loadedSharing && nextProps.expert.expert) {
+      var expert = nextProps.expert.expert;
+      var user = expert.user;
+      var eduInfo = user.educationList[0];
+      nextProps.configWechatSharing({
+        title: '我是' + user.name + '来自' + eduInfo.college.name +
+                ' ' + eduInfo.educationInfo.major +
+                ' ' + config.eduLevelMap[eduInfo.educationInfo.educationLevel] +
+                ' ' + '我在指点等你',
+        desc: expert.expert.description,
+        link: `${config.baseUrl}/main/expert/` + this.props.params.id,
+        imgUrl: user.avatar
+      });
+    }
+  }
+
   componentDidMount() {
     DeviceAdapter.setFrontSize();
     this.props.actions.fetchExpertData(this.props.params.id);
@@ -46,4 +65,4 @@ class ExpertComponent extends React.Component {
 
 ExpertComponent.defaultProps = {};
 
-export default ExpertComponent;
+export default WechatWrapper(ExpertComponent);

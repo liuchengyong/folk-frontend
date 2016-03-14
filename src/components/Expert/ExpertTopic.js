@@ -13,8 +13,6 @@ class ExpertTopic extends React.Component {
   render() {
    
    let expert = this.props.expert;
-   let user = expert.user;
-   let expertInfo = expert.expert;
    let topic = expert.topic;
 
    let topicList = topic.map(tp => {

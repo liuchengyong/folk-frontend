@@ -27,11 +27,11 @@ class ExpertHeader extends React.Component {
   let eduInfo = user.educationList[0];
   let replyTime = expertInfo.replyTime;
   if(replyTime == 0) {
-  replyTime = '6小时';
+    replyTime = '6小时';
   } else if(replyTime > 24) {
-  replyTime = parseInt(replyTime / 24) + '天';
+    replyTime = parseInt(replyTime / 24) + '天';
   } else {
-  replyTime = replyTime + '小时'
+    replyTime = replyTime + '小时'
   }
 
     return (

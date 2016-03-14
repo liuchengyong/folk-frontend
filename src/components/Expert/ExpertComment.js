@@ -15,8 +15,6 @@ class ExpertComment extends React.Component {
    
     let dialog = null;
     if(this.props.dialog.isOpening){
-      console.log(this.props.actions);
-      console.log('===========');
       dialog = <Dialog actions={this.props.actions}/>
     } else {
       dialog = null;
@@ -24,8 +22,6 @@ class ExpertComment extends React.Component {
 
     //todo 讲数据扁平化
    let expert = this.props.expert;
-   let user = expert.user;
-   let expertInfo = expert.expert;
 
    let commentCount = expert.comment.totalSize;
    let comment = commentCount && expert.comment.results[0];
@@ -73,7 +69,7 @@ class ExpertComment extends React.Component {
         {dialog}
         {commentContent}
       </div>
-    );    
+    );
   }
 }
 

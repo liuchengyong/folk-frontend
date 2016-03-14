@@ -2,9 +2,11 @@ require('normalize.css');
 require('styles/_topic.scss');
 
 import React from 'react';
+import config from 'config';
 import Loading from '../Common/Loading';
 import TopicDesc from './TopicDesc';
 import TopBanner from '../Common/TopBanner';
+import WechatWrapper from '../WechatWrapper';
 import LatestComment from './LatestComment';
 import LatestMsg from './LatestMsg';
 import DeviceAdapter from '../../common/deviceAdapter';
@@ -41,6 +43,17 @@ class TopicComponent extends React.Component {
     );
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (!nextProps.loadedSharing && nextProps.topic.topic) {
+      var topic = nextProps.topic.topic;
+      nextProps.configWechatSharing({
+        title: topic.title,
+        desc: topic.description,
+        link: `${config.baseUrl}/main/topic/` + this.props.params.id,
+        imgUrl: topic.previewImage
+      });
+    }
+  }
   componentDidMount() {
     DeviceAdapter.setFrontSize();
     this.props.actions.fetchTopicData(this.props.params.id);
@@ -49,4 +62,4 @@ class TopicComponent extends React.Component {
 
 TopicComponent.defaultProps = {};
 
-export default TopicComponent;
+export default WechatWrapper(TopicComponent);

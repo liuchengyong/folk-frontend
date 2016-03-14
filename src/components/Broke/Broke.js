@@ -7,6 +7,7 @@ require('normalize.css');
 require('styles/_broke.scss');
 
 import React from 'react';
+import config from 'config';
 import Loading from '../Common/Loading';
 import DeviceAdapter from '../../common/deviceAdapter';
 import WechatWrapper from '../WechatWrapper';
@@ -37,6 +38,27 @@ class BrokeComponent extends React.Component {
         {brokeData}
       </div>
     );
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (!nextProps.loadedSharing && nextProps.broke.results) {
+      let broke = nextProps.broke;
+      if (broke.results.length > 0) {
+        var desc = decodeURI(broke.results[0].comment.content);
+        var link = `${config.baseUrl}/main/broke/` + this.props.params.id;
+        var imgUrl = 'http://7xqxpm.com1.z0.glb.clouddn.com/headline_128.png';
+      } else {
+        var desc = '该爆料已被删除';
+        var link = `${config.baseUrl}/main/broke/` + this.props.params.id;
+        var imgUrl = 'http://7xqxpm.com1.z0.glb.clouddn.com/headline_128.png';
+      }
+      nextProps.configWechatSharing({
+        title: '分享个爆料',
+        desc: desc,
+        link: link,
+        imgUrl: imgUrl
+      });
+    }
   }
 
   componentDidMount() {

@@ -10,8 +10,6 @@ class ExpertDesc extends React.Component {
     this.props.actions.setDialogStatus(true);
   }
   render() {
-    console.log(this.props.actions);
-    console.log('----actions----');
     let dialog = null;
     if(this.props.dialog.isOpening){
       dialog = <Dialog actions={this.props.actions}/>
@@ -20,7 +18,6 @@ class ExpertDesc extends React.Component {
     }
 
    let expert = this.props.expert.expert;
-   let user = expert.user;
    let expertInfo = expert.expert;
     return (
     <div className="teacher_introduce">
