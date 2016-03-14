@@ -2,6 +2,7 @@
  * 导师详情 导师话题
  */
 import React from 'react';
+import classNames from 'classnames';
 import Time from '../../common/timeFormate';
 
 let pnt_ic = require('../../images/icon/ic_number.png');
@@ -16,12 +17,14 @@ class ExpertTopic extends React.Component {
    let expertInfo = expert.expert;
    let topic = expert.topic;
 
-   console.log(topic);
-   console.log('------');
    let topicList = topic.map(tp => {
-
+   let times = tp.appointmentTimes;
+   let topic_item = classNames({
+    topics_item: true,
+    'topics_item--nonumber': times <= 0
+   })
     return (
-      <div key={tp.id} className="topics_item">
+      <div key={tp.id} className={topic_item}>
         <div className="topics_item_top">
             <span className="topics_item_top_title">
                 {tp.title}
@@ -37,7 +40,7 @@ class ExpertTopic extends React.Component {
             {tp.description}
         </div>
         <div className="topics_item_request_number">
-            <img src={pnt_ic} /> 3人求指点
+            <img src={pnt_ic} /> {times}人求指点
         </div>
       </div>
     );

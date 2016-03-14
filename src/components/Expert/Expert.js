@@ -21,7 +21,7 @@ class ExpertComponent extends React.Component {
   render() {
     
     let dialog = this.props.dialog;
-    // let actions = this.props.actions;
+    let actions = this.props.actions;
     let expert = this.props.expert;
     if(this.props.expert.isFetching) {
       return <Loading />
@@ -29,16 +29,17 @@ class ExpertComponent extends React.Component {
 
     return (
       <div className="expert">
-        <ExpertHeader expert={expert}/>
-        <ExpertDesc expert={expert} />
+      <TopBanner actions={actions} dialog={dialog}/>
+        <ExpertHeader actions={actions} dialog={dialog} expert={expert}/>
+        <ExpertDesc expert={expert} actions={actions} dialog={dialog}/>
         <ExpertTopic expert={expert} />
-        <ExpertComment expert={expert} />
+        <ExpertComment expert={expert} dialog={dialog} actions={actions}/>
       </div>
     );
   }
 
   componentDidMount() {
-    // DeviceAdapter.setFrontSize();
+    DeviceAdapter.setFrontSize();
     this.props.actions.fetchExpertData(this.props.params.id);
   }
 }

@@ -9,6 +9,7 @@ let logo = require('../../images/icon/logo_icon.png');
 class Dialog extends React.Component {
 
   closeDialog() {
+    console.log(this.props);
     this.props.actions.setDialogStatus(false);
   }
 

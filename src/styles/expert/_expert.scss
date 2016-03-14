@@ -10,6 +10,7 @@ html, body, #app {
   width: 100%;
   background-color: #ffffff;
   text-align: center;
+  margin-top: 1rem;
   border-bottom: 1px solid #dcdcdc;
   .back_wall_top{
     position: relative;
@@ -238,7 +239,7 @@ html, body, #app {
         width: 100px;
         right: 0;
         top: 17px;
-        text-align: center;
+        text-align: right;
         color: #1289ff;
         .topics_item_top_price_num{
           color: #1289ff;
