@@ -9,7 +9,7 @@ import icPingLun from '../../images/ic_pinglun.png'
 
 const TopicDetail = (props) => (
 
-  <Link to={`/main/topic/${props.topic.id}`}>
+  <Link to={`/topic/${props.topic.id}`}>
     <div className='talk-item'>
       <div className='talk-head'>
         <span className='person-headimg'>
