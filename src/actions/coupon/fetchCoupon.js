@@ -28,7 +28,11 @@ module.exports = (mobile) => {
       .then(response => {
         'use strict';
         if (typeof response == 'string') {
-          return location.href = response;
+          if (response == '416') {
+            alert('缺少必要参数');
+          } else {
+            return location.href = response;
+          }
         } else {
           dispatch(receiveCoupon(response));
         }
