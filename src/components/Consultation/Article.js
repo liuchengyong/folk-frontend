@@ -15,7 +15,7 @@ const Article = (props) => (
       </small>
     </h2>
     {/*todo cache marked content*/}
-    <div id='article_content' dangerouslySetInnerHTML={{__html: marked(props.article.content)}}></div>
+    <div id='article_content' dangerouslySetInnerHTML={{__html: marked(props.article.content || '')}}></div>
   </article>
 );
 
