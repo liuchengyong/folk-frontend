@@ -1,8 +1,8 @@
 'use strict';
-
-let path = require('path');
+let HtmlWebpackPlugin = require('html-webpack-plugin');
 let webpack = require('webpack');
-
+let path = require('path');
+let pkg = require('../package.json');
 let baseConfig = require('./base');
 let defaultSettings = require('./defaults');
 
@@ -11,6 +11,10 @@ let BowerWebpackPlugin = require('bower-webpack-plugin');
 
 let config = Object.assign({}, baseConfig, {
   entry: path.join(__dirname, '../src/index'),
+  output: {
+    path: path.join(__dirname, '/../dist/assets'),
+    filename: `app-${pkg.version}.js`
+  },
   cache: false,
   devtool: 'sourcemap',
   plugins: [
@@ -25,7 +29,12 @@ let config = Object.assign({}, baseConfig, {
     new webpack.optimize.UglifyJsPlugin(),
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.optimize.AggressiveMergingPlugin(),
-    new webpack.NoErrorsPlugin()
+    new webpack.NoErrorsPlugin(),
+    new HtmlWebpackPlugin({
+      filename: '../main.html',
+      title: '指点我吧',
+      template: 'index-tmp.ejs'
+    })
   ],
   module: defaultSettings.getDefaultModules()
 });

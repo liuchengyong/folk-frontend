@@ -1,7 +1,8 @@
 'use strict';
-let path = require('path');
+const path = require('path');
 let defaultSettings = require('./defaults');
 let additionalPaths = [];
+
 module.exports = {
   additionalPaths: additionalPaths,
   port: defaultSettings.port,
@@ -9,7 +10,7 @@ module.exports = {
   devtool: 'eval',
   output: {
     path: path.join(__dirname, '/../dist/assets'),
-    filename: 'app.js',
+    filename: `app.js`,
     publicPath: defaultSettings.publicPath
   },
   devServer: {
