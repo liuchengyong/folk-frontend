@@ -13,7 +13,8 @@ let config = Object.assign({}, baseConfig, {
   entry: path.join(__dirname, '../src/index'),
   output: {
     path: path.join(__dirname, '/../dist/assets'),
-    filename: `app-${pkg.version}.js`
+    filename: `app-${pkg.version}.js`,
+    publicPath: defaultSettings.publicPath
   },
   cache: false,
   devtool: 'sourcemap',
