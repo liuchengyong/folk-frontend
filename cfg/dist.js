@@ -11,8 +11,6 @@ let BowerWebpackPlugin = require('bower-webpack-plugin');
 
 let config = Object.assign({}, baseConfig, {
   entry: [
-    'core-js',
-    'es6-shim',
     path.join(__dirname, '../src/index')
   ],
   output: {
