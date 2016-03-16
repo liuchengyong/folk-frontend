@@ -9,4 +9,4 @@ let config = {
   baseUrl: 'http://wetest.zhid58.com'
 };
 
-export default Object.freeze(Object.assign({}, baseConfig, config));
+export default Object.assign({}, baseConfig, config);
