@@ -3,7 +3,6 @@
  */
 import React from 'react';
 import config from 'config';
-import wx from 'weixin-js-sdk';
 
 let WechatWrapper = InnerComponent => class extends React.Component {
   constructor() {
