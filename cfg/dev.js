@@ -20,8 +20,8 @@ let config = Object.assign({}, baseConfig, {
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin(),
     new BowerWebpackPlugin({
-      searchResolveModulesDirectories: false,
-      'fetch': 'imports?this=>global!exports?global.fetch!whatwg-fetch'
+      searchResolveModulesDirectories: false
+      //'fetch': 'imports?this=>global!exports?global.fetch!whatwg-fetch'
     })
   ],
   module: defaultSettings.getDefaultModules()

@@ -52,8 +52,8 @@ module.exports = {
   },
   plugins: [
     new BowerWebpackPlugin({
-      searchResolveModulesDirectories: false,
-      'fetch': 'imports?this=>global!exports?global.fetch!whatwg-fetch'
+      searchResolveModulesDirectories: false
+      //'fetch': 'imports?this=>global!exports?global.fetch!whatwg-fetch'
     })
   ]
 };
