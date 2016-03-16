@@ -45,7 +45,7 @@ class Banner extends React.Component {
                 </div>
                 <div className="used-msg">
                   <div className="used-name">
-                    Hi, 我是 {shareUser.loginName || shareUser.name || '匿名'}
+                    Hi, 我是 {decodeURIComponent(shareUser.loginName || shareUser.name || '匿名') }
                   </div>
                   <div className="admin-notice">
                     {config.couponStatus[desc]}
