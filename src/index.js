@@ -1,3 +1,4 @@
+require("babel-polyfill");
 Object.assign = require('object-assign');
 require('es6-shim');
 require('es6-promise').polyfill();
