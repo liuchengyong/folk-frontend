@@ -8,6 +8,7 @@ import wx from 'weixin-js-sdk';
 let WechatWrapper = InnerComponent => class extends React.Component {
   constructor() {
     super();
+    console.log('init state');
     this.state = {
       loadedConfig: false,
       loadedSharing: false
@@ -30,6 +31,8 @@ let WechatWrapper = InnerComponent => class extends React.Component {
 
   componentDidMount() {
     let ua = navigator.userAgent.toLowerCase();
+    console.log('get ua');
+    console.log(ua);
     if (ua.match(/MicroMessenger/i) == 'micromessenger') {
       let self = this;
       this.fetchWechatConfig()
