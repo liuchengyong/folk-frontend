@@ -45,7 +45,7 @@ class ExpertHeader extends React.Component {
                   <img className="back_wall_head_img" src={user.avatar} />
               </div>
               <span className="back_wall_focus">
-                  <i className="fa fa-heart-o"></i> {expert.favoriteCount}
+                  <i ></i> {expert.favoriteCount}
               </span>
           </div>
           <span className="back_wall_name">{user.name}</span>

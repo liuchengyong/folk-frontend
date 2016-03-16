@@ -1,5 +1,3 @@
-@import './lib/font-awesome';
-
 html, body, #app {
   background: #f0f0f0 !important;
 
@@ -54,6 +52,13 @@ html, body, #app {
       text-align: center;
       margin-left: 70px;
       top: -30px;
+      i {
+        background-image: url(../../images/icon/heart.png);
+        display: inline-block;
+        width: .2rem;
+        height: .2rem;
+        background-size: contain;
+      }
     }
   }
   .back_wall_name{
@@ -253,6 +258,14 @@ html, body, #app {
       color: #b4b4b4;
       font-size: 14px;
       padding: 11px 0 0 0 ;
+      i {
+        display: inline-block;
+        width: .3rem;
+        height: .25rem;
+        background-repeat: no-repeat;
+        background-image: url(../../images/icon/time.png);
+        background-size: .25rem;
+      }
     }
     .topics_item_content{
       position: relative;
@@ -363,6 +376,9 @@ html, body, #app {
       width: 100px;
       color: #18aef9;
       line-height: 65px;
+      img {
+        width: .3rem;
+      }
       &.evaluate_top_start--1{
          i:nth-child(1):before{
            content: "";

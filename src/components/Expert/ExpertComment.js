@@ -4,6 +4,8 @@
 import React from 'react';
 import Dialog from '../Common/Dialog';
 import Time from '../../common/timeFormate';
+let hasStar = require('../../images/icon/started.png');
+let noStar = require('../../images/icon/star.png');
 
 class ExpertComment extends React.Component {
 
@@ -12,7 +14,9 @@ class ExpertComment extends React.Component {
   }
 
   render() {
-   
+    
+
+
     let dialog = null;
     if(this.props.dialog.isOpening){
       dialog = <Dialog actions={this.props.actions}/>
@@ -30,6 +34,23 @@ class ExpertComment extends React.Component {
    let commentTopic = (comment != 0) && comment.topic.topic;
    let commentContent = null;
 
+    let star = [];
+    let stared = null;
+    for (var i = 0; i < 5; i++) {
+      if (i < comment.starCount) {
+        star[i] = true;
+      } else {
+        star[i] = false;
+      }
+    }
+    stared = star.map((bool, i) => {
+      if(!bool) {
+        return <img src={hasStar} key={i}/>
+      } else {
+        return <img src={noStar} key={i}/>
+      }
+    })
+
 
    if(comment) {
     commentContent = (
@@ -44,11 +65,7 @@ class ExpertComment extends React.Component {
                   <small>{Time.formateDate(comment.topic.topic.onlineRule.timeCreated)}</small>
               </span>
               <span className={'evaluate_top_start evaluate_top_start--' + commentStart}>
-                  <i className="fa fa-star-o"></i>
-                  <i className="fa fa-star-o"></i>
-                  <i className="fa fa-star-o"></i>
-                  <i className="fa fa-star-o"></i>
-                  <i className="fa fa-star-o"></i>
+                  {stared}
               </span>
           </div>
           <div className="evaluate_join_topic">
