@@ -2,7 +2,7 @@
  * 匿名爆料
  * @author HuangGuorui
  */
-
+import assign from 'lodash/assign';
 const initialState = {isFetching: true};
 
 module.exports = function(state = initialState, action) {
@@ -16,7 +16,7 @@ module.exports = function(state = initialState, action) {
             {isFetching: true};
     } break;
     case 'REQUEST_BROKE_DATA': {
-      return Object.assign({}, state, {isFetching: true});
+      return assign({}, state, {isFetching: true});
     } break;
     default: {
       /* Return original state if no actions were consumed. */

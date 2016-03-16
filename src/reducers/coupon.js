@@ -7,6 +7,7 @@
  * src/container/App.js accordingly.
  */
 const initialState = {fetchingCoupon: false};
+import assign from 'lodash/assign';
 
 module.exports = function(state = initialState, action) {
   /* Keep the reducer clean - do not mutate the original state. */
@@ -14,9 +15,9 @@ module.exports = function(state = initialState, action) {
   //console.log(action);
   switch (action.type) {
     case 'REQUEST_COUPON':
-      return Object.assign({}, state, {fetchingCoupon: true});
+      return assign({}, state, {fetchingCoupon: true});
     case 'RECEIVE_COUPON':
-      return Object.assign({}, state, {fetchingCoupon: false}, action.parameter);
+      return assign({}, state, {fetchingCoupon: false}, action.parameter);
     default:
       /* Return original state if no actions were consumed. */
       return state;
