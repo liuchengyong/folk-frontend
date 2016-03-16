@@ -15,7 +15,7 @@ class Coupon extends React.Component {
 
   render() {
     console.log(this.props);
-    if (!this.props.loadedSharing) {
+    if (!this.props.loadedConfig) {
       return <Loading />;
     }
 
@@ -31,18 +31,18 @@ class Coupon extends React.Component {
     );
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (!nextProps.loadedSharing && nextProps.coupon.code === 0) {
-      let coupon = nextProps.coupon;
-      let couponPackage = coupon.param && coupon.param.couponPackage || {};
-      nextProps.configWechatSharing({
-        title: couponPackage.displayName,
-        desc: couponPackage.description,
-        link: `${config.baseUrl}/coupon?${location.search}`,
-        imgUrl: couponPackage.icon || config.couponIcon
-      });
-    }
-  }
+  //componentWillReceiveProps(nextProps) {
+  //  if (!nextProps.loadedSharing && nextProps.coupon.code === 0) {
+  //    let coupon = nextProps.coupon;
+  //    let couponPackage = coupon.param && coupon.param.couponPackage || {};
+  //    nextProps.configWechatSharing({
+  //      title: couponPackage.displayName,
+  //      desc: couponPackage.description,
+  //      link: `${config.baseUrl}/coupon?${location.search}`,
+  //      imgUrl: couponPackage.icon || config.couponIcon
+  //    });
+  //  }
+  //}
 
   componentDidMount() {
     this.props.actions.fetchCoupon();
