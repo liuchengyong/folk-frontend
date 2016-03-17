@@ -8,7 +8,7 @@
  */
 import { combineReducers } from 'redux';
 import { routerReducer } from 'react-router-redux'
-import {extend} from 'lodash/extend';
+import extend from 'lodash/extend';
 
 /* Populated by react-webpack-redux:reducer */
 const reducers = {
