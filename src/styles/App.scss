@@ -20,8 +20,10 @@ html, body, #app {
 
 .loading {
   & > div {
-    left: 42%;
-    top: 42%;
+    display: block !important;
+    top: 40%;
+    margin-right: auto !important;
+    margin-left: auto !important;
   }
   height: 100%;
   width: 100%;
