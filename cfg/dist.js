@@ -19,7 +19,6 @@ let config = Object.assign({}, baseConfig, {
     publicPath: defaultSettings.publicPath
   },
   cache: false,
-  devtool: 'sourcemap',
   plugins: [
     new webpack.optimize.DedupePlugin(),
     new webpack.DefinePlugin({

@@ -1,6 +1,7 @@
 'use strict';
 
 import baseConfig from './base';
+Object.assign = require('object-assign');
 
 let config = {
   appEnv: 'dist', // feel free to remove the appEnv property here
