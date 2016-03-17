@@ -34,10 +34,11 @@ class Coupon extends React.Component {
     if (!nextProps.loadedConfig && nextProps.coupon.code == 0) {
       let coupon = nextProps.coupon;
       let couponPackage = coupon.param && coupon.param.couponPackage || {};
+      let pid = /pid=([\w|-]+)&?/.exec(location.search);
       nextProps.configWechatSharing({
         title: couponPackage.displayName,
         desc: couponPackage.description,
-        link: `${config.baseUrl}/coupon?${location.search}`,
+        link: `${config.baseUrl}/coupon?${pid && pid[1]}`,
         imgUrl: couponPackage.icon || config.couponIcon
       });
     }
