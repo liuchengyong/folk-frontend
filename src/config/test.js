@@ -1,6 +1,5 @@
 'use strict';
 import baseConfig from './base';
-Object.assign = require('object-assign');
 
 let config = {
   appEnv: 'test',  // don't remove the appEnv property here
