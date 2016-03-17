@@ -31,7 +31,7 @@ class Coupon extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (!nextProps.loadedSharing && nextProps.coupon.code === 0) {
+    if (!nextProps.loadedSharing && nextProps.coupon.code == 0) {
       let coupon = nextProps.coupon;
       let couponPackage = coupon.param && coupon.param.couponPackage || {};
       nextProps.configWechatSharing({

@@ -22,6 +22,8 @@ let WechatWrapper = InnerComponent => class extends React.Component {
 
   configWechatSharing(data) {
     if (data) {
+      alert('config shareing');
+      alert(JSON.stringify(data));
       wx.onMenuShareAppMessage(data);
       wx.onMenuShareTimeline(data);
       this.setState({loadedSharing: true});
