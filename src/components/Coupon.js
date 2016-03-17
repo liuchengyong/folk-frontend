@@ -38,7 +38,7 @@ class Coupon extends React.Component {
       nextProps.configWechatSharing({
         title: couponPackage.displayName,
         desc: couponPackage.description,
-        link: `${config.baseUrl}/coupon?${pid && pid[1]}`,
+        link: `${config.baseUrl}/coupon?pid=${pid && pid[1]}`,
         imgUrl: couponPackage.icon || config.couponIcon
       });
     }
