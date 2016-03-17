@@ -4,6 +4,7 @@ const qiniu = require('qiniu');
 const command = process.argv.slice(2);
 const config = require('./qiniu.json');
 const fs = require('fs');
+const replace = require('replace');
 const recursive = require('recursive-readdir');
 
 qiniu.conf.ACCESS_KEY = config.accessKey;
@@ -12,6 +13,7 @@ qiniu.conf.SECRET_KEY = config.secretKey;
 const client = new qiniu.rs.Client();
 const bucket = config.bucket;
 const uploadFiles = config.uploadFiles.split(',');
+const replaceFiles = config.replaceFiles.split(',');
 
 const generateToken = (bucket, file) => {
   let match = /([\w|-]+)\.(\w+)$/.exec(file);
@@ -57,13 +59,21 @@ uploadFiles.forEach(file => {
           }
         });
       } else {
-        let token =generateToken(bucket, file);
+        let token = generateToken(bucket, file);
         if (Array.isArray(token)) {
-          uploadFile.apply(this,token);
+          uploadFile.apply(this, token);
         }
       }
     }
   });
+});
+
+//replace assets to cloud url
+replace({
+  regex: config.regexp,
+  replacement: config.baseUrl,
+  paths: config.replaceFiles.split(','),
+  recursive: true
 });
 
 //获取文件信息
