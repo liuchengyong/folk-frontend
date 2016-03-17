@@ -51,7 +51,7 @@ class ExpertComponent extends React.Component {
                 ' ' + config.eduLevelMap[eduInfo.educationInfo.educationLevel] +
                 ' ' + '我在指点等你',
         desc: expert.expert.description,
-        link: `${config.baseUrl}/main/expert/` + this.props.params.id,
+        link: `${config.baseUrl}/expert/` + this.props.params.id,
         imgUrl: user.avatar
       });
     }

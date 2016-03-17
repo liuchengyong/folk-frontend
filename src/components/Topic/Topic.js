@@ -49,7 +49,7 @@ class TopicComponent extends React.Component {
       nextProps.configWechatSharing({
         title: topic.title,
         desc: topic.description,
-        link: `${config.baseUrl}/main/topic/` + this.props.params.id,
+        link: `${config.baseUrl}/topic/` + this.props.params.id,
         imgUrl: topic.previewImage
       });
     }

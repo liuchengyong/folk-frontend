@@ -45,11 +45,11 @@ class BrokeComponent extends React.Component {
       let broke = nextProps.broke;
       if (broke.results.length > 0) {
         var desc = decodeURI(broke.results[0].comment.content);
-        var link = `${config.baseUrl}/main/broke/` + this.props.params.id;
+        var link = `${config.baseUrl}/broke/` + this.props.params.id;
         var imgUrl = 'http://7xqxpm.com1.z0.glb.clouddn.com/headline_128.png';
       } else {
         var desc = '该爆料已被删除';
-        var link = `${config.baseUrl}/main/broke/` + this.props.params.id;
+        var link = `${config.baseUrl}/broke/` + this.props.params.id;
         var imgUrl = 'http://7xqxpm.com1.z0.glb.clouddn.com/headline_128.png';
       }
       nextProps.configWechatSharing({
