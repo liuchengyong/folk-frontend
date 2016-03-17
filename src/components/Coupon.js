@@ -14,7 +14,7 @@ import Footer from './LuckyMoney/Footer';
 class Coupon extends React.Component {
 
   render() {
-    if (!this.props.loadedConfig) {
+    if (this.props.coupon.fetchingCoupon) {
       return <Loading />;
     }
 

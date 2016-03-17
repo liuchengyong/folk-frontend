@@ -10,7 +10,7 @@ require('styles/_consultation.scss');
 
 class Consultation extends React.Component {
   render() {
-    if (!this.props.loadedConfig) {
+    if (this.props.consultation.isFetching) {
       return <Loading />;
     }
     let consultation = this.props.consultation;

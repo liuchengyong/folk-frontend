@@ -6,7 +6,7 @@
  * If you change the type from object to something else, do not forget to update
  * src/container/App.js accordingly.
  */
-const initialState = {fetchingCoupon: false};
+const initialState = {fetchingCoupon: true};
 import assign from 'lodash/assign';
 
 module.exports = function(state = initialState, action) {
@@ -14,10 +14,8 @@ module.exports = function(state = initialState, action) {
   //let nextState = Object.assign({}, state);
   //console.log(action);
   switch (action.type) {
-    case 'REQUEST_COUPON':
-      return assign({}, state, {fetchingCoupon: true});
     case 'RECEIVE_COUPON':
-      return assign({}, state, {fetchingCoupon: false}, action.parameter);
+      return assign({fetchingCoupon: false}, action.parameter);
     default:
       /* Return original state if no actions were consumed. */
       return state;
