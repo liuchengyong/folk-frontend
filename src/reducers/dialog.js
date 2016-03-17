@@ -8,7 +8,6 @@
  * src/container/App.js accordingly.
  */
 const initialState = {isOpening: false};
-import assign from 'lodash/assign';
 
 module.exports = function(state = initialState, action) {
   /* Keep the reducer clean - do not mutate the original state. */

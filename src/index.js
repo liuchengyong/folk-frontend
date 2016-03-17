@@ -1,6 +1,4 @@
-require("babel-polyfill");
-Object.assign = require('object-assign');
-require('es6-shim');
+require('babel-polyfill');
 require('es6-promise').polyfill();
 require('isomorphic-fetch');
 import React from 'react';
@@ -14,7 +12,7 @@ import Broke from './containers/Broke';
 import Expert from './containers/Expert';
 import Coupon from './containers/Coupon';
 import Consultation from './containers/Consultation'
-import { Router, Route, browserHistory, Redirect } from 'react-router';
+import { Router, Route, browserHistory } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 
