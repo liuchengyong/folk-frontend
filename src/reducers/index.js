@@ -8,7 +8,7 @@
  */
 import { combineReducers } from 'redux';
 import { routerReducer } from 'react-router-redux'
-import extend from 'lodash/extend';
+import assign from 'lodash/assign';
 
 /* Populated by react-webpack-redux:reducer */
 const reducers = {
@@ -22,4 +22,4 @@ const reducers = {
   consultation: require('../reducers/consultation')
 };
 
-module.exports = combineReducers(extend(reducers, {routing: routerReducer}));
+module.exports = combineReducers(assign(reducers, {routing: routerReducer}));
