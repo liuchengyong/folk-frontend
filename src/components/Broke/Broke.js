@@ -41,7 +41,7 @@ class BrokeComponent extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (!nextProps.loadedSharing && nextProps.broke.results) {
+    if (!nextProps.loadedConfig && nextProps.broke.results) {
       let broke = nextProps.broke;
       if (broke.results.length > 0) {
         var desc = decodeURI(broke.results[0].comment.content);

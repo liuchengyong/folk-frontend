@@ -41,7 +41,7 @@ class ExpertComponent extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (!nextProps.loadedSharing && nextProps.expert.expert) {
+    if (!nextProps.loadedConfig && nextProps.expert.expert) {
       var expert = nextProps.expert.expert;
       var user = expert.user;
       var eduInfo = user.educationList[0];

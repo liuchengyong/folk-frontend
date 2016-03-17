@@ -52,14 +52,20 @@ class Banner extends React.Component {
                   </div>
                 </div>
               </div>
-              <div className="used-header">
-                <div className="used-word">
-                  <span className="coupon-unit">￥</span>
-                  <span className="my-money">
-                    {couponDetail.actualAmount}
-                  </span>
-                </div>
-              </div>
+              {(() => {
+                if (couponDetail.actualAmount) {
+                  return (
+                    <div className="used-header">
+                      <div className="used-word">
+                        <span className="coupon-unit">￥</span>
+                        <span className="my-money">
+                          {couponDetail.actualAmount}
+                        </span>
+                      </div>
+                    </div>
+                  );
+                }
+              })()}
             </div>
           )
       }
