@@ -11,12 +11,11 @@ class Content extends React.Component {
     let coupon = this.props.coupon || {};
     let param = coupon.param || {};
     let friends = param && param.list ? param.list.results : [];
-
     return (
       <div className="content-wrapper">
         {(() => {
           if (coupon.code == 224) {
-            <UserMobile fetchCoupon={this.props.fetchCoupon}/>
+            return <UserMobile fetchCoupon={this.props.fetchCoupon}/>
           }
         })()}
         <a href="http://a.app.qq.com/o/simple.jsp?pkgname=com.luoteng.folk"

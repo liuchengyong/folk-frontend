@@ -26,10 +26,17 @@ module.exports = (mobile) => {
       .then(response => {
         'use strict';
         if (typeof response == 'string') {
-          if (response == '416') {
-            alert('缺少必要参数');
-          } else {
-            return location.href = response;
+          switch (response) {
+            case '401':
+              alert('缺少必要参数');
+              break;
+            case '502':
+              alert('不能获取红包信息');
+              break;
+            case '403':
+              alert('code不合法');
+            default:
+              location.href = response;
           }
         } else {
           dispatch(receiveCoupon(response));

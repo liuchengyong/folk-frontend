@@ -44,7 +44,7 @@ class TopicComponent extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (!nextProps.loadedSharing && nextProps.topic.topic) {
+    if (!nextProps.loadedConfig && nextProps.topic.topic) {
       var topic = nextProps.topic.topic;
       nextProps.configWechatSharing({
         title: topic.title,
