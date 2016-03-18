@@ -29,7 +29,7 @@ class TopicDesc extends React.Component {
             <div className="price">
               <span className="order-price">¥{topic.amount}/次</span>
             </div>
-            <img className="expert-avatar" src={expert.user.avatar} />
+            <img className="expert-avatar" src={expert.user.avatar + '?imageMogr2/thumbnail/100x100'} />
             <div className="expert-text">
                 <div className="expert-name">{expert.user.name}</div>
                 <div className="expert-school">{expert.user.educationList[0].college.name}</div>
