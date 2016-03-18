@@ -2,7 +2,6 @@
  * Created by luowei on 2/25/16.
  */
 import React from 'react';
-import RaisedButton from 'material-ui/lib/raised-button';
 
 class HotTopic extends React.Component {
   render() {
@@ -22,7 +21,6 @@ class HotTopic extends React.Component {
             <div>{expert.user.orgName}</div>
           </div>
         </div>
-        <RaisedButton label="Default"/>
         <hr/>
       </div>
     )

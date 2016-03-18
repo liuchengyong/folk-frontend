@@ -4,12 +4,15 @@
  * @author    HuangGuorui
  */
 import React from 'react';
-import CircularProgress from 'material-ui/lib/circular-progress';
+require('styles/_loading.scss');
+let loading = require('../../images/loading.gif');
 
-const CircularProgressExampleSimple = () => (
-  <div className="loading">
-    <CircularProgress size={1}/>
+// import CircularProgress from 'material-ui/lib/circular-progress';
+
+const Loading = () => (
+  <div className="loading-wrap">
+  	<img src={loading} />
   </div>
 );
 
-export default CircularProgressExampleSimple;
+export default Loading;
