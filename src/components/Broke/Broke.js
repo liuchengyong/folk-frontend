@@ -7,6 +7,7 @@ require('normalize.css');
 require('styles/_broke.scss');
 
 import React from 'react';
+import Helmet from 'react-helmet';
 import config from 'config';
 import Loading from '../Common/Loading';
 import DeviceAdapter from '../../common/deviceAdapter';
@@ -19,21 +20,26 @@ class BrokeComponent extends React.Component {
   render() {
     let dialog = this.props.dialog;
     let actions = this.props.actions;
+    let broke = this.props.broke;
 
-    if (this.props.broke.isFetching) {
+    if (broke.isFetching) {
       return <Loading />
     }
 
     let brokeData = null;
-    if (this.props.broke.results) {
-
-      brokeData = <BrokeDesc id={this.props.params.id} actions={actions} dialog={dialog} broke={this.props.broke}/>
+    let title = null;
+    if (broke.totalSize) {
+      title = decodeURI(broke.results[0].comment.content);
+      brokeData = <BrokeDesc id={this.props.params.id} actions={actions} dialog={dialog} broke={broke}/>
     } else {
+      title = '已删除爆料';
       brokeData = <BrokeDel actions={actions} dialog={dialog}/>;
     }
 
+    // broke.totalSize
     return (
       <div className="broke">
+        <Helmet title={title}/>
         <TopBanner actions={actions} dialog={dialog}/>
         {brokeData}
       </div>

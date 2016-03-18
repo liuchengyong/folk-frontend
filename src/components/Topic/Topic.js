@@ -4,6 +4,7 @@ require('styles/_topic.scss');
 import React from 'react';
 import config from 'config';
 import Loading from '../Common/Loading';
+import Helmet from 'react-helmet';
 import TopicDesc from './TopicDesc';
 import TopBanner from '../Common/TopBanner';
 import WechatWrapper from '../WechatWrapper';
@@ -26,6 +27,8 @@ class TopicComponent extends React.Component {
       return <Loading />
     }
 
+    let title = topic.title;
+
     //没有评论
     let _LatestComment = '';
     if(comment.results.length > 0) {
@@ -34,6 +37,7 @@ class TopicComponent extends React.Component {
 
     return (
       <div className="topic-wrapper">
+        <Helmet title={title}/>
         <TopBanner actions={this.props.actions} dialog={dialog} />
         <TopicDesc topic={topic} expert={expert}/>
         { _LatestComment }

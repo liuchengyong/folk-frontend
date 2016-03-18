@@ -9,6 +9,7 @@ require('styles/expert/_expert.scss');
 import React from 'react';
 import DeviceAdapter from '../../common/deviceAdapter';
 import Loading from '../Common/Loading';
+import Helmet from 'react-helmet';
 import config from 'config';
 import TopBanner from '../Common/TopBanner';
 import ExpertHeader from './ExpertHeader';
@@ -29,9 +30,12 @@ class ExpertComponent extends React.Component {
       return <Loading />
     }
 
+    let title = expert.expert.user.name + ' - ' + expert.expert.expert.title;
+
     return (
       <div className="expert">
-      <TopBanner actions={actions} dialog={dialog}/>
+        <Helmet title={title}/>
+        <TopBanner actions={actions} dialog={dialog}/>
         <ExpertHeader actions={actions} dialog={dialog} expert={expert}/>
         <ExpertDesc expert={expert} actions={actions} dialog={dialog}/>
         <ExpertTopic expert={expert} />
