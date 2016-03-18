@@ -14,9 +14,6 @@ import Coupon from './containers/Coupon';
 import Consultation from './containers/Consultation'
 import { Router, Route, browserHistory } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
-import injectTapEventPlugin from 'react-tap-event-plugin';
-
-injectTapEventPlugin();
 
 const store = configureStore();
 const history = syncHistoryWithStore(browserHistory, store);
