@@ -15,31 +15,23 @@ module.exports = (mobile) => {
       body: JSON.stringify({mobile: mobile}),
       credentials: 'same-origin'
     })
+      .then(response => response.json())
       .then(response => {
         'use strict';
-        if (response.status >= 200 && response.status < 300) {
-          return response.json();
-        } else {
-          return response.text();
-        }
-      })
-      .then(response => {
-        'use strict';
-        if (typeof response == 'string') {
-          switch (response) {
-            case '401':
-              alert('缺少必要参数');
-              break;
-            case '502':
-              alert('不能获取红包信息');
-              break;
-            case '403':
-              alert('code不合法');
-            default:
-              location.href = response;
-          }
-        } else {
-          dispatch(receiveCoupon(response));
+        switch (response.code) {
+          case '401':
+            alert('缺少必要参数');
+            break;
+          case '502':
+            alert('不能获取红包信息');
+            break;
+          case '405':
+            alert('无效code');
+            break;
+          case '403':
+            location.href = response.href;
+          default:
+            dispatch(receiveCoupon(response));
         }
       });
   }
