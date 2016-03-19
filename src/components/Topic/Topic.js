@@ -51,7 +51,8 @@ class TopicComponent extends React.Component {
     if (!nextProps.loadedConfig && nextProps.topic.topic) {
       var topic = nextProps.topic.topic;
       nextProps.configWechatSharing({
-        title: topic.title,
+        // title: topic.title,
+        title: '“指点”思考了这么久，却不及这一次的灌顶之语',
         desc: topic.description,
         link: `${config.baseUrl}/topic/` + this.props.params.id,
         imgUrl: topic.previewImage

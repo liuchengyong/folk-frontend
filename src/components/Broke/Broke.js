@@ -59,7 +59,7 @@ class BrokeComponent extends React.Component {
         var imgUrl = 'http://7xqxpm.com1.z0.glb.clouddn.com/headline_128.png';
       }
       nextProps.configWechatSharing({
-        title: '分享个爆料',
+        title: '“指点”嘘~~自己知道就好，一定不要和别人去说',
         desc: desc,
         link: link,
         imgUrl: imgUrl
