@@ -2,6 +2,7 @@
  * Created by luowei on 3/12/16.
  */
 import React from 'react';
+import config from 'config';
 import Article from './Consultation/Article';
 import Topics from './Consultation/Topics';
 import WechatWrapper from './WechatWrapper';
@@ -30,6 +31,17 @@ class Consultation extends React.Component {
         })()}
       </div>
     );
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (!nextProps.loadedConfig && nextProps.consultation.param.article) {
+      nextProps.configWechatSharing({
+        title: '“指点” ' + nextProps.consultation.param.article.title,
+        desc: nextProps.consultation.param.article.content,
+        link: `${config.baseUrl}/consultation/` + nextProps.params.id,
+        imgUrl: nextProps.consultation.param.article.cover
+      });
+    }
   }
 
   componentDidMount() {

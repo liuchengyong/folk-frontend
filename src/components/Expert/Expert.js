@@ -48,7 +48,7 @@ class ExpertComponent extends React.Component {
     if (!nextProps.loadedConfig && nextProps.expert.expert) {
       var expert = nextProps.expert.expert;
       var user = expert.user;
-      var eduInfo = user.educationList[0];
+      // var eduInfo = user.educationList[0];
       nextProps.configWechatSharing({
         // title: '我是' + user.name + '来自' + eduInfo.college.name +
         //         ' ' + eduInfo.educationInfo.major +
