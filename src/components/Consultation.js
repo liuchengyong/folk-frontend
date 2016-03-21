@@ -19,13 +19,13 @@ class Consultation extends React.Component {
     let param = consultation.param || {};
 
     let title = consultation.param.article.title;
-
+    console.log(param.topics.length);
     return (
       <div className='detailbox'>
         <Helmet title={title} />
         <Article article={param.article || {}}/>
         {(()=>{
-          if (param.topics) {
+          if (param.topics.length > 0) {
             return <Topics topics={param.topics || {}}/>
           }
         })()}
@@ -36,7 +36,7 @@ class Consultation extends React.Component {
   componentWillReceiveProps(nextProps) {
     if (!nextProps.loadedConfig && nextProps.consultation.param.article) {
       nextProps.configWechatSharing({
-        title: '“指点” ' + nextProps.consultation.param.article.title,
+        title: '【指点】' + nextProps.consultation.param.article.title,
         desc: nextProps.consultation.param.article.content,
         link: `${config.baseUrl}/consultation/` + nextProps.params.id,
         imgUrl: nextProps.consultation.param.article.cover

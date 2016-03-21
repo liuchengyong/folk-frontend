@@ -34,7 +34,7 @@ class ExpertHeader extends React.Component {
   } else if(replyTime > 24) {
     replyTime = parseInt(replyTime / 24) + '天';
   } else {
-    replyTime = replyTime + '小时'
+    replyTime = replyTime + '小时';
   }
 
     return (
