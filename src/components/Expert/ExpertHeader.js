@@ -4,7 +4,6 @@
 import React from 'react';
 import Dialog from '../Common/Dialog';
 import config from 'config';
-
 let coverImg = require('../../images/cover.jpg');
 class ExpertHeader extends React.Component {
 
@@ -13,7 +12,7 @@ class ExpertHeader extends React.Component {
   }
 
   render() {
-    
+
   let dialog = null;
   if(this.props.dialog.isOpening){
     dialog = <Dialog actions={this.props.actions}/>
@@ -26,7 +25,8 @@ class ExpertHeader extends React.Component {
   let expertInfo = expert.expert;
   let appointTime = this.props.expert.appointmentTimes;
 
-  let coverImg = expertInfo.shortIntroductionPicture ? expertInfo.shortIntroductionPicture : coverImg;
+  let coverPic = expertInfo.shortIntroductionPicture ? expertInfo.shortIntroductionPicture : coverImg;
+  console.log(coverImg);
   let eduInfo = user.educationList[0];
   let replyTime = expertInfo.replyTime;
   if(replyTime == 0) {
@@ -34,21 +34,21 @@ class ExpertHeader extends React.Component {
   } else if(replyTime > 24) {
     replyTime = parseInt(replyTime / 24) + '天';
   } else {
-    replyTime = replyTime + '小时'
+    replyTime = replyTime + '小时';
   }
 
     return (
       <div className="back_wall">
       {dialog}
           <div className="back_wall_top">
-              <img className="back_wall_top_img" src={coverImg} />
+              <img className="back_wall_top_img" src={coverPic} />
           </div>
           <div className="back_wall_icon">
               <div className="back_wall_head">
                   <img className="back_wall_head_img" src={user.avatar} />
               </div>
               <span className="back_wall_focus">
-                  <i ></i> {expert.favoriteCount}
+                  {expert.favoriteCount}
               </span>
           </div>
           <span className="back_wall_name">{user.name}</span>

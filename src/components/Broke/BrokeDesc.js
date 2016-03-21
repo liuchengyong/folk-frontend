@@ -85,14 +85,22 @@ class BrokeDesc extends React.Component {
             }
           </div>
         </div>
-        <div className="broke-comment">
-          <div className="comment-title">
-            <span>全部评论</span>
-          </div>
-          <ul className="broke-comment-gruop">
-            {commentList}
-          </ul>
-        </div>
+        {(() => {
+          console.log(comment);
+          if(comment.length > 1) {
+            return (          
+            <div className="broke-comment">
+              <div className="comment-title">
+                <span>全部评论</span>
+              </div>
+              <ul className="broke-comment-gruop">
+                {commentList}
+              </ul>
+            </div>)
+          }
+
+        })()}
+
         <div className="more-broke">
           <button onClick={this.DownApp.bind(this)}> 打开指点查看更多评论</button>
         </div>
