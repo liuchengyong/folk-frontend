@@ -10,7 +10,6 @@ import Found from './containers/Found';
 import Topic from './containers/Topic';
 import Broke from './containers/Broke';
 import Expert from './containers/Expert';
-import Coupon from './containers/Coupon';
 import Consultation from './containers/Consultation'
 import { Router, Route, browserHistory } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
@@ -23,7 +22,6 @@ render(
       <Route path="/" component={App}/>
       <Route path="/found" component={Found}/>
       <Route path="/broke/:id" name="broke" component={Broke}/>
-      <Route path="/coupon" component={Coupon}/>
       <Route path="/topic/:id" name="topic" component={Topic}/>
       <Route path="/expert/:id" name="expert" component={Expert}/>
       <Route path="/consultation/:id" name="consultation" component={Consultation}/>
