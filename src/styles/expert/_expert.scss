@@ -143,10 +143,10 @@
     .teacher_introduce_title_text{
       position: relative;
       color: #1e1e1e;
-      font-size: 22px;
+      font-size: 18px;
       display: block;
       padding: 0 0 0 10px;
-      line-height: 22px;
+      line-height: 18px;
       &:before{
         position: absolute;
         display: block;
@@ -179,12 +179,12 @@
   .teacher_introduce_more{
     display: inline-block;
     width: 2.42rem;
-    height: 0.6rem;
     text-align: center;
-    padding: 0.06rem 0;
+    padding: 0.07rem 0;
     color: #18aef9;
     border: 1px solid #18aef9;
     font-size: 16px;
+    line-height: 16px;
     border-radius: 5px;
     margin: 0.6rem 0 0.38rem;
   }
@@ -216,10 +216,10 @@
     .topics_title_text{
       position: relative;
       color: #1e1e1e;
-      font-size: 22px;
+      font-size: 18px;
       display: block;
       padding: 0 0 0 10px;
-      line-height: 22px;
+      line-height: 18px;
       &:before{
         position: absolute;
         display: block;
@@ -336,10 +336,10 @@
     .evaluate_title_text{
       position: relative;
       color: #1e1e1e;
-      font-size: 22px;
+      font-size: 18px;
       display: block;
       padding: 0 0 0 10px;
-      line-height: 22px;
+      line-height: 18px;
       &:before{
         position: absolute;
         display: block;
@@ -373,7 +373,7 @@
     .evaluate_top_name{
       display: block;
       font-size: 20px;
-      padding:15px 100px 0 80px;
+      padding:15px 2rem 0 80px;
       text-align: left;
       color: #333333;
       small{
@@ -390,7 +390,7 @@
       font-size: 16px;
       right: 0;
       top: 22px;
-      width: 100px;
+      width: 2rem;
       color: #18aef9;
       line-height: 65px;
       img {
@@ -420,7 +420,6 @@
   .evaluate_more{
     display: inline-block;
     width: 2.4rem;
-    height: 0.55rem;
     margin: 23px 0;
     padding: 0.05rem 0;
     border: 1px solid #18aef9;
