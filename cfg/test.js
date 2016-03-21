@@ -1,59 +1,54 @@
 'use strict';
-
+let HtmlWebpackPlugin = require('html-webpack-plugin');
+let webpack = require('webpack');
 let path = require('path');
-let srcPath = path.join(__dirname, '/../src/');
-
+let pkg = require('../package.json');
 let baseConfig = require('./base');
+let defaultSettings = require('./defaults');
 
 // Add needed plugins here
 let BowerWebpackPlugin = require('bower-webpack-plugin');
 
-module.exports = {
-  devtool: 'eval',
-  module: {
-    preLoaders: [
-      {
-        test: /\.(js|jsx)$/,
-        loader: 'isparta-instrumenter-loader',
-        include: [
-          path.join(__dirname, '/../src')
-        ]
-      }
-    ],
-    loaders: [
-      {
-        test: /\.(png|jpg|gif|woff|woff2|css|sass|scss|less|styl)$/,
-        loader: 'null-loader'
-      },
-      {
-        test: /\.(js|jsx)$/,
-        loader: 'babel-loader',
-        include: [].concat(
-          baseConfig.additionalPaths,
-          [
-            path.join(__dirname, '/../src'),
-            path.join(__dirname, '/../test')
-          ]
-        )
-      }
-    ]
+let config = Object.assign({}, baseConfig, {
+  entry: [
+    path.join(__dirname, '../src/index')
+  ],
+  output: {
+    path: path.join(__dirname, '/../dist/assets'),
+    filename: `app-${pkg.version.replace(/\./g,'-')}.js`,
+    publicPath: defaultSettings.publicPath
   },
-  resolve: {
-    extensions: [ '', '.js', '.jsx' ],
-    alias: {
-      actions: srcPath + 'actions/',
-      helpers: path.join(__dirname, '/../test/helpers'),
-      components: srcPath + 'components/',
-      sources: srcPath + 'sources/',
-      stores: srcPath + 'stores/',
-      styles: srcPath + 'styles/',
-      config: srcPath + 'config/' + process.env.REACT_WEBPACK_ENV
-    }
-  },
+  cache: false,
   plugins: [
+    new webpack.optimize.DedupePlugin(),
+    new webpack.DefinePlugin({
+      'process.env.NODE_ENV': '"test"'
+    }),
     new BowerWebpackPlugin({
       searchResolveModulesDirectories: false
       //'fetch': 'imports?this=>global!exports?global.fetch!whatwg-fetch'
+    }),
+    new webpack.optimize.UglifyJsPlugin(),
+    new webpack.optimize.OccurenceOrderPlugin(),
+    new webpack.optimize.AggressiveMergingPlugin(),
+    new webpack.NoErrorsPlugin(),
+    new HtmlWebpackPlugin({
+      filename: '../main.html',
+      title: '指点我吧',
+      template: 'index-tmp.ejs'
     })
-  ]
-};
+  ],
+  module: defaultSettings.getDefaultModules()
+});
+
+// Add needed loaders to the defaults here
+config.module.loaders.push({
+  test: /\.(js|jsx)$/,
+  loader: 'babel',
+  include: [].concat(
+    config.additionalPaths,
+    [ path.join(__dirname, '/../src') ]
+  )
+});
+
+module.exports = config;
