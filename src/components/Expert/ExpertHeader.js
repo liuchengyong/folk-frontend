@@ -4,7 +4,6 @@
 import React from 'react';
 import Dialog from '../Common/Dialog';
 import config from 'config';
-let noBroke = require('../../images/del_broke.png');
 let coverImg = require('../../images/cover.jpg');
 class ExpertHeader extends React.Component {
 
