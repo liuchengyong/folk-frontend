@@ -13,7 +13,7 @@ class ExpertHeader extends React.Component {
   }
 
   render() {
-    
+
   let dialog = null;
   if(this.props.dialog.isOpening){
     dialog = <Dialog actions={this.props.actions}/>
@@ -48,7 +48,7 @@ class ExpertHeader extends React.Component {
                   <img className="back_wall_head_img" src={user.avatar} />
               </div>
               <span className="back_wall_focus">
-                  <i ></i> {expert.favoriteCount}
+                  {expert.favoriteCount}
               </span>
           </div>
           <span className="back_wall_name">{user.name}</span>
