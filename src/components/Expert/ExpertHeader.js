@@ -34,7 +34,7 @@ class ExpertHeader extends React.Component {
   } else if(replyTime > 24) {
     replyTime = parseInt(replyTime / 24) + '天';
   } else {
-    replyTime = replyTime + '小时'
+    replyTime = replyTime + '小时';
   }
 
     return (
@@ -54,7 +54,7 @@ class ExpertHeader extends React.Component {
           <span className="back_wall_name">{user.name}</span>
           <div className="back_wall_client">
               <span className="back_wall_client_browse">{expert.views}浏览</span>
-              <span className="back_wall_client_request">{appointTime}人求指点</span>
+              <span className="back_wall_client_request">{appointTime > 0 ? (appointTime + '求指点') : ''}</span>
               <span className="back_wall_client_response">约{replyTime}回复</span>
           </div>
           <div className="back_wall_tag">
