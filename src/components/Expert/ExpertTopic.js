@@ -4,6 +4,7 @@
 import React from 'react';
 import classNames from 'classnames';
 import Time from '../../common/timeFormate';
+import StringLib from '../../common/string';
 
 let pnt_ic = require('../../images/icon/ic_number.png');
 
@@ -35,7 +36,7 @@ class ExpertTopic extends React.Component {
             <i className="fa fa-clock-o"></i> {Time.duration2time(tp.duration)}
         </div>
         <div className="topics_item_content">
-            {tp.description}
+            {StringLib.substring(tp.description, 100)}
         </div>
         <div className="topics_item_request_number">
             <img src={pnt_ic} /> {times}人求指点
