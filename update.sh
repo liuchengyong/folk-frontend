@@ -6,6 +6,6 @@ if ["$NODE_ENV" = "production"]
 then 
   npm run dist
 else 
-  npm run test
+  npm run uat
 fi
 npm run cnd
