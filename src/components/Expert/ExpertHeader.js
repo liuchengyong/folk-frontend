@@ -4,7 +4,6 @@
 import React from 'react';
 import Dialog from '../Common/Dialog';
 import config from 'config';
-
 let coverImg = require('../../images/cover.jpg');
 class ExpertHeader extends React.Component {
 
@@ -26,7 +25,8 @@ class ExpertHeader extends React.Component {
   let expertInfo = expert.expert;
   let appointTime = this.props.expert.appointmentTimes;
 
-  let coverImg = expertInfo.shortIntroductionPicture ? expertInfo.shortIntroductionPicture : coverImg;
+  let coverPic = expertInfo.shortIntroductionPicture ? expertInfo.shortIntroductionPicture : coverImg;
+  console.log(coverImg);
   let eduInfo = user.educationList[0];
   let replyTime = expertInfo.replyTime;
   if(replyTime == 0) {
@@ -41,7 +41,7 @@ class ExpertHeader extends React.Component {
       <div className="back_wall">
       {dialog}
           <div className="back_wall_top">
-              <img className="back_wall_top_img" src={coverImg} />
+              <img className="back_wall_top_img" src={coverPic} />
           </div>
           <div className="back_wall_icon">
               <div className="back_wall_head">
