@@ -7,7 +7,7 @@
  *          you edit them, they are not updated again.
  */
 import { combineReducers } from 'redux';
-import { routerReducer } from 'react-router-redux'
+import { routerReducer } from 'react-router-redux';
 import extend from 'lodash/extend';
 
 /* Populated by react-webpack-redux:reducer */
@@ -20,7 +20,8 @@ const reducers = {
   expert: require('../reducers/expert'),
   coupon: require('../reducers/coupon'),
   consultation: require('../reducers/consultation'),
-  login: require('../reducers/login')
+  login: require('../reducers/login'),
+  captch: require('../reducers/captch')
 };
 
 module.exports = combineReducers(extend(reducers, {routing: routerReducer}));

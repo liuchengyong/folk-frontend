@@ -15,7 +15,9 @@ import Login from '../components/Login/Login';
 /* Populated by react-webpack-redux:reducer */
 class LoginContainer extends Component {
   render() {
-    const {actions, login} = this.props;
+    console.log(this.props);
+    console.log('--==============--');
+    const {actions, login, captch} = this.props;
     return <Login actions={actions} login={login}/>;
   }
 }
@@ -27,12 +29,14 @@ class LoginContainer extends Component {
  */
 LoginContainer.propTypes = {
   actions: PropTypes.object.isRequired,
-  login: PropTypes.object.isRequired
+  login: PropTypes.object.isRequired,
+  captch: PropTypes.object.isRequired
 };
 function mapStateToProps(state) {
   /* Populated by react-webpack-redux:reducer */
   const props = {
-    login: state.login
+    login: state.login,
+    captch: state.captch
   };
   return props;
 }
@@ -41,7 +45,8 @@ function mapDispatchToProps(dispatch) {
   const actions = {
     postLoginData: require('../actions/login/postLoginData.js'),
     requestLoginData: require('../actions/login/requestLoginData.js'),
-    receiveLoginData: require('../actions/login/receiveLoginData.js')
+    receiveLoginData: require('../actions/login/receiveLoginData.js'),
+    fetchCaptch: require('../actions/login/fetchCaptch.js')
 
   };
   const actionMap = { actions: bindActionCreators(actions, dispatch) };

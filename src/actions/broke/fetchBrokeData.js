@@ -8,6 +8,7 @@ module.exports = (id) => {
     return fetch(config.apiUrl + config.BrokeData + id + '&page=0&pageSize=10')
       .then(response => response.json())
       .then(response => {
+
         dispatch(receiveBrokeData(response))
       });
   }

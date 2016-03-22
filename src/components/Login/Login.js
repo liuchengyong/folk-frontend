@@ -14,25 +14,27 @@ import DeviceAdapter from '../../common/deviceAdapter';
 // import TopBanner from '../Common/TopBanner';
 
 class LoginComponent extends React.Component {
+
+  getCaptch () {
+    console.log(this.refs.mobile.value);
+    let mobile = this.refs.mobile.value;
+    this.props.actions.fetchCaptch(mobile);
+  }
+
   render() {
-    // let login = this.props.login;
-
-    // if (login.isFetching) {
-    //   return <Loading />
-    // }
-
     return (
       <div className="login">
-        <input type="tel" placeholder="输入手机号" name="mobile"/>
+        <input type="tel" ref="mobile" placeholder="输入手机号" name="mobile"/>
         <input type="text" placeholder="验证码" name="captcha"/>
         <input type="password" name="password" />
-        <button>发送验证码</button>
+        <button onClick={this.getCaptch.bind(this)}>发送验证码</button>
         <button>注册</button>
       </div>
     );
   }
 
   componentDidMount() {
+    console.log(this.props);
     // this.props.actions.fetchCoupon();
     DeviceAdapter.setFrontSize();
     // this.props.actions.fetchBrokeData(this.props.params.id);

@@ -22,6 +22,8 @@ class TopicDesc extends React.Component {
         );
     }
 
+    console.log(expert);
+
     return (
       <div className="topic-desc">
         <div className="desc-header">
@@ -32,7 +34,7 @@ class TopicDesc extends React.Component {
             <img className="expert-avatar" src={expert.user.avatar + '?imageMogr2/thumbnail/100x100'} />
             <div className="expert-text">
                 <div className="expert-name">{expert.user.name}</div>
-                <div className="expert-school">{expert.user.educationList[0].college.name}</div>
+                <div className="expert-school">{expert.user.educationList[0] ? expert.user.educationList[0].college.name : (expert.expert.title ? expert.expert.title : '')}</div>
             </div>
 
           </div>

@@ -27,6 +27,7 @@ class ExpertHeader extends React.Component {
 
   let coverPic = expertInfo.shortIntroductionPicture ? expertInfo.shortIntroductionPicture : coverImg;
   let eduInfo = user.educationList[0];
+
   let replyTime = expertInfo.replyTime;
   if(replyTime == 0) {
     replyTime = '6小时';
@@ -57,9 +58,9 @@ class ExpertHeader extends React.Component {
               <span className="back_wall_client_response">约{replyTime}回复</span>
           </div>
           <div className="back_wall_tag">
-              <span className="back_wall_tag_school">{eduInfo.college.name}</span>
-              <span className="back_wall_tag_education">{config.eduLevelMap[eduInfo.educationInfo.educationLevel]}</span>
-              <span className="back_wall_tag_job">{eduInfo.educationInfo.major}</span>
+              <span className="back_wall_tag_school">{eduInfo && eduInfo.college.name}</span>
+              <span className="back_wall_tag_education">{eduInfo && config.eduLevelMap[eduInfo.educationInfo.educationLevel]}</span>
+              <span className="back_wall_tag_job">{eduInfo && eduInfo.educationInfo.major}</span>
           </div>
           <span onClick={this.DownApp.bind(this)} className="back_wall_btn back_wall_btn">关注</span>
       </div>
