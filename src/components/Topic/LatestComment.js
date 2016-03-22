@@ -38,7 +38,7 @@ class LatestComment extends React.Component {
     if(bool) {
       return <img src={hasStar} key={i}/>
     } else {
-      return <img src={noStar} />
+      return <img src={noStar} key={i}/>
     }
   })
 

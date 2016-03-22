@@ -19,7 +19,8 @@ const reducers = {
   broke: require('../reducers/broke'),
   expert: require('../reducers/expert'),
   coupon: require('../reducers/coupon'),
-  consultation: require('../reducers/consultation')
+  consultation: require('../reducers/consultation'),
+  login: require('../reducers/login')
 };
 
 module.exports = combineReducers(extend(reducers, {routing: routerReducer}));

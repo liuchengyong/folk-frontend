@@ -26,7 +26,6 @@ class ExpertHeader extends React.Component {
   let appointTime = this.props.expert.appointmentTimes;
 
   let coverPic = expertInfo.shortIntroductionPicture ? expertInfo.shortIntroductionPicture : coverImg;
-  console.log(coverImg);
   let eduInfo = user.educationList[0];
   let replyTime = expertInfo.replyTime;
   if(replyTime == 0) {

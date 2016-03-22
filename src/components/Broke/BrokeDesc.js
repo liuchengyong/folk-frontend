@@ -86,9 +86,8 @@ class BrokeDesc extends React.Component {
           </div>
         </div>
         {(() => {
-          console.log(comment);
           if(comment.length > 1) {
-            return (          
+            return (
             <div className="broke-comment">
               <div className="comment-title">
                 <span>全部评论</span>

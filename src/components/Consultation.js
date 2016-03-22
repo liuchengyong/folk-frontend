@@ -19,7 +19,6 @@ class Consultation extends React.Component {
     let param = consultation.param || {};
 
     let title = consultation.param.article.title;
-    console.log(param.topics.length);
     return (
       <div className='detailbox'>
         <Helmet title={title} />

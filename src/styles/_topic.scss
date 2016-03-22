@@ -1,3 +1,5 @@
+@import "variables";
+
 .clear {
   clear: both;
 }
@@ -59,7 +61,7 @@
         line-height: 64px;
         span {
           font-size: 16px;
-          color: #4dbafa;
+          color: $blue-color;
         }
       }
     }
@@ -166,8 +168,9 @@
       padding-top: 15px;
       box-sizing: border-box;
       img {
-        width: .25rem;
-        height: .25rem;
+        width: .3rem;
+        height: .3rem;
+        margin-left: .05rem;
         border-radius: 0;
       }
     }
@@ -184,7 +187,7 @@
       font-size: 16px;
       line-height: 55px;
       span {
-        color: #4dbafa;
+        color: $blue-color;
       }
     }
   }

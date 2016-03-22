@@ -1,5 +1,5 @@
 /**
- * 导师详情
+ * 登录
  * @author HuangGuorui
  */
 
