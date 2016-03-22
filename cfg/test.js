@@ -15,7 +15,7 @@ let config = Object.assign({}, baseConfig, {
   ],
   output: {
     path: path.join(__dirname, '/../dist/assets'),
-    filename: `app-${pkg.version.replace(/\./g,'-')}.js`,
+    filename: `app.js`,
     publicPath: defaultSettings.publicPath
   },
   cache: false,
