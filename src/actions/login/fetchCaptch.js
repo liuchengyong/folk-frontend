@@ -2,6 +2,7 @@
  * 获取验证码
  */
 import config from 'config';
+import helper from '../../common/helper';
 import requestCaptch from './requestCaptch';
 import receiveCaptch from './receiveCaptch';
 
@@ -27,7 +28,16 @@ module.exports = (mobile) => {
       })
       .then(response => response.json())
       .then(response => {
-        dispatch(receiveCaptch(response))
+        switch (response.code) {
+          case 205: //手机号码已存在
+            helper.showToast(response.msg);
+            break;
+          case 204: //一分钟只能发送一次
+            helper.showToast(response.msg);
+            break;
+          default:
+            dispatch(receiveCaptch(response))
+        }
       });
   }
 };
