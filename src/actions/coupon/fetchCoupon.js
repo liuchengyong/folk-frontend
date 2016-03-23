@@ -12,6 +12,7 @@ module.exports = (mobile) => {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       },
+      cache: false,
       body: JSON.stringify({mobile: mobile}),
       credentials: 'same-origin'
     })

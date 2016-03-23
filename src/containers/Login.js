@@ -15,10 +15,8 @@ import Login from '../components/Login/Login';
 /* Populated by react-webpack-redux:reducer */
 class LoginContainer extends Component {
   render() {
-    console.log(this.props);
-    console.log('--==============--');
     const {actions, login, captch} = this.props;
-    return <Login actions={actions} login={login}/>;
+    return <Login actions={actions} login={login} captch={captch}/>;
   }
 }
 

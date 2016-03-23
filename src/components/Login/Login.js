@@ -16,17 +16,17 @@ import DeviceAdapter from '../../common/deviceAdapter';
 class LoginComponent extends React.Component {
 
   getCaptch () {
-    console.log(this.refs.mobile.value);
     let mobile = this.refs.mobile.value;
     this.props.actions.fetchCaptch(mobile);
   }
 
   render() {
+    // console.log(this.props);
     return (
       <div className="login">
         <input type="tel" ref="mobile" placeholder="输入手机号" name="mobile"/>
-        <input type="text" placeholder="验证码" name="captcha"/>
-        <input type="password" name="password" />
+        <input type="text" autoComplete="off" placeholder="验证码" name="captcha"/>
+        <input type="password" autoComplete="off" name="password" />
         <button onClick={this.getCaptch.bind(this)}>发送验证码</button>
         <button>注册</button>
       </div>
@@ -34,7 +34,7 @@ class LoginComponent extends React.Component {
   }
 
   componentDidMount() {
-    console.log(this.props);
+    // console.log(this.props);
     // this.props.actions.fetchCoupon();
     DeviceAdapter.setFrontSize();
     // this.props.actions.fetchBrokeData(this.props.params.id);

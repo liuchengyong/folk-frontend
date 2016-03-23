@@ -22,7 +22,6 @@ class TopicDesc extends React.Component {
         );
     }
 
-    console.log(expert);
 
     return (
       <div className="topic-desc">
