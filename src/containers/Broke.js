@@ -44,7 +44,6 @@ function mapDispatchToProps(dispatch) {
     fetchBrokeData: require('../actions/broke/fetchBrokeData.js'),
     requestBrokeData: require('../actions/broke/requestBrokeData.js'),
     receiveBrokeData: require('../actions/broke/receiveBrokeData.js'),
-
     setDialogStatus: require('../actions/dialog/setDialogStatus.js'),
     fetchCoupon: require('../actions/coupon/fetchCoupon')
   };
