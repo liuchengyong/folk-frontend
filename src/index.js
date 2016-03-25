@@ -16,7 +16,7 @@ const history = syncHistoryWithStore(browserHistory, store);
 render(
   <Provider store={store}>
     <Router history={history}>
-    
+
       <Route path="/" component={App}>
         <Route path="found" getComponent={(location, cb) => {
           require.ensure([], (require) => {
@@ -45,7 +45,12 @@ render(
         }}/>
         <Route path="register" name="register" getComponent={(location, cb) => {
           require.ensure([], (require) => {
-            cb(null, require('./containers/register'));
+            cb(null, require('./containers/Register'));
+          })
+        }}/>
+        <Route path="login" name="login" getComponent={(location, cb) => {
+          require.ensure([], (require) => {
+            cb(null, require('./containers/Login'));
           })
         }}/>
       </Route>
