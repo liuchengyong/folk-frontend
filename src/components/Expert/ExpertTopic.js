@@ -33,7 +33,7 @@ class ExpertTopic extends React.Component {
             </span>
         </div>
         <div className="topics_item_time">
-            <i className="fa fa-clock-o"></i> {Time.duration2time(tp.duration)}
+            {Time.duration2time(tp.duration)}
         </div>
         <div className="topics_item_content">
             {StringLib.substring(tp.description, 100)}
