@@ -32,4 +32,4 @@ function mapDispatchToProps(dispatch) {
   const actionMap = { actions: bindActionCreators(actions, dispatch) };
   return actionMap;
 }
-export default connect(mapStateToProps, mapDispatchToProps)(ConsultationDetail);
+module.exports = connect(mapStateToProps, mapDispatchToProps)(ConsultationDetail);

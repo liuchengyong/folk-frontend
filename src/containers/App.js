@@ -14,12 +14,7 @@ import Main from '../components/Main';
 /* Populated by react-webpack-redux:reducer */
 class App extends Component {
   render() {
-    const {actions, home} = this.props;
-    // if(this.props.home.isFetching) {
-      // return <div>loading</div>
-    // } else {
-      return <Main actions={actions} home={home}/>;
-    // }
+    return <Main {...this.props}/>;
   }
 }
 /* Populated by react-webpack-redux:reducer
@@ -40,12 +35,8 @@ function mapStateToProps(state) {
 }
 function mapDispatchToProps(dispatch) {
   /* Populated by react-webpack-redux:action */
-  const actions = {
-    fetchHomeData: require('../actions/home/fetchHomeData.js'),
-    requestHomeData: require('../actions/home/requestHomeData.js'),
-    receiveHomeData: require('../actions/home/receiveHomeData.js')
-  };
-  const actionMap = { actions: bindActionCreators(actions, dispatch) };
+  const actions = {};
+  const actionMap = {actions: bindActionCreators(actions, dispatch)};
   return actionMap;
 }
 export default connect(mapStateToProps, mapDispatchToProps)(App);

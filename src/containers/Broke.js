@@ -44,11 +44,10 @@ function mapDispatchToProps(dispatch) {
     fetchBrokeData: require('../actions/broke/fetchBrokeData.js'),
     requestBrokeData: require('../actions/broke/requestBrokeData.js'),
     receiveBrokeData: require('../actions/broke/receiveBrokeData.js'),
-
-    setDialogStatus: require('../actions/dialog/setDialogStatus.js'),
-    fetchCoupon: require('../actions/coupon/fetchCoupon')
+    setDialogStatus: require('../actions/dialog/setDialogStatus.js')
   };
   const actionMap = { actions: bindActionCreators(actions, dispatch) };
   return actionMap;
 }
-export default connect(mapStateToProps, mapDispatchToProps)(BrokeContainer);
+
+module.exports = connect(mapStateToProps, mapDispatchToProps)(BrokeContainer);
