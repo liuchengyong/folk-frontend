@@ -10,10 +10,10 @@ module.exports = function(state = initialState, action) {
   /* Keep the reducer clean - do not mutate the original state. */
   //let nextState = Object.assign({}, state);
   switch(action.type) {
-    case 'RECEIVE_LOGIN_DATA': {
+    case 'RECEIVE_REGISTER_DATA': {
       return action.parameter.success ? assign({}, action.parameter.param, {isFetching: false}) : {isFetching: true};
     } break;
-    case 'REQUEST_LOGIN_DATA': {
+    case 'REQUEST_REGISTER_DATA': {
       return assign({}, state, {isFetching: true});
     } break;
     default: {

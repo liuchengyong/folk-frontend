@@ -10,13 +10,13 @@ import React, {
 } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import Login from '../components/Login/Login';
+import Register from '../components/Register/Register';
 
 /* Populated by react-webpack-redux:reducer */
-class LoginContainer extends Component {
+class RegisterContainer extends Component {
   render() {
-    const {actions, login, captch} = this.props;
-    return <Login actions={actions} login={login} captch={captch}/>;
+    const {actions, register, captch} = this.props;
+    return <Register actions={actions} register={register} captch={captch}/>;
   }
 }
 
@@ -25,26 +25,29 @@ class LoginContainer extends Component {
  * HINT: if you adjust the initial type of your reducer, you will also have to
  *       adjust it here.
  */
-LoginContainer.propTypes = {
+RegisterContainer.propTypes = {
   actions: PropTypes.object.isRequired,
-  login: PropTypes.object.isRequired
+  register: PropTypes.object.isRequired,
+  captch: PropTypes.object.isRequired
 };
 function mapStateToProps(state) {
   /* Populated by react-webpack-redux:reducer */
   const props = {
-    login: state.login
+    register: state.register,
+    captch: state.captch
   };
   return props;
 }
 function mapDispatchToProps(dispatch) {
   /* Populated by react-webpack-redux:action */
   const actions = {
-    postLoginData: require('../actions/login/postLoginData.js'),
-    requestLoginData: require('../actions/login/requestLoginData.js'),
-    receiveLoginData: require('../actions/login/receiveLoginData.js')
+    postRegisterData: require('../actions/register/postRegisterData.js'),
+    requestRegisterData: require('../actions/register/requestRegisterData.js'),
+    receiveRegisterData: require('../actions/register/receiveRegisterData.js'),
+    fetchCaptch: require('../actions/register/fetchCaptch.js')
 
   };
   const actionMap = { actions: bindActionCreators(actions, dispatch) };
   return actionMap;
 }
-export default connect(mapStateToProps, mapDispatchToProps)(LoginContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(RegisterContainer);

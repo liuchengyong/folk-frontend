@@ -9,6 +9,10 @@ export default {
   ExpertData: '/api/v1/expert/',
   Consultation: '/api/v1/article/',
   Captch: '/api/v1/captcha/register',
+  RegisterByMobile: '/api/v1/user/register',
+  RegisterByEmail: '/api/v1/user/register/email',
+  LoginByMobile: '/api/v1/user/login',
+  LoginByMobile: '/api/v1/user/login/email',
   couponIcon: 'http://statics.zhid58.com/img/share_hongbao.jpg',
   couponId: '09E572B6-CE9A-4D85-A63E-1ED6F2465BA2',
   wechatAPI: {

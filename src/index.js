@@ -11,7 +11,7 @@ import Topic from './containers/Topic';
 import Broke from './containers/Broke';
 import Expert from './containers/Expert';
 import Consultation from './containers/Consultation';
-import Login from './containers/Login';
+import Register from './containers/Register';
 import { Router, Route, browserHistory } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
 
@@ -27,7 +27,7 @@ render(
       <Route path="/topic/:id" name="topic" component={Topic}/>
       <Route path="/expert/:id" name="expert" component={Expert}/>
       <Route path="/consultation/:id" name="consultation" component={Consultation}/>
-      <Route path="/login" name="login" component={Login}/>
+      <Route path="/register" name="register" component={Register}/>
     </Router>
   </Provider>,
   document.getElementById('app')

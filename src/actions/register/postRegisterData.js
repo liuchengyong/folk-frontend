@@ -1,7 +1,8 @@
 import config from 'config';
 import helper from '../../common/helper';
-import requestLoginData from './requestLoginData';
-import receiveLoginData from './receiveLoginData';
+import requestRegisterData from './requestRegisterData';
+import receiveRegisterData from './receiveRegisterData';
+
 
 var serialize = function (data) {
     return Object.keys(data).map(function (keyName) {
@@ -11,16 +12,16 @@ var serialize = function (data) {
 
 /**
  * 发送注册数据
- * @param {data: Object, 注册数据}, 
+ * @param {data: Object, 注册数据},
  * @param {type: boole. true:手机注册, false: 邮箱注册}
  */
 module.exports = (data, type) => {
-  let registerData = config.LoginByMobile;
-  if(!type) { 
-    registerData = config.LoginByEmail;
+  let registerData = config.RegisterByMobile;
+  if(!type) {
+    registerData = config.RegisterByEmail;
   }
   return dispatch => {
-    dispatch(requestLoginData());
+    dispatch(requestRegisterData());
     return fetch(config.apiUrl + registerData, {
       	method: 'POST',
       	mode: 'cors',
@@ -42,7 +43,7 @@ module.exports = (data, type) => {
           case 206:
             helper.showToast(response.msg);
             break;
-          case 207: 
+          case 207:
             helper.showToast(response.msg);
             break;
           case 218: //邮箱已存在
@@ -51,7 +52,7 @@ module.exports = (data, type) => {
             helper.showToast(response.msg);
             break;
           default:
-            dispatch(receiveLoginData(response))
+            dispatch(receiveRegisterData(response))
         }
       });
   }
