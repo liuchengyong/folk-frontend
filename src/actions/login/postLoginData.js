@@ -16,6 +16,7 @@ var serialize = function (data) {
  */
 module.exports = (data, type) => {
   let registerData = config.LoginByMobile;
+  console.log(type);
   if(!type) { 
     registerData = config.LoginByEmail;
   }
@@ -36,6 +37,7 @@ module.exports = (data, type) => {
         switch (response.code) {
           case 0:
             //跳转到个人中心 || next_url
+            dispatch(receiveLoginData(response))
             break;
           case 205: //手机号码已存在
             helper.showToast(response.msg);
@@ -50,8 +52,9 @@ module.exports = (data, type) => {
           case 219: //邮箱未激活
             helper.showToast(response.msg);
             break;
-          default:
-            dispatch(receiveLoginData(response))
+          default: // 203: 无效的用户密码
+            helper.showToast(response.msg);
+            break;
         }
       });
   }
