@@ -11,13 +11,12 @@ var serialize = function (data) {
 
 /**
  * 发送注册数据
- * @param {data: Object, 注册数据}, 
+ * @param {data: Object, 注册数据},
  * @param {type: boole. true:手机注册, false: 邮箱注册}
  */
 module.exports = (data, type) => {
   let registerData = config.LoginByMobile;
-  console.log(type);
-  if(!type) { 
+  if(!type) {
     registerData = config.LoginByEmail;
   }
   return dispatch => {
@@ -44,7 +43,7 @@ module.exports = (data, type) => {
           case 206:
             helper.showToast(response.msg);
             break;
-          case 207: 
+          case 207:
             helper.showToast(response.msg);
             break;
           case 218: //邮箱已存在

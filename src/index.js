@@ -53,6 +53,12 @@ render(
             cb(null, require('./containers/Login'));
           })
         }}/>
+        <Route path="applyExpert" name="applyExpert" getComponent={(location, cb) => {
+          require.ensure([], (require) => {
+            cb(null, require('./containers/ApplyExpert'));
+          })
+        }}/>
+
       </Route>
     </Router>
   </Provider>,
