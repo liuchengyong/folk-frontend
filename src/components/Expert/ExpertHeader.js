@@ -53,9 +53,9 @@ class ExpertHeader extends React.Component {
           </div>
           <span className="back_wall_name">{user.name}</span>
           <div className="back_wall_client">
-              <span className="back_wall_client_browse">{expert.views}浏览</span>
+              <span className="back_wall_client_browse">{expert.views}次浏览</span>
               <span className="back_wall_client_request">{appointTime > 0 ? (appointTime + '求指点') : ''}</span>
-              <span className="back_wall_client_response">约{replyTime}回复</span>
+              <span className="back_wall_client_response hide">约{replyTime}回复</span>
           </div>
           <div className="back_wall_tag">
               <span className="back_wall_tag_school">{eduInfo && eduInfo.college.name}</span>
