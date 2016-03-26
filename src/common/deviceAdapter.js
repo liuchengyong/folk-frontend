@@ -9,7 +9,7 @@
  */
 exports.setFrontSize = () => {
 	var deviceWidth = document.documentElement.clientWidth;
-	if(deviceWidth > 750) deviceWidth = 750;
+	if(deviceWidth > 750) deviceWidth = 500;
 	document.documentElement.style.fontSize = deviceWidth / 7.5 + 'px';
 }
 
