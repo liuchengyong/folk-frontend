@@ -27,14 +27,12 @@ class RegisterContainer extends Component {
  */
 RegisterContainer.propTypes = {
   actions: PropTypes.object.isRequired,
-  register: PropTypes.object.isRequired,
-  captch: PropTypes.object.isRequired
+  register: PropTypes.object.isRequired
 };
 function mapStateToProps(state) {
   /* Populated by react-webpack-redux:reducer */
   const props = {
-    register: state.register,
-    captch: state.captch
+    register: state.register
   };
   return props;
 }
@@ -45,9 +43,8 @@ function mapDispatchToProps(dispatch) {
     requestRegisterData: require('../actions/register/requestRegisterData.js'),
     receiveRegisterData: require('../actions/register/receiveRegisterData.js'),
     fetchCaptch: require('../actions/register/fetchCaptch.js')
-
   };
   const actionMap = { actions: bindActionCreators(actions, dispatch) };
   return actionMap;
 }
-export default connect(mapStateToProps, mapDispatchToProps)(RegisterContainer);
+module.exports = connect(mapStateToProps, mapDispatchToProps)(RegisterContainer);

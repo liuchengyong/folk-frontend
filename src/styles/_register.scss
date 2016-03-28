@@ -1,19 +1,167 @@
+@import "variables";
+
+//reset 
+
 .register {
-	text-align: center;
+	font-family: "Hiragino Sans GB", "Microsoft YaHei",
+             "WenQuanYi Micro Hei", sans-serif;
+	background: #f4f4f4;
+	padding-top: .3rem;
+	// text-align: center;
 	width: 100%;
-	padding: .1rem;
-	input {
-		width: 100%;
-		height: .5rem;
-		margin-top: .2rem;
-		// margin: .1rem;
+	position: absolute;
+  height: 100%;
+	.header-nav {
+		padding-left: .25rem;
 	}
-	button {
-		width: 2rem;
-		height: .5rem;
-		line-height: .5rem;
-		display: block;
+	.back_ico {
+		display: inline-block;
+		width: .2rem;
+		height: .31rem;
+		background-image: url(../images/icon/back_ico.png);
+		background-size: contain;
+    background-repeat: no-repeat;
+	}
+	.logo-wrap {
+		width: 100%;
+		text-align: center;
+		margin-top: 1rem;
+	}
+	.logo {
+		display: inline-block;
+		background: #fff;
+		width: 1.58rem;
+		height: 1.58rem;
+		border-radius: 50%;
+		line-height: 1.58rem;
+		text-align: center;
+  	box-shadow: 0 1px 49px 0px rgba(27, 27, 27, 0.21);
+  	－webkit-box-shadow: 0 1px 49px 0px rgba(27, 27, 27, 0.21);
+		.helper {
+			display: inline-block;
+			height: 100%;
+			vertical-align: middle;
+		}
+		img {
+			width: .61rem;
+			height: .78rem;
+			vertical-align: middle;
+		}
+	}
+	.register-mobile {
+		border-top: 1px solid #ccc;
+		min-height: 200px;
+		margin-top: 1.2rem;
+		margin-bottom: 20px;
+	}
+	.phone-wrap {
+		height: .88rem;
+		// width: 100%;
+		margin: 0 .3rem;
+		border-bottom: 1px solid #ccc;
+		// border: 1px solid #ccc;
+		.country-code {
+			display: inline-block;
+			font-size: 16px;
+			width: 15%;
+			line-height: .88rem;
+			text-align: center;
+			color: $blue-color;
+		}
+		.iphone-ipt {
+			width: 85%;
+			box-sizing: border-box; 
+			border: none;
+			border-left: 1px solid #ccc;
+			// border-bottom: 1px solid #ccc;
+			background-color: #f4f4f4;
+			font-size: 18px;
+			padding-left: .2rem;
+		}
+		.country-code, .iphone-ipt {
+			height: 100%;
+		}
+	}
+	.code-wrap {
+		// width: 100%;
+		height: .88rem;
+		margin: 0 .3rem;
+		font-size: 16px;
+		border-bottom: 1px solid #ccc;
+		.code {
+			display: inline-block;
+			width: 30%;
+			max-width: 1.9rem;
+			height: .6rem;
+			line-height: .6rem;
+			font-size: 15px;
+			color: #565656;
+			border: 1px solid #d9d9d9;
+			border-radius: 5px;
+			background-color: #f4f4f4;
+			margin-top: .12rem;
+    	float: right
+		}
+	}
+	.code-ipt {
+		height: 100%;
+		width: 55%;
+		margin-left: 15%;
+		padding-left: .2rem;
+		background-color: #f4f4f4;
+		box-sizing: border-box;
 		border: none;
-		margin-top: .5rem;
+	}
+	.pwd-wrap {
+		height: .88rem;
+		width: 100%;
+		padding: 0 .3rem;
+		border-bottom: 1px solid #ccc;
+		.pwd-ipt {
+			background-color: #f4f4f4;
+			height: 100%;
+			font-size: 16px;
+			margin-left: 15%;
+			padding-left: .2rem;
+			box-sizing: border-box;
+			border: none;
+		}
+		.toggle-pwd {
+			display: none;
+			float: right;
+			width: .83rem;
+			height: .53rem;
+			border: 1px solid #ccc;
+			background-color: #f4f4f4;
+			margin-top: .175rem;
+			border-radius: 5px;
+		}
+	}
+	.sub-btn {
+		width: 100%;
+		text-align: center;
+		button {
+			width: 92%;
+			height: .9rem;
+			border: none;
+			margin-top: .75rem;
+			margin-bottom: 1rem;                    
+			border-radius: 5px;
+			background: $blue-color;
+			color: #fff;
+			font-size: 18px;
+			border: 10px solid red;
+		}
+	}
+	.register-email {
+		display: none;
+	}
+	.email-tab {
+		position: absolute;
+		bottom: 1.35rem;
+		text-align: center;
+		width: 100%;
+		font-size: 16px;
+		color: $blue-color;
 	}
 }
