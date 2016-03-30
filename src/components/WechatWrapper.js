@@ -33,11 +33,11 @@ let WechatWrapper = InnerComponent => class extends React.Component {
             self.setState({loadedConfig: true});
           });
           wx.error((err)=> {
-            alert(JSON.stringify(err));
+            // alert(JSON.stringify(err));
           });
         })
         .catch(err => {
-          alert(JSON.stringify(err));
+          // alert(JSON.stringify(err));
         });
     }
   }
