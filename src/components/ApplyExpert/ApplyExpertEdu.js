@@ -8,7 +8,7 @@ import Qiniu from 'react-qiniu';
 require('react-select/scss/default.scss');
 
 const eduLevel = [
-  { value: 'UNDERGRADUATE', label: '本科'} ,
+  { value: 'UNDERGRADUATE', label: '本科'},
   { value: 'MASTER', label: '硕士'},
   { value: 'PHD', label: '博士'},
   { value: 'DOCTOR', label: '博士后'},
@@ -17,7 +17,7 @@ const eduSchool = [
   { value: 'UNDERGRADUATE', label: '清华'} ,
   { value: 'MASTER', label: '牛津'},
   { value: 'PHD', label: '哈佛'},
-  { value: 'DOCTOR', label: '斯坦福'},
+  { value: 'DOCTOR', label: '斯坦福'}
 ];
 
 class ApplyExpertEdu extends React.Component {

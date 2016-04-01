@@ -11,43 +11,58 @@ class ApplyExpertBaseContent extends React.Component {
 
   constructor(props) {
     super(props);
-    // http://test.zhid58.com:8080/api/v1/upload/token
     this.state = {
-        files: [], 
+        idImgUrl: [],
+        files: [],
         token: this.props.token.token,
         prefix: 'YOUR_QINIU_KEY_PREFIX' // Optional
     };
     this.preItem = [];
+    // this.state.idImgUrl = [];
 
   }
 
-    onUpload(files) {
-        // set onprogress function before uploading
-        files.map(function (f) {
-            f.onprogress = function(e) {
-            };
-        });
-    } 
+  onUpload(files) {
+    files.map(function (f) {
+        f.onprogress = function() {
+        };
+    });
+  }
 
-    onDrop(files) {
-        this.setState({
-            files: files
-        });
-        // files is a FileList(https://developer.mozilla.org/en/docs/Web/API/FileList) Object
-        // and with each file, we attached two functions to handle upload progress and result
-        // file.request => return super-agent uploading file request
-        // file.uploadPromise => return a Promise to handle uploading status(what you can do when upload failed)
-        // `react-qiniu` using bluebird, check bluebird API https://github.com/petkaantonov/bluebird/blob/master/API.md
-        // see more example in example/app.js
-      console.log('Received files: ', files);
-      files.map(file => {
-        file.uploadPromise.then((data) => {
-          console.log(JSON.parse(data.text));
-        });
+  onDrop(files) {
+    this.setState({
+        files: files
+    });
+    files.map(file => {
+      file.uploadPromise.then((data) => {
+        // console.log(JSON.parse(data.text));
+        this.state.idImgUrl.push(JSON.parse(data.text));
       });
-      // this.showFiles();
-      console.log(this.preItem);
-    }
+    });
+  }
+
+  handleTest(i) {
+    console.log(i);
+
+    // console.log(this.state.idImgUrl);
+  }
+
+  deleteImg(i) {
+    console.log(this.state.idImgUrl);
+    console.log('i= ' + i);
+    // lodashArray.remove(this.state.idImgUrl, (n) => {
+
+    //   console.log('n= ' + n);
+    //   return  n == i;
+    // })
+    this.state.idImgUrl.splice(1, 1);
+    this.setState({
+      idImgUrl: this.state.idImgUrl
+    });
+    // TODO reset preIem
+    
+    console.log(this.state.idImgUrl);
+  }
 
     showFiles () {
       if (this.state.files.length <= 0) {
@@ -59,18 +74,17 @@ class ApplyExpertBaseContent extends React.Component {
       }
 
       var files = this.state.files;
-      
+      var self = this;
       this.preItem.push([].map.call(files, function (f, i) {
-          // f is a element of files
-          // f.uploadPromise => return a Promise to handle uploading status(what you can do when upload failed)
-          // f.request => return super-agent request with uploading file
+        console.log(self.preItem.length);
+        var i = self.preItem.length || i;
           var preview = '';
           if (/image/.test(f.type)) {
               preview = <div className="pre-view">
-                          <img src={f.preview} />
+                          <img  src={f.preview} key={i}/>
                         </div>;
           }
-          return <li ref="perviewItem" className="perview-item" key={i}>{preview} </li>;
+          return <li onClick={self.deleteImg.bind(self, i)} ref="perviewItem" className="perview-item" key={i}>{preview} </li>;
       }));
     }
 
@@ -170,12 +184,12 @@ class ApplyExpertBaseContent extends React.Component {
 
               <div className="pre-wrap">
                 <ul>
-                  {this.preItem.map((img, i) => {
+                  {this.preItem.map((img) => {
                     return img;
                   })}
                 </ul>
               </div>
-              <label  className="frm-label">个人身份信息</label>
+              <label onClick={this.handleTest.bind(this)} className="frm-label">个人身份信息</label>
               <div className="frm-ipt-box id-up">
                 <div className="upload-pic-wrapper">
                   <div className="upload-pic-title">
