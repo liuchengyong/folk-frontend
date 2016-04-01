@@ -1,5 +1,5 @@
 /**
- * 注册
+ * 申请点师
  * @author HuangGuorui
  */
 
@@ -8,12 +8,21 @@ require('styles/_applyExpert.scss');
 
 import React from 'react';
 // import config from 'config';
+import Loading from '../Common/Loading';
+
 import ApplyExpertBaseContent from './ApplyExpertBaseContent';
 // import DeviceAdapter from '../../common/deviceAdapter';
 
 class ApplyComponent extends React.Component {
 
+  constructor(props) {
+    super(props);
+  }
+
   render() {
+    if(this.props.uploadToken.isFetching) {
+      return <Loading />
+    }
     return (
       <div className="apply">
         <div className="header">
@@ -48,7 +57,7 @@ class ApplyComponent extends React.Component {
         			</li>
         		</ul>
         	</div>
-        	<ApplyExpertBaseContent />
+        	<ApplyExpertBaseContent token={this.props.uploadToken}/>
 
         </div>
       </div>
@@ -56,7 +65,9 @@ class ApplyComponent extends React.Component {
   }
 
   componentDidMount() {
-    // DeviceAdapter.setFrontSize();
+
+    this.props.actions.fetchToken();
+
   }
 }
 

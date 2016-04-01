@@ -21,7 +21,8 @@ const reducers = {
   consultation: require('../reducers/consultation'),
   register: require('../reducers/register'),
   captch: require('../reducers/captch'),
-  login: require('../reducers/login')
+  login: require('../reducers/login'),
+  uploadToken: require('../reducers/uploadToken')
 };
 
 module.exports = combineReducers(extend(reducers, {routing: routerReducer}));

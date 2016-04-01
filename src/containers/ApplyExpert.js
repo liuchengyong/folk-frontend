@@ -5,8 +5,8 @@
  *          you edit them, they are not updated again.
  */
 import React, {
-  Component
-  // PropTypes
+  Component,
+  PropTypes
 } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
@@ -15,8 +15,8 @@ import ApplyExpert from '../components/ApplyExpert/ApplyExpert';
 /* Populated by react-webpack-redux:reducer */
 class ApplyExpertContainer extends Component {
   render() {
-    // const {actions, broke, params, dialog} = this.props;
-    return <ApplyExpert />;
+    const {actions, uploadToken} = this.props;
+    return <ApplyExpert actions={actions} uploadToken={uploadToken} />;
   }
 }
 
@@ -26,23 +26,21 @@ class ApplyExpertContainer extends Component {
  *       adjust it here.
  */
 ApplyExpertContainer.propTypes = {
-  // actions: PropTypes.object.isRequired,
+  actions: PropTypes.object.isRequired
   // broke: PropTypes.object.isRequired,
   // params: PropTypes.object.isRequired
 };
 function mapStateToProps(state) {
-  return state;
   /* Populated by react-webpack-redux:reducer */
-  // const props = {
-  //   broke: state.broke,
-  //   dialog: state.dialog
-  // };
-  // return props;
+  const props = {
+    uploadToken: state.uploadToken
+  };
+  return props;
 }
 function mapDispatchToProps(dispatch) {
   /* Populated by react-webpack-redux:action */
   const actions = {
-    // fetchApplyExpertData: require('../actions/broke/fetchApplyExpertData.js'),
+    fetchToken: require('../actions/uploadToken/fetchToken.js')
     // requestApplyExpertData: require('../actions/broke/requestApplyExpertData.js'),
     // receiveApplyExpertData: require('../actions/broke/receiveApplyExpertData.js'),
     // setDialogStatus: require('../actions/dialog/setDialogStatus.js')

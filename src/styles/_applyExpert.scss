@@ -1,5 +1,4 @@
 @import "variables";
-
 //reset 
 li {
 	list-style: none;
@@ -355,6 +354,7 @@ button:focus {
 	.id-up {
 		border: none;
 		height: auto;
+		padding: 0;
 	}
 	.id-frm {
 		margin-top: 50px;
@@ -365,6 +365,25 @@ button:focus {
 		}
 	}
 
+	.pre-wrap {
+    	margin-left: 6em;
+    	margin-bottom: 2em;
+	}
+	.perview-item {
+		display: inline-block;
+	}
+	.pre-view {
+		width: 100px;
+		height: 100px;
+		border: 1px dotted #ccc;
+		padding: 5px;
+		box-sizing: content-box;
+		display: inline-block;
+		img {
+			width: 100px;
+			max-height: 100px;
+		}
+	}
 	//教育信息
 	.edu-wrap {
 		width: 100%;
@@ -380,5 +399,30 @@ button:focus {
 		padding-left: 15px;
 		font-size: 16px;
 	}
+	.edu-content {
+		padding: 25px;
+	}
+	.level-frm {
+		.edu-level {
+			border: none;
+			padding: 0;
+		}
+	}
+	.major {
+		padding: 0;
+		height: 36px;
+		line-height: 36px;
+		padding-left: 4px;
+	}
+	.school-list, .entry-time {
+		border: none;
+		padding: 0;
+	}
+
+	//select com rewrite 
+	.Select-control {
+		border-radius: 0;
+	}
+
 
 }

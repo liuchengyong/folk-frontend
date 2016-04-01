@@ -34,10 +34,12 @@ let WechatWrapper = InnerComponent => class extends React.Component {
           });
           wx.error((err)=> {
             // alert(JSON.stringify(err));
+            JSON.stringify(err);
           });
         })
         .catch(err => {
           // alert(JSON.stringify(err));
+          JSON.stringify(err);
         });
     }
   }

@@ -3,12 +3,81 @@
  * Created by HuangGuorui on 3/29/16.
  */
 import React from 'react';
+import ApplyExpertEdu from './ApplyExpertEdu';
+import Qiniu from 'react-qiniu';
 
 
 class ApplyExpertBaseContent extends React.Component {
 
+  constructor(props) {
+    super(props);
+    // http://test.zhid58.com:8080/api/v1/upload/token
+    this.state = {
+        files: [], 
+        token: this.props.token.token,
+        prefix: 'YOUR_QINIU_KEY_PREFIX' // Optional
+    };
+    this.preItem = [];
+
+  }
+
+    onUpload(files) {
+        // set onprogress function before uploading
+        files.map(function (f) {
+            f.onprogress = function(e) {
+            };
+        });
+    } 
+
+    onDrop(files) {
+        this.setState({
+            files: files
+        });
+        // files is a FileList(https://developer.mozilla.org/en/docs/Web/API/FileList) Object
+        // and with each file, we attached two functions to handle upload progress and result
+        // file.request => return super-agent uploading file request
+        // file.uploadPromise => return a Promise to handle uploading status(what you can do when upload failed)
+        // `react-qiniu` using bluebird, check bluebird API https://github.com/petkaantonov/bluebird/blob/master/API.md
+        // see more example in example/app.js
+      console.log('Received files: ', files);
+      files.map(file => {
+        file.uploadPromise.then((data) => {
+          console.log(JSON.parse(data.text));
+        });
+      });
+      // this.showFiles();
+      console.log(this.preItem);
+    }
+
+    showFiles () {
+      if (this.state.files.length <= 0) {
+        return '';
+      }
+      if(this.preItem.length >= 3) {
+        console.log('最多上传三张图片');
+        return false;
+      }
+
+      var files = this.state.files;
+      
+      this.preItem.push([].map.call(files, function (f, i) {
+          // f is a element of files
+          // f.uploadPromise => return a Promise to handle uploading status(what you can do when upload failed)
+          // f.request => return super-agent request with uploading file
+          var preview = '';
+          if (/image/.test(f.type)) {
+              preview = <div className="pre-view">
+                          <img src={f.preview} />
+                        </div>;
+          }
+          return <li ref="perviewItem" className="perview-item" key={i}>{preview} </li>;
+      }));
+    }
+
+
   render() {
 
+    this.showFiles();
     return (
       <div className="base-content">
         <div className="base-header">
@@ -98,6 +167,14 @@ class ApplyExpertBaseContent extends React.Component {
             <div className="form-group frm-wrap id-frm">
               <span className="frm-tips id-tips"><i></i>为了证明身份的正确性,我们不得不需要你上传您的证件,可以是身份证,学生证等有效证件。
               我们会对您的信息进行安全保密和保护</span>
+
+              <div className="pre-wrap">
+                <ul>
+                  {this.preItem.map((img, i) => {
+                    return img;
+                  })}
+                </ul>
+              </div>
               <label  className="frm-label">个人身份信息</label>
               <div className="frm-ipt-box id-up">
                 <div className="upload-pic-wrapper">
@@ -107,25 +184,26 @@ class ApplyExpertBaseContent extends React.Component {
 
                   <div className="upload-pic-content" id="container">
                     <div className="ipt-upload-pic">
-                      <input type="file" className="form-control" id="expertPic" />
+                        <Qiniu multiple={false} className="form-control" id="expertPic" onDrop={this.onDrop.bind(this)} size={150} token={this.state.token} onUpload={this.onUpload}>
+                        </Qiniu>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
 
-            <div className="edu-wrap">
-              <div className="edu-header">
-                教育信息
-              </div>
-            </div>
-
+           <ApplyExpertEdu />
 
           </div>
         </div>
       </div>
     );
   }
+  componentDidMount() {
+    // DeviceAdapter.setFrontSize();
+    // this.props.actions.fetchExpertData(this.props.params.id);
+  }
 }
+
 
 export default ApplyExpertBaseContent;
