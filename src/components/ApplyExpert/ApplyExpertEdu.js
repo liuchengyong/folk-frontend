@@ -36,7 +36,7 @@ class ApplyExpertEdu extends React.Component {
         // set onprogress function before uploading
         files.map(function (f) {
             f.onprogress = function(e) {
-                console.log(e.percent);
+                // console.log(e.percent);
                 };
         });
     } 
@@ -92,8 +92,8 @@ class ApplyExpertEdu extends React.Component {
     }
 
 
-  handleSelectEduLevel(value) {
-    console.log(value);
+  handleSelectEduLevel() {
+    // console.log(value);
   }
   render() {
 
@@ -115,7 +115,7 @@ class ApplyExpertEdu extends React.Component {
                 onChange={this.handleSelectEduLevel.bind(this)}
               />
             </span>
-          </div> 
+          </div>
 
           <div className="school-frm frm-wrap">
             <label  className="frm-label">学校</label>
@@ -128,7 +128,7 @@ class ApplyExpertEdu extends React.Component {
                 onChange={this.handleSelectEduLevel.bind(this)}
               />
             </span>
-          </div>         
+          </div>
 
           <div className="major-frm frm-wrap">
             <label  className="frm-label">专业</label>

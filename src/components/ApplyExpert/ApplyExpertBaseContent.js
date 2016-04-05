@@ -4,6 +4,8 @@
  */
 import React from 'react';
 import ApplyExpertEdu from './ApplyExpertEdu';
+import lodashArray from 'lodash/array';
+
 import Qiniu from 'react-qiniu';
 
 
@@ -13,12 +15,12 @@ class ApplyExpertBaseContent extends React.Component {
     super(props);
     this.state = {
         files: [],
+        preItem: [],
         token: this.props.token.token,
         prefix: 'YOUR_QINIU_KEY_PREFIX' // Optional
     };
     this.idImgUrl = [];
-    this.preItem = [];
-    // this.idImgUrl = [];
+    this.bool = false;
 
   }
 
@@ -35,57 +37,53 @@ class ApplyExpertBaseContent extends React.Component {
     });
     files.map(file => {
       file.uploadPromise.then((data) => {
-        // console.log(JSON.parse(data.text));
         this.idImgUrl.push(JSON.parse(data.text));
       });
     });
   }
 
   handleTest(i) {
-    console.log(i);
-
-    // console.log(this.idImgUrl);
+    // console.log(i);
   }
 
   deleteImg(i) {
-    // console.log(this.idImgUrl);
-    // console.log('i= ' + i);
-
-    // this.preItem.splice(1, i);
+    this.bool = true;
+    this.setState({
+      preItem: lodashArray.without(this.state.preItem, this.state.preItem[i])
+    });
     this.idImgUrl.splice(i, 1);
-    // TODO reset preItem
-
-    // console.log(this.idImgUrl);
   }
 
     showFiles () {
-      console.log('showFiles');
       if (this.state.files.length <= 0) {
         return '';
       }
-      if(this.preItem.length >= 3) {
+      if(this.state.preItem.length >= 3) {
         // console.log('最多上传三张图片');
         return false;
       }
 
       var files = this.state.files;
       var self = this;
-      this.preItem.push([].map.call(files, function (f, i) {
-        console.log(self.preItem.length);
-        var i = self.preItem.length || i;
+      if(this.bool) {
+        this.bool = false;
+        return false;
+      }
+      this.state.preItem.push([].map.call(files, function (f, i) {
+        var i = self.state.preItem.length || i;
           var preview = '';
           if (/image/.test(f.type)) {
               preview = <div className="pre-view">
+
                           <img  src={f.preview} key={i}/>
                         </div>;
           }
-          return <li onClick={self.deleteImg.bind(self, i)} ref="perviewItem" className="perview-item" key={i}>{preview} </li>;
+          return <li onClick={self.deleteImg.bind(self, i)}  className="perview-item" key={i}><div className="mask-pre">点击删除</div>{preview} </li>;
       }));
     }
 
 
   render() {
-
     this.showFiles();
     return (
       <div className="base-content">
@@ -179,7 +177,7 @@ class ApplyExpertBaseContent extends React.Component {
 
               <div className="pre-wrap">
                 <ul>
-                  {this.preItem.map((img) => {
+                  {this.state.preItem.map((img) => {
                     return img;
                   })}
                 </ul>
@@ -193,7 +191,7 @@ class ApplyExpertBaseContent extends React.Component {
 
                   <div className="upload-pic-content" id="container">
                     <div className="ipt-upload-pic">
-                        <Qiniu multiple={false} className="form-control" id="expertPic" onDrop={this.onDrop.bind(this)} size={150} token={this.state.token} onUpload={this.onUpload}>
+                        <Qiniu multiple={false} className="form-control" id="expertPic" onDrop={this.onDrop.bind(this)} size={150} token={this.state.token} onUpload={this.onUpload.bind(this)}>
                         </Qiniu>
                     </div>
                   </div>

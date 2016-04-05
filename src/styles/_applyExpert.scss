@@ -372,6 +372,12 @@ button:focus {
 	.perview-item {
 		display: inline-block;
 	}
+	.perview-item {
+		margin-left: 15px;
+	}
+	.perview-item:first-child {
+		margin-left: 0;
+	}
 	.pre-view {
 		width: 100px;
 		height: 100px;
@@ -382,6 +388,24 @@ button:focus {
 		img {
 			width: 100px;
 			max-height: 100px;
+		}
+	}
+	.mask-pre {
+		display: none;
+		cursor: pointer;
+		line-height: 112px;
+		text-align: center;
+		position: absolute;
+		width: 112px;
+		height: 112px;
+		opacity: .7;
+		color: #fff;
+		background: gray;
+
+	}
+	.perview-item:hover {
+		.mask-pre {
+			display: inline-block;
 		}
 	}
 	//教育信息
