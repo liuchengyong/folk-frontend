@@ -6,6 +6,8 @@ import config from 'config';
 import Article from './Consultation/Article';
 import Topics from './Consultation/Topics';
 import WechatWrapper from './WechatWrapper';
+import DeviceAdapter from '../common/deviceAdapter';
+import TopBanner from './Common/TopBanner';
 import Helmet from 'react-helmet';
 import Loading from './Common/Loading';
 require('styles/_consultation.scss');
@@ -18,9 +20,13 @@ class Consultation extends React.Component {
     let consultation = this.props.consultation;
     let param = consultation.param || {};
 
+    let dialog = this.props.dialog;
+    let actions = this.props.actions;
+
     let title = consultation.param.article.title;
     return (
       <div className='detailbox'>
+        <TopBanner actions={actions} dialog={dialog}/>
         <Helmet title={title} />
         <Article article={param.article || {}}/>
         {(()=>{
@@ -44,6 +50,7 @@ class Consultation extends React.Component {
   }
 
   componentDidMount() {
+    DeviceAdapter.setFrontSize();
     this.props.actions.fetchConsultation(this.props.params.id);
   }
 }

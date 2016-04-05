@@ -12,13 +12,13 @@ class ApplyExpertBaseContent extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-        idImgUrl: [],
         files: [],
         token: this.props.token.token,
         prefix: 'YOUR_QINIU_KEY_PREFIX' // Optional
     };
+    this.idImgUrl = [];
     this.preItem = [];
-    // this.state.idImgUrl = [];
+    // this.idImgUrl = [];
 
   }
 
@@ -36,7 +36,7 @@ class ApplyExpertBaseContent extends React.Component {
     files.map(file => {
       file.uploadPromise.then((data) => {
         // console.log(JSON.parse(data.text));
-        this.state.idImgUrl.push(JSON.parse(data.text));
+        this.idImgUrl.push(JSON.parse(data.text));
       });
     });
   }
@@ -44,32 +44,27 @@ class ApplyExpertBaseContent extends React.Component {
   handleTest(i) {
     console.log(i);
 
-    // console.log(this.state.idImgUrl);
+    // console.log(this.idImgUrl);
   }
 
   deleteImg(i) {
-    console.log(this.state.idImgUrl);
-    console.log('i= ' + i);
-    // lodashArray.remove(this.state.idImgUrl, (n) => {
+    // console.log(this.idImgUrl);
+    // console.log('i= ' + i);
 
-    //   console.log('n= ' + n);
-    //   return  n == i;
-    // })
-    this.state.idImgUrl.splice(1, 1);
-    this.setState({
-      idImgUrl: this.state.idImgUrl
-    });
-    // TODO reset preIem
-    
-    console.log(this.state.idImgUrl);
+    // this.preItem.splice(1, i);
+    this.idImgUrl.splice(i, 1);
+    // TODO reset preItem
+
+    // console.log(this.idImgUrl);
   }
 
     showFiles () {
+      console.log('showFiles');
       if (this.state.files.length <= 0) {
         return '';
       }
       if(this.preItem.length >= 3) {
-        console.log('最多上传三张图片');
+        // console.log('最多上传三张图片');
         return false;
       }
 
@@ -193,7 +188,7 @@ class ApplyExpertBaseContent extends React.Component {
               <div className="frm-ipt-box id-up">
                 <div className="upload-pic-wrapper">
                   <div className="upload-pic-title">
-                    上传个人照片
+                    上传个人证件
                   </div>
 
                   <div className="upload-pic-content" id="container">

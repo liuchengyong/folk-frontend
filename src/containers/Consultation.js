@@ -8,8 +8,8 @@ import Consultation from '../components/Consultation';
 
 class ConsultationDetail extends Component {
   render() {
-    const {actions, consultation,params} = this.props;
-    return <Consultation actions={actions} consultation={consultation} params={params}/>;
+    const {actions, consultation,params, dialog} = this.props;
+    return <Consultation actions={actions} dialog={dialog} consultation={consultation} params={params}/>;
   }
 }
 
@@ -21,13 +21,15 @@ ConsultationDetail.propTypes = {
 
 function mapStateToProps(state) {
   const props = {
-    consultation: state.consultation
+    consultation: state.consultation,
+    dialog: state.dialog
   };
   return props;
 }
 function mapDispatchToProps(dispatch) {
   const actions = {
-    fetchConsultation: require('../actions/consult/fetchConsultation')
+    fetchConsultation: require('../actions/consult/fetchConsultation'),
+    setDialogStatus: require('../actions/dialog/setDialogStatus.js')
   };
   const actionMap = { actions: bindActionCreators(actions, dispatch) };
   return actionMap;
