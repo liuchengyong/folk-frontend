@@ -4,6 +4,7 @@
  */
 import React from 'react';
 import ApplyExpertEdu from './ApplyExpertEdu';
+import ExpertUpAvatar from './ExpertUpAvatar';
 import lodashArray from 'lodash/array';
 
 import Qiniu from 'react-qiniu';
@@ -15,13 +16,13 @@ class ApplyExpertBaseContent extends React.Component {
     super(props);
     this.state = {
         files: [],
-        preItem: [],
+        preItem: [], //有效证件
+        avatarPreItem: [], //头像信息
         token: this.props.token.token,
         prefix: 'YOUR_QINIU_KEY_PREFIX' // Optional
     };
     this.idImgUrl = [];
     this.bool = false;
-
   }
 
   onUpload(files) {
@@ -30,7 +31,6 @@ class ApplyExpertBaseContent extends React.Component {
         };
     });
   }
-
   onDrop(files) {
     this.setState({
         files: files
@@ -42,10 +42,6 @@ class ApplyExpertBaseContent extends React.Component {
     });
   }
 
-  handleTest(i) {
-    // console.log(i);
-  }
-
   deleteImg(i) {
     this.bool = true;
     this.setState({
@@ -54,34 +50,34 @@ class ApplyExpertBaseContent extends React.Component {
     this.idImgUrl.splice(i, 1);
   }
 
-    showFiles () {
-      if (this.state.files.length <= 0) {
-        return '';
-      }
-      if(this.state.preItem.length >= 3) {
-        // console.log('最多上传三张图片');
-        return false;
-      }
-
-      var files = this.state.files;
-      var self = this;
-      if(this.bool) {
-        this.bool = false;
-        return false;
-      }
-      this.state.preItem.push([].map.call(files, function (f, i) {
-        var i = self.state.preItem.length || i;
-          var preview = '';
-          if (/image/.test(f.type)) {
-              preview = <div className="pre-view">
-
-                          <img  src={f.preview} key={i}/>
-                        </div>;
-          }
-          return <li onClick={self.deleteImg.bind(self, i)}  className="perview-item" key={i}><div className="mask-pre">点击删除</div>{preview} </li>;
-      }));
+  showFiles () {
+    if (this.state.files.length <= 0) {
+      return '';
     }
 
+    if(this.state.preItem.length >= 3) {
+      // console.log('最多上传三张图片');
+      return false;
+    }
+
+    var files = this.state.files;
+    var self = this;
+
+    if(this.bool) {
+      this.bool = false;
+      return false;
+    }
+    this.state.preItem.push([].map.call(files, function (f, i) {
+      var i = self.state.preItem.length || i;
+        var preview = '';
+        if (/image/.test(f.type)) {
+            preview = <div className="pre-view">
+                        <img  src={f.preview} key={i}/>
+                      </div>;
+        }
+        return <li onClick={self.deleteImg.bind(self, i)}  className="perview-item" key={i}><div className="mask-pre">点击删除</div>{preview} </li>;
+    }));
+  }
 
   render() {
     this.showFiles();
@@ -129,28 +125,12 @@ class ApplyExpertBaseContent extends React.Component {
             <div className="gender-frm frm-wrap">
               <label  className="frm-label">性别</label>
               <span className="frm-ipt-box gender">
-
                 <input type="button" className="btn male-btn" name="male" value="男" />
                 <input type="button" className="btn female-btn" name="female" value="女" />
               </span>
             </div>
 
-            <div className="form-group frm-wrap avatar-frm">
-              <label  className="frm-label ">个人头像</label>
-              <div className="frm-ipt-box avatar-up">
-                <div className="upload-pic-wrapper">
-                  <div className="upload-pic-title">
-                    上传个人照片
-                  </div>
-
-                  <div className="upload-pic-content" id="container">
-                    <div className="ipt-upload-pic">
-                      <input type="file" className="form-control" id="expertPic" />
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <ExpertUpAvatar token={this.props.token.token}/>
 
             <div className="role-frm frm-wrap">
               <span className="frm-tips role-tips"><i></i>为了更有针对性的为你推荐,请选择你的身份,进行下一步操作</span>
@@ -182,13 +162,12 @@ class ApplyExpertBaseContent extends React.Component {
                   })}
                 </ul>
               </div>
-              <label onClick={this.handleTest.bind(this)} className="frm-label">个人身份信息</label>
+              <label className="frm-label">个人身份信息</label>
               <div className="frm-ipt-box id-up">
                 <div className="upload-pic-wrapper">
                   <div className="upload-pic-title">
-                    上传个人证件
+                    上传有效证件
                   </div>
-
                   <div className="upload-pic-content" id="container">
                     <div className="ipt-upload-pic">
                         <Qiniu multiple={false} className="form-control" id="expertPic" onDrop={this.onDrop.bind(this)} size={150} token={this.state.token} onUpload={this.onUpload.bind(this)}>

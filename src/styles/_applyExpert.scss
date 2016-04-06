@@ -299,7 +299,11 @@ button:focus {
 		}
 
 	}
-
+.form-control {
+	width: 0;
+	height: 0;
+	border: none;
+}
 	.role-frm {
 		margin-top: 50px;
 		label {
@@ -365,7 +369,7 @@ button:focus {
 		}
 	}
 
-	.pre-wrap {
+	.pre-wrap, .avatar-pre-wrap {
     	margin-left: 6em;
     	margin-bottom: 2em;
 	}
@@ -448,5 +452,52 @@ button:focus {
 		border-radius: 0;
 	}
 
+	//step 2
 
+}
+
+.apply {
+	.spec-box {
+		border: 0;
+		padding: 0;
+	}
+	.workYear-box {
+		border: 0;
+		padding: 0;
+		.Select-control  {
+			width: 340px;
+		}
+	}
+	.reply-box {
+		width: 460px;
+	}
+	.reply-btn {
+		width: 100px;
+		height: 30px;
+		line-height: 30px;
+		border: none;
+		background: #fff;
+		border: 1px solid #e7e7eb;
+		border-radius: 3px;
+		margin-left: 15px;
+		cursor: pointer;
+	}
+	.reply-btn:first-child {
+		margin-left: 0;
+	}
+	.desc-frm {
+		height: auto;
+		label {
+			vertical-align: top;
+		}
+	}
+	.desc-box {
+		height: auto;
+		line-height: 1.5;
+	}
+	.text-desc {
+		padding: 5px 3px;
+		width: 450px;
+		resize: none;
+	}
 }

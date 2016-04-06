@@ -11,12 +11,21 @@ import React, {
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import ApplyExpert from '../components/ApplyExpert/ApplyExpert';
+import AddExpertInfo from '../components/ApplyExpert/AddExpertInfo';
 
 /* Populated by react-webpack-redux:reducer */
 class ApplyExpertContainer extends Component {
   render() {
     const {actions, uploadToken} = this.props;
-    return <ApplyExpert actions={actions} uploadToken={uploadToken} />;
+    console.log(this.props.location.query);
+    var query = this.props.location.query;
+    if(query.step == 1) {
+      return <ApplyExpert actions={actions} uploadToken={uploadToken} />; // move to else default
+    } else if(query.step == 2) {
+      return <AddExpertInfo actions={actions} uploadToken={uploadToken} />; 
+    } else {
+      return <ApplyExpert actions={actions} uploadToken={uploadToken} />; 
+    }
   }
 }
 

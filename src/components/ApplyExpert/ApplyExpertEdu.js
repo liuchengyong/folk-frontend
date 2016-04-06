@@ -151,10 +151,6 @@ class ApplyExpertEdu extends React.Component {
             </span>
           </div>
 
-          <Qiniu multiple={false} onDrop={this.onDrop.bind(this)} size={150} token={this.state.token} onUpload={this.onUpload}>
-            <div>Try dropping some files here, or click to select files to upload.</div>
-          </Qiniu>
-          {this.showFiles()}
         </div>
       </div>
     );
