@@ -4,14 +4,13 @@
  */
 import React from 'react';
 import Select from 'react-select';
-import Qiniu from 'react-qiniu';
 require('react-select/scss/default.scss');
 
 const eduLevel = [
   { value: 'UNDERGRADUATE', label: '本科'},
   { value: 'MASTER', label: '硕士'},
   { value: 'PHD', label: '博士'},
-  { value: 'DOCTOR', label: '博士后'},
+  { value: 'DOCTOR', label: '博士后'}
 ];
 const eduSchool = [
   { value: 'UNDERGRADUATE', label: '清华'} ,
@@ -22,75 +21,9 @@ const eduSchool = [
 
 class ApplyExpertEdu extends React.Component {
 
-    constructor(props) {
+  constructor(props) {
     super(props);
-    this.state = {
-        files: [],
-        token: 'OSdX1ifRSsfMYxJGQPH95BkPPAIRI2sSKWfQ-153:OHQNSNmwhYRaFEMLBG0QklTgIPg=:eyJzY29wZSI6Imx1b3RlbmciLCJkZWFkbGluZSI6MTQ1OTQ4MTU4NH0=',
-        prefix: 'YOUR_QINIU_KEY_PREFIX' // Optional
-    };
-
   }
-
-    onUpload(files) {
-        // set onprogress function before uploading
-        files.map(function (f) {
-            f.onprogress = function(e) {
-                // console.log(e.percent);
-                };
-        });
-    } 
-
-    onDrop(files) {
-        this.setState({
-            files: files
-        });
-        // files is a FileList(https://developer.mozilla.org/en/docs/Web/API/FileList) Object
-        // and with each file, we attached two functions to handle upload progress and result
-        // file.request => return super-agent uploading file request
-        // file.uploadPromise => return a Promise to handle uploading status(what you can do when upload failed)
-        // `react-qiniu` using bluebird, check bluebird API https://github.com/petkaantonov/bluebird/blob/master/API.md
-        // see more example in example/app.js
-      console.log('Received files: ', files);
-      files.map(file => {
-        file.uploadPromise.then((data) => {
-        });
-      });
-    }
-
-    showFiles () {
-        if (this.state.files.length <= 0) {
-            return '';
-        }
-
-        var files = this.state.files;
-        var progresses = this.state.progresses;
-        let styles = {
-            width: '600px',
-            margin: '10px auto'
-        }
-
-        return (
-           <div className='dropped-files' style={styles}>
-            <ul>
-            {[].map.call(files, function (f, i) {
-                // f is a element of files
-                // f.uploadPromise => return a Promise to handle uploading status(what you can do when upload failed)
-                // f.request => return super-agent request with uploading file
-                var preview = '';
-                var progress = progresses && progresses[f.preview]
-                if (/image/.test(f.type)) {
-                    preview = <img src={f.preview} />;
-                } else if (/audio/.test(f.type)) {
-                    preview = <audio src={f.preview} controls preload> </audio>;
-                }
-                return <li key={i}>{preview} </li>;
-            })}
-            </ul>
-            </div>
-        );
-    }
-
 
   handleSelectEduLevel() {
     // console.log(value);

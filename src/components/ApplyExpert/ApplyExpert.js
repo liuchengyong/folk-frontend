@@ -9,6 +9,7 @@ require('styles/_applyExpert.scss');
 import React from 'react';
 // import config from 'config';
 import Loading from '../Common/Loading';
+import { save2Local, getChildValue } from '../../common/helper';
 
 import ApplyExpertBaseContent from './ApplyExpertBaseContent';
 // import DeviceAdapter from '../../common/deviceAdapter';
@@ -19,11 +20,28 @@ class ApplyComponent extends React.Component {
     super(props);
   }
 
+  //获取子组件的input 值
+  getChildValue(parentKey, childKey)  {
+    return this.refs[parentKey].refs[childKey].value.trim()
+  }
+
+  save2Local() {
+    console.log(this.refs.baseContent);
+    var data = {
+      name: this.getChildValue('baseContent', 'userName'),
+      mobile: this.getChildValue('baseContent', 'mobile'),
+      password: this.getChildValue('baseContent', 'password'),
+    };
+    this.getChildValue('baseContent', 'userName')
+    var data = {'key': 1234, 'key2': 345};
+    save2Local('ApplyExpertData', data);
+  }
+
   render() {
     if(this.props.uploadToken.isFetching) {
-      return <Loading />
+      return <Loading/>
     }
-    return (
+    return(
       <div className="apply">
         <div className="header">
         	<div className="header-wrap">
@@ -57,8 +75,8 @@ class ApplyComponent extends React.Component {
         			</li>
         		</ul>
         	</div>
-        	<ApplyExpertBaseContent token={this.props.uploadToken}/>
-
+        	<ApplyExpertBaseContent token={this.props.uploadToken} ref="baseContent" />
+          <button onClick={this.save2Local.bind(this)} className="next-page base-next">下一步</button>
         </div>
       </div>
     );

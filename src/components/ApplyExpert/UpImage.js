@@ -7,7 +7,7 @@ import lodashArray from 'lodash/array';
 
 import Qiniu from 'react-qiniu';
 
-class ExpertUpAvatar extends React.Component {
+class UpImage extends React.Component {
 
   constructor(props) {
     super(props);
@@ -54,7 +54,7 @@ class ExpertUpAvatar extends React.Component {
     }
 
     if(this.state.preItem.length >= 1) {
-      console.log('只能上传一张图片');
+      // console.log('只能上传一张图片');
       return false;
     }
 
@@ -88,11 +88,11 @@ class ExpertUpAvatar extends React.Component {
                 })}
               </ul>
             </div>
-          <label  className="frm-label ">个人头像</label>
+          <label  className="frm-label ">{this.props.desc.title}</label>
           <div className="frm-ipt-box avatar-up">
             <div className="upload-pic-wrapper">
               <div className="upload-pic-title">
-                上传个人照片
+                {this.props.desc.header}
               </div>
               <div className="upload-pic-content" id="container">
                 <div className="ipt-upload-pic">
@@ -102,6 +102,7 @@ class ExpertUpAvatar extends React.Component {
               </div>
             </div>
           </div>
+          {this.props.desc.tips}
         </div>
     );
   }
@@ -112,4 +113,4 @@ class ExpertUpAvatar extends React.Component {
 }
 
 
-export default ExpertUpAvatar;
+export default UpImage;

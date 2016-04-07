@@ -4,11 +4,16 @@
  */
 import React from 'react';
 import ApplyExpertEdu from './ApplyExpertEdu';
-import ExpertUpAvatar from './ExpertUpAvatar';
+import UpImage from './UpImage';
 import lodashArray from 'lodash/array';
-
 import Qiniu from 'react-qiniu';
+import regexHelper from '../../common/regexHelper';
 
+const UpAvatarData = {
+  'title': '个人头像',
+  'tips': '',
+  'header': '上传个人照片'
+}
 
 class ApplyExpertBaseContent extends React.Component {
 
@@ -18,6 +23,8 @@ class ApplyExpertBaseContent extends React.Component {
         files: [],
         preItem: [], //有效证件
         avatarPreItem: [], //头像信息
+        student: false,
+        idUp: false,
         token: this.props.token.token,
         prefix: 'YOUR_QINIU_KEY_PREFIX' // Optional
     };
@@ -48,6 +55,38 @@ class ApplyExpertBaseContent extends React.Component {
       preItem: lodashArray.without(this.state.preItem, this.state.preItem[i])
     });
     this.idImgUrl.splice(i, 1);
+  }
+
+  //选择角色
+  selectRole(role) {
+    if(role == 'student') {
+      this.setState({
+        student: true,
+        idUp: true
+      })
+    } else {
+      this.setState({
+        student: false,
+        idUp: true
+      })
+    }
+  }
+  //
+  handleChange(event) {
+    var type = event.target.name;
+    var value = event.target.value;
+    switch (type) {
+      case 'name':
+        regexHelper.username(value);
+        console.log('->name<-')
+        break;
+      case 'mobile':
+        regexHelper.mobile(value);
+        break;
+      default:
+        console.log('->default<-')
+        break;
+    }
   }
 
   showFiles () {
@@ -94,13 +133,13 @@ class ApplyExpertBaseContent extends React.Component {
             <div className="name-frm">
               <label  className="frm-label frm-wrap">姓名</label>
               <span className="frm-ipt-box">
-                <input type="text" className="frm-ipt name" name="name" palceholder="请填写你的真实姓名" />
+                <input type="text" className="frm-ipt name" name="name" key="name" onChange={this.handleChange.bind(this)} ref="userName" palceholder="请填写你的真实姓名" />
               </span>
             </div>
             <div className="phone-frm frm-wrap">
               <label  className="frm-label">手机号</label>
               <span className="frm-ipt-box mobile">
-                <input type="text" className="frm-ipt mobile" name="mobile" palceholder="请输入你的手机号" />
+                <input type="text" className="frm-ipt mobile" ref="mobile" name="mobile" onChange={this.handleChange.bind(this)} palceholder="请输入你的手机号" />
               </span>
               <a href="javascript:;" id="sendCode" className="btn btn-vcode">发送验证码</a>
             </div>
@@ -116,7 +155,7 @@ class ApplyExpertBaseContent extends React.Component {
             <div className="pwd-frm frm-wrap">
               <label  className="frm-label">密码</label>
               <span className="frm-ipt-box vcode">
-                <input type="password" className="frm-ipt " name="vcode" palceholder="请输入你的手机号" />
+                <input type="password" className="frm-ipt " ref="password" name="vcode" palceholder="请输入你的手机号" />
               </span>
               <span className="pwd-tips frm-tips">字母、数字或者英文符号，最短6位，区分大小写</span>
 
@@ -130,55 +169,57 @@ class ApplyExpertBaseContent extends React.Component {
               </span>
             </div>
 
-            <ExpertUpAvatar token={this.props.token.token}/>
+            <UpImage token={this.props.token.token} desc={UpAvatarData}/>
 
             <div className="role-frm frm-wrap">
               <span className="frm-tips role-tips"><i></i>为了更有针对性的为你推荐,请选择你的身份,进行下一步操作</span>
               <label  className="frm-label">选择身份</label>
               <span className="frm-ipt-box role-group">
-                <li className="role-item">
+                <li className="role-item" onClick={this.selectRole.bind(this, 'student')}>
                   <img src="../../images/icon/student_ico.png" alt="我是学生" />
                   <span>我是学生</span>
                 </li>
-                <li className="role-item">
+                <li className="role-item" onClick={this.selectRole.bind(this)}>
                   <img src="../../images/icon/parent_ico.png" alt="我是家长" />
                   <span>我是家长</span>
                 </li>
-                <li className="role-item">
+                <li className="role-item" onClick={this.selectRole.bind(this)}>
                   <img src="../../images/icon/teacher_ico.png" alt="我是老师" />
                   <span>我是老师</span>
                 </li>
               </span>
             </div>
+            { this.state.idUp &&
+              <div className="form-group frm-wrap id-frm">
+                <span className="frm-tips id-tips"><i></i>为了证明身份的正确性,我们不得不需要你上传您的证件,可以是身份证,学生证等有效证件。
+                我们会对您的信息进行安全保密和保护</span>
 
-            <div className="form-group frm-wrap id-frm">
-              <span className="frm-tips id-tips"><i></i>为了证明身份的正确性,我们不得不需要你上传您的证件,可以是身份证,学生证等有效证件。
-              我们会对您的信息进行安全保密和保护</span>
-
-              <div className="pre-wrap">
-                <ul>
-                  {this.state.preItem.map((img) => {
-                    return img;
-                  })}
-                </ul>
-              </div>
-              <label className="frm-label">个人身份信息</label>
-              <div className="frm-ipt-box id-up">
-                <div className="upload-pic-wrapper">
-                  <div className="upload-pic-title">
-                    上传有效证件
-                  </div>
-                  <div className="upload-pic-content" id="container">
-                    <div className="ipt-upload-pic">
-                        <Qiniu multiple={false} className="form-control" id="expertPic" onDrop={this.onDrop.bind(this)} size={150} token={this.state.token} onUpload={this.onUpload.bind(this)}>
-                        </Qiniu>
+                <div className="pre-wrap">
+                  <ul>
+                    {this.state.preItem.map((img) => {
+                      return img;
+                    })}
+                  </ul>
+                </div>
+                <label className="frm-label">个人身份信息</label>
+                <div className="frm-ipt-box id-up">
+                  <div className="upload-pic-wrapper">
+                    <div className="upload-pic-title">
+                      上传有效证件
+                    </div>
+                    <div className="upload-pic-content" id="container">
+                      <div className="ipt-upload-pic">
+                          <Qiniu multiple={false} className="form-control" id="expertPic" onDrop={this.onDrop.bind(this)} size={150} token={this.state.token} onUpload={this.onUpload.bind(this)}>
+                          </Qiniu>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
-
-           <ApplyExpertEdu />
+            }
+            {this.state.student &&
+              <ApplyExpertEdu />
+            }
 
           </div>
         </div>

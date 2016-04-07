@@ -3,11 +3,9 @@
  * Created by HuangGuorui on 3/29/16.
  */
 import React from 'react';
-import ApplyExpertEdu from './ApplyExpertEdu';
-import ExpertUpAvatar from './ExpertUpAvatar';
+import UpImage from './UpImage';
 import lodashArray from 'lodash/array';
 import Select from 'react-select';
-import Qiniu from 'react-qiniu';
 require('react-select/scss/default.scss');
 
 const workYear = [
@@ -15,15 +13,19 @@ const workYear = [
   { value: 'YEAR_0_3', label: '3年以下'},
   { value: 'YEAR_3_5', label: '3-5年'},
   { value: 'YEAR_5_10', label: '5-10年'},
-  { value: 'YEAR_ABOVE_10', label: '10年以上'},
-];
-const eduSchool = [
-  { value: 'UNDERGRADUATE', label: '清华'} ,
-  { value: 'MASTER', label: '牛津'},
-  { value: 'PHD', label: '哈佛'},
-  { value: 'DOCTOR', label: '斯坦福'}
+  { value: 'YEAR_ABOVE_10', label: '10年以上'}
 ];
 
+const UpPhotoData = {
+  'title': '个人写真',
+  'tips': '上传个人清晰写真照片,将用于你的介绍信息中.',
+  'header': '上传个人写真'
+}
+const UpBgData = {
+  'title': '个性背景',
+  'tips': '上传属于你的个性背景,将用于你的介绍页面.',
+  'header': '上传个性背景'
+}
 
 class ApplyExpertBaseContent extends React.Component {
 
@@ -105,7 +107,7 @@ class ApplyExpertBaseContent extends React.Component {
           </div>
         </div>
         <div className="main">
-          <ExpertUpAvatar token={this.props.token.token} className="per-pic" />
+          <UpImage token={this.props.token.token} className="per-pic" desc={UpPhotoData}/>
 
           <div className="frm-control-group">
             <div className="workYear-frm">
@@ -152,7 +154,7 @@ class ApplyExpertBaseContent extends React.Component {
               	<textarea className="text-desc" rows="5" placeholder="请详情描述你自己,这将成为审核和预约你的依据,不少于50字" ></textarea>
               </span>
             </div>
-            <ExpertUpAvatar token={this.props.token.token}/>
+            <UpImage token={this.props.token.token} desc={UpBgData}/>
 
           </div>
         </div>
