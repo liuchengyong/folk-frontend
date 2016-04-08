@@ -12,6 +12,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import ApplyExpert from '../components/ApplyExpert/ApplyExpert';
 import AddExpertInfo from '../components/ApplyExpert/AddExpertInfo';
+import PubTopic from '../components/PubTopic/PubTopic';
 
 /* Populated by react-webpack-redux:reducer */
 class ApplyExpertContainer extends Component {
@@ -22,8 +23,11 @@ class ApplyExpertContainer extends Component {
       return <ApplyExpert actions={actions} uploadToken={uploadToken} />; // move to else default
     } else if(query.step == 2) {
       return <AddExpertInfo actions={actions} uploadToken={uploadToken} />;
+    } else if(query.step == 3) {
+      console.log('step == 3');
+      return <PubTopic actions={actions} uploadToken={uploadToken} />;
     } else {
-      return <ApplyExpert actions={actions} uploadToken={uploadToken} />;
+      return <ApplyExpert actions={actions} uploadToken={uploadToken} />; // move to else default
     }
   }
 }

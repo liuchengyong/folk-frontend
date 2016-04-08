@@ -90,7 +90,7 @@ class ApplyExpertBaseContent extends React.Component {
       })
     }
   }
-  //
+  //@TODO 工厂模式优化, easy-ui
   handleChange(event) {
     var type = event.target.name;
     var value = event.target.value;
@@ -243,7 +243,7 @@ class ApplyExpertBaseContent extends React.Component {
             <div className="name-frm">
               <label  className="frm-label frm-wrap">姓名</label>
               <span className="frm-ipt-box">
-                <input type="text" className="frm-ipt name" name="name" key="name" onChange={this.handleChange.bind(this)} ref="userName" palceholder="请填写你的真实姓名" />
+                <input type="text" className="frm-ipt name" name="name" onChange={this.handleChange.bind(this)} ref="userName" palceholder="请填写你的真实姓名" />
               </span>
               <span className={userNameClass}><i></i><span>至少为两位且不含有特殊字符</span></span>
             </div>

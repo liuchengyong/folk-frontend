@@ -9,7 +9,7 @@ import Select from 'react-select';
 import classNames from 'classnames';
 require('react-select/scss/default.scss');
 
-const workYear = [
+const WorkYear = [
   { value: 'InSchool', label: '在读'},
   { value: 'YEAR_0_3', label: '3年以下'},
   { value: 'YEAR_3_5', label: '3-5年'},
@@ -38,6 +38,7 @@ class ApplyExpertBaseContent extends React.Component {
         avatarPreItem: [], //头像信息,
 
         currentTime: 0,
+        workYear: '',
 
         token: this.props.token.token,
         prefix: 'YOUR_QINIU_KEY_PREFIX' // Optional
@@ -59,7 +60,10 @@ class ApplyExpertBaseContent extends React.Component {
       currentTime: i
     })
   }
-
+  handleWorkChange(val) {
+    console.log(this.state);
+    this.state.workYear = val;
+  }
   render() {
     // var replyTimeClass = classNames({
     //   'btn': 'btn',
@@ -80,11 +84,13 @@ class ApplyExpertBaseContent extends React.Component {
             <div className="workYear-frm">
               <label  className="frm-label frm-wrap">工作年限</label>
               <span className="frm-ipt-box workYear-box">
-                            <Select
-                name="form-field-name"
-                className="edu-school"
-                placeholder="工作年限"
-                options={workYear}
+                <Select
+                  name="form-field-name"
+                  className="edu-school"
+                  placeholder="工作年限"
+                  value={this.state.workYear}
+                  options={WorkYear}
+                  onChange={this.handleWorkChange.bind(this)}
                 />
               </span>
             </div>
