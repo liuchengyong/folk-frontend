@@ -66,9 +66,8 @@ class ApplyExpertEdu extends React.Component {
           <div className="major-frm frm-wrap">
             <label  className="frm-label">专业</label>
             <span className="frm-ipt-box major">
-              <input type="text" className="frm-ipt " name="major" palceholder="请输入你的手机号" />
+              <input type="text" className="frm-ipt " name="major" placeholder="请输入你的专业" />
             </span>
-            <span className="major-tips frm-tips">请填写手机短信收到的6位数字验证码</span>
           </div>
 
           <div className="entry-time-frm frm-wrap">

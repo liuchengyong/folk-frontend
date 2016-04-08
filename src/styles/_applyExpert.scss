@@ -441,6 +441,9 @@ button:focus {
   .edu-content {
     padding: 25px;
   }
+  .edu-content .frm-wrap:first-child {
+    margin-top: 0;
+  }
   .level-frm {
     .edu-level {
       border: none;
@@ -501,6 +504,9 @@ button:focus {
   .reply-btn:first-child {
     margin-left: 0;
   }
+  .reply-btn.active {
+    background: #F5F5F5;
+  }
   .desc-frm {
     height: auto;
     label {
@@ -516,4 +522,44 @@ button:focus {
     width: 450px;
     resize: none;
   }
+}
+//tips 
+.hide {
+  display: none;
+}
+.frm-control-group {
+  .ipt-tips {
+    height: 30px;
+    line-height: 30px;
+    margin-left: 15px;
+    i {
+      width: 16px;
+      height: 20px;
+      vertical-align: middle;
+      display: inline-block;
+      margin-right: 5px;
+    }
+  }
+  .error {
+    i {
+      background: url(https://res.wx.qq.com/mpres/zh_CN/htmledition/comm_htmledition/style/base/base_z2b638f.png) 0 -1024px no-repeat;
+    }
+  }
+  .right {
+    i {
+      background: url(https://res.wx.qq.com/mpres/zh_CN/htmledition/comm_htmledition/style/base/base_z2b638f.png) 0 -998px no-repeat;
+    }
+    span {
+      display: none;
+    }
+  }
+  .male-btn.active, .female-btn.active {
+    background: #F5F5F5;
+  }
+  .role-group .role-item.active {
+    background: whitesmoke;
+    padding: 10px 0;
+    border-radius: 3px;
+  }
+
 }

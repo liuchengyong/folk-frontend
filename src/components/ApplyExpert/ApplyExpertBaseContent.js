@@ -8,6 +8,7 @@ import UpImage from './UpImage';
 import lodashArray from 'lodash/array';
 import Qiniu from 'react-qiniu';
 import regexHelper from '../../common/regexHelper';
+import classNames from 'classnames';
 
 const UpAvatarData = {
   'title': '个人头像',
@@ -26,6 +27,13 @@ class ApplyExpertBaseContent extends React.Component {
         student: false,
         idUp: false,
         token: this.props.token.token,
+
+        username: 0, //0:初始, 1:正确, 2:错误
+        mobile: 0, 
+        captch: 0,
+        maleActive: false,
+        femaleActive: false,
+
         prefix: 'YOUR_QINIU_KEY_PREFIX' // Optional
     };
     this.idImgUrl = [];
@@ -62,12 +70,23 @@ class ApplyExpertBaseContent extends React.Component {
     if(role == 'student') {
       this.setState({
         student: true,
-        idUp: true
+        idUp: true,
+        parent: false,
+        teacher: false
+      })
+    } else if(role == 'parent') {
+      this.setState({
+        student: false,
+        idUp: true,
+        parent: true,
+        teacher: false
       })
     } else {
       this.setState({
         student: false,
-        idUp: true
+        idUp: true,
+        parent: false,
+        teacher: true
       })
     }
   }
@@ -77,18 +96,62 @@ class ApplyExpertBaseContent extends React.Component {
     var value = event.target.value;
     switch (type) {
       case 'name':
-        regexHelper.username(value);
-        console.log('->name<-')
+        if(regexHelper.username(value)) {
+          this.setState({
+            username: 1
+          })
+        } else {
+          this.setState({
+            username: 2
+          })
+        }
         break;
       case 'mobile':
-        regexHelper.mobile(value);
+        if(regexHelper.mobile(value)) {
+          this.setState({
+            mobile: 1
+          })
+        } else {
+          this.setState({
+            mobile: 2
+          })
+        }
+        break;
+      case 'vcode':
+        if(regexHelper.captch(value)) {
+          this.setState({
+            captch: 1
+          })
+        } else {
+          this.setState({
+            captch: 2
+          })
+        }
+        break;
+      case 'password':
+        regexHelper.password(value);
         break;
       default:
         console.log('->default<-')
         break;
     }
   }
-
+  //选择性别
+  selectgender(event) {
+    var value = event.target.name;
+    if(value == 'male') {
+      this.setState({
+        femaleActive: false,
+        maleActive: true
+      })
+    } else {
+      this.setState({
+        maleActive: false,
+        femaleActive: true
+      })
+    }
+    console.log(value);
+  }
   showFiles () {
     if (this.state.files.length <= 0) {
       return '';
@@ -119,6 +182,53 @@ class ApplyExpertBaseContent extends React.Component {
   }
 
   render() {
+
+    //TODO 优化,复用
+    var userNameClass = classNames({
+      'ipt-tips': 'ipt-tips',
+      'username': 'username',
+      'error': (this.state.username == 2),
+      'right': (this.state.username == 1),
+      'hide': (this.state.username == 0)
+    });
+    var mobileClass = classNames({
+      'ipt-tips': 'ipt-tips',
+      'mobile': 'mobile',
+      'error': (this.state.mobile == 2),
+      'right': (this.state.mobile == 1),
+      'hide': (this.state.mobile == 0)
+    });
+    var vcodeClass = classNames({
+      'ipt-tips': 'ipt-tips',
+      'captch': 'captch',
+      'error': (this.state.captch == 2),
+      'right': (this.state.captch == 1),
+      'hide': (this.state.captch == 0)
+    });
+    var maleClass = classNames({
+      'btn': 'btn',
+      'male-btn': 'male-btn',
+      'active': this.state.maleActive
+    });
+    var femaleClass = classNames({
+      'btn': 'btn',
+      'female-btn': 'female-btn',
+      'active': this.state.femaleActive
+    });
+    
+    var studentClass = classNames({
+      'role-item': 'role-item',
+      'active': this.state.student
+    });
+    var parentClass = classNames({
+      'role-item': 'role-item',
+      'active': this.state.parent
+    });
+    var teacherClass = classNames({
+      'role-item': 'role-item',
+      'active': this.state.teacher
+    });
+
     this.showFiles();
     return (
       <div className="base-content">
@@ -135,6 +245,7 @@ class ApplyExpertBaseContent extends React.Component {
               <span className="frm-ipt-box">
                 <input type="text" className="frm-ipt name" name="name" key="name" onChange={this.handleChange.bind(this)} ref="userName" palceholder="请填写你的真实姓名" />
               </span>
+              <span className={userNameClass}><i></i><span>至少为两位且不含有特殊字符</span></span>
             </div>
             <div className="phone-frm frm-wrap">
               <label  className="frm-label">手机号</label>
@@ -142,20 +253,23 @@ class ApplyExpertBaseContent extends React.Component {
                 <input type="text" className="frm-ipt mobile" ref="mobile" name="mobile" onChange={this.handleChange.bind(this)} palceholder="请输入你的手机号" />
               </span>
               <a href="javascript:;" id="sendCode" className="btn btn-vcode">发送验证码</a>
+              <span className={mobileClass}><i></i><span>请填写正确的中国大陆地区手机号码</span></span>
             </div>
 
             <div className="vcode-frm frm-wrap">
-              <label  className="frm-label">验证码</label>
+              <label  className="frm-label" >验证码</label>
               <span className="frm-ipt-box vcode">
-                <input type="text" className="frm-ipt " name="vcode" palceholder="请输入你的手机号" />
+                <input type="text" className="frm-ipt" onChange={this.handleChange.bind(this)}  name="vcode" palceholder="请输入你的手机号" />
               </span>
+              <span className={vcodeClass}><i></i><span>请确认验证码为六位数字</span></span>
               <span className="vcode-tips frm-tips">请填写手机短信收到的6位数字验证码</span>
+
             </div>
 
             <div className="pwd-frm frm-wrap">
               <label  className="frm-label">密码</label>
               <span className="frm-ipt-box vcode">
-                <input type="password" className="frm-ipt " ref="password" name="vcode" palceholder="请输入你的手机号" />
+                <input type="password" className="frm-ipt" ref="password" name="password" onChange={this.handleChange.bind(this)} palceholder="请输入你的手机号" />
               </span>
               <span className="pwd-tips frm-tips">字母、数字或者英文符号，最短6位，区分大小写</span>
 
@@ -164,8 +278,8 @@ class ApplyExpertBaseContent extends React.Component {
             <div className="gender-frm frm-wrap">
               <label  className="frm-label">性别</label>
               <span className="frm-ipt-box gender">
-                <input type="button" className="btn male-btn" name="male" value="男" />
-                <input type="button" className="btn female-btn" name="female" value="女" />
+                <input type="button" className={maleClass} onClick={this.selectgender.bind(this)} name="male" value="男" />
+                <input type="button" className={femaleClass} onClick={this.selectgender.bind(this)} name="female" value="女" />
               </span>
             </div>
 
@@ -175,15 +289,15 @@ class ApplyExpertBaseContent extends React.Component {
               <span className="frm-tips role-tips"><i></i>为了更有针对性的为你推荐,请选择你的身份,进行下一步操作</span>
               <label  className="frm-label">选择身份</label>
               <span className="frm-ipt-box role-group">
-                <li className="role-item" onClick={this.selectRole.bind(this, 'student')}>
+                <li className={studentClass} onClick={this.selectRole.bind(this, 'student')}>
                   <img src="../../images/icon/student_ico.png" alt="我是学生" />
                   <span>我是学生</span>
                 </li>
-                <li className="role-item" onClick={this.selectRole.bind(this)}>
+                <li className={parentClass} onClick={this.selectRole.bind(this, 'parent')}>
                   <img src="../../images/icon/parent_ico.png" alt="我是家长" />
                   <span>我是家长</span>
                 </li>
-                <li className="role-item" onClick={this.selectRole.bind(this)}>
+                <li className={teacherClass} onClick={this.selectRole.bind(this, 'teacher')}>
                   <img src="../../images/icon/teacher_ico.png" alt="我是老师" />
                   <span>我是老师</span>
                 </li>
