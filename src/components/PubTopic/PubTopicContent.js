@@ -117,9 +117,10 @@ class PubTopicContent extends React.Component {
 
             <div className="pwd-frm frm-wrap">
               <label  className="frm-label">话题价格</label>
-              <span className="frm-ipt-box vcode">
-                <input type="text" className="frm-ipt " name="vcode" placeholder="输入常活动区域" />元
+              <span className="frm-ipt-box price">
+                <input type="text" className="frm-ipt " name="price" placeholder="" />
               </span>
+              元
               <span className="pwd-tips frm-tips">请输入0-5000的价格,合适的价格会让提高你的预约成功率</span>
 
             </div>

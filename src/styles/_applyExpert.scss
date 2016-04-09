@@ -149,7 +149,7 @@ button:focus {
     font-size: 14px;
     margin-top: 40px;
     .mobile {
-      width: 200px;
+      // width: 200px;
     }
   }
   .frm-label {
@@ -203,6 +203,9 @@ button:focus {
     border: none;
     padding: 0;
     width: auto;
+  }
+  .gender input:first-child {
+    margin-left: 0;
   }
   .male-btn, .female-btn {
     width: 120px;
@@ -525,7 +528,7 @@ button:focus {
 }
 //tips 
 .hide {
-  display: none;
+  display: none !important;
 }
 .frm-control-group {
   .ipt-tips {
@@ -562,4 +565,10 @@ button:focus {
     border-radius: 3px;
   }
 
+}
+
+//publish topic 
+.base-content .frm-ipt-box.price {
+  width: 70px;
+  margin-right: 10px;
 }

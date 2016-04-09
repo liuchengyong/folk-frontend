@@ -12,7 +12,8 @@ import classNames from 'classnames';
 
 const UpAvatarData = {
   'title': '个人头像',
-  'tips': '',
+  'tips': '请上传个人图片',
+  'error-tips': '请上传个人图片',
   'header': '上传个人照片'
 }
 
@@ -243,33 +244,35 @@ class ApplyExpertBaseContent extends React.Component {
             <div className="name-frm">
               <label  className="frm-label frm-wrap">姓名</label>
               <span className="frm-ipt-box">
-                <input type="text" className="frm-ipt name" name="name" onChange={this.handleChange.bind(this)} ref="userName" palceholder="请填写你的真实姓名" />
+                <input type="text" className="frm-ipt name" name="name" onChange={this.handleChange.bind(this)} ref="userName" placeholder="请填写你的真实姓名" />
               </span>
               <span className={userNameClass}><i></i><span>至少为两位且不含有特殊字符</span></span>
             </div>
             <div className="phone-frm frm-wrap">
               <label  className="frm-label">手机号</label>
               <span className="frm-ipt-box mobile">
-                <input type="text" className="frm-ipt mobile" ref="mobile" name="mobile" onChange={this.handleChange.bind(this)} palceholder="请输入你的手机号" />
+                <input type="text" className="frm-ipt mobile" ref="mobile" name="mobile" onChange={this.handleChange.bind(this)} placeholder="请输入你的手机号" />
               </span>
-              <a href="javascript:;" id="sendCode" className="btn btn-vcode">发送验证码</a>
+              <a href="javascript:;" id="sendCode" className="btn btn-vcode hide">发送验证码</a>
               <span className={mobileClass}><i></i><span>请填写正确的中国大陆地区手机号码</span></span>
+              <span className="vcode-tips frm-tips">注册成功后会收到一个默认密码,同时可用于找回密码</span>
+
             </div>
 
-            <div className="vcode-frm frm-wrap">
+            <div className="vcode-frm hide frm-wrap">
               <label  className="frm-label" >验证码</label>
               <span className="frm-ipt-box vcode">
-                <input type="text" className="frm-ipt" onChange={this.handleChange.bind(this)}  name="vcode" palceholder="请输入你的手机号" />
+                <input type="text" className="frm-ipt" onChange={this.handleChange.bind(this)}  name="vcode" placeholder="请输入你的手机号" />
               </span>
               <span className={vcodeClass}><i></i><span>请确认验证码为六位数字</span></span>
               <span className="vcode-tips frm-tips">请填写手机短信收到的6位数字验证码</span>
 
             </div>
 
-            <div className="pwd-frm frm-wrap">
+            <div className="pwd-frm frm-wrap hide">
               <label  className="frm-label">密码</label>
               <span className="frm-ipt-box vcode">
-                <input type="password" className="frm-ipt" ref="password" name="password" onChange={this.handleChange.bind(this)} palceholder="请输入你的手机号" />
+                <input type="password" className="frm-ipt" ref="password" name="password" onChange={this.handleChange.bind(this)} placeholder="请输入你的手机号" />
               </span>
               <span className="pwd-tips frm-tips">字母、数字或者英文符号，最短6位，区分大小写</span>
 
@@ -280,10 +283,11 @@ class ApplyExpertBaseContent extends React.Component {
               <span className="frm-ipt-box gender">
                 <input type="button" className={maleClass} onClick={this.selectgender.bind(this)} name="male" value="男" />
                 <input type="button" className={femaleClass} onClick={this.selectgender.bind(this)} name="female" value="女" />
+                <span className="ipt-tips" ><i></i><span>请选择性别</span></span>
               </span>
             </div>
 
-            <UpImage token={this.props.token.token} desc={UpAvatarData}/>
+            <UpImage token={this.props.token.token} ref="upImage" desc={UpAvatarData}/>
 
             <div className="role-frm frm-wrap">
               <span className="frm-tips role-tips"><i></i>为了更有针对性的为你推荐,请选择你的身份,进行下一步操作</span>

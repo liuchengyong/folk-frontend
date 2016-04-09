@@ -26,7 +26,7 @@ class ApplyComponent extends React.Component {
   }
 
   save2Local() {
-    console.log(this.refs.baseContent);
+    console.log(this.refs.baseContent.refs.upImage);
     var data = {
       name: this.getChildValue('baseContent', 'userName'),
       mobile: this.getChildValue('baseContent', 'mobile'),
