@@ -31,12 +31,16 @@ class ApplyExpertBaseContent extends React.Component {
         teacher: false,
         idUp: false,
         token: this.props.token.token,
+        genderStatus: 'hide',
+        avatarStatus: 'hide',
 
         username: 0, //0:初始, 1:正确, 2:错误
         mobile: 0, 
         captch: 0,
         maleActive: false,
         femaleActive: false,
+
+        bool: false,
 
         prefix: 'YOUR_QINIU_KEY_PREFIX' // Optional
     };
@@ -62,7 +66,9 @@ class ApplyExpertBaseContent extends React.Component {
   }
 
   deleteImg(i) {
-    this.bool = true;
+    this.setState({
+      bool : true
+    });
     this.setState({
       preItem: lodashArray.without(this.state.preItem, this.state.preItem[i])
     });
@@ -154,9 +160,9 @@ class ApplyExpertBaseContent extends React.Component {
         femaleActive: true
       })
     }
-    console.log(value);
   }
   showFiles () {
+
     if (this.state.files.length <= 0) {
       return '';
     }
@@ -168,23 +174,38 @@ class ApplyExpertBaseContent extends React.Component {
 
     var files = this.state.files;
     var self = this;
-
-    if(this.bool) {
-      this.bool = false;
+    console.log('showFiles');
+    if(this.state.bool) {
+      console.log('state.bool <---');
+      this.setState({
+        bool : false
+      });
+      // this.state.bool = false;
       return false;
+    }  else {
+      this.setState({
+        key: false
+      })
     }
     this.state.preItem.push([].map.call(files, function (f, i) {
+      console.log('push')
       var i = self.state.preItem.length || i;
-        var preview = '';
-        if (/image/.test(f.type)) {
-            preview = <div className="pre-view">
-                        <img  src={f.preview} key={i}/>
-                      </div>;
-        }
-        return <li onClick={self.deleteImg.bind(self, i)}  className="perview-item" key={i}><div className="mask-pre">点击删除</div>{preview} </li>;
+      var preview = '';
+      if (/image/.test(f.type)) {
+          preview = <div className="pre-view">
+                      <img  src={f.preview} key={i}/>
+                    </div>;
+      }
+      return <li onClick={self.deleteImg.bind(self, i)}  className="perview-item" key={i}><div className="mask-pre">点击删除</div>{preview} </li>;
     }));
-  }
 
+    if(!this.state.bool) {
+      this.state.files = [];
+    }
+  }
+  componentDidUpdate() {
+    this.showFiles();
+  }
   render() {
 
     //TODO 优化,复用
@@ -232,8 +253,7 @@ class ApplyExpertBaseContent extends React.Component {
       'role-item': 'role-item',
       'active': this.state.teacher
     });
-
-    this.showFiles();
+    console.log('render');
     return (
       <div className="base-content">
         <div className="base-header">
@@ -286,11 +306,11 @@ class ApplyExpertBaseContent extends React.Component {
               <span className="frm-ipt-box gender">
                 <input type="button" className={maleClass} onClick={this.selectgender.bind(this)} name="male" value="男" />
                 <input type="button" className={femaleClass} onClick={this.selectgender.bind(this)} name="female" value="女" />
-                <span className="ipt-tips" ><i></i><span>请选择性别</span></span>
+                <span className={'ipt-tips ' + this.state.genderStatus}><i></i><span>请选择性别</span></span>
               </span>
             </div>
 
-            <UpImage token={this.props.token.token} ref="upImage" desc={UpAvatarData}/>
+            <UpImage token={this.props.token.token} ref="upImage" desc={UpAvatarData} />
 
             <div className="role-frm frm-wrap">
               <span className="frm-tips role-tips"><i></i>为了更有针对性的为你推荐,请选择你的身份,进行下一步操作</span>

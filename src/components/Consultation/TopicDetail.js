@@ -16,16 +16,17 @@ const TopicDetail = (props) => (
             <img className='topics_avatar' src={props.expert.user.avatar || defaultIcon}/>
         </span>
         <div className='personbox'>
-          <span className='topics_name'>{props.expert.user.loginName || props.expert.user.name || '匿名'}</span>
+          <span className='topics_name'>{decodeURI(props.expert.user.loginName || props.expert.user.name || '匿名')}</span>
           <span>｜</span>
-          <span className='topics_title'>{props.topic.title}</span>
+          <span className='topics_title'>{props.shortDesc}</span>
         </div>
       </div>
       <div className='talk-body'>
         <span className='tag topics_role'>{config.roles[props.expert.expert.role]}</span>
-        <span className='talk topics_description'>{props.topic.description}</span>
+        <span className='talk topics_description'>{props.topic.title}</span>
       </div>
       {(()=> {
+        console.log(props);
         if (props.countOfComment > 0) {
           return (
             <div className='talk-foot'>

@@ -57,7 +57,7 @@ class AddExpertInfo extends React.Component {
         			</li>
         		</ul>
         	</div>
-        	<ExpertInfoContent token={this.props.uploadToken}/>
+        	<ExpertInfoContent token={this.props.uploadToken} />
 
         </div>
       </div>

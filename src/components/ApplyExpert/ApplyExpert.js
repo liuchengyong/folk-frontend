@@ -18,11 +18,69 @@ class ApplyComponent extends React.Component {
 
   constructor(props) {
     super(props);
+    this.state = {
+      nextTips : ''
+    };
+    this.nextTips = '请将信息填写完整';
+    this.tipsData = {};
   }
 
   //获取子组件的input 值
   getChildValue(parentKey, childKey)  {
     return this.refs[parentKey].refs[childKey].value.trim()
+  }
+
+  nextSteop() {
+    let baseContent = this.refs.baseContent;
+
+    let username = this.getChildValue('baseContent', 'userName');
+    let mobile = this.getChildValue('baseContent', 'mobile');
+    let gener = baseContent.femaleActive ? 'female' : 'male'; //前置条件: 必须选择之一
+    console.log(baseContent);
+    if(!username) {
+      this.nextTips = '请填写你正确的真实姓名';
+      baseContent.setState({
+        username: 2
+      });
+      //show ipt tips
+    }
+    if(!mobile) {
+      this.nextTips = '请填写正确的手机号';
+      baseContent.setState({
+        mobile: 2
+      });
+    }
+    if(!(baseContent.state.femaleActive || baseContent.state.maleActive)) {
+      this.nextTips = '请选择性别';
+      baseContent.setState({
+        genderStatus: 'show'
+      });
+    } else if(!baseContent.refs.upImage.idImgUrl[0]) {
+      this.nextTips = '请上传正确的头像';
+      baseContent.setState({
+        avatarStatus: 'show'
+      });      
+    } else if(!(baseContent.state.student || baseContent.state.parent || baseContent.state.teacher)) {
+      this.nextTips = '请选择角色';
+    } else if(!(baseContent.idImgUrl.length > 0)) {
+      this.nextTips = '请至少上传一张证件';
+    } else if(baseContent.state.student) {
+      if(!baseContent.refs.studentInfo.eduInfo.level) {
+        this.nextTips = '请选择学历';
+      } else if(!baseContent.refs.studentInfo.eduInfo.school) {
+        this.nextTips = '请选择你的学校';
+      } else if(!baseContent.refs.studentInfo.eduInfo.entry) {
+        this.nextTips = '请选择入学时间';
+      } else {
+        this.nextTips = '请填写专业';
+      }
+    } else {
+      this.nextTips = '';
+      this.save2Local();
+    }
+    this.setState({
+      nextTips: this.nextTips
+    });
   }
 
   //前置条件:所有通过验证
@@ -41,9 +99,9 @@ class ApplyComponent extends React.Component {
       // studentInfo.level = 
     }
 
-
     console.log(this.refs.baseContent);
     console.log(this.refs.baseContent.refs.upImage);
+
     var data = {
       name: this.getChildValue('baseContent', 'userName'),
       mobile: this.getChildValue('baseContent', 'mobile'),
@@ -92,8 +150,9 @@ class ApplyComponent extends React.Component {
         			</li>
         		</ul>
         	</div>
-        	<ApplyExpertBaseContent token={this.props.uploadToken} ref="baseContent" />
-          <button onClick={this.save2Local.bind(this)} className="next-page base-next">下一步</button>
+        	<ApplyExpertBaseContent token={this.props.uploadToken} ref="baseContent" data={this.tipsData}/>
+          {this.state.nextTips}
+          <button onClick={this.nextSteop.bind(this)} className="next-page base-next">下一步</button>
         </div>
       </div>
     );

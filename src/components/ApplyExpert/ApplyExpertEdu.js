@@ -23,12 +23,12 @@ class ApplyExpertEdu extends React.Component {
 
   constructor(props) {
     super(props);
+    this.eduInfo = {};
   }
 
   handleSelectEduLevel(type, value) {
-    console.log(value);
-    console.log(type);
-
+    this.eduInfo[type] = value;
+    console.log(this.eduInfo);
   }
   render() {
 
@@ -47,6 +47,7 @@ class ApplyExpertEdu extends React.Component {
                 className="edu-school"
                 placeholder="选择学历"
                 options={eduLevel}
+                value={this.eduInfo.level}
                 onChange={this.handleSelectEduLevel.bind(this, 'level')}
               />
             </span>
@@ -60,6 +61,7 @@ class ApplyExpertEdu extends React.Component {
                 className="edu-school"
                 placeholder="选择学校,可直接输入学校名字搜索"
                 options={eduSchool}
+                value={this.eduInfo.school}
                 onChange={this.handleSelectEduLevel.bind(this, 'school')}
               />
             </span>
@@ -68,7 +70,7 @@ class ApplyExpertEdu extends React.Component {
           <div className="major-frm frm-wrap">
             <label  className="frm-label">专业</label>
             <span className="frm-ipt-box major">
-              <input type="text" className="frm-ipt " name="major" placeholder="请输入你的专业" />
+              <input type="text" className="frm-ipt " ref="major" name="major" placeholder="请输入你的专业" />
             </span>
           </div>
 
@@ -80,6 +82,7 @@ class ApplyExpertEdu extends React.Component {
                 className="edu-school"
                 placeholder="选择入学时间"
                 options={eduSchool}
+                value={this.eduInfo.entry}
                 onChange={this.handleSelectEduLevel.bind(this, 'entry')}
               />
             </span>
