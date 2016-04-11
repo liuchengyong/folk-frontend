@@ -25,7 +25,24 @@ class ApplyComponent extends React.Component {
     return this.refs[parentKey].refs[childKey].value.trim()
   }
 
+  //前置条件:所有通过验证
   save2Local() {
+    let username = this.getChildValue('baseContent', 'userName');
+    let mobile = this.getChildValue('baseContent', 'mobile');
+    let gener = this.refs.baseContent.femaleActive ? 'female' : 'male'; //前置条件: 必须选择之一
+    let avatar = this.refs.baseContent.refs.upImage.idImgUrl[0].key;
+    let role = this.refs.baseContent.student ? 'student' : 
+              (this.refs.baseContent.parent ? 'parent' : 'teacher');
+    let idCarImg = this.refs.baseContent.idImgUrl; //array 
+
+    let studentInfo = {};
+    if(this.refs.baseContent.student) {
+      // console.log
+      // studentInfo.level = 
+    }
+
+
+    console.log(this.refs.baseContent);
     console.log(this.refs.baseContent.refs.upImage);
     var data = {
       name: this.getChildValue('baseContent', 'userName'),

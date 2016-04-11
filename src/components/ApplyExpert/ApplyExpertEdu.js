@@ -13,10 +13,10 @@ const eduLevel = [
   { value: 'DOCTOR', label: '博士后'}
 ];
 const eduSchool = [
-  { value: 'UNDERGRADUATE', label: '清华'} ,
-  { value: 'MASTER', label: '牛津'},
-  { value: 'PHD', label: '哈佛'},
-  { value: 'DOCTOR', label: '斯坦福'}
+  { value: 'qinghua', label: '清华'} ,
+  { value: 'niujing', label: '牛津'},
+  { value: 'hafu', label: '哈佛'},
+  { value: 'sitanfu', label: '斯坦福'}
 ];
 
 class ApplyExpertEdu extends React.Component {
@@ -25,8 +25,10 @@ class ApplyExpertEdu extends React.Component {
     super(props);
   }
 
-  handleSelectEduLevel() {
-    // console.log(value);
+  handleSelectEduLevel(type, value) {
+    console.log(value);
+    console.log(type);
+
   }
   render() {
 
@@ -45,7 +47,7 @@ class ApplyExpertEdu extends React.Component {
                 className="edu-school"
                 placeholder="选择学历"
                 options={eduLevel}
-                onChange={this.handleSelectEduLevel.bind(this)}
+                onChange={this.handleSelectEduLevel.bind(this, 'level')}
               />
             </span>
           </div>
@@ -58,7 +60,7 @@ class ApplyExpertEdu extends React.Component {
                 className="edu-school"
                 placeholder="选择学校,可直接输入学校名字搜索"
                 options={eduSchool}
-                onChange={this.handleSelectEduLevel.bind(this)}
+                onChange={this.handleSelectEduLevel.bind(this, 'school')}
               />
             </span>
           </div>
@@ -78,7 +80,7 @@ class ApplyExpertEdu extends React.Component {
                 className="edu-school"
                 placeholder="选择入学时间"
                 options={eduSchool}
-                onChange={this.handleSelectEduLevel.bind(this)}
+                onChange={this.handleSelectEduLevel.bind(this, 'entry')}
               />
             </span>
           </div>

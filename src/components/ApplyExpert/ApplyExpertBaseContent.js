@@ -25,7 +25,10 @@ class ApplyExpertBaseContent extends React.Component {
         files: [],
         preItem: [], //有效证件
         avatarPreItem: [], //头像信息
+
         student: false,
+        parent: false,
+        teacher: false,
         idUp: false,
         token: this.props.token.token,
 
@@ -336,7 +339,7 @@ class ApplyExpertBaseContent extends React.Component {
               </div>
             }
             {this.state.student &&
-              <ApplyExpertEdu />
+              <ApplyExpertEdu ref="studentInfo"/>
             }
 
           </div>
