@@ -148,6 +148,9 @@ class ApplyExpertBaseContent extends React.Component {
   //选择性别
   selectgender(event) {
     var value = event.target.name;
+    this.setState({
+      genderStatus: 'hide'
+    })
     if(value == 'male') {
       this.setState({
         femaleActive: false,
@@ -177,7 +180,6 @@ class ApplyExpertBaseContent extends React.Component {
       this.setState({
         bool : false
       });
-      // this.state.bool = false;
       return false;
     }  else {
       this.setState({
@@ -203,7 +205,8 @@ class ApplyExpertBaseContent extends React.Component {
     this.showFiles();
   }
   render() {
-
+console.log(this.props.collegeByCountry);
+console.log('ApplyExpertBaseContent');
     //TODO 优化,复用
     var userNameClass = classNames({
       'ipt-tips': 'ipt-tips',
@@ -301,11 +304,11 @@ class ApplyExpertBaseContent extends React.Component {
               <span className="frm-ipt-box gender">
                 <input type="button" className={maleClass} onClick={this.selectgender.bind(this)} name="male" value="男" />
                 <input type="button" className={femaleClass} onClick={this.selectgender.bind(this)} name="female" value="女" />
-                <span className={'ipt-tips ' + this.state.genderStatus}><i></i><span>请选择性别</span></span>
+                <span className={'ipt-tips error ' + this.state.genderStatus}><i></i><span>请选择性别</span></span>
               </span>
             </div>
 
-            <UpImage token={this.props.token.token} ref="upImage" desc={UpAvatarData} />
+            <UpImage token={this.props.token.token} ref="upImage" showTips={this.props.showTips} desc={UpAvatarData} />
 
             <div className="role-frm frm-wrap">
               <span className="frm-tips role-tips"><i></i>为了更有针对性的为你推荐,请选择你的身份,进行下一步操作</span>
@@ -324,6 +327,7 @@ class ApplyExpertBaseContent extends React.Component {
                   <span>我是老师</span>
                 </li>
               </span>
+              <span className={'ipt-tips error ' + (this.props.roleTips ? '' : 'hide')} ><i></i>选择你的角色</span>
             </div>
             { this.state.idUp &&
               <div className="form-group frm-wrap id-frm">
@@ -350,11 +354,12 @@ class ApplyExpertBaseContent extends React.Component {
                       </div>
                     </div>
                   </div>
+
                 </div>
               </div>
             }
             {this.state.student &&
-              <ApplyExpertEdu ref="studentInfo"/>
+              <ApplyExpertEdu ref="studentInfo" actions={this.props.actions} collegeByCountry={this.props.collegeByCountry}/>
             }
 
           </div>

@@ -12,11 +12,21 @@ const eduLevel = [
   { value: 'PHD', label: '博士'},
   { value: 'DOCTOR', label: '博士后'}
 ];
-const eduSchool = [
-  { value: 'qinghua', label: '清华'} ,
-  { value: 'niujing', label: '牛津'},
-  { value: 'hafu', label: '哈佛'},
-  { value: 'sitanfu', label: '斯坦福'}
+const countryList = [
+  { value: 'CHINA', label: '中国'} ,
+  { value: 'TW', label: '中国台湾'},
+  { value: 'HK', label: '中国香港'},
+  { value: 'MO', label: '中国澳门'},
+  { value: 'US', label: '美国'},
+  { value: 'GB', label: '英国'},
+  { value: 'JP', label: '日本'},
+  { value: 'KR', label: '韩国'},
+  { value: 'GE', label: '德国'},
+  { value: 'FR', label: '法国'},
+  { value: 'AU', label: '澳大利亚'},
+  { value: 'RU', label: '俄罗斯'},
+  { value: 'CA', label: '加拿大'},
+  { value: 'SG', label: '新加坡'}
 ];
 
 class ApplyExpertEdu extends React.Component {
@@ -24,10 +34,28 @@ class ApplyExpertEdu extends React.Component {
   constructor(props) {
     super(props);
     this.eduInfo = {};
+    this.state = {
+      schoolList: []
+    }
   }
 
   handleSelectEduLevel(type, value) {
     this.eduInfo[type] = value;
+
+    var schoolArr = [];
+    var tempObj = {};
+
+    if(type == 'country') {
+      var self = this;
+      this.props.actions.fetchCollegeCountry(value).then(
+        data => {
+          console.log('done');
+          
+          this.setState({
+            schoolList: self.props.collegeByCountry
+          });
+        })
+    }
   }
   render() {
 
@@ -54,12 +82,22 @@ class ApplyExpertEdu extends React.Component {
 
           <div className="school-frm frm-wrap">
             <label  className="frm-label">学校</label>
+            <span className="frm-ipt-box country-list">
+              <Select
+                name="form-field-name"
+                className="edu-school"
+                placeholder="选择国家"
+                options={countryList}
+                value={this.eduInfo.country}
+                onChange={this.handleSelectEduLevel.bind(this, 'country')}
+              />
+            </span>
             <span className="frm-ipt-box school-list">
               <Select
                 name="form-field-name"
                 className="edu-school"
-                placeholder="选择学校,可直接输入学校名字搜索"
-                options={eduSchool}
+                placeholder="选择学校,选择学校所在国家"
+                options={this.state.schoolList}
                 value={this.eduInfo.school}
                 onChange={this.handleSelectEduLevel.bind(this, 'school')}
               />
@@ -80,7 +118,7 @@ class ApplyExpertEdu extends React.Component {
                 name="form-field-name"
                 className="edu-school"
                 placeholder="选择入学时间"
-                options={eduSchool}
+                options={countryList}
                 value={this.eduInfo.entry}
                 onChange={this.handleSelectEduLevel.bind(this, 'entry')}
               />

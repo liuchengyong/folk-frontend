@@ -19,8 +19,11 @@ class ApplyComponent extends React.Component {
 
   constructor(props) {
     super(props);
+    // console.log(this.props);
     this.state = {
-      nextTips : ''
+      nextTips : '',
+      showTips: false,
+      roleTips: false
     };
     this.nextTips = '请将信息填写完整';
     this.tipsData = {};
@@ -37,55 +40,87 @@ class ApplyComponent extends React.Component {
 
     let username = this.getChildValue('baseContent', 'userName');
     let mobile = this.getChildValue('baseContent', 'mobile');
+    let bool = true
     if(!username) {
       this.nextTips = '请填写你正确的真实姓名';
       baseContent.setState({
         username: 2
       });
+      bool = false
       //show ipt tips
     }
     if(!mobile) {
+      bool = false
+
       this.nextTips = '请填写正确的手机号';
       baseContent.setState({
         mobile: 2
       });
     }
     if(!(baseContent.state.femaleActive || baseContent.state.maleActive)) {
+      bool = false
+
       this.nextTips = '请选择性别';
       baseContent.setState({
         genderStatus: 'show'
       });
     }
     if(!baseContent.refs.upImage.idImgUrl[0]) {
+      bool = false
+
       this.nextTips = '请上传正确的头像';
+      this.setState({
+        showTips: true
+      })
       baseContent.setState({
         avatarStatus: 'show'
       });
-    } else if(!(baseContent.state.student || baseContent.state.parent || baseContent.state.teacher)) {
-      this.nextTips = '请选择角色';
-    } else if(!(baseContent.idImgUrl.length > 0)) {
-      this.nextTips = '请至少上传一张证件';
-    } else if(baseContent.state.student) {
-      if(!baseContent.refs.studentInfo.eduInfo.level) {
-        this.nextTips = '请选择学历';
-      } else if(!baseContent.refs.studentInfo.eduInfo.school) {
-        this.nextTips = '请选择你的学校';
-      } else if(!baseContent.refs.studentInfo.eduInfo.entry) {
-        this.nextTips = '请选择入学时间';
-      } else if(!baseContent.refs.studentInfo.refs.major.value) {
-        this.nextTips = '请填写专业';
-      } else {
-        this.nextTips = '';
-        this.save2Local();
-      }
     } else {
-      this.nextTips = '';
-      this.save2Local();
+      this.setState({
+        showTips: false
+      });
+    }
+    if(!(baseContent.state.student || baseContent.state.parent || baseContent.state.teacher)) {
+      bool = false
+      this.nextTips = '请选择角色';
+      this.setState({
+        roleTips: true
+      });
+    } else {
+      this.setState({
+        roleTips: false
+      });
+    }
+    if(!(baseContent.idImgUrl.length > 0)) {
+      bool = false
+      this.nextTips = '请至少上传一张证件';
+    }
+    if(baseContent.state.student){
+      if(!baseContent.refs.studentInfo.eduInfo.level) {
+        bool = false
+        this.nextTips = '请选择学历';
+      }
+      if(!baseContent.refs.studentInfo.eduInfo.school) {
+        bool = false
+        this.nextTips = '请选择你的学校';
+      }
+      if(!baseContent.refs.studentInfo.eduInfo.entry) {
+        this.nextTips = '请选择入学时间';
+      }
+      if(!baseContent.refs.studentInfo.refs.major.value) {
+        bool = false
+        this.nextTips = '请填写专业';
+      }
     }
 
     this.setState({
       nextTips: this.nextTips
     });
+
+    if(bool) {
+      this.nextTips = '';
+      this.save2Local();
+    }
   }
 
   //前置条件:所有通过验证
@@ -118,6 +153,8 @@ class ApplyComponent extends React.Component {
     if(this.props.uploadToken.isFetching) {
       return <Loading/>
     }
+    console.log(this.props.collegeByCountry);
+    console.log('_applyExpert');
     return(
       <div className="apply">
         <div className="header">
@@ -152,8 +189,8 @@ class ApplyComponent extends React.Component {
         			</li>
         		</ul>
         	</div>
-        	<ApplyExpertBaseContent token={this.props.uploadToken} ref="baseContent" data={this.tipsData}/>
-          {this.state.nextTips}
+        	<ApplyExpertBaseContent token={this.props.uploadToken} ref="baseContent" actions={this.props.actions} collegeByCountry={this.props.collegeByCountry} roleTips={this.state.roleTips} showTips={this.state.showTips} data={this.tipsData}/>
+          <span className="next-tips"> {this.state.nextTips} </span>
           <button onClick={this.nextStep.bind(this)} className="next-page base-next">下一步</button>
         </div>
       </div>
@@ -163,6 +200,7 @@ class ApplyComponent extends React.Component {
   componentDidMount() {
 
     this.props.actions.fetchToken();
+    // this.props.actions.fetchCollegeCountry('CHINA')
 
   }
 }

@@ -103,7 +103,7 @@ class UpImage extends React.Component {
               </div>
             </div>
           </div>
-          {this.props.desc.tips}
+          <span className={'ipt-tips error ' + (this.props.showTips ? '' : 'hide')} ><i></i>{this.props.desc.tips} </span>
         </div>
     );
   }

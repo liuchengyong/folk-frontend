@@ -22,7 +22,8 @@ const reducers = {
   register: require('../reducers/register'),
   captch: require('../reducers/captch'),
   login: require('../reducers/login'),
-  uploadToken: require('../reducers/uploadToken')
+  uploadToken: require('../reducers/uploadToken'),
+  collegeByCountry: require('../reducers/fetchCollegeCountry')
 };
 
 module.exports = combineReducers(extend(reducers, {routing: routerReducer}));

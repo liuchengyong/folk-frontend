@@ -461,9 +461,15 @@ button:focus {
     line-height: 36px;
     padding-left: 4px;
   }
-  .school-list, .entry-time {
+  .school-list, .entry-time, .country-list {
     border: none;
     padding: 0;
+  }
+  .country-list {
+    width: 150px;
+  }
+  .school-list {
+    margin-left: 15px;
   }
 
   //select com rewrite 
@@ -570,6 +576,16 @@ button:focus {
 
 }
 
+//next-tips
+.next-tips {
+  width: 100%;
+  text-align: center;
+  display: inline-block;
+  color: red;
+  font-size: 18px;
+  margin-bottom: 20px;
+  margin-top: 15px;
+}
 //publish topic 
 .base-content .frm-ipt-box.price {
   width: 70px;
