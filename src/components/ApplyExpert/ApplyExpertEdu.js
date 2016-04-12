@@ -28,7 +28,6 @@ class ApplyExpertEdu extends React.Component {
 
   handleSelectEduLevel(type, value) {
     this.eduInfo[type] = value;
-    console.log(this.eduInfo);
   }
   render() {
 

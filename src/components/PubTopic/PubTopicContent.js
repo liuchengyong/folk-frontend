@@ -3,29 +3,8 @@
  * Created by HuangGuorui on 3/29/16.
  */
 import React from 'react';
-import lodashArray from 'lodash/array';
-import Select from 'react-select';
 import classNames from 'classnames';
 require('react-select/scss/default.scss');
-
-const WorkYear = [
-  { value: 'InSchool', label: '在读'},
-  { value: 'YEAR_0_3', label: '3年以下'},
-  { value: 'YEAR_3_5', label: '3-5年'},
-  { value: 'YEAR_5_10', label: '5-10年'},
-  { value: 'YEAR_ABOVE_10', label: '10年以上'}
-];
-
-const UpPhotoData = {
-  'title': '个人写真',
-  'tips': '上传个人清晰写真照片,将用于你的介绍信息中.',
-  'header': '上传个人写真'
-}
-const UpBgData = {
-  'title': '个性背景',
-  'tips': '上传属于你的个性背景,将用于你的介绍页面.',
-  'header': '上传个性背景'
-}
 
 class PubTopicContent extends React.Component {
 
@@ -51,7 +30,6 @@ class PubTopicContent extends React.Component {
     })
   }
   handleWorkChange(val) {
-    console.log(this.state);
     this.state.workYear = val;
   }
 

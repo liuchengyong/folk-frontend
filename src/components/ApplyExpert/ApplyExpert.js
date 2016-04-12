@@ -9,7 +9,8 @@ require('styles/_applyExpert.scss');
 import React from 'react';
 // import config from 'config';
 import Loading from '../Common/Loading';
-import { save2Local, getChildValue } from '../../common/helper';
+import assign from 'lodash/assign';
+import { save2Local} from '../../common/helper';
 
 import ApplyExpertBaseContent from './ApplyExpertBaseContent';
 // import DeviceAdapter from '../../common/deviceAdapter';
@@ -30,13 +31,12 @@ class ApplyComponent extends React.Component {
     return this.refs[parentKey].refs[childKey].value.trim()
   }
 
-  nextSteop() {
+  nextStep() {
+
     let baseContent = this.refs.baseContent;
 
     let username = this.getChildValue('baseContent', 'userName');
     let mobile = this.getChildValue('baseContent', 'mobile');
-    let gener = baseContent.femaleActive ? 'female' : 'male'; //前置条件: 必须选择之一
-    console.log(baseContent);
     if(!username) {
       this.nextTips = '请填写你正确的真实姓名';
       baseContent.setState({
@@ -55,11 +55,12 @@ class ApplyComponent extends React.Component {
       baseContent.setState({
         genderStatus: 'show'
       });
-    } else if(!baseContent.refs.upImage.idImgUrl[0]) {
+    }
+    if(!baseContent.refs.upImage.idImgUrl[0]) {
       this.nextTips = '请上传正确的头像';
       baseContent.setState({
         avatarStatus: 'show'
-      });      
+      });
     } else if(!(baseContent.state.student || baseContent.state.parent || baseContent.state.teacher)) {
       this.nextTips = '请选择角色';
     } else if(!(baseContent.idImgUrl.length > 0)) {
@@ -71,13 +72,17 @@ class ApplyComponent extends React.Component {
         this.nextTips = '请选择你的学校';
       } else if(!baseContent.refs.studentInfo.eduInfo.entry) {
         this.nextTips = '请选择入学时间';
-      } else {
+      } else if(!baseContent.refs.studentInfo.refs.major.value) {
         this.nextTips = '请填写专业';
+      } else {
+        this.nextTips = '';
+        this.save2Local();
       }
     } else {
       this.nextTips = '';
       this.save2Local();
     }
+
     this.setState({
       nextTips: this.nextTips
     });
@@ -89,26 +94,23 @@ class ApplyComponent extends React.Component {
     let mobile = this.getChildValue('baseContent', 'mobile');
     let gener = this.refs.baseContent.femaleActive ? 'female' : 'male'; //前置条件: 必须选择之一
     let avatar = this.refs.baseContent.refs.upImage.idImgUrl[0].key;
-    let role = this.refs.baseContent.student ? 'student' : 
-              (this.refs.baseContent.parent ? 'parent' : 'teacher');
-    let idCarImg = this.refs.baseContent.idImgUrl; //array 
-
-    let studentInfo = {};
-    if(this.refs.baseContent.student) {
-      // console.log
-      // studentInfo.level = 
-    }
-
-    console.log(this.refs.baseContent);
-    console.log(this.refs.baseContent.refs.upImage);
+    let role = this.refs.baseContent.state.student ? 'student' :
+              (this.refs.baseContent.state.parent ? 'parent' : 'teacher');
+    let idCarImg = this.refs.baseContent.idImgUrl; //array
 
     var data = {
-      name: this.getChildValue('baseContent', 'userName'),
-      mobile: this.getChildValue('baseContent', 'mobile'),
-      password: this.getChildValue('baseContent', 'password'),
+      name: username,
+      mobile: mobile,
+      gener: gener,
+      avatar: avatar,
+      role: role,
+      idCarImg: idCarImg
     };
-    this.getChildValue('baseContent', 'userName')
-    var data = {'key': 1234, 'key2': 345};
+
+    if(this.refs.baseContent.state.student) {
+      assign(data, this.refs.baseContent.refs.studentInfo.eduInfo, {major: this.refs.baseContent.refs.studentInfo.refs.major.value});
+    }
+
     save2Local('ApplyExpertData', data);
   }
 
@@ -152,7 +154,7 @@ class ApplyComponent extends React.Component {
         	</div>
         	<ApplyExpertBaseContent token={this.props.uploadToken} ref="baseContent" data={this.tipsData}/>
           {this.state.nextTips}
-          <button onClick={this.nextSteop.bind(this)} className="next-page base-next">下一步</button>
+          <button onClick={this.nextStep.bind(this)} className="next-page base-next">下一步</button>
         </div>
       </div>
     );

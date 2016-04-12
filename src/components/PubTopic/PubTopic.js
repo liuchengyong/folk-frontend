@@ -8,10 +8,10 @@ require('styles/_applyExpert.scss');
 
 import React from 'react';
 // import config from 'config';
-import Loading from '../Common/Loading';
+// import Loading from '../Common/Loading';
 import PubTopicContent from './PubTopicContent';
 
-import { save2Local, getChildValue } from '../../common/helper';
+import { save2Local} from '../../common/helper';
 
 class PubTopic extends React.Component {
 
@@ -25,11 +25,10 @@ class PubTopic extends React.Component {
   }
 
   save2Local() {
-    console.log(this.refs.baseContent);
     var data = {
       name: this.getChildValue('baseContent', 'userName'),
       mobile: this.getChildValue('baseContent', 'mobile'),
-      password: this.getChildValue('baseContent', 'password'),
+      password: this.getChildValue('baseContent', 'password')
     };
     this.getChildValue('baseContent', 'userName')
     var data = {'key': 1234, 'key2': 345};

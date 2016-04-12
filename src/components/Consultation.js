@@ -24,19 +24,6 @@ class Consultation extends React.Component {
     let actions = this.props.actions;
 
     let title = consultation.param.article.title;
-    console.log(param);
-    // if(param.topics[0].topic.title) {
-    //   if(param.topics[0].topic.expert.expert.role == 'PARENTS' || param.topics[0].topic.expert.expert.role == 'TEACHER') {
-    //   param.topics[0].topic.shortDesc =  param.topics[0].topic.title
-    //   }
-    // } else if(param.topics[0].topic.expert.expert.role == 'STUDENT') {
-    //   if(expert.user.educationList.length > 0) {
-    //     param.topics[0].topic.title = expert.user.educationList[0].college.name;
-    //   }
-    // } else {
-    //   param.topics[0].topic.title = '';
-    // }
-
 
     return (
       <div className='detailbox'>
@@ -45,14 +32,12 @@ class Consultation extends React.Component {
         <Article article={param.article || {}}/>
         {(()=>{
           if (param.topics.length > 0) {
-            console.log(param.topics[0].expert.expert.role);
               if(param.topics[0].expert.expert.title) {
                 if(param.topics[0].expert.expert.role == 'PARENTS' || param.topics[0].expert.expert.role == 'TEACHER') {
                   param.topics[0].shortDesc = param.topics[0].expert.expert.title
                 }
               }
               if(param.topics[0].expert.expert.role == 'STUDENT') {
-                console.log('student');
                 if(param.topics[0].expert.user.educationList.length > 0) {
                   param.topics[0].shortDesc = param.topics[0].expert.user.educationList[0].college.name;
                 }

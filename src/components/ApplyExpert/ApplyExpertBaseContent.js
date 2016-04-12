@@ -35,7 +35,7 @@ class ApplyExpertBaseContent extends React.Component {
         avatarStatus: 'hide',
 
         username: 0, //0:初始, 1:正确, 2:错误
-        mobile: 0, 
+        mobile: 0,
         captch: 0,
         maleActive: false,
         femaleActive: false,
@@ -142,7 +142,6 @@ class ApplyExpertBaseContent extends React.Component {
         regexHelper.password(value);
         break;
       default:
-        console.log('->default<-')
         break;
     }
   }
@@ -174,9 +173,7 @@ class ApplyExpertBaseContent extends React.Component {
 
     var files = this.state.files;
     var self = this;
-    console.log('showFiles');
     if(this.state.bool) {
-      console.log('state.bool <---');
       this.setState({
         bool : false
       });
@@ -188,7 +185,6 @@ class ApplyExpertBaseContent extends React.Component {
       })
     }
     this.state.preItem.push([].map.call(files, function (f, i) {
-      console.log('push')
       var i = self.state.preItem.length || i;
       var preview = '';
       if (/image/.test(f.type)) {
@@ -253,7 +249,6 @@ class ApplyExpertBaseContent extends React.Component {
       'role-item': 'role-item',
       'active': this.state.teacher
     });
-    console.log('render');
     return (
       <div className="base-content">
         <div className="base-header">

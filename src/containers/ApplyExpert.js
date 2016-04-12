@@ -24,7 +24,6 @@ class ApplyExpertContainer extends Component {
     } else if(query.step == 2) {
       return <AddExpertInfo actions={actions} uploadToken={uploadToken} />;
     } else if(query.step == 3) {
-      console.log('step == 3');
       return <PubTopic actions={actions} uploadToken={uploadToken} />;
     } else {
       return <ApplyExpert actions={actions} uploadToken={uploadToken} />; // move to else default

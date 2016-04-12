@@ -47,7 +47,6 @@ exports.captch = (value) => {
  */
 exports.password = (value) => {
 	if(value.length >= 6) {
-		console.log('is passowrd true');
 		return true;
 	} else {
 		return false;

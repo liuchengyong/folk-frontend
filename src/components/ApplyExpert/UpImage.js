@@ -23,7 +23,6 @@ class UpImage extends React.Component {
   }
 
   onUpload(files) {
-    var self = this;
     files.map(function (f) {
         f.onprogress = function() {
         };
