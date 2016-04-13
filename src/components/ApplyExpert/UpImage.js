@@ -14,6 +14,9 @@ class UpImage extends React.Component {
     this.state = {
         files: [],
         preItem: [], //有效证件
+
+        showTips: false,
+
         avatarPreItem: [], //头像信息
         token: this.props.token,
         prefix: 'YOUR_QINIU_KEY_PREFIX' // Optional
@@ -31,7 +34,8 @@ class UpImage extends React.Component {
 
   onDrop(files) {
     this.setState({
-        files: files
+        files: files,
+        showTips: false
     });
     files.map(file => {
       file.uploadPromise.then((data) => {
@@ -67,7 +71,7 @@ class UpImage extends React.Component {
       return false;
     }
     this.state.preItem.push([].map.call(files, function (f, i) {
-      var i = self.state.preItem.length || i;
+      var i = self.state.preItem.length || i
         var preview = '';
         if (/image/.test(f.type)) {
             preview = <div className="pre-view">
@@ -103,7 +107,7 @@ class UpImage extends React.Component {
               </div>
             </div>
           </div>
-          <span className={'ipt-tips error ' + (this.props.showTips ? '' : 'hide')} ><i></i>{this.props.desc.tips} </span>
+          <span className={'ipt-tips error ' + (this.state.showTips ? '' : 'hide')} ><i></i>{this.props.desc.tips} </span>
         </div>
     );
   }
@@ -111,6 +115,8 @@ class UpImage extends React.Component {
     // DeviceAdapter.setFrontSize();
     // this.props.actions.fetchExpertData(this.props.params.id);
   }
+
+
 }
 
 

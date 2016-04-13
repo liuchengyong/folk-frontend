@@ -10,10 +10,10 @@ import React from 'react';
 // import config from 'config';
 import Loading from '../Common/Loading';
 import assign from 'lodash/assign';
+import regexHelper from '../../common/regexHelper';
 import { save2Local} from '../../common/helper';
 
 import ApplyExpertBaseContent from './ApplyExpertBaseContent';
-// import DeviceAdapter from '../../common/deviceAdapter';
 
 class ApplyComponent extends React.Component {
 
@@ -41,7 +41,7 @@ class ApplyComponent extends React.Component {
     let username = this.getChildValue('baseContent', 'userName');
     let mobile = this.getChildValue('baseContent', 'mobile');
     let bool = true
-    if(!username) {
+    if(!regexHelper.username(username)) {
       this.nextTips = '请填写你正确的真实姓名';
       baseContent.setState({
         username: 2
@@ -49,7 +49,7 @@ class ApplyComponent extends React.Component {
       bool = false
       //show ipt tips
     }
-    if(!mobile) {
+    if(!regexHelper.mobile(mobile)) {
       bool = false
 
       this.nextTips = '请填写正确的手机号';
@@ -64,21 +64,25 @@ class ApplyComponent extends React.Component {
       baseContent.setState({
         genderStatus: 'show'
       });
+    } else {
+
     }
     if(!baseContent.refs.upImage.idImgUrl[0]) {
       bool = false
-
+      console.log(baseContent.refs.upImage);
       this.nextTips = '请上传正确的头像';
-      this.setState({
+      baseContent.refs.upImage.setState({
         showTips: true
       })
       baseContent.setState({
         avatarStatus: 'show'
       });
     } else {
-      this.setState({
-        showTips: false
-      });
+
+    }
+    if(!(baseContent.idImgUrl.length > 0)) {
+      bool = false
+      this.nextTips = '请至少上传一张证件';
     }
     if(!(baseContent.state.student || baseContent.state.parent || baseContent.state.teacher)) {
       bool = false
@@ -91,10 +95,7 @@ class ApplyComponent extends React.Component {
         roleTips: false
       });
     }
-    if(!(baseContent.idImgUrl.length > 0)) {
-      bool = false
-      this.nextTips = '请至少上传一张证件';
-    }
+
     if(baseContent.state.student){
       if(!baseContent.refs.studentInfo.eduInfo.level) {
         bool = false
@@ -113,14 +114,15 @@ class ApplyComponent extends React.Component {
       }
     }
 
-    this.setState({
-      nextTips: this.nextTips
-    });
-
     if(bool) {
       this.nextTips = '';
       this.save2Local();
     }
+    // console.log()
+    this.setState({
+      nextTips: this.nextTips
+    });
+
   }
 
   //前置条件:所有通过验证
@@ -145,16 +147,18 @@ class ApplyComponent extends React.Component {
     if(this.refs.baseContent.state.student) {
       assign(data, this.refs.baseContent.refs.studentInfo.eduInfo, {major: this.refs.baseContent.refs.studentInfo.refs.major.value});
     }
-
+    // console.log(data);
     save2Local('ApplyExpertData', data);
+
+    // setTimeout(function() {
+    //   location.href += '?step=2'; 
+    // }, 300)
   }
 
   render() {
     if(this.props.uploadToken.isFetching) {
       return <Loading/>
     }
-    console.log(this.props.collegeByCountry);
-    console.log('_applyExpert');
     return(
       <div className="apply">
         <div className="header">

@@ -11,7 +11,6 @@ module.exports = function(state = initialState, action) {
   switch(action.type) {
     case 'RECEIVE_COLLEGE_COUNTRY': {
       //@TODO 将删除状态作为一个action
-       var tempObj = {};
        var schoolArr = [];
 
        for(var i = 0; i < action.parameter.length; i++) {
@@ -23,7 +22,6 @@ module.exports = function(state = initialState, action) {
             })(i));
         }
 
-        console.log(schoolArr);
         return schoolArr;
 
       // return (action.parameter.success) ?

@@ -13,10 +13,15 @@ import PubTopicContent from './PubTopicContent';
 
 import { save2Local} from '../../common/helper';
 
+const TopicTime = [30, 45, 60, 90];
+
 class PubTopic extends React.Component {
 
   constructor(props) {
     super(props);
+    this.state = {
+      nextTips: ''
+    }
   }
 
   //获取子组件的input 值
@@ -24,15 +29,53 @@ class PubTopic extends React.Component {
     return this.refs[parentKey].refs[childKey].value.trim()
   }
 
-  save2Local() {
-    var data = {
-      name: this.getChildValue('baseContent', 'userName'),
-      mobile: this.getChildValue('baseContent', 'mobile'),
-      password: this.getChildValue('baseContent', 'password')
-    };
-    this.getChildValue('baseContent', 'userName')
-    var data = {'key': 1234, 'key2': 345};
-    save2Local('ApplyExpertData', data);
+  nextStep() {
+    let pubContent = this.refs.pubContent;
+    console.log(pubContent);
+    let topicName = pubContent.refs.topicName.value.trim(); //this.getChildValue('pubContent', 'topicName');
+    let topicDesc = pubContent.refs.topicDesc.value.trim(); //this.getChildValue('pubContent', 'topicDesc');
+    let price = pubContent.refs.price.value.trim(); //this.getChildValue('pubContent', 'price');
+
+    let bool = true
+
+    if(!topicName) {
+      this.nextTips = '请填写填写话题名称';
+      bool = false
+    }
+    if(!topicDesc) {
+      bool = false
+      this.nextTips = '请输入话题描述';
+    }
+    if(!pubContent.state.currentTime) {
+      bool = false
+      this.nextTips = '请选择话题时长';
+    }
+    if(!price) {
+      bool = false;
+      this.nextTips = '请输入话题价格';
+    }
+
+    if(!(pubContent.state.Online || pubContent.state.Offline)) {
+      bool = false
+      this.nextTips = '请选择交流方式';
+    }
+    if(bool) {
+      this.nextTips = '';
+      var data = {
+        topicName: topicName,
+        topicDesc: topicDesc,
+        price: price,
+        method: pubContent.state.Online ? 'online' : offline,
+        topicTime: TopicTime[(pubContent.state.currentTime-1)]
+      };
+      console.log(data);
+      console.log('----topic----');
+      save2Local('TopicData', data);
+    }
+
+    this.setState({
+      nextTips: this.nextTips
+    });
   }
 
   render() {
@@ -73,8 +116,11 @@ class PubTopic extends React.Component {
         			</li>
         		</ul>
         	</div>
-          <PubTopicContent />
-          <button onClick={this.save2Local.bind(this)} className="next-page base-next">下一步</button>
+          <PubTopicContent ref="pubContent"/>
+
+          <span className="next-tips"> {this.state.nextTips} </span>
+
+          <button onClick={this.nextStep.bind(this)} className="next-page base-next">下一步</button>
         </div>
       </div>
     );

@@ -42,15 +42,11 @@ class ApplyExpertEdu extends React.Component {
   handleSelectEduLevel(type, value) {
     this.eduInfo[type] = value;
 
-    var schoolArr = [];
-    var tempObj = {};
-
     if(type == 'country') {
       var self = this;
       this.props.actions.fetchCollegeCountry(value).then(
-        data => {
-          console.log('done');
-          
+        () => {
+
           this.setState({
             schoolList: self.props.collegeByCountry
           });

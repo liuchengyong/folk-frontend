@@ -66,7 +66,8 @@ class AddExpertInfo extends React.Component {
       description: description,
       expertBg: expertBg
     };
-
+    console.log(data);
+    console.log('data step two');
     save2Local('ApplyExpertDataTwo', data);
   }
 

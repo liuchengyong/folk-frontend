@@ -18,16 +18,15 @@ import PubTopic from '../components/PubTopic/PubTopic';
 class ApplyExpertContainer extends Component {
   render() {
     const {actions, uploadToken, collegeByCountry} = this.props;
-    console.log(this.props.collegeByCountry);
     var query = this.props.location.query;
     if(query.step == 1) {
-      return <ApplyExpert actions={actions} uploadToken={uploadToken} collegeByCountry={this.props.collegeByCountry}/>; // move to else default
+      return <ApplyExpert actions={actions} uploadToken={uploadToken} collegeByCountry={collegeByCountry}/>; // move to else default
     } else if(query.step == 2) {
       return <AddExpertInfo actions={actions} uploadToken={uploadToken} />;
     } else if(query.step == 3) {
       return <PubTopic actions={actions} uploadToken={uploadToken} />;
     } else {
-      return <ApplyExpert actions={actions} uploadToken={uploadToken} collegeByCountry={this.props.collegeByCountry}/>; // move to else default
+      return <ApplyExpert actions={actions} uploadToken={uploadToken} collegeByCountry={collegeByCountry}/>; // move to else default
     }
   }
 }

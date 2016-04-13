@@ -205,8 +205,6 @@ class ApplyExpertBaseContent extends React.Component {
     this.showFiles();
   }
   render() {
-console.log(this.props.collegeByCountry);
-console.log('ApplyExpertBaseContent');
     //TODO 优化,复用
     var userNameClass = classNames({
       'ipt-tips': 'ipt-tips',

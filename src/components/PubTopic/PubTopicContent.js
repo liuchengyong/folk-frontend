@@ -11,16 +11,11 @@ class PubTopicContent extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-        files: [],
-        preItem: [], //有效证件
-        avatarPreItem: [], //头像信息,
-
-        currentTime: 0,
-        workYear: '',
-
-        prefix: 'YOUR_QINIU_KEY_PREFIX' // Optional
+        descLength: 0,
+        Online: false,
+        Offline: false,
+        currentTime: 0
     };
-    this.idImgUrl = [];
     this.bool = false;
   }
 
@@ -29,41 +24,46 @@ class PubTopicContent extends React.Component {
       currentTime: i
     })
   }
-  handleWorkChange(val) {
-    this.state.workYear = val;
-  }
 
-    //选择性别
-  selectgender(event) {
-    var value = event.target.name;
-    if(value == 'male') {
+  handleChangeDesc(event) {
+    var value = event.target.value;
+    if(this.refs.topicDesc.value.length <= 50) {
       this.setState({
-        femaleActive: false,
-        maleActive: true
+        descLength: value.length
+      })
+    } else {
+      // this.setState({
+      //   hide: value.length
+      // })
+    }
+  }
+    //选择交流方式
+  selectMethod(event) {
+    var value = event.target.name;
+    if(value == 'online') {
+      this.setState({
+        Offline: false,
+        Online: true
       })
     } else {
       this.setState({
-        maleActive: false,
-        femaleActive: true
+        Online: false,
+        Offline: true
       })
     }
   }
 
   render() {
-    // var replyTimeClass = classNames({
-    //   'btn': 'btn',
-    //   'reply-btn': 'reply-btn'
-    // })
 
-    var maleClass = classNames({
+    var onlineClass = classNames({
       'btn': 'btn',
       'male-btn': 'male-btn',
-      'active': this.state.maleActive
+      'active': this.state.Online
     });
-    var femaleClass = classNames({
+    var offlineClass = classNames({
       'btn': 'btn',
       'female-btn': 'female-btn',
-      'active': this.state.femaleActive
+      'active': this.state.Offline
     });
 
     return (
@@ -81,7 +81,7 @@ class PubTopicContent extends React.Component {
             <div className="vcode-frm frm-wrap">
               <label  className="frm-label">话题名称</label>
               <span className="frm-ipt-box vcode">
-                <input type="text" className="frm-ipt " name="vcode" placeholder="请输入话题名称" />
+                <input type="text" className="frm-ipt " ref="topicName" name="vcode" placeholder="请输入话题名称" />
               </span>
               <span className="vcode-tips frm-tips"> 一个合适的话题名称可以让你得到更多的推荐</span>
             </div>
@@ -89,14 +89,16 @@ class PubTopicContent extends React.Component {
             <div className="desc-frm frm-wrap">
               <label  className="frm-label">话题描述</label>
               <span className="frm-ipt-box desc-box spec-box">
-                <textarea className="text-desc" rows="5" placeholder="请详情描述你的话题,这将成为审核和点友预约你的依据,不少于50字" ></textarea>
+                <textarea className="text-desc" rows="5" ref="topicDesc" onChange={this.handleChangeDesc.bind(this)} placeholder="请详情描述你的话题,这将成为审核和点友预约你的依据,不少于50字" ></textarea>
               </span>
+              <span className={this.state.descLength >= 50 ? 'hide' : ''} > 还需输入{50 - this.state.descLength}字</span>
+
             </div>
 
             <div className="pwd-frm frm-wrap">
               <label  className="frm-label">话题价格</label>
               <span className="frm-ipt-box price">
-                <input type="text" className="frm-ipt " name="price" placeholder="" />
+                <input type="text" className="frm-ipt " ref="price" name="price" placeholder="" />
               </span>
               元
               <span className="pwd-tips frm-tips">请输入0-5000的价格,合适的价格会让提高你的预约成功率</span>
@@ -106,18 +108,18 @@ class PubTopicContent extends React.Component {
             <div className="reply-frm frm-wrap">
               <label  className="frm-label">话题时长</label>
               <span className="frm-ipt-box reply-box spec-box">
-                <input type="button" className={'btn reply-btn ' + (this.state.currentTime == 1 ? 'active' : '')} onClick={this.selectTime.bind(this, 1)} name="reply" data-key="6" value="30分钟" />
-                <input type="button" className={'btn reply-btn ' + (this.state.currentTime == 2 ? 'active' : '')} onClick={this.selectTime.bind(this, 2)} name="reply" data-key="12" value="45分钟" />
-                <input type="button" className={'btn reply-btn ' + (this.state.currentTime == 3 ? 'active' : '')} onClick={this.selectTime.bind(this, 3)} name="reply" data-key="24" value="60分钟" />
-                <input type="button" className={'btn reply-btn ' + (this.state.currentTime == 4 ? 'active' : '')} onClick={this.selectTime.bind(this, 4)} name="reply" data-key="48" value="90分钟" />
+                <input type="button" className={'btn reply-btn ' + (this.state.currentTime == 1 ? 'active' : '')} onClick={this.selectTime.bind(this, 1)} name="reply" data-key="30" value="30分钟" />
+                <input type="button" className={'btn reply-btn ' + (this.state.currentTime == 2 ? 'active' : '')} onClick={this.selectTime.bind(this, 2)} name="reply" data-key="45" value="45分钟" />
+                <input type="button" className={'btn reply-btn ' + (this.state.currentTime == 3 ? 'active' : '')} onClick={this.selectTime.bind(this, 3)} name="reply" data-key="60" value="60分钟" />
+                <input type="button" className={'btn reply-btn ' + (this.state.currentTime == 4 ? 'active' : '')} onClick={this.selectTime.bind(this, 4)} name="reply" data-key="90" value="90分钟" />
               </span>
             </div>
 
             <div className="gender-frm frm-wrap">
               <label  className="frm-label">交流方式</label>
               <span className="frm-ipt-box gender">
-                <input type="button" className={maleClass} onClick={this.selectgender.bind(this)} name="male" value="屏对屏" />
-                <input type="button" className={femaleClass} onClick={this.selectgender.bind(this)} name="female" value="面对面" />
+                <input type="button" className={onlineClass} onClick={this.selectMethod.bind(this)} name="online" value="屏对屏" />
+                <input type="button" className={offlineClass} onClick={this.selectMethod.bind(this)} name="offline" value="面对面" />
               </span>
             </div>
 
