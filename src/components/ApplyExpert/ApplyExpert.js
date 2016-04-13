@@ -11,7 +11,7 @@ import React from 'react';
 import Loading from '../Common/Loading';
 import assign from 'lodash/assign';
 import regexHelper from '../../common/regexHelper';
-import { save2Local} from '../../common/helper';
+import { save2Local, getFromLocal} from '../../common/helper';
 
 import ApplyExpertBaseContent from './ApplyExpertBaseContent';
 
@@ -27,6 +27,7 @@ class ApplyComponent extends React.Component {
     };
     this.nextTips = '请将信息填写完整';
     this.tipsData = {};
+    this.applyExpertLocalData = null;
   }
 
   //获取子组件的input 值
@@ -37,7 +38,6 @@ class ApplyComponent extends React.Component {
   nextStep() {
 
     let baseContent = this.refs.baseContent;
-
     let username = this.getChildValue('baseContent', 'userName');
     let mobile = this.getChildValue('baseContent', 'mobile');
     let bool = true
@@ -67,7 +67,7 @@ class ApplyComponent extends React.Component {
     } else {
 
     }
-    if(!baseContent.refs.upImage.idImgUrl[0]) {
+    if(!baseContent.refs.upImage.idImgUrl[0] && !this.applyExpertLocalData.avatar) {
       bool = false
       console.log(baseContent.refs.upImage);
       this.nextTips = '请上传正确的头像';
@@ -81,11 +81,11 @@ class ApplyComponent extends React.Component {
 
     }
     if(!(baseContent.idImgUrl.length > 0)) {
-      bool = false
+      bool = false;
       this.nextTips = '请至少上传一张证件';
     }
     if(!(baseContent.state.student || baseContent.state.parent || baseContent.state.teacher)) {
-      bool = false
+      bool = false;
       this.nextTips = '请选择角色';
       this.setState({
         roleTips: true
@@ -98,18 +98,18 @@ class ApplyComponent extends React.Component {
 
     if(baseContent.state.student){
       if(!baseContent.refs.studentInfo.eduInfo.level) {
-        bool = false
+        bool = false;
         this.nextTips = '请选择学历';
       }
       if(!baseContent.refs.studentInfo.eduInfo.school) {
-        bool = false
+        bool = false;
         this.nextTips = '请选择你的学校';
       }
       if(!baseContent.refs.studentInfo.eduInfo.entry) {
         this.nextTips = '请选择入学时间';
       }
       if(!baseContent.refs.studentInfo.refs.major.value) {
-        bool = false
+        bool = false;
         this.nextTips = '请填写专业';
       }
     }
@@ -130,10 +130,20 @@ class ApplyComponent extends React.Component {
     let username = this.getChildValue('baseContent', 'userName');
     let mobile = this.getChildValue('baseContent', 'mobile');
     let gener = this.refs.baseContent.femaleActive ? 'female' : 'male'; //前置条件: 必须选择之一
-    let avatar = this.refs.baseContent.refs.upImage.idImgUrl[0].key;
+    let avatar = this.refs.baseContent.refs.upImage.idImgUrl[0] ? this.refs.baseContent.refs.upImage.idImgUrl[0].key : this.applyExpertLocalData.avatar;
     let role = this.refs.baseContent.state.student ? 'student' :
               (this.refs.baseContent.state.parent ? 'parent' : 'teacher');
     let idCarImg = this.refs.baseContent.idImgUrl; //array
+
+    let avatarFile = this.refs.baseContent.refs.upImage.state.files;
+
+    let _avatarFile = [{
+      type: avatarFile[0].type,
+      name: avatarFile[0].name,
+      lastModified: avatarFile[0].lastModified,
+      preview: 'http://statics.zhid58.com/' + avatar,
+      size: avatarFile[0].size
+    }];
 
     var data = {
       name: username,
@@ -141,13 +151,14 @@ class ApplyComponent extends React.Component {
       gener: gener,
       avatar: avatar,
       role: role,
-      idCarImg: idCarImg
+      idCarImg: idCarImg,
+      avatarFile: _avatarFile
     };
 
     if(this.refs.baseContent.state.student) {
       assign(data, this.refs.baseContent.refs.studentInfo.eduInfo, {major: this.refs.baseContent.refs.studentInfo.refs.major.value});
     }
-    // console.log(data);
+
     save2Local('ApplyExpertData', data);
 
     // setTimeout(function() {
@@ -193,7 +204,7 @@ class ApplyComponent extends React.Component {
         			</li>
         		</ul>
         	</div>
-        	<ApplyExpertBaseContent token={this.props.uploadToken} ref="baseContent" actions={this.props.actions} collegeByCountry={this.props.collegeByCountry} roleTips={this.state.roleTips} showTips={this.state.showTips} data={this.tipsData}/>
+        	<ApplyExpertBaseContent token={this.props.uploadToken} localData={this.applyExpertLocalData} ref="baseContent" actions={this.props.actions} collegeByCountry={this.props.collegeByCountry} roleTips={this.state.roleTips} showTips={this.state.showTips} data={this.tipsData}/>
           <span className="next-tips"> {this.state.nextTips} </span>
           <button onClick={this.nextStep.bind(this)} className="next-page base-next">下一步</button>
         </div>
@@ -204,6 +215,8 @@ class ApplyComponent extends React.Component {
   componentDidMount() {
 
     this.props.actions.fetchToken();
+    this.applyExpertLocalData = getFromLocal('ApplyExpertData');
+    console.log(this.applyExpertLocalData);
     // this.props.actions.fetchCollegeCountry('CHINA')
 
   }

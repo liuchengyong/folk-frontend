@@ -26,10 +26,11 @@ class ApplyExpertBaseContent extends React.Component {
         preItem: [], //有效证件
         avatarPreItem: [], //头像信息
 
-        student: false,
-        parent: false,
-        teacher: false,
-        idUp: false,
+        student: false || (this.props.localData && this.props.localData.role == 'student'),
+        parent: false || (this.props.localData && this.props.localData.role == 'parent'),
+        teacher: false || (this.props.localData && this.props.localData.role == 'teacher'),
+
+        idUp: false || this.props.localData,
         token: this.props.token.token,
         genderStatus: 'hide',
         avatarStatus: 'hide',
@@ -37,8 +38,8 @@ class ApplyExpertBaseContent extends React.Component {
         username: 0, //0:初始, 1:正确, 2:错误
         mobile: 0,
         captch: 0,
-        maleActive: false,
-        femaleActive: false,
+        maleActive: false || (this.props.localData && this.props.localData.gener == 'male'),
+        femaleActive: false || (this.props.localData && this.props.localData.gener == 'female'),
 
         bool: false,
 
@@ -46,6 +47,7 @@ class ApplyExpertBaseContent extends React.Component {
     };
     this.idImgUrl = [];
     this.bool = false;
+    console.log(this.props.localData && this.props.localData.role);
   }
 
   onUpload(files) {
@@ -230,12 +232,12 @@ class ApplyExpertBaseContent extends React.Component {
     var maleClass = classNames({
       'btn': 'btn',
       'male-btn': 'male-btn',
-      'active': this.state.maleActive
+      'active': this.state.maleActive || (this.props.localData && this.props.localData.gener == 'male')
     });
     var femaleClass = classNames({
       'btn': 'btn',
       'female-btn': 'female-btn',
-      'active': this.state.femaleActive
+      'active': this.state.femaleActive || (this.props.localData && (this.props.localData.gener == 'female'))
     });
     
     var studentClass = classNames({
@@ -263,14 +265,25 @@ class ApplyExpertBaseContent extends React.Component {
             <div className="name-frm">
               <label  className="frm-label frm-wrap">姓名</label>
               <span className="frm-ipt-box">
-                <input type="text" className="frm-ipt name" name="name" onChange={this.handleChange.bind(this)} ref="userName" placeholder="请填写你的真实姓名" />
+                <input type="text" className="frm-ipt name" name="name" 
+                  onChange={this.handleChange.bind(this)} 
+                  value={this.props.localData && this.props.localData.name} 
+                  ref="userName" 
+                  placeholder="请填写你的真实姓名" 
+                />
+
               </span>
               <span className={userNameClass}><i></i><span>至少为两位且不含有特殊字符</span></span>
             </div>
             <div className="phone-frm frm-wrap">
               <label  className="frm-label">手机号</label>
               <span className="frm-ipt-box mobile">
-                <input type="text" className="frm-ipt mobile" ref="mobile" name="mobile" onChange={this.handleChange.bind(this)} placeholder="请输入你的手机号" />
+                <input type="text" className="frm-ipt mobile" 
+                  ref="mobile" name="mobile" 
+                  onChange={this.handleChange.bind(this)} 
+                  placeholder="请输入你的手机号" 
+                  value={this.props.localData && this.props.localData.mobile}
+                />
               </span>
               <a href="javascript:;" id="sendCode" className="btn btn-vcode hide">发送验证码</a>
               <span className={mobileClass}><i></i><span>请填写正确的中国大陆地区手机号码</span></span>
@@ -306,7 +319,7 @@ class ApplyExpertBaseContent extends React.Component {
               </span>
             </div>
 
-            <UpImage token={this.props.token.token} ref="upImage" showTips={this.props.showTips} desc={UpAvatarData} />
+            <UpImage token={this.props.token.token} imgData={this.props.localData && this.props.localData} ref="upImage" showTips={this.props.showTips} desc={UpAvatarData} />
 
             <div className="role-frm frm-wrap">
               <span className="frm-tips role-tips"><i></i>为了更有针对性的为你推荐,请选择你的身份,进行下一步操作</span>
