@@ -12,6 +12,8 @@ import React from 'react';
 import PubTopicContent from './PubTopicContent';
 
 import { save2Local} from '../../common/helper';
+import regexHelper from '../../common/regexHelper';
+
 
 const TopicTime = [30, 45, 60, 90];
 
@@ -31,45 +33,54 @@ class PubTopic extends React.Component {
 
   nextStep() {
     let pubContent = this.refs.pubContent;
-    console.log(pubContent);
     let topicName = pubContent.refs.topicName.value.trim(); //this.getChildValue('pubContent', 'topicName');
     let topicDesc = pubContent.refs.topicDesc.value.trim(); //this.getChildValue('pubContent', 'topicDesc');
     let price = pubContent.refs.price.value.trim(); //this.getChildValue('pubContent', 'price');
 
-    let bool = true
+    let bool = true;
 
-    if(!topicName) {
-      this.nextTips = '请填写填写话题名称';
-      bool = false
+    if(topicName.length < 35) {
+      this.nextTips = '话题名称至少35个字符长度';
+      pubContent.setState({
+        topicTitle: 2
+      })
+      bool = false;
     }
-    if(!topicDesc) {
-      bool = false
-      this.nextTips = '请输入话题描述';
+    if(topicDesc.length < 50) {
+      bool = false;
+      pubContent.setState({
+        descToggle: 2
+      })
+      this.nextTips = '话题描述不可低于50字';
+    }
+
+    if(!regexHelper.numberZero(price)) {
+      bool = false;
+      pubContent.setState({
+        price: 2
+      })
+      this.nextTips = '话题价格应为1-5000的整数';
     }
     if(!pubContent.state.currentTime) {
       bool = false
       this.nextTips = '请选择话题时长';
     }
-    if(!price) {
-      bool = false;
-      this.nextTips = '请输入话题价格';
-    }
+
 
     if(!(pubContent.state.Online || pubContent.state.Offline)) {
       bool = false
       this.nextTips = '请选择交流方式';
     }
+
     if(bool) {
       this.nextTips = '';
       var data = {
         topicName: topicName,
         topicDesc: topicDesc,
         price: price,
-        method: pubContent.state.Online ? 'online' : offline,
+        method: pubContent.state.Online ? 'online' : 'offline',
         topicTime: TopicTime[(pubContent.state.currentTime-1)]
       };
-      console.log(data);
-      console.log('----topic----');
       save2Local('TopicData', data);
     }
 
@@ -112,7 +123,7 @@ class PubTopic extends React.Component {
         				发布话题
         			</li>
         			<li className="nav-item preview-expert next-step">
-        				资料预览
+        				申请成功
         			</li>
         		</ul>
         	</div>
@@ -120,7 +131,7 @@ class PubTopic extends React.Component {
 
           <span className="next-tips"> {this.state.nextTips} </span>
 
-          <button onClick={this.nextStep.bind(this)} className="next-page base-next">下一步</button>
+          <button onClick={this.nextStep.bind(this)} className="next-page base-next">提交申请</button>
         </div>
       </div>
     );

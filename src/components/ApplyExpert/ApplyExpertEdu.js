@@ -29,6 +29,8 @@ const countryList = [
   { value: 'SG', label: '新加坡'}
 ];
 
+
+
 class ApplyExpertEdu extends React.Component {
 
   constructor(props) {
@@ -36,6 +38,16 @@ class ApplyExpertEdu extends React.Component {
     this.eduInfo = {};
     this.state = {
       schoolList: []
+    }
+    this.entryTime = [];
+    var self = this;
+    for(var i = 2000; i <= (new Date()).getFullYear(); i++) {
+      (function(i) {
+        self.entryTime.push({
+        value: i,
+        label: i
+      })
+      })(i)
     }
   }
 
@@ -114,7 +126,7 @@ class ApplyExpertEdu extends React.Component {
                 name="form-field-name"
                 className="edu-school"
                 placeholder="选择入学时间"
-                options={countryList}
+                options={this.entryTime}
                 value={this.eduInfo.entry}
                 onChange={this.handleSelectEduLevel.bind(this, 'entry')}
               />

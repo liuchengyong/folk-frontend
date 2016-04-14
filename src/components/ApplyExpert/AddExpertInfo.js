@@ -9,7 +9,7 @@ require('styles/_applyExpert.scss');
 import React from 'react';
 // import config from 'config';
 import Loading from '../Common/Loading';
-import { save2Local} from '../../common/helper';
+import { save2Local, getFromLocal} from '../../common/helper';
 
 import ExpertInfoContent from './ExpertInfoContent';
 // import DeviceAdapter from '../../common/deviceAdapter';
@@ -69,6 +69,12 @@ class AddExpertInfo extends React.Component {
     console.log(data);
     console.log('data step two');
     save2Local('ApplyExpertDataTwo', data);
+
+    setTimeout(function() {
+      location.href = location.pathname  + '?step=3'; 
+    }, 300)
+
+
   }
 
 
@@ -106,12 +112,13 @@ class AddExpertInfo extends React.Component {
         				发布话题
         			</li>
         			<li className="nav-item preview-expert nnext-step">
-        				资料预览
+        				申请成功
         			</li>
         		</ul>
         	</div>
-        	<ExpertInfoContent token={this.props.uploadToken} ref="expertInfo"/>
-          {this.nextTips}
+        	<ExpertInfoContent token={this.props.uploadToken} actions={this.props.actions} ref="expertInfo"/>
+          <span className="next-tips"> {this.nextTips} </span>
+
           <button onClick={this.nextStep.bind(this)} className="next-page base-next">下一步</button>
 
         </div>
@@ -120,7 +127,10 @@ class AddExpertInfo extends React.Component {
   }
 
   componentDidMount() {
-
+    // this.applyExpertLocalData = getFromLocal('ApplyExpertData');
+    if(!getFromLocal('ApplyExpertData')) {
+      location.href = location.pathname; 
+    }
     this.props.actions.fetchToken();
 
   }

@@ -88,8 +88,6 @@ var getCookie = () => {
 var save2Local = (k, v) => {
   var oldData = getFromLocal(k);
   var newData = assign(oldData, v);
-  console.log(newData);
-  console.log('save2Local-------------->>>>>>>>>>>>>>');
   var data = JSON.stringify(newData);
   window.localStorage.setItem(k, data);
 

@@ -14,12 +14,15 @@ import regexHelper from '../../common/regexHelper';
 import { save2Local, getFromLocal} from '../../common/helper';
 
 import ApplyExpertBaseContent from './ApplyExpertBaseContent';
+let logo_register = require('../../images/logo_register.png');
+
+
 
 class ApplyComponent extends React.Component {
 
   constructor(props) {
     super(props);
-    // console.log(this.props);
+    console.log(this.props);
     this.state = {
       nextTips : '',
       showTips: false,
@@ -38,6 +41,7 @@ class ApplyComponent extends React.Component {
   nextStep() {
 
     let baseContent = this.refs.baseContent;
+    console.log(baseContent);
     let username = this.getChildValue('baseContent', 'userName');
     let mobile = this.getChildValue('baseContent', 'mobile');
     let bool = true
@@ -67,7 +71,7 @@ class ApplyComponent extends React.Component {
     } else {
 
     }
-    if(!baseContent.refs.upImage.idImgUrl[0] && !this.applyExpertLocalData.avatar) {
+    if(!baseContent.refs.upImage.idImgUrl[0] && !this.applyExpertLocalData) {
       bool = false
       console.log(baseContent.refs.upImage);
       this.nextTips = '请上传正确的头像';
@@ -80,7 +84,7 @@ class ApplyComponent extends React.Component {
     } else {
 
     }
-    if(!(baseContent.idImgUrl.length > 0)) {
+    if(!(baseContent.idImgUrl.length > 0) ) {
       bool = false;
       this.nextTips = '请至少上传一张证件';
     }
@@ -137,6 +141,28 @@ class ApplyComponent extends React.Component {
 
     let avatarFile = this.refs.baseContent.refs.upImage.state.files;
 
+    // let idCarFiles = [];
+
+    let idCarFiles = this.refs.baseContent.state.idFiles; //array
+    let _idCarFiles = [];
+    let f = null;
+
+    // for(var i = idCarFiles.length - 1; i >= 0; i--) {
+    //   if(idCarFiles.length - i >= 3) {
+    //     return false;
+    //   }
+    //   f = idCarFiles[i];
+    //   console.log(f);
+    //   console.log('i= ' + i);
+    //   _idCarFiles.push({
+    //     type: f.type,
+    //     name: f.name,
+    //     lastModified: f.lastModified,
+    //     preview: 'http://statics.zhid58.com/' + avatar,
+    //     size: f.size
+    //   });
+    // }
+
     let _avatarFile = [{
       type: avatarFile[0].type,
       name: avatarFile[0].name,
@@ -152,6 +178,7 @@ class ApplyComponent extends React.Component {
       avatar: avatar,
       role: role,
       idCarImg: idCarImg,
+      // idCarFiles: _idCarFiles,
       avatarFile: _avatarFile
     };
 
@@ -161,9 +188,9 @@ class ApplyComponent extends React.Component {
 
     save2Local('ApplyExpertData', data);
 
-    // setTimeout(function() {
-    //   location.href += '?step=2'; 
-    // }, 300)
+    setTimeout(function() {
+      location.href += '?step=2'; 
+    }, 300)
   }
 
   render() {
@@ -175,7 +202,7 @@ class ApplyComponent extends React.Component {
         <div className="header">
         	<div className="header-wrap">
         		<span className="helper"></span>
-        		<img src="../../images/logo_register.png"/>
+        		<img src={logo_register}/>
         		<span className="title">指点·成为点师</span>
         	</div>
         </div>
@@ -200,11 +227,22 @@ class ApplyComponent extends React.Component {
         				发布话题
         			</li>
         			<li className="nav-item preview-expert nnext-step">
-        				资料预览
+        				申请成功
         			</li>
         		</ul>
         	</div>
-        	<ApplyExpertBaseContent token={this.props.uploadToken} localData={this.applyExpertLocalData} ref="baseContent" actions={this.props.actions} collegeByCountry={this.props.collegeByCountry} roleTips={this.state.roleTips} showTips={this.state.showTips} data={this.tipsData}/>
+        	<ApplyExpertBaseContent 
+            token={this.props.uploadToken} 
+            localData={this.applyExpertLocalData} 
+            ref="baseContent" 
+            verifyExpert={this.props.verifyExpert}
+            actions={this.props.actions} 
+            collegeByCountry={this.props.collegeByCountry} 
+            roleTips={this.state.roleTips} 
+            showTips={this.state.showTips} 
+            data={this.tipsData}
+          />
+
           <span className="next-tips"> {this.state.nextTips} </span>
           <button onClick={this.nextStep.bind(this)} className="next-page base-next">下一步</button>
         </div>
@@ -215,7 +253,8 @@ class ApplyComponent extends React.Component {
   componentDidMount() {
 
     this.props.actions.fetchToken();
-    this.applyExpertLocalData = getFromLocal('ApplyExpertData');
+    // this.applyExpertLocalData = getFromLocal('ApplyExpertData');
+    this.applyExpertLocalData = null;//getFromLocal('ApplyExpertData');
     console.log(this.applyExpertLocalData);
     // this.props.actions.fetchCollegeCountry('CHINA')
 

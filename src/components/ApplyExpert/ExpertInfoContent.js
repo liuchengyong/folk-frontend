@@ -72,9 +72,9 @@ class ApplyExpertBaseContent extends React.Component {
         descLength: value.length
       })
     } else {
-      // this.setState({
-      //   hide: value.length
-      // })
+      this.setState({
+        descLength: value.length
+      })
     }
   }
 

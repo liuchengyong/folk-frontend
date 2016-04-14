@@ -23,8 +23,13 @@ class ApplyExpertBaseContent extends React.Component {
     super(props);
     this.state = {
         files: [],
-        preItem: [], //有效证件
+        preItem: [], //
+
+        idFiles: [], // 
+
         avatarPreItem: [], //头像信息
+
+        verifyTips: '请填写正确的中国大陆地区手机号码',
 
         student: false || (this.props.localData && this.props.localData.role == 'student'),
         parent: false || (this.props.localData && this.props.localData.role == 'parent'),
@@ -43,11 +48,11 @@ class ApplyExpertBaseContent extends React.Component {
 
         bool: false,
 
-        prefix: 'YOUR_QINIU_KEY_PREFIX' // Optional
+        prefix: 'YOUR_QINIU_KEY_PREFIX' // Op
     };
     this.idImgUrl = [];
     this.bool = false;
-    console.log(this.props.localData && this.props.localData.role);
+    console.log(this.props.actions);
   }
 
   onUpload(files) {
@@ -120,12 +125,52 @@ class ApplyExpertBaseContent extends React.Component {
         break;
       case 'mobile':
         if(regexHelper.mobile(value)) {
-          this.setState({
-            mobile: 1
-          })
+          var verifyCode = this.props.actions.verifyExpert(value);
+          var self = this;
+          var timer = setInterval(function() {
+            if(self.props.verifyExpert.isFetching) {
+              console.log('验证中');
+            } else {
+              console.log('验证完毕')
+              var verifyCode = self.props.verifyExpert;
+              console.log(verifyCode);
+              if(verifyCode.code == 0) {
+                self.setState({
+                  mobile: 2,
+                  verifyTips: '该手机号已经是点师,请直接登录'
+                })
+              } else if(verifyCode.code == 606){
+                self.setState({
+                  mobile: 2,
+                  verifyTips: '该手机号已经在申请中,请耐心等待'
+                })
+              } else {
+                self.setState({
+                  mobile: 1,
+                  verifyTips: '手机号可用'
+                })
+              }
+
+              clearInterval(timer);
+            }
+
+          }, 200)
+          // if(this.props.verifyExpert.isFetching) {
+          //   console.log('验证中');
+          // } else {
+          //   console.log('验证完毕')
+          //   // var verifyCode = this.props.actions.verifyExpert(value);
+          //   console.log(verifyCode);
+          //   this.setState({
+          //     mobile: 1
+          //   })
+          // }
+          
         } else {
+
           this.setState({
-            mobile: 2
+            mobile: 2,
+            verifyTips: '请填写正确的中国大陆地区手机号码'
           })
         }
         break;
@@ -190,13 +235,14 @@ class ApplyExpertBaseContent extends React.Component {
     }
     this.state.preItem.push([].map.call(files, function (f, i) {
       var i = self.state.preItem.length || i;
+      self.state.idFiles.push(f);
       var preview = '';
       if (/image/.test(f.type)) {
           preview = <div className="pre-view">
                       <img  src={f.preview} key={i}/>
                     </div>;
       }
-      return <li onClick={self.deleteImg.bind(self, i)}  className="perview-item" key={i}><div className="mask-pre">点击删除</div>{preview} </li>;
+      return <li onClick={self.deleteImg.bind(self, i)} className="perview-item" key={i}><div className="mask-pre">点击删除</div>{preview} </li>;
     }));
 
     if(!this.state.bool) {
@@ -286,7 +332,7 @@ class ApplyExpertBaseContent extends React.Component {
                 />
               </span>
               <a href="javascript:;" id="sendCode" className="btn btn-vcode hide">发送验证码</a>
-              <span className={mobileClass}><i></i><span>请填写正确的中国大陆地区手机号码</span></span>
+              <span className={mobileClass}><i></i><span>{this.state.verifyTips}</span></span>
               <span className="vcode-tips frm-tips">注册成功后会收到一个默认密码,同时可用于找回密码</span>
 
             </div>
@@ -356,7 +402,7 @@ class ApplyExpertBaseContent extends React.Component {
                 <div className="frm-ipt-box id-up">
                   <div className="upload-pic-wrapper">
                     <div className="upload-pic-title">
-                      上传有效证件
+                      上传有效证件(最多三张)
                     </div>
                     <div className="upload-pic-content" id="container">
                       <div className="ipt-upload-pic">
@@ -379,6 +425,7 @@ class ApplyExpertBaseContent extends React.Component {
     );
   }
   componentDidMount() {
+    this.showFiles();
     // DeviceAdapter.setFrontSize();
     // this.props.actions.fetchExpertData(this.props.params.id);
   }

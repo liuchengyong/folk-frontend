@@ -3,6 +3,7 @@
  * Created by HuangGuorui on 3/29/16.
  */
 import React from 'react';
+import regexHelper from '../../common/regexHelper';
 import classNames from 'classnames';
 require('react-select/scss/default.scss');
 
@@ -12,11 +13,18 @@ class PubTopicContent extends React.Component {
     super(props);
     this.state = {
         descLength: 0,
+        titleLength: 0,
         Online: false,
         Offline: false,
+
+        topicTitle: 0,
+        price: 0,
+        descToggle: 0, 
+
         currentTime: 0
     };
     this.bool = false;
+    this.topicLengthTips = '';
   }
 
   selectTime(i) {
@@ -25,35 +33,86 @@ class PubTopicContent extends React.Component {
     })
   }
 
-  handleChangeDesc(event) {
+  handleChangeTitle(event) {
     var value = event.target.value;
-    if(this.refs.topicDesc.value.length <= 50) {
+    if(value.length < 35) {
+      // value.lengtht
       this.setState({
-        descLength: value.length
+        topicTitle: 2,
+        topicLength: value.length
       })
+      this.topicLengthTips = ',还差' + (35 - value.length) + '字';
     } else {
-      // this.setState({
-      //   hide: value.length
-      // })
+      this.setState({
+        topicTitle: 1,
+      })
+      this.topicLengthTips = '';
     }
   }
-    //选择交流方式
+
+  handleChangeDesc(event) {
+    var value = event.target.value;
+    if(this.refs.topicDesc.value.length < 50) {
+      this.setState({
+        descLength: value.length,
+        descToggle: 2
+      })
+    } else {
+      this.setState({
+        descLength: value.length,
+        descToggle: 1
+      })
+    }
+  }
+  handleChangePrice(event) {
+    var value = event.target.value;
+    if(!regexHelper.numberZero(value)) {
+      this.setState({
+        price: 2
+      })
+    } else {
+      this.setState({
+        price: 1
+      })
+    }
+  }
   selectMethod(event) {
     var value = event.target.name;
     if(value == 'online') {
       this.setState({
-        Offline: false,
-        Online: true
+        Online: true ^ this.state.Online,
       })
     } else {
       this.setState({
-        Online: false,
-        Offline: true
+        Offline: true ^ this.state.Offline
       })
     }
   }
 
   render() {
+
+    var topicTitleClass = classNames({
+      'ipt-tips': 'ipt-tips',
+      'username': 'username',
+      'error': (this.state.topicTitle == 2),
+      'right': (this.state.topicTitle == 1),
+      'hide': (this.state.topicTitle == 0)
+    });
+
+    var priceClass = classNames({
+      'ipt-tips': 'ipt-tips',
+      'username': 'username',
+      'error': (this.state.price == 2),
+      'right': (this.state.price == 1),
+      'hide': (this.state.price == 0)
+    });
+    var descClass = classNames({
+      'ipt-tips': 'ipt-tips',
+      'username': 'username',
+      'error': (this.state.descToggle == 2),
+      'right': (this.state.descToggle == 1),
+      'hide': (this.state.descToggle == 0)
+    });
 
     var onlineClass = classNames({
       'btn': 'btn',
@@ -81,8 +140,9 @@ class PubTopicContent extends React.Component {
             <div className="vcode-frm frm-wrap">
               <label  className="frm-label">话题名称</label>
               <span className="frm-ipt-box vcode">
-                <input type="text" className="frm-ipt " ref="topicName" name="vcode" placeholder="请输入话题名称" />
+                <input type="text" className="frm-ipt " ref="topicName" name="vcode" onChange={this.handleChangeTitle.bind(this)} placeholder="请输入话题名称" />
               </span>
+              <span className={topicTitleClass}><i></i><span>话题名称至少为35个字符 {this.topicLengthTips}</span></span>
               <span className="vcode-tips frm-tips"> 一个合适的话题名称可以让你得到更多的推荐</span>
             </div>
 
@@ -91,16 +151,17 @@ class PubTopicContent extends React.Component {
               <span className="frm-ipt-box desc-box spec-box">
                 <textarea className="text-desc" rows="5" ref="topicDesc" onChange={this.handleChangeDesc.bind(this)} placeholder="请详情描述你的话题,这将成为审核和点友预约你的依据,不少于50字" ></textarea>
               </span>
-              <span className={this.state.descLength >= 50 ? 'hide' : ''} > 还需输入{50 - this.state.descLength}字</span>
+              <span className={descClass} > <i></i>还需输入{50 - this.state.descLength}字</span>
 
             </div>
 
             <div className="pwd-frm frm-wrap">
               <label  className="frm-label">话题价格</label>
               <span className="frm-ipt-box price">
-                <input type="text" className="frm-ipt " ref="price" name="price" placeholder="" />
+                <input type="text" className="frm-ipt " onChange={this.handleChangePrice.bind(this)} ref="price" name="price" placeholder="" />
               </span>
               元
+              <span className={priceClass}><i></i><span>请输入正确的价格 {this.topicLengthTips}</span></span>
               <span className="pwd-tips frm-tips">请输入0-5000的价格,合适的价格会让提高你的预约成功率</span>
 
             </div>

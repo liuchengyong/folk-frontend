@@ -13,7 +13,6 @@ class UpImage extends React.Component {
     super(props);
 
     if(this.props.imgData) {
-        console.log(this.props.imgData);
         this.state = {
           files: this.props.imgData.avatarFile,
           preItem: [], //有效证件
