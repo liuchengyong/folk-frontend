@@ -32,7 +32,7 @@ class ContentComment extends React.Component {
 		return (
 			<div className="msg">
 				<div className="msg-header">
-					最新留言
+					最新评论
 				</div>
 				{options}
 			</div>
