@@ -7,8 +7,11 @@ import ApplyExpertEdu from './ApplyExpertEdu';
 import UpImage from './UpImage';
 import lodashArray from 'lodash/array';
 import Qiniu from 'react-qiniu';
+import config from 'config';
 import regexHelper from '../../common/regexHelper';
 import classNames from 'classnames';
+import Select from 'react-select';
+require('react-select/scss/default.scss');
 
 const UpAvatarData = {
   'title': '个人头像',
@@ -29,6 +32,8 @@ class ApplyExpertBaseContent extends React.Component {
 
         avatarPreItem: [], //头像信息
 
+        countryCode: config.countryCode[14],
+
         verifyTips: '请填写正确的中国大陆地区手机号码',
 
         student: false || (this.props.localData && this.props.localData.role == 'student'),
@@ -42,7 +47,9 @@ class ApplyExpertBaseContent extends React.Component {
 
         username: 0, //0:初始, 1:正确, 2:错误
         mobile: 0,
+        title: 0,
         captch: 0,
+        shortDesc: 0,
         maleActive: false || (this.props.localData && this.props.localData.gener == 'male'),
         femaleActive: false || (this.props.localData && this.props.localData.gener == 'female'),
 
@@ -150,21 +157,10 @@ class ApplyExpertBaseContent extends React.Component {
                   verifyTips: '手机号可用'
                 })
               }
-
               clearInterval(timer);
             }
 
           }, 200)
-          // if(this.props.verifyExpert.isFetching) {
-          //   console.log('验证中');
-          // } else {
-          //   console.log('验证完毕')
-          //   // var verifyCode = this.props.actions.verifyExpert(value);
-          //   console.log(verifyCode);
-          //   this.setState({
-          //     mobile: 1
-          //   })
-          // }
           
         } else {
 
@@ -188,6 +184,28 @@ class ApplyExpertBaseContent extends React.Component {
       case 'password':
         regexHelper.password(value);
         break;
+      case 'shortDesc':
+        if(regexHelper.shortDesc(value)) {
+          this.setState({
+            shortDesc: 1
+            })
+          } else {
+            this.setState({
+              shortDesc: 2
+            })
+        }
+        break;
+      case 'title':
+        if(regexHelper.title(value)) {
+            this.setState({
+              title: 1
+              })
+          } else {
+            this.setState({
+              title: 2
+            })
+          }
+
       default:
         break;
     }
@@ -249,6 +267,17 @@ class ApplyExpertBaseContent extends React.Component {
       this.state.files = [];
     }
   }
+  handleCountryChange(value) {
+    console.log(value);
+    var key = value.split(',');
+    console.log(key);
+    var code = key[0];
+    this.setState({
+      countryCode: key[3]
+    })
+    console.log('---------------');
+  }
+
   componentDidUpdate() {
     this.showFiles();
   }
@@ -261,6 +290,22 @@ class ApplyExpertBaseContent extends React.Component {
       'right': (this.state.username == 1),
       'hide': (this.state.username == 0)
     });
+    var titleClass = classNames({
+      'ipt-tips': 'ipt-tips',
+      'title': 'title',
+      'error': (this.state.title == 2),
+      'right': (this.state.title == 1),
+      'hide': (this.state.title == 0)
+    });
+
+    var shortDescClass = classNames({
+      'ipt-tips': 'ipt-tips',
+      'shortDesc': 'shortDesc',
+      'error': (this.state.shortDesc == 2),
+      'right': (this.state.shortDesc == 1),
+      'hide': (this.state.shortDesc == 0)
+    })
+
     var mobileClass = classNames({
       'ipt-tips': 'ipt-tips',
       'mobile': 'mobile',
@@ -311,23 +356,35 @@ class ApplyExpertBaseContent extends React.Component {
             <div className="name-frm">
               <label  className="frm-label frm-wrap">姓名</label>
               <span className="frm-ipt-box">
-                <input type="text" className="frm-ipt name" name="name" 
-                  onChange={this.handleChange.bind(this)} 
-                  value={this.props.localData && this.props.localData.name} 
-                  ref="userName" 
-                  placeholder="请填写你的真实姓名" 
+                <input type="text" className="frm-ipt name" name="name"
+                  onChange={this.handleChange.bind(this)}
+                  value={this.props.localData && this.props.localData.name}
+                  ref="userName"
+                  placeholder="请填写你的真实姓名"
                 />
 
               </span>
               <span className={userNameClass}><i></i><span>至少为两位且不含有特殊字符</span></span>
             </div>
+
+
             <div className="phone-frm frm-wrap">
               <label  className="frm-label">手机号</label>
+                <Select
+                  name="form-field-name"
+                  className="country-code"
+                  placeholder="选择国家"
+                  options={config.countryCode}
+                  value={this.state.countryCode}
+                  onChange={this.handleCountryChange.bind(this)}
+                />
               <span className="frm-ipt-box mobile">
-                <input type="text" className="frm-ipt mobile" 
-                  ref="mobile" name="mobile" 
-                  onChange={this.handleChange.bind(this)} 
-                  placeholder="请输入你的手机号" 
+ 
+
+                <input type="text" className="frm-ipt mobile"
+                  ref="mobile" name="mobile"
+                  onChange={this.handleChange.bind(this)}
+                  placeholder="请输入你的手机号"
                   value={this.props.localData && this.props.localData.mobile}
                 />
               </span>
@@ -363,6 +420,21 @@ class ApplyExpertBaseContent extends React.Component {
                 <input type="button" className={femaleClass} onClick={this.selectgender.bind(this)} name="female" value="女" />
                 <span className={'ipt-tips error ' + this.state.genderStatus}><i></i><span>请选择性别</span></span>
               </span>
+            </div>
+
+            <div className="shortDesc-frm">
+              <label  className="frm-label frm-wrap">签名</label>
+              <span className="frm-ipt-box">
+                <input type="text" className="frm-ipt shortDesc" name="shortDesc" 
+                  onChange={this.handleChange.bind(this)} 
+                  value={this.props.localData && this.props.localData.shortDesc} 
+                  ref="shortDesc" 
+                  placeholder="一句话简短介绍自己" 
+                />
+
+              </span>
+              <span className={shortDescClass}><i></i><span>最多21个字且不含有特殊字符</span></span>
+              <span className="vcode-tips frm-tips">用精简的话来介绍一下自己,不超过21字</span>
             </div>
 
             <UpImage token={this.props.token.token} imgData={this.props.localData && this.props.localData} ref="upImage" showTips={this.props.showTips} desc={UpAvatarData} />
@@ -414,6 +486,23 @@ class ApplyExpertBaseContent extends React.Component {
 
                 </div>
               </div>
+            }
+            {
+              (this.state.parent || this.state.teacher) &&
+              <div className="title-frm">
+                <label  className="frm-label frm-wrap">职位</label>
+                <span className="frm-ipt-box">
+                  <input type="text" className="frm-ipt shortDesc" name="title"
+                    onChange={this.handleChange.bind(this)}
+                    value={this.props.localData && this.props.localData.title}
+                    ref="title"
+                    placeholder="填写自己现在的职位性质"
+                  />
+                </span>
+                <span className={titleClass}><i></i><span>职位描述至少两个字,最多21字</span></span>
+                <span className="vcode-tips frm-tips">例如:指点研发工程师</span>
+             </div>
+
             }
             {this.state.student &&
               <ApplyExpertEdu ref="studentInfo" actions={this.props.actions} collegeByCountry={this.props.collegeByCountry}/>

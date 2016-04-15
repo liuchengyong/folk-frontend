@@ -24,7 +24,8 @@ const reducers = {
   login: require('../reducers/login'),
   uploadToken: require('../reducers/uploadToken'),
   collegeByCountry: require('../reducers/fetchCollegeCountry'),
-  verifyExpert: require('../reducers/verifyExpert')
+  verifyExpert: require('../reducers/verifyExpert'),
+  applyExpert: require('../reducers/applyExpert')
 };
 
 module.exports = combineReducers(extend(reducers, {routing: routerReducer}));

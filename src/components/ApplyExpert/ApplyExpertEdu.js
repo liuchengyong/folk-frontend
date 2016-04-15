@@ -26,7 +26,19 @@ const countryList = [
   { value: 'AU', label: '澳大利亚'},
   { value: 'RU', label: '俄罗斯'},
   { value: 'CA', label: '加拿大'},
-  { value: 'SG', label: '新加坡'}
+  { value: 'CH', label: '瑞士'},
+  { value: 'IE', label: '爱尔兰'},
+  { value: 'SE', label: '瑞典'},
+  { value: 'AT', label: '奥地利'},
+  { value: 'NL', label: '荷兰'},
+  { value: 'BE', label: '比利时'},
+  { value: 'IT', label: '意大利'},
+  { value: 'ES', label: '西班牙'},
+  { value: 'PT', label: '葡萄牙'},
+  { value: 'DK', label: '丹麦'},
+  { value: 'NO', label: '挪威'},
+  { value: 'IS', label: '冰岛'},
+  { value: 'NZ', label: '新西兰'}
 ];
 
 

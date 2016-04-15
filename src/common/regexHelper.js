@@ -64,6 +64,17 @@ exports.numberZero = (value) => {
 	}
 }
 
+/**
+ * 验证个人简短描述
+ * 规则: 不多于21字
+ */
+exports.shortDesc = (value) => {
+	if(/^[\u4E00-\u9FA5A-Za-z0-9_]+$/.test(value) && value.length > 0 && value.length <= 21) {
+		return true;
+	} else {
+		return false;
+	}
+}
 
 /**
  * 验证话题标题
@@ -77,7 +88,17 @@ exports.topicTitle = (value) => {
 	}
 }
 
-
+/**
+ * 验证点师title
+ * 规则: 至少2个字且不大于21个字
+ */
+exports.title = (value) => {
+	if(/^[\u4E00-\u9FA5A-Za-z0-9_]+$/.test(value) && value.length > 1 && value.length <= 21) {
+		return true;
+	} else {
+		return false;
+	}
+}
 
 
 

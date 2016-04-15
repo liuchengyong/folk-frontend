@@ -16,8 +16,6 @@ import { save2Local, getFromLocal} from '../../common/helper';
 import ApplyExpertBaseContent from './ApplyExpertBaseContent';
 let logo_register = require('../../images/logo_register.png');
 
-
-
 class ApplyComponent extends React.Component {
 
   constructor(props) {
@@ -35,15 +33,19 @@ class ApplyComponent extends React.Component {
 
   //获取子组件的input 值
   getChildValue(parentKey, childKey)  {
+    if(!this.refs[parentKey].refs[childKey]) {
+      return 
+    }
     return this.refs[parentKey].refs[childKey].value.trim()
   }
 
   nextStep() {
 
     let baseContent = this.refs.baseContent;
-    console.log(baseContent);
     let username = this.getChildValue('baseContent', 'userName');
     let mobile = this.getChildValue('baseContent', 'mobile');
+    let shortDesc = this.getChildValue('baseContent', 'shortDesc');
+    let title = this.getChildValue('baseContent', 'title');
     let bool = true
     if(!regexHelper.username(username)) {
       this.nextTips = '请填写你正确的真实姓名';
@@ -61,6 +63,23 @@ class ApplyComponent extends React.Component {
         mobile: 2
       });
     }
+
+    if(!regexHelper.shortDesc(shortDesc)) {
+      bool = false
+      this.nextTips = '请填写个人签名';
+      baseContent.setState({
+        shortDesc: 2
+      });
+    }
+
+    if(!baseContent.refs.title && !regexHelper.title(title)) {
+      bool = false
+      this.nextTips = '请填写正确的职位描述';
+      baseContent.setState({
+        title: 2
+      });
+    }
+
     if(!(baseContent.state.femaleActive || baseContent.state.maleActive)) {
       bool = false
 
@@ -117,7 +136,6 @@ class ApplyComponent extends React.Component {
         this.nextTips = '请填写专业';
       }
     }
-
     if(bool) {
       this.nextTips = '';
       this.save2Local();
@@ -133,20 +151,28 @@ class ApplyComponent extends React.Component {
   save2Local() {
     let username = this.getChildValue('baseContent', 'userName');
     let mobile = this.getChildValue('baseContent', 'mobile');
-    let gener = this.refs.baseContent.femaleActive ? 'female' : 'male'; //前置条件: 必须选择之一
+    let gener = this.refs.baseContent.femaleActive ? '女' : '男'; //前置条件: 必须选择之一
     let avatar = this.refs.baseContent.refs.upImage.idImgUrl[0] ? this.refs.baseContent.refs.upImage.idImgUrl[0].key : this.applyExpertLocalData.avatar;
-    let role = this.refs.baseContent.state.student ? 'student' :
-              (this.refs.baseContent.state.parent ? 'parent' : 'teacher');
+    let role = this.refs.baseContent.state.student ? 'STUDENT' :
+              (this.refs.baseContent.state.parent ? 'PARENTS' : 'TEACHER');
     let idCarImg = this.refs.baseContent.idImgUrl; //array
 
     let avatarFile = this.refs.baseContent.refs.upImage.state.files;
-
+    let shortDesc = this.refs.baseContent.refs.shortDesc.value.trim();
     // let idCarFiles = [];
 
     let idCarFiles = this.refs.baseContent.state.idFiles; //array
     let _idCarFiles = [];
     let f = null;
 
+    let _idImgUrl = '';
+    //
+    for(var i = 0; i < idCarImg.length; i++) {
+      (function(i) {
+          _idImgUrl += ('http://statics.zhid58.com/' + idCarImg[i].key) + ',';
+      })(i)
+    }
+    console.log(_idImgUrl);
     // for(var i = idCarFiles.length - 1; i >= 0; i--) {
     //   if(idCarFiles.length - i >= 3) {
     //     return false;
@@ -174,17 +200,20 @@ class ApplyComponent extends React.Component {
     var data = {
       name: username,
       mobile: mobile,
-      gener: gener,
-      avatar: avatar,
+      gender: gener,
+      avatar: 'http://statics.zhid58.com/' + avatar,
       role: role,
       idCarImg: idCarImg,
+      shortIntroduction: shortDesc,
       // idCarFiles: _idCarFiles,
-      avatarFile: _avatarFile
+      avatarFile: _avatarFile,
+      image: _idImgUrl
     };
-
+    console.log(data);
     if(this.refs.baseContent.state.student) {
       assign(data, this.refs.baseContent.refs.studentInfo.eduInfo, {major: this.refs.baseContent.refs.studentInfo.refs.major.value});
     }
+    console.log(data);
 
     save2Local('ApplyExpertData', data);
 
@@ -231,15 +260,15 @@ class ApplyComponent extends React.Component {
         			</li>
         		</ul>
         	</div>
-        	<ApplyExpertBaseContent 
-            token={this.props.uploadToken} 
-            localData={this.applyExpertLocalData} 
-            ref="baseContent" 
+        	<ApplyExpertBaseContent
+            token={this.props.uploadToken}
+            localData={this.applyExpertLocalData}
+            ref="baseContent"
             verifyExpert={this.props.verifyExpert}
-            actions={this.props.actions} 
-            collegeByCountry={this.props.collegeByCountry} 
-            roleTips={this.state.roleTips} 
-            showTips={this.state.showTips} 
+            actions={this.props.actions}
+            collegeByCountry={this.props.collegeByCountry}
+            roleTips={this.state.roleTips}
+            showTips={this.state.showTips}
             data={this.tipsData}
           />
 

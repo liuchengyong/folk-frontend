@@ -46,7 +46,8 @@ function mapStateToProps(state) {
   const props = {
     uploadToken: state.uploadToken,
     collegeByCountry: state.collegeByCountry,
-    verifyExpert: state.verifyExpert
+    verifyExpert: state.verifyExpert,
+    applyExpert: state.applyExpert
   };
   return props;
 }
@@ -55,7 +56,9 @@ function mapDispatchToProps(dispatch) {
   const actions = {
     fetchToken: require('../actions/uploadToken/fetchToken.js'),
     fetchCollegeCountry: require('../actions/collegeList/fetchCollegeCountry.js'),
-    verifyExpert: require('../actions/verifyExpert/verifyExpert.js')
+    verifyExpert: require('../actions/verifyExpert/verifyExpert.js'),
+    postExpertData: require('../actions/applyExpert/postExpertData.js')
+
     // requestApplyExpertData: require('../actions/broke/requestApplyExpertData.js'),
     // receiveApplyExpertData: require('../actions/broke/receiveApplyExpertData.js'),
     // setDialogStatus: require('../actions/dialog/setDialogStatus.js')
