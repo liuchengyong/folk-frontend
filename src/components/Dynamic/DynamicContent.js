@@ -8,6 +8,7 @@ import React from 'react';
 // import {default as Video, Controls, Play, Mute, Seek, Fullscreen, Time, Overlay}  from 'react-html5video/dist/ReactHtml5Video.js';
 
 // require('react-html5video/dist/ReactHtml5Video.css');
+let img_play = require('../../images/play.png');
 
 class DynamicContent extends React.Component {
 	constructor(props) {
@@ -17,26 +18,12 @@ class DynamicContent extends React.Component {
 	    };
 	  }
 	playVideo(){
-		console.log("das");
+		console.log(this.refs.video);
 		this.setState({
 			isCover:false
 		});
-		
+		this.videoEl.play();
 	}
-	playLoad(){ //开始加载
-		this.refs.video.pause();
-		console.log("playLoad");
-	}
-	playPause(){ 
-		 console.log(this.refs.video);
-		this.refs.video.fullscreen();
-		console.log("playPause");
-	}
-	LoadedData(){
-
-		console.log("LoadedData");
-	}
-
 	render(){
 		let dynamic = this.props.dynamic;
 		let content = dynamic.activityEvent;
@@ -44,7 +31,7 @@ class DynamicContent extends React.Component {
 		// let name = dynamic.param.a
 		// console.log(this);
 // 
-		let sud;
+		let sud,contentMsg,videoCover;
 		if(dynamic.likedList.length > 0){
 			sud = <div className = "dynamic-support-detail">
 					{dynamic.likedList.map((result,i) => {
@@ -52,7 +39,13 @@ class DynamicContent extends React.Component {
 						})}
 				</div>;
 		}
-		let contentMsg;
+
+		if(this.state.isCover){
+			videoCover = <div className="video-cover" onClick={this.playVideo.bind(this)} >
+									<img className="imgCover" src={content.previewUrl}/>
+									<img className="imgCoverPlay" src={img_play} />
+						</div>;
+		}
 		// if(content.type == 'VIDEO'){
 		// 	contentMsg =<div className = {'content-mode ' + (this.state.isCover ? 'show':'')}>
 		// 					<Video controls onPlaying={this.playVideo.bind(this)} ref="video" onPause ={this.playPause.bind(this)} onLoadStart={this.playLoad.bind(this)}
@@ -72,11 +65,14 @@ class DynamicContent extends React.Component {
 		// }
 
 		if(content.type == 'VIDEO'){
-			contentMsg =
-						<div className = "content-mode">
-							<video src= {content.url} controls="controls">
+			contentMsg =<div className = "content-mode">
+							<video src= {content.url} controls="controls" 
+							ref={(el) => {
+		                        this.videoEl = el;
+		                    }}>
 								你的微信不支持视频播放
 							</video>
+							{videoCover}			
 						</div>;
 		}
 		return (<div className="dynamic-content">

@@ -108,7 +108,32 @@
 	height: 4.15rem;
 	overflow: hidden;
 	width: 100%;
+	text-align: center;
+	.video-cover{
+		position: absolute;
+		top:0.15rem;
+		left: 0;
+		width:100%;
+	    height:4rem;
+	}
+	.imgCover{
+		position: absolute;
+		left: 0;
+		width:100%;
+	    height:4rem;
+	}
+	.imgCoverPlay{
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		width: 0.82rem;
+		height: 0.82rem;
+		margin-top: -0.41rem;
+		margin-left:-0.41rem;
+	}
 	video{
+		top:0.15rem;
+		left: 0;
 	    position:absolute;
 	    display: inline-block;
 	    width:100%;
