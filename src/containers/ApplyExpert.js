@@ -17,17 +17,16 @@ import PubTopic from '../components/PubTopic/PubTopic';
 /* Populated by react-webpack-redux:reducer */
 class ApplyExpertContainer extends Component {
   render() {
-    const {actions, uploadToken} = this.props;
+    const {actions, uploadToken, collegeByCountry, verifyExpert} = this.props;
     var query = this.props.location.query;
     if(query.step == 1) {
-      return <ApplyExpert actions={actions} uploadToken={uploadToken} />; // move to else default
+      return <ApplyExpert actions={actions} uploadToken={uploadToken} collegeByCountry={collegeByCountry}/>; // move to else default
     } else if(query.step == 2) {
       return <AddExpertInfo actions={actions} uploadToken={uploadToken} />;
     } else if(query.step == 3) {
-      console.log('step == 3');
       return <PubTopic actions={actions} uploadToken={uploadToken} />;
     } else {
-      return <ApplyExpert actions={actions} uploadToken={uploadToken} />; // move to else default
+      return <ApplyExpert actions={actions} uploadToken={uploadToken} verifyExpert={verifyExpert} collegeByCountry={collegeByCountry}/>; // move to else default
     }
   }
 }
@@ -45,14 +44,18 @@ ApplyExpertContainer.propTypes = {
 function mapStateToProps(state) {
   /* Populated by react-webpack-redux:reducer */
   const props = {
-    uploadToken: state.uploadToken
+    uploadToken: state.uploadToken,
+    collegeByCountry: state.collegeByCountry,
+    verifyExpert: state.verifyExpert
   };
   return props;
 }
 function mapDispatchToProps(dispatch) {
   /* Populated by react-webpack-redux:action */
   const actions = {
-    fetchToken: require('../actions/uploadToken/fetchToken.js')
+    fetchToken: require('../actions/uploadToken/fetchToken.js'),
+    fetchCollegeCountry: require('../actions/collegeList/fetchCollegeCountry.js'),
+    verifyExpert: require('../actions/verifyExpert/verifyExpert.js')
     // requestApplyExpertData: require('../actions/broke/requestApplyExpertData.js'),
     // receiveApplyExpertData: require('../actions/broke/receiveApplyExpertData.js'),
     // setDialogStatus: require('../actions/dialog/setDialogStatus.js')

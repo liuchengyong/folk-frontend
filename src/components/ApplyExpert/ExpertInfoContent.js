@@ -40,6 +40,10 @@ class ApplyExpertBaseContent extends React.Component {
         currentTime: 0,
         workYear: '',
 
+        city: 0,
+        area: 0,
+        descLength: 0,
+
         token: this.props.token.token,
         prefix: 'YOUR_QINIU_KEY_PREFIX' // Optional
     };
@@ -60,15 +64,71 @@ class ApplyExpertBaseContent extends React.Component {
       currentTime: i
     })
   }
+
+  handleChangeDesc(event) {
+    var value = event.target.value;
+    if(this.refs.description.value.length <= 50) {
+      this.setState({
+        descLength: value.length
+      })
+    } else {
+      this.setState({
+        descLength: value.length
+      })
+    }
+  }
+
   handleWorkChange(val) {
-    console.log(this.state);
     this.state.workYear = val;
   }
+  handleChange(event) {
+    var type = event.target.name;
+    var value = event.target.value;
+    switch (type) {
+      case 'city':
+        if(value.length < 2) {
+          this.setState({
+            city: 2
+          })
+        } else {
+          this.setState({
+            city: 1
+          })
+        }
+        break;
+      case 'area':
+        if(value.length < 2) {
+          this.setState({
+            area: 2
+          })
+        } else {
+          this.setState({
+            area: 1
+          })
+        }
+        break;
+    }
+
+  }
+
   render() {
-    // var replyTimeClass = classNames({
-    //   'btn': 'btn',
-    //   'reply-btn': 'reply-btn'
-    // })
+
+    var cityClass = classNames({
+      'ipt-tips': 'ipt-tips',
+      'username': 'username',
+      'error': (this.state.city == 2),
+      'right': (this.state.city == 1),
+      'hide': (this.state.city == 0)
+    });
+
+    var areaClass = classNames({
+      'ipt-tips': 'ipt-tips',
+      'username': 'username',
+      'error': (this.state.area == 2),
+      'right': (this.state.area == 1),
+      'hide': (this.state.area == 0)
+    });
+
     return (
       <div className="base-content">
         <div className="base-header">
@@ -78,7 +138,7 @@ class ApplyExpertBaseContent extends React.Component {
           </div>
         </div>
         <div className="main">
-          <UpImage token={this.props.token.token} className="per-pic" desc={UpPhotoData}/>
+          <UpImage token={this.props.token.token} className="per-pic" ref="perPhoto" desc={UpPhotoData}/>
 
           <div className="frm-control-group">
             <div className="workYear-frm">
@@ -98,16 +158,19 @@ class ApplyExpertBaseContent extends React.Component {
             <div className="vcode-frm frm-wrap">
               <label  className="frm-label">所在城市</label>
               <span className="frm-ipt-box vcode">
-                <input type="text" className="frm-ipt " name="vcode" placeholder="输入所在城市" />
+                <input type="text" className="frm-ipt " name="city" ref="activeCity" onChange={this.handleChange.bind(this)} placeholder="输入所在城市" />
               </span>
+              <span className={cityClass}><i></i><span>至少为两位且不含有特殊字符</span></span>
               <span className="vcode-tips frm-tips">请填写你所在城市</span>
+
             </div>
 
             <div className="pwd-frm frm-wrap">
               <label  className="frm-label">活动区域</label>
               <span className="frm-ipt-box vcode">
-                <input type="text" className="frm-ipt " name="vcode" placeholder="输入常活动区域" />
+                <input type="text" className="frm-ipt " name="area" ref="activeArea" onChange={this.handleChange.bind(this)} placeholder="输入常活动区域" />
               </span>
+              <span className={areaClass}><i></i><span>至少为两位且不含有特殊字符</span></span>
               <span className="pwd-tips frm-tips">请输入常活动区域,方便约见点友</span>
 
             </div>
@@ -124,10 +187,12 @@ class ApplyExpertBaseContent extends React.Component {
             <div className="desc-frm frm-wrap">
               <label  className="frm-label">个人介绍</label>
               <span className="frm-ipt-box desc-box spec-box">
-              	<textarea className="text-desc" rows="5" placeholder="请详情描述你自己,这将成为审核和预约你的依据,不少于50字" ></textarea>
+              	<textarea className="text-desc" rows="5" ref="description" name="desc" onChange={this.handleChangeDesc.bind(this)} placeholder="请详情描述你自己,这将成为审核和预约你的依据,不少于50字" ></textarea>
+                
               </span>
+                <span className={this.state.descLength >= 50 ? 'hide' : ''} > 还需输入{50 - this.state.descLength}字</span>
             </div>
-            <UpImage token={this.props.token.token} desc={UpBgData}/>
+            <UpImage token={this.props.token.token} desc={UpBgData} ref="expertBg"/>
 
           </div>
         </div>

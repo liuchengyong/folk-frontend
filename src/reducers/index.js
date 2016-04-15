@@ -23,7 +23,10 @@ const reducers = {
   captch: require('../reducers/captch'),
   login: require('../reducers/login'),
   uploadToken: require('../reducers/uploadToken'),
-  dynamic: require('../reducers/dynamic')
+  dynamic: require('../reducers/dynamic'),
+  collegeByCountry: require('../reducers/fetchCollegeCountry'),
+  verifyExpert: require('../reducers/verifyExpert')
+
 };
 
 module.exports = combineReducers(extend(reducers, {routing: routerReducer}));

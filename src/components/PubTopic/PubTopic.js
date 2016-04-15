@@ -8,15 +8,22 @@ require('styles/_applyExpert.scss');
 
 import React from 'react';
 // import config from 'config';
-import Loading from '../Common/Loading';
+// import Loading from '../Common/Loading';
 import PubTopicContent from './PubTopicContent';
 
-import { save2Local, getChildValue } from '../../common/helper';
+import { save2Local} from '../../common/helper';
+import regexHelper from '../../common/regexHelper';
+
+
+const TopicTime = [30, 45, 60, 90];
 
 class PubTopic extends React.Component {
 
   constructor(props) {
     super(props);
+    this.state = {
+      nextTips: ''
+    }
   }
 
   //获取子组件的input 值
@@ -24,16 +31,62 @@ class PubTopic extends React.Component {
     return this.refs[parentKey].refs[childKey].value.trim()
   }
 
-  save2Local() {
-    console.log(this.refs.baseContent);
-    var data = {
-      name: this.getChildValue('baseContent', 'userName'),
-      mobile: this.getChildValue('baseContent', 'mobile'),
-      password: this.getChildValue('baseContent', 'password'),
-    };
-    this.getChildValue('baseContent', 'userName')
-    var data = {'key': 1234, 'key2': 345};
-    save2Local('ApplyExpertData', data);
+  nextStep() {
+    let pubContent = this.refs.pubContent;
+    let topicName = pubContent.refs.topicName.value.trim(); //this.getChildValue('pubContent', 'topicName');
+    let topicDesc = pubContent.refs.topicDesc.value.trim(); //this.getChildValue('pubContent', 'topicDesc');
+    let price = pubContent.refs.price.value.trim(); //this.getChildValue('pubContent', 'price');
+
+    let bool = true;
+
+    if(topicName.length < 35) {
+      this.nextTips = '话题名称至少35个字符长度';
+      pubContent.setState({
+        topicTitle: 2
+      })
+      bool = false;
+    }
+    if(topicDesc.length < 50) {
+      bool = false;
+      pubContent.setState({
+        descToggle: 2
+      })
+      this.nextTips = '话题描述不可低于50字';
+    }
+
+    if(!regexHelper.numberZero(price)) {
+      bool = false;
+      pubContent.setState({
+        price: 2
+      })
+      this.nextTips = '话题价格应为1-5000的整数';
+    }
+    if(!pubContent.state.currentTime) {
+      bool = false
+      this.nextTips = '请选择话题时长';
+    }
+
+
+    if(!(pubContent.state.Online || pubContent.state.Offline)) {
+      bool = false
+      this.nextTips = '请选择交流方式';
+    }
+
+    if(bool) {
+      this.nextTips = '';
+      var data = {
+        topicName: topicName,
+        topicDesc: topicDesc,
+        price: price,
+        method: pubContent.state.Online ? 'online' : 'offline',
+        topicTime: TopicTime[(pubContent.state.currentTime-1)]
+      };
+      save2Local('TopicData', data);
+    }
+
+    this.setState({
+      nextTips: this.nextTips
+    });
   }
 
   render() {
@@ -70,12 +123,15 @@ class PubTopic extends React.Component {
         				发布话题
         			</li>
         			<li className="nav-item preview-expert next-step">
-        				资料预览
+        				申请成功
         			</li>
         		</ul>
         	</div>
-          <PubTopicContent />
-          <button onClick={this.save2Local.bind(this)} className="next-page base-next">下一步</button>
+          <PubTopicContent ref="pubContent"/>
+
+          <span className="next-tips"> {this.state.nextTips} </span>
+
+          <button onClick={this.nextStep.bind(this)} className="next-page base-next">提交申请</button>
         </div>
       </div>
     );

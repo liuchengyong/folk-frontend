@@ -26,7 +26,6 @@ const TopicDetail = (props) => (
         <span className='talk topics_description'>{props.topic.title}</span>
       </div>
       {(()=> {
-        console.log(props);
         if (props.countOfComment > 0) {
           return (
             <div className='talk-foot'>

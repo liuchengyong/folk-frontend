@@ -9,6 +9,7 @@ require('styles/_applyExpert.scss');
 import React from 'react';
 // import config from 'config';
 import Loading from '../Common/Loading';
+import { save2Local, getFromLocal} from '../../common/helper';
 
 import ExpertInfoContent from './ExpertInfoContent';
 // import DeviceAdapter from '../../common/deviceAdapter';
@@ -17,7 +18,65 @@ class AddExpertInfo extends React.Component {
 
   constructor(props) {
     super(props);
+    this.nextTips = '';
+
   }
+
+  nextStep() {
+    let expertInfo = this.refs.expertInfo;
+
+    if(expertInfo.refs.perPhoto.idImgUrl.length < 1) {
+      this.nextTips = '请上传个人写真照片';
+    } else if(!expertInfo.state.workYear) {
+      this.nextTips = '请选择工作年限';
+    } else if(!expertInfo.refs.activeCity.value) {
+      this.nextTips = '请输入所在城市';
+    } else if(!expertInfo.refs.activeArea.value) {
+      this.nextTips = '请输入活动区域';
+    } else if(expertInfo.state.descLength < 50) {
+      this.nextTips = '个人介绍至少50字';
+    } else if(expertInfo.refs.expertBg.idImgUrl.length < 1) {
+      this.nextTips = '请上传个性背景图片';
+    } else {
+      this.nextTips = '';
+      this.save2Local();
+    }
+    this.setState({
+      nextTips: this.nextTips
+    });
+
+  }
+
+    //前置条件:所有通过验证
+  save2Local() {
+    let expertInfo = this.refs.expertInfo;
+
+    let perPhoto = expertInfo.refs.perPhoto.idImgUrl[0].key;
+    let workYear = expertInfo.state.workYear;
+    let city = expertInfo.refs.activeCity.value;
+    let area = expertInfo.refs.activeArea.value;
+    let description = expertInfo.refs.description.value;
+    let expertBg = expertInfo.refs.expertBg.idImgUrl[0].key;
+
+    var data = {
+      perPhoto: perPhoto,
+      workYear: workYear,
+      city: city,
+      area: area,
+      description: description,
+      expertBg: expertBg
+    };
+    console.log(data);
+    console.log('data step two');
+    save2Local('ApplyExpertDataTwo', data);
+
+    setTimeout(function() {
+      location.href = location.pathname  + '?step=3'; 
+    }, 300)
+
+
+  }
+
 
   render() {
     if(this.props.uploadToken.isFetching) {
@@ -53,11 +112,14 @@ class AddExpertInfo extends React.Component {
         				发布话题
         			</li>
         			<li className="nav-item preview-expert nnext-step">
-        				资料预览
+        				申请成功
         			</li>
         		</ul>
         	</div>
-        	<ExpertInfoContent token={this.props.uploadToken} />
+        	<ExpertInfoContent token={this.props.uploadToken} actions={this.props.actions} ref="expertInfo"/>
+          <span className="next-tips"> {this.nextTips} </span>
+
+          <button onClick={this.nextStep.bind(this)} className="next-page base-next">下一步</button>
 
         </div>
       </div>
@@ -65,7 +127,10 @@ class AddExpertInfo extends React.Component {
   }
 
   componentDidMount() {
-
+    // this.applyExpertLocalData = getFromLocal('ApplyExpertData');
+    if(!getFromLocal('ApplyExpertData')) {
+      location.href = location.pathname; 
+    }
     this.props.actions.fetchToken();
 
   }

@@ -47,9 +47,51 @@ exports.captch = (value) => {
  */
 exports.password = (value) => {
 	if(value.length >= 6) {
-		console.log('is passowrd true');
 		return true;
 	} else {
 		return false;
 	}
 }
+
+/**
+ * 验证非零的数字
+ */
+exports.numberZero = (value) => {
+	if(/^\+?[1-9][0-9]*$/.test(value)) {
+		return true;
+	} else {
+		return false;
+	}
+}
+
+
+/**
+ * 验证话题标题
+ * 规则: 至少35个字符且不含有特殊字符
+ */
+exports.topicTitle = (value) => {
+	if(/^[\u4E00-\u9FA5A-Za-z0-9_]+$/.test(value) && value.length > 34) {
+		return true;
+	} else {
+		return false;
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
