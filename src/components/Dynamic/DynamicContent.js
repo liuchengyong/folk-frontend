@@ -4,11 +4,12 @@
 *
 */
 import React from 'react';
-
+import DeviceAdapter from '../../common/deviceAdapter';
 // import {default as Video, Controls, Play, Mute, Seek, Fullscreen, Time, Overlay}  from 'react-html5video/dist/ReactHtml5Video.js';
 
 // require('react-html5video/dist/ReactHtml5Video.css');
 let img_play = require('../../images/play.png');
+
 
 class DynamicContent extends React.Component {
 	constructor(props) {
@@ -29,8 +30,8 @@ class DynamicContent extends React.Component {
 		let content = dynamic.activityEvent;
 		let teacher = dynamic.user;
 		// let name = dynamic.param.a
-		// console.log(this);
-// 
+		//console.log(this);
+// 	
 		let sud,contentMsg,videoCover;
 		if(dynamic.likedList.length > 0){
 			sud = <div className = "dynamic-support-detail">
@@ -40,40 +41,37 @@ class DynamicContent extends React.Component {
 				</div>;
 		}
 
-		if(this.state.isCover){
-			videoCover = <div className="video-cover" onClick={this.playVideo.bind(this)} >
-									<img className="imgCover" src={content.previewUrl}/>
-									<img className="imgCoverPlay" src={img_play} />
-						</div>;
-		}
-		// if(content.type == 'VIDEO'){
-		// 	contentMsg =<div className = {'content-mode ' + (this.state.isCover ? 'show':'')}>
-		// 					<Video controls onPlaying={this.playVideo.bind(this)} ref="video" onPause ={this.playPause.bind(this)} onLoadStart={this.playLoad.bind(this)}
-		// 					onLoadedData={this.LoadedData.bind(this)}>
-		//                         <source src={content.url} type="video/mp4" />
-		//                         <img className="imgCover" src={content.previewUrl} />
-		//                         <Overlay />
-		//                         <Controls>
-		// 			                <Play />
-		// 			                <Seek />
-		// 			                <Time />
-		// 			                <Mute />
-		// 			             	<Fullscreen />
-		// 			            </Controls>
-		//                     </Video>
-		// 				</div>;
-		// }
-
+		
 		if(content.type == 'VIDEO'){
-			contentMsg =<div className = "content-mode">
-							<video src= {content.url} controls="controls" 
-							ref={(el) => {
-		                        this.videoEl = el;
-		                    }}>
-								你的微信不支持视频播放
-							</video>
-							{videoCover}			
-						</div>;
+			let mobileType = DeviceAdapter.getMobileType();
+			if(mobileType.iPhone || mobileType.iPad ){
+				contentMsg =<div className = "content-mode">
+								<video src= {content.url} controls="controls" 
+								ref={(el) => {
+			                        this.videoEl = el;
+			                    }} poster={content.previewUrl}>
+									你的微信不支持视频播放
+								</video>		
+							</div>;
+			}else{
+				if(this.state.isCover){
+					videoCover = <div className="video-cover" onClick={this.playVideo.bind(this)} >
+											<img className="imgCover" src={content.previewUrl}/>
+											<img className="imgCoverPlay" src={img_play} />
+								</div>;
+				}
+				contentMsg =<div className = "content-mode">
+								<video src= {content.url} controls="controls" 
+								ref={(el) => {
+			                        this.videoEl = el;
+			                    }}>
+									你的微信不支持视频播放
+								</video>
+								{videoCover}			
+							</div>;
+			}
+
+			
 		}
 		return (<div className="dynamic-content">
 				<div className="content-header">
