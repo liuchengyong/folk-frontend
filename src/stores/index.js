@@ -2,6 +2,7 @@ const redux = require('redux');
 const reducers = require('../reducers');
 const thunkMiddleware = require('redux-thunk');
 
+
 module.exports = function(initialState) {
   const store = redux.createStore(reducers, initialState, redux.applyMiddleware(thunkMiddleware));
   if (module.hot) {

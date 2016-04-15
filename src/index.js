@@ -10,6 +10,7 @@ import App from './containers/App';
 import { Router, Route, browserHistory } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
 
+// console.log(configureStore());
 const store = configureStore();
 const history = syncHistoryWithStore(browserHistory, store);
 
@@ -58,6 +59,12 @@ render(
             cb(null, require('./containers/ApplyExpert'));
           })
         }}/>
+        <Route path="dynamic/:id" name="dynamic" getComponent={(location, cb) => {
+          require.ensure([], (require) => {
+            cb(null, require('./containers/Dynamic'));
+          })
+        }}/>
+
 
       </Route>
     </Router>

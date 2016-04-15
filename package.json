@@ -86,6 +86,7 @@
     "react": "^0.14.0",
     "react-dom": "^0.14.0",
     "react-helmet": "^2.3.1",
+    "react-html5video": "^1.2.6",
     "react-input-autosize": "^0.6.10",
     "react-motion": "^0.4.2",
     "react-qiniu": "^0.4.0",
@@ -97,6 +98,8 @@
     "redux": "^3.3.1",
     "redux-thunk": "^1.0.3",
     "weixin-js-sdk": "^1.0.7",
-    "whatwg-fetch": "^0.11.0"
+    "whatwg-fetch": "^0.11.0",
+    "lodash.throttle": "^3.0.4",
+    "react-addons-pure-render-mixin": "^0.14.0"
   }
 }

@@ -1,0 +1,282 @@
+
+
+.dynamic{
+	position: relative;
+	display: block;
+	width: 100%;
+	min-height: 100%;
+	padding: 1rem 0.22rem 0.22rem;
+	background-color: #f3f4f8;
+}
+// ================  dynamic detail start   ============================
+.dynamic-content{
+	position: relative;
+	width: 100%;
+	height: auto;
+	padding: 0.41rem 0.29rem 0;
+	margin: 0.22rem 0 0;
+	background-color: #ffffff;
+	border-radius: 5px;
+	border:1px solid #cdcdcd;
+}
+
+.content-header{
+	position: relative;
+	width: 100%;
+	min-height: 1.18rem;
+	padding: 0 0 0 1.5rem;
+}
+.teacher-avter{
+	position: absolute;
+	height: 1.18rem;
+	width: auto;
+	border-radius: 100%;
+	left: 0; 
+	top: 0;
+}
+.teacher-base{
+	display: block;
+	font-size: 0.3rem;
+	padding: 0.26rem 0 0 0;
+	color:#333333;
+}
+.teacher-tag{
+	display: block;
+	font-size: 0.2rem;
+	padding: 0.18rem 0 0 0;
+	color:#dcdcdc;
+	span{
+		display: inline-block;
+		padding: 0 0.09rem;
+	}
+}
+.content-text{
+	display: block;
+	font-size: 0.28rem;
+	line-height: 1.5em;
+	color: #666666;
+	padding: 0.25rem 0 0 0;
+}
+// .content-mode{
+// 	position: relative;
+// 	display: block;
+// 	padding: 0.15rem 0 0;
+// 	overflow: hidden;
+// 	width: 100%;
+// 	&.show{
+// 		.imgCover{
+// 			display: block;
+// 		}
+// 	}
+// 	.imgCover{
+// 		position: absolute;
+// 		display: block;
+// 		top:0;
+// 		left: 0;
+// 		right: 0;
+// 		bottom: 0;
+// 		width: 100%;
+// 		height: auto;
+// 		display: none;
+// 	}
+// 	.video {
+// 	    position: relative;
+// 	    display: block;
+// 	    width:100%;
+// 	    height:4rem;
+// 	    text-align:center;
+// 	    color: #fff;
+// 	    font-family: Helvetica;
+// 	    background-color: #000;
+// 	    -webkit-font-smoothing: antialiased;
+// 	    -webkit-user-select: none;
+// 	       -moz-user-select: none;
+// 	        -ms-user-select: none;
+// 	            user-select: none;
+// 	}
+// 	video{
+// 	    position:relative;
+// 	    display: inline-block;
+// 	    width:auto;
+// 	    height:100%;
+// 	}
+// }
+.content-mode{
+	position: relative;
+	display: block;
+	padding: 0.15rem 0 0;
+	height: 4.15rem;
+	overflow: hidden;
+	width: 100%;
+	text-align: center;
+	.video-cover{
+		position: absolute;
+		top:0.15rem;
+		left: 0;
+		width:100%;
+	    height:4rem;
+	}
+	.imgCover{
+		position: absolute;
+		left: 0;
+		width:100%;
+	    height:4rem;
+	}
+	.imgCoverPlay{
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		width: 0.82rem;
+		height: 0.82rem;
+		margin-top: -0.41rem;
+		margin-left:-0.41rem;
+	}
+	video{
+		top:0.15rem;
+		left: 0;
+	    position:absolute;
+	    display: inline-block;
+	    width:100%;
+	    height:4rem;
+	}
+}
+.content-footer{
+	position: relative;
+	display: block;
+	text-align: right;
+	min-height: 0.86rem;
+	padding: 0.29rem 0 0.22rem 0;
+	color:#999999;
+	font-size: 0.22rem;
+}
+.dynamic-support{
+	position: relative;
+	display: inline-block;
+	background-image: url("../images/dianzan.png");
+	background-position: 0 0;
+	background-size: 0.3rem 0.3rem;
+	background-repeat: no-repeat;
+	height: 0.39rem;
+	padding: 0.08rem 0.5rem 0 0.44rem;
+	
+}
+.dynamic-count{
+	position: relative;
+	display: inline-block;
+	background-image: url("../images/pinglun.png");
+	background-position: 0 0.08rem;
+	background-size: 0.3rem 0.3rem;
+	background-repeat: no-repeat;
+	height: 0.39rem;
+	padding: 0.08rem 0 0 0.44rem;
+}
+.dynamic-support-detail{
+	position: relative;
+	padding: 0.28rem 0 0.3rem 0.73rem;
+	min-height: 1.17rem;
+	width: 100%;
+	border-top: 1px solid #f0f0f0;
+	&:before{
+		position: absolute;
+		content: "";
+		background-image: url("../images/dianzan_big.png");
+		background-size: 0.42rem 0.40rem;
+		width: 0.42rem;
+		height: 0.40rem;
+		left: 0;
+		top:0.38rem;
+	}
+	img{
+		display: inline-block;
+		height: 0.6rem;
+		width: 0.6rem;
+		border-radius: 100%;
+		margin-right: 0.1rem;
+	}
+}
+
+// ================  dynamic detail end   ============================
+
+
+
+// ================  dynamic msg start   ============================
+.msg{
+	position: relative;
+	width: 100%;
+	height: auto;
+	padding: 0.41rem 0.29rem 0;
+	margin: 0.22rem 0 0;
+	background-color: #ffffff;
+	border-radius: 5px;
+	border:1px solid #cdcdcd;
+}
+.msg-header{
+	position: relative;
+	display: inline-block;
+	width: 100%;
+	height: 0.79rem;
+	font-size: 0.3rem;
+	color:#333333;
+	padding: 0.28rem 0 0.2rem 0.16rem;
+	&:before{
+		position: absolute;
+		content: "";
+		width: 0.06rem;
+		height: 0.3rem;
+		background-color: #18aef9;
+		border-radius: 3px;
+		left: 0;
+		top:0.27rem;
+	}
+}
+.msg-option{
+	position: relative;
+	width: 100%;
+	border-top: 1px solid #f0f0f0;
+	overflow: hidden;
+}
+.msg-option-header{
+	position: relative;
+	display: block;
+	padding: 0.32rem 0 0 1.5rem;
+	width: 100%;
+	min-height: 1.38rem;
+}
+.sender-avatar{
+	position: absolute;
+	display: inline-block;
+	width: 1.1rem;
+	height: 1.1rem;
+	border-radius: 100%;
+	left: 0;
+}
+.sender-base{
+	position: relative;
+}
+.sender-name{
+	display: block;
+	font-size: 0.3rem;
+	color: #333333;
+	padding: 0.19rem 0 0 0;
+}
+.sender-time{
+	display: block;
+	font-size: 0.18rem;
+	color: #999999;
+	padding: 0.15rem 0 0 0;
+}
+.msg-text{
+	display: block;
+	font-size: 0.28rem;
+	line-height: 1.5em;
+	color: #666666;
+	padding: 0.25rem 0;
+}
+// ================  dynamic msg end   ============================
+
+
+
+
+
+
+
