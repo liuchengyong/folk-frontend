@@ -12,6 +12,9 @@ import regexHelper from '../../common/regexHelper';
 import classNames from 'classnames';
 import Select from 'react-select';
 require('react-select/scss/default.scss');
+let student_ico = require('../../images/icon/student_ico.png');
+let parent_ico = require('../../images/icon/parent_ico.png');
+let teacher_ico = require('../../images/icon/teacher_ico.png');
 
 const UpAvatarData = {
   'title': '个人头像',
@@ -444,15 +447,15 @@ class ApplyExpertBaseContent extends React.Component {
               <label  className="frm-label">选择身份</label>
               <span className="frm-ipt-box role-group">
                 <li className={studentClass} onClick={this.selectRole.bind(this, 'student')}>
-                  <img src="../../images/icon/student_ico.png" alt="我是学生" />
+                  <img src={student_ico} alt="我是学生" />
                   <span>我是学生</span>
                 </li>
                 <li className={parentClass} onClick={this.selectRole.bind(this, 'parent')}>
-                  <img src="../../images/icon/parent_ico.png" alt="我是家长" />
+                  <img src={parent_ico} alt="我是家长" />
                   <span>我是家长</span>
                 </li>
                 <li className={teacherClass} onClick={this.selectRole.bind(this, 'teacher')}>
-                  <img src="../../images/icon/teacher_ico.png" alt="我是老师" />
+                  <img src={teacher_ico} alt="我是老师" />
                   <span>我是老师</span>
                 </li>
               </span>
