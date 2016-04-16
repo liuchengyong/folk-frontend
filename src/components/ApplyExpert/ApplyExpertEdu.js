@@ -57,25 +57,27 @@ class ApplyExpertEdu extends React.Component {
       (function(i) {
         self.entryTime.push({
         value: i,
-        label: i
+        label: i.toString()
       })
       })(i)
     }
   }
 
   handleSelectEduLevel(type, value) {
-    this.eduInfo[type] = value;
 
+    this.eduInfo[type] = value;
     if(type == 'country') {
       var self = this;
+      this.eduInfo.school = '';
       this.props.actions.fetchCollegeCountry(value).then(
         () => {
-
           this.setState({
-            schoolList: self.props.collegeByCountry
+            schoolList: self.props.collegeByCountry,
           });
         })
+      return ;
     }
+
   }
   render() {
 

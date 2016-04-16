@@ -16,7 +16,7 @@ module.exports = function(state = initialState, action) {
        for(var i = 0; i < action.parameter.length; i++) {
             schoolArr.push((function(i) {
                 return {
-                  value: action.parameter[i].pinyinName,
+                  value: action.parameter[i].id,
                   label: action.parameter[i].name
                 }
             })(i));

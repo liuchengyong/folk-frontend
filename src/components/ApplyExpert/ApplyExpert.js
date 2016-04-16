@@ -42,6 +42,8 @@ class ApplyComponent extends React.Component {
   nextStep() {
 
     let baseContent = this.refs.baseContent;
+    console.log(baseContent);
+
     let username = this.getChildValue('baseContent', 'userName');
     let mobile = this.getChildValue('baseContent', 'mobile');
     let shortDesc = this.getChildValue('baseContent', 'shortDesc');
@@ -72,7 +74,7 @@ class ApplyComponent extends React.Component {
       });
     }
 
-    if(!baseContent.refs.title && !regexHelper.title(title)) {
+    if(!baseContent.state.student && !(baseContent.refs.title && regexHelper.title(title))) {
       bool = false
       this.nextTips = '请填写正确的职位描述';
       baseContent.setState({
@@ -161,6 +163,8 @@ class ApplyComponent extends React.Component {
     let shortDesc = this.refs.baseContent.refs.shortDesc.value.trim();
     // let idCarFiles = [];
 
+    let countryCode = this.refs.baseContent.state.countryKey;
+
     let idCarFiles = this.refs.baseContent.state.idFiles; //array
     let _idCarFiles = [];
     let f = null;
@@ -172,7 +176,6 @@ class ApplyComponent extends React.Component {
           _idImgUrl += ('http://statics.zhid58.com/' + idCarImg[i].key) + ',';
       })(i)
     }
-    console.log(_idImgUrl);
     // for(var i = idCarFiles.length - 1; i >= 0; i--) {
     //   if(idCarFiles.length - i >= 3) {
     //     return false;
@@ -207,12 +210,18 @@ class ApplyComponent extends React.Component {
       shortIntroduction: shortDesc,
       // idCarFiles: _idCarFiles,
       avatarFile: _avatarFile,
-      image: _idImgUrl
+      image: _idImgUrl,
+      countryCode: countryCode
     };
-    console.log(data);
     if(this.refs.baseContent.state.student) {
-      assign(data, this.refs.baseContent.refs.studentInfo.eduInfo, {major: this.refs.baseContent.refs.studentInfo.refs.major.value});
+      let _eduInfo = {
+        collegeId: this.refs.baseContent.refs.studentInfo.eduInfo.school,
+        educationLevel: this.refs.baseContent.refs.studentInfo.eduInfo.level,
+        enrollmentYear: this.refs.baseContent.refs.studentInfo.eduInfo.entry
+      }
+      assign(data, _eduInfo, {major: this.refs.baseContent.refs.studentInfo.refs.major.value});
     }
+
     console.log(data);
 
     save2Local('ApplyExpertData', data);

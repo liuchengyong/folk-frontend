@@ -13,18 +13,21 @@ import { connect } from 'react-redux';
 import ApplyExpert from '../components/ApplyExpert/ApplyExpert';
 import AddExpertInfo from '../components/ApplyExpert/AddExpertInfo';
 import PubTopic from '../components/PubTopic/PubTopic';
+import ApplyResult from '../components/ApplyExpert/ApplyResult';
 
 /* Populated by react-webpack-redux:reducer */
 class ApplyExpertContainer extends Component {
   render() {
-    const {actions, uploadToken, collegeByCountry, verifyExpert} = this.props;
+    const {actions, uploadToken, collegeByCountry, verifyExpert, applyExpert} = this.props;
     var query = this.props.location.query;
     if(query.step == 1) {
       return <ApplyExpert actions={actions} uploadToken={uploadToken} collegeByCountry={collegeByCountry}/>; // move to else default
     } else if(query.step == 2) {
       return <AddExpertInfo actions={actions} uploadToken={uploadToken} />;
     } else if(query.step == 3) {
-      return <PubTopic actions={actions} uploadToken={uploadToken} />;
+      return <PubTopic actions={actions} uploadToken={uploadToken} applyExpert={applyExpert}/>;
+    } else if(query.step == 4) {
+      return <ApplyResult applyExpert={applyExpert}/>;
     } else {
       return <ApplyExpert actions={actions} uploadToken={uploadToken} verifyExpert={verifyExpert} collegeByCountry={collegeByCountry}/>; // move to else default
     }

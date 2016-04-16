@@ -36,6 +36,7 @@ class ApplyExpertBaseContent extends React.Component {
         avatarPreItem: [], //头像信息
 
         countryCode: config.countryCode[14],
+        countryKey: 'CN',
 
         verifyTips: '请填写正确的中国大陆地区手机号码',
 
@@ -276,7 +277,8 @@ class ApplyExpertBaseContent extends React.Component {
     console.log(key);
     var code = key[0];
     this.setState({
-      countryCode: key[3]
+      countryCode: key[3],
+      countryKey: key[1]
     })
     console.log('---------------');
   }

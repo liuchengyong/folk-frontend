@@ -87,8 +87,13 @@ class PubTopic extends React.Component {
 
     // this.applyExpertLocalData = getFromLocal('ApplyExpertData');
       var _data = assign(data, getFromLocal('ApplyExpertData'), getFromLocal('ApplyExpertDataTwo'));
-      console.log(_data);
-      this.props.actions.postExpertData(_data);
+      // console.log(_data);
+      var self = this;
+      this.props.actions.postExpertData(_data).then(() => {
+        // if()
+        
+        console.log(self.props);
+      });
 
     }
 
