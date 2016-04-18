@@ -34,13 +34,17 @@ class DynamicComponent extends React.Component {
     let actions = this.props.actions;
     let dynamic = this.props.dynamic;
 
+    let msg;
+    if(dynamic.comments.results.length != 0){
+      msg = <DynamicMsg dialog={dialog} actions={actions} dynamic={dynamic}/>;
+    }
 
     return (
       <div className="dynamic">
         <Helmet title={(dynamic.user.loginName||dynamic.user.name)+'-'+dynamic.expert.title} />
         <TopBanner dialog={dialog} actions={actions}/>
-        <DynamicContent dialog={dialog} dynamic={dynamic} />
-        <DynamicMsg dialog={dialog} dynamic={dynamic}/>
+        <DynamicContent dialog={dialog} actions={actions} dynamic={dynamic} />
+        {msg}
       </div>
     );
   }

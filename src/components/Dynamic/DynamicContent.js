@@ -9,6 +9,7 @@ import DeviceAdapter from '../../common/deviceAdapter';
 
 // require('react-html5video/dist/ReactHtml5Video.css');
 let img_play = require('../../images/play.png');
+let ic_me_avatar_default = require("../../images/ic_me_avatar_default.png");
 
 
 class DynamicContent extends React.Component {
@@ -25,6 +26,9 @@ class DynamicContent extends React.Component {
 		});
 		this.videoEl.play();
 	}
+	DownApp() {
+	    this.props.actions.setDialogStatus(true);
+	}
 	render(){
 		let dynamic = this.props.dynamic;
 		let content = dynamic.activityEvent;
@@ -32,17 +36,17 @@ class DynamicContent extends React.Component {
 		// let name = dynamic.param.a
 		//console.log(this);
 // 	
-		let sud,contentMsg,videoCover;
+		let sud,contentMsg,videoCover,contentTitle;
 		if(dynamic.likedList.length > 0){
 			sud = <div className = "dynamic-support-detail">
 					{dynamic.likedList.map((result,i) => {
-							return <img key={i} src= {result.avatar} />;
+							return <img key={i} src= {result.avatar || ic_me_avatar_default} />;
 						})}
 				</div>;
 		}
 
 		
-		if(content.type == 'VIDEO'){
+		if(content.type == 'VIDEO'){ //content type is video
 			let mobileType = DeviceAdapter.getMobileType();
 			if(mobileType.iPhone || mobileType.iPad ){
 				contentMsg =<div className = "content-mode">
@@ -54,8 +58,8 @@ class DynamicContent extends React.Component {
 								</video>		
 							</div>;
 			}else{
-				if(this.state.isCover){
-					videoCover = <div className="video-cover" onClick={this.playVideo.bind(this)} >
+				if(this.state.isCover){ //first click after status
+ 					videoCover = <div className="video-cover" onClick={this.playVideo.bind(this)} >
 											<img className="imgCover" src={content.previewUrl}/>
 											<img className="imgCoverPlay" src={img_play} />
 								</div>;
@@ -71,22 +75,24 @@ class DynamicContent extends React.Component {
 							</div>;
 			}
 
-			
+		}else{  //content type is html
+			contentTitle = <div className="content-title">{content.title}</div>;
 		}
 		return (<div className="dynamic-content">
 				<div className="content-header">
-					<img className = "teacher-avter" src = {teacher.avatar}/>
+					<img className = "teacher-avter" src = {teacher.avatar} onClick={this.DownApp.bind(this)}/>
 					<div className = "teacher-base">
-						<span className = "teacher-name">{decodeURI(teacher.loginName || teacher.name)}</span>
+						<span className = "teacher-name">{decodeURIComponent(teacher.loginName || teacher.name)}</span>
 						<div className = "teacher-tag">
 							<span className = "school">{dynamic.expert.title}</span>
 						</div>
 					</div>
 				</div>
-				<div className = "content-text">{content.description}</div>
+				{contentTitle}
+				<div className = "content-text" dangerouslySetInnerHTML={{__html: content.description}}></div>
 				{contentMsg}
 				<div className = "content-footer">
-					<span className = "dynamic-support">{dynamic.countOfLiked}</span>
+					<span className = "dynamic-support" onClick={this.DownApp.bind(this)} >{dynamic.countOfLiked}</span>
 					<span className = "dynamic-count">{dynamic.countOfComment}</span>
 				</div>
 				{sud}

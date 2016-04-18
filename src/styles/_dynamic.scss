@@ -17,7 +17,6 @@
 	margin: 0.22rem 0 0;
 	background-color: #ffffff;
 	border-radius: 5px;
-	border:1px solid #cdcdcd;
 }
 
 .content-header{
@@ -50,57 +49,31 @@
 		padding: 0 0.09rem;
 	}
 }
-.content-text{
+.content-title{
+	position: relative;
 	display: block;
-	font-size: 0.28rem;
-	line-height: 1.5em;
-	color: #666666;
-	padding: 0.25rem 0 0 0;
+	margin-top: 0.58rem;
+	width: 100%;
+	font-size: 0.32rem;
+	color: #1e1e1e;
 }
-// .content-mode{
-// 	position: relative;
-// 	display: block;
-// 	padding: 0.15rem 0 0;
-// 	overflow: hidden;
-// 	width: 100%;
-// 	&.show{
-// 		.imgCover{
-// 			display: block;
-// 		}
-// 	}
-// 	.imgCover{
-// 		position: absolute;
-// 		display: block;
-// 		top:0;
-// 		left: 0;
-// 		right: 0;
-// 		bottom: 0;
-// 		width: 100%;
-// 		height: auto;
-// 		display: none;
-// 	}
-// 	.video {
-// 	    position: relative;
-// 	    display: block;
-// 	    width:100%;
-// 	    height:4rem;
-// 	    text-align:center;
-// 	    color: #fff;
-// 	    font-family: Helvetica;
-// 	    background-color: #000;
-// 	    -webkit-font-smoothing: antialiased;
-// 	    -webkit-user-select: none;
-// 	       -moz-user-select: none;
-// 	        -ms-user-select: none;
-// 	            user-select: none;
-// 	}
-// 	video{
-// 	    position:relative;
-// 	    display: inline-block;
-// 	    width:auto;
-// 	    height:100%;
-// 	}
-// }
+.content-text{
+	position: relative;
+	display: block;
+	color: #666666;
+	margin: 0.36rem 0 0 0;
+	p{
+		margin: 0.3rem 0 0;
+		font-size: 0.28rem;
+		line-height: 2em;
+	}
+	img{
+		display: block;
+		width: 100%;
+		height: auto;
+		margin: 0.3rem 0 0;
+	}
+}
 .content-mode{
 	position: relative;
 	display: block;
@@ -208,7 +181,6 @@
 	margin: 0.22rem 0 0;
 	background-color: #ffffff;
 	border-radius: 5px;
-	border:1px solid #cdcdcd;
 }
 .msg-header{
 	position: relative;
