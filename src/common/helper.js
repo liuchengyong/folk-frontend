@@ -24,43 +24,6 @@ import assign from 'lodash/assign';
   }
 
 /**
- * cookie to json
- *
- */
-
-// function setCookie(name,idcard,days) {
-//     var arr = new Array();
-//     var obj = new Object();
- 
-//     //add new cookie data
-//     obj.name = document.getElementById(name).value;
-//     obj.idcard = document.getElementById(idcard).value;
-//     arr.push(obj);
- 
-//     //get old cookie data
-//     var temp = getCookie();
-//     if (temp != null) {
-//         //concat new and old cookie data
-//         for (var i = 0; i < temp.length; i++) {
-//             var ob = new Object();
-//             ob.name = temp[i].name;
-//             ob.idcard = temp[i].idcard;
-//             arr.push(ob);
-//         }
-//     }
-//     var objWarp = new Object();
-//     objWarp.user = arr;
-//     var val = JSON.stringify(objWarp);
- 
-//     //set cookie date expired
-//     var date = new Date();
-//     date.setTime(date.getTime()+(days*24*60*60*1000));
-//     var expires = "; expires="+date.toGMTString();
-//     //create cookie
-//     document.cookie = "user_cookie="+val+expires;
-// }
-
-/**
  *  得到用户cookie
  */
 var getCookie = () => {

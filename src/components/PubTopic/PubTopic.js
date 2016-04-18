@@ -10,8 +10,9 @@ import React from 'react';
 // import config from 'config';
 // import Loading from '../Common/Loading';
 import PubTopicContent from './PubTopicContent';
+import assign from 'lodash/assign';
 
-import { save2Local} from '../../common/helper';
+import { save2Local, getFromLocal } from '../../common/helper';
 import regexHelper from '../../common/regexHelper';
 
 
@@ -24,6 +25,7 @@ class PubTopic extends React.Component {
     this.state = {
       nextTips: ''
     }
+    console.log(props);
   }
 
   //获取子组件的input 值
@@ -75,13 +77,29 @@ class PubTopic extends React.Component {
     if(bool) {
       this.nextTips = '';
       var data = {
-        topicName: topicName,
-        topicDesc: topicDesc,
-        price: price,
-        method: pubContent.state.Online ? 'online' : 'offline',
-        topicTime: TopicTime[(pubContent.state.currentTime-1)]
+        topicTitle: topicName,
+        topicDescription: topicDesc,
+        topicAmount: price,
+        topicType: (pubContent.state.Online &&  pubContent.state.Offline) ? 'BOTH' : (pubContent.state.Online ? 'ONLINE' : 'OFFLINE'),
+        topicDuration: TopicTime[(pubContent.state.currentTime-1)] //话题时长
       };
       save2Local('TopicData', data);
+
+      var _data = assign(data, getFromLocal('ApplyExpertData'), getFromLocal('ApplyExpertDataTwo'));
+      // console.log(_data);
+      var self = this;
+      this.props.actions.postExpertData(_data).then(() => {
+        if(self.props.applyExpert.code == 0 ) {
+          setTimeout(function() {
+            location.href = location.pathname  + '?step=4';
+          }, 300)
+        } else {
+          // console.log('请确认所填写信息');
+        }
+        
+        console.log(self.props.applyExpert);
+      });
+
     }
 
     this.setState({

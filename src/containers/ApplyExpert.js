@@ -13,18 +13,41 @@ import { connect } from 'react-redux';
 import ApplyExpert from '../components/ApplyExpert/ApplyExpert';
 import AddExpertInfo from '../components/ApplyExpert/AddExpertInfo';
 import PubTopic from '../components/PubTopic/PubTopic';
+import ApplyResult from '../components/ApplyExpert/ApplyResult';
 
 /* Populated by react-webpack-redux:reducer */
 class ApplyExpertContainer extends Component {
   render() {
-    const {actions, uploadToken, collegeByCountry, verifyExpert} = this.props;
+    const {actions, uploadToken, collegeByCountry, verifyExpert, applyExpert} = this.props;
     var query = this.props.location.query;
+    
+    var stepOneLocal = window.localStorage.getItem('ApplyExpertData');
+    var stepTwoLocal = window.localStorage.getItem('ApplyExpertDataTwo');
+    var TopicData = window.localStorage.getItem('TopicData');
+
+    // if(!stepOneLocal || !stepTwoLocal || !TopicData) {
+    //   window.location.href = "/applyExpert";
+    // }
+
     if(query.step == 1) {
-      return <ApplyExpert actions={actions} uploadToken={uploadToken} collegeByCountry={collegeByCountry}/>; // move to else default
+      return <ApplyExpert actions={actions} uploadToken={uploadToken} verifyExpert={verifyExpert} collegeByCountry={collegeByCountry}/>; // move to else default
     } else if(query.step == 2) {
+      if(!stepOneLocal) {
+        return window.location.href = "/applyExpert";
+      }
       return <AddExpertInfo actions={actions} uploadToken={uploadToken} />;
     } else if(query.step == 3) {
-      return <PubTopic actions={actions} uploadToken={uploadToken} />;
+      if(!stepTwoLocal) {
+        return window.location.href = "/applyExpert";
+      }
+      return <PubTopic actions={actions} uploadToken={uploadToken} applyExpert={applyExpert}/>;
+    } else if(query.step == 4) {
+      if(!TopicData) {
+        return window.location.href = "/applyExpert";
+      } else {
+        window.localStorage.clear('*');
+      }
+      return <ApplyResult applyExpert={applyExpert} />;
     } else {
       return <ApplyExpert actions={actions} uploadToken={uploadToken} verifyExpert={verifyExpert} collegeByCountry={collegeByCountry}/>; // move to else default
     }
@@ -46,7 +69,8 @@ function mapStateToProps(state) {
   const props = {
     uploadToken: state.uploadToken,
     collegeByCountry: state.collegeByCountry,
-    verifyExpert: state.verifyExpert
+    verifyExpert: state.verifyExpert,
+    applyExpert: state.applyExpert
   };
   return props;
 }
@@ -55,7 +79,9 @@ function mapDispatchToProps(dispatch) {
   const actions = {
     fetchToken: require('../actions/uploadToken/fetchToken.js'),
     fetchCollegeCountry: require('../actions/collegeList/fetchCollegeCountry.js'),
-    verifyExpert: require('../actions/verifyExpert/verifyExpert.js')
+    verifyExpert: require('../actions/verifyExpert/verifyExpert.js'),
+    postExpertData: require('../actions/applyExpert/postExpertData.js')
+
     // requestApplyExpertData: require('../actions/broke/requestApplyExpertData.js'),
     // receiveApplyExpertData: require('../actions/broke/receiveApplyExpertData.js'),
     // setDialogStatus: require('../actions/dialog/setDialogStatus.js')

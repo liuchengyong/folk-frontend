@@ -14,6 +14,8 @@ import { save2Local, getFromLocal} from '../../common/helper';
 import ExpertInfoContent from './ExpertInfoContent';
 // import DeviceAdapter from '../../common/deviceAdapter';
 
+const ReplyTime = [6, 12, 24, 48];
+
 class AddExpertInfo extends React.Component {
 
   constructor(props) {
@@ -33,6 +35,8 @@ class AddExpertInfo extends React.Component {
       this.nextTips = '请输入所在城市';
     } else if(!expertInfo.refs.activeArea.value) {
       this.nextTips = '请输入活动区域';
+    } else if(!expertInfo.state.currentTime) {
+      this.nextTips = '请选择回应时间';
     } else if(expertInfo.state.descLength < 50) {
       this.nextTips = '个人介绍至少50字';
     } else if(expertInfo.refs.expertBg.idImgUrl.length < 1) {
@@ -58,16 +62,18 @@ class AddExpertInfo extends React.Component {
     let description = expertInfo.refs.description.value;
     let expertBg = expertInfo.refs.expertBg.idImgUrl[0].key;
 
+    let inviter = expertInfo.refs.inviter && expertInfo.refs.inviter.value.trim();
+
     var data = {
-      perPhoto: perPhoto,
+      descriptionPicture: 'http://statics.zhid58.com/' + perPhoto,
       workYear: workYear,
-      city: city,
-      area: area,
+      permanentCity: city,
+      permanentArea: area,
       description: description,
-      expertBg: expertBg
+      shortIntroductionPicture: 'http://statics.zhid58.com/' + expertBg,
+      inviter: inviter,
+      replyTime: ReplyTime[(expertInfo.state.currentTime - 1)]
     };
-    console.log(data);
-    console.log('data step two');
     save2Local('ApplyExpertDataTwo', data);
 
     setTimeout(function() {

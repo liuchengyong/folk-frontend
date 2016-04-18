@@ -31,6 +31,18 @@ exports.mobile = (value) => {
 }
 
 /**
+ * 验证全球手机号
+ * 验证规则: 大于6位的数字
+ */
+exports.golbalMobile = (value) => {
+	if(/^\d{5,15}$/.test(value)) {
+		return true;
+	} else {
+		return false;
+	}
+}
+
+/**
  * 验证验证码
  * 规则: 六位数字
  */
@@ -64,6 +76,17 @@ exports.numberZero = (value) => {
 	}
 }
 
+/**
+ * 验证个人简短描述
+ * 规则: 不多于21字
+ */
+exports.shortDesc = (value) => {
+	if(/^[\u4E00-\u9FA5A-Za-z0-9_]+$/.test(value) && value.length > 0 && value.length <= 21) {
+		return true;
+	} else {
+		return false;
+	}
+}
 
 /**
  * 验证话题标题
@@ -77,21 +100,14 @@ exports.topicTitle = (value) => {
 	}
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+/**
+ * 验证点师title
+ * 规则: 至少2个字且不大于21个字
+ */
+exports.title = (value) => {
+	if(/^[\u4E00-\u9FA5A-Za-z0-9_]+$/.test(value) && value.length > 1 && value.length <= 21) {
+		return true;
+	} else {
+		return false;
+	}
+}

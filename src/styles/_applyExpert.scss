@@ -149,7 +149,17 @@ button:focus {
     font-size: 14px;
     margin-top: 40px;
     .mobile {
+      height: 34px;
+      line-height: 34px;
       // width: 200px;
+      margin: 0;
+      margin-left: 10px;
+    }
+    .country-code {
+      width: 120px;
+      /* margin-right: 100px; */
+      display: inline-block;
+      vertical-align: bottom;
     }
   }
   .frm-label {
@@ -590,4 +600,13 @@ button:focus {
 .base-content .frm-ipt-box.price {
   width: 70px;
   margin-right: 10px;
+}
+.result-main {
+  padding: 30px;
+  text-align: center;
+  font-size: 20px;
+  margin-top: 150px;
+  a {
+    text-decoration: none;    
+  }
 }

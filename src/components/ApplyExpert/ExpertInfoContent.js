@@ -39,7 +39,7 @@ class ApplyExpertBaseContent extends React.Component {
 
         currentTime: 0,
         workYear: '',
-
+        inviter: 0,
         city: 0,
         area: 0,
         descLength: 0,
@@ -122,11 +122,19 @@ class ApplyExpertBaseContent extends React.Component {
     });
 
     var areaClass = classNames({
-      'ipt-tips': 'ipt-tips',
+      'ipt-tips': 'ipt-tips ',
       'username': 'username',
       'error': (this.state.area == 2),
       'right': (this.state.area == 1),
       'hide': (this.state.area == 0)
+    });
+
+    var inviterClass = classNames({
+      'ipt-tips': 'ipt-tips',
+      'mobile': 'mobile',
+      'error': (this.state.mobile == 2),
+      'right': (this.state.mobile == 1),
+      'hide': (this.state.mobile == 0)
     });
 
     return (
@@ -193,6 +201,21 @@ class ApplyExpertBaseContent extends React.Component {
                 <span className={this.state.descLength >= 50 ? 'hide' : ''} > 还需输入{50 - this.state.descLength}字</span>
             </div>
             <UpImage token={this.props.token.token} desc={UpBgData} ref="expertBg"/>
+
+            <div className="inviter-frm frm-wrap">
+              <label  className="frm-label">邀请人</label>
+              <span className="frm-ipt-box inviter">
+                <input type="text" className="frm-ipt inviter"
+                  ref="inviter" name="moinviterbile"
+                  onChange={this.handleChange.bind(this)}
+                  placeholder="输入正确的邀请人手机号(选填)"
+                  value={this.props.localData && this.props.localData.inviter}
+                />
+              </span>
+              <span className="vcode-tips frm-tips">注册成功后会收到一个默认密码,同时可用于找回密码</span>
+
+            </div>
+
 
           </div>
         </div>

@@ -4,6 +4,7 @@
  */
 import React from 'react';
 import lodashArray from 'lodash/array';
+import helper from '../../common/helper';
 
 import Qiniu from 'react-qiniu';
 
@@ -23,7 +24,7 @@ class UpImage extends React.Component {
           token: this.props.token,
           localImg: this.props.imgUrl,
 
-          prefix: 'YOUR_QINIU_KEY_PREFIX' // Optional
+          prefix: 'ZHIDIAN_WEB' // Optional
       };
     } else {
       this.state = {
@@ -36,7 +37,7 @@ class UpImage extends React.Component {
           token: this.props.token,
           localImg: this.props.imgUrl,
 
-          prefix: 'YOUR_QINIU_KEY_PREFIX' // Optional
+          prefix: 'ZHIDIAN_WEB' // Optional
       };
     }
     this.idImgUrl = [];
@@ -45,12 +46,20 @@ class UpImage extends React.Component {
 
   onUpload(files) {
     files.map(function (f) {
-        f.onprogress = function() {
-        };
+      if(!/image/.test(f.type)) {
+        return false;
+      }
+      f.onprogress = function() {
+      };
     });
   }
 
   onDrop(files) {
+
+    if(!/image/.test(files[0].type)) {
+      helper.showToast('只可以上传图片类型文件');
+      return false;
+    }
     this.setState({
         files: files,
         showTips: false

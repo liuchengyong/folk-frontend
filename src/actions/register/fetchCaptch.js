@@ -21,7 +21,7 @@ module.exports = (mobile) => {
       mode: 'cors',
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
-        'Accept': 'application/json',
+        'Accept': 'application/json'
         // 'X-Codingpedia': 'velue',
         // 'Access-Control-Allow-Headers': 'accept, content-type,aa, bb, x-parse-session-token'
       },

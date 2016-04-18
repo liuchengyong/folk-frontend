@@ -19,7 +19,7 @@ class PubTopicContent extends React.Component {
 
         topicTitle: 0,
         price: 0,
-        descToggle: 0, 
+        descToggle: 0,
 
         currentTime: 0
     };
@@ -44,7 +44,7 @@ class PubTopicContent extends React.Component {
       this.topicLengthTips = ',还差' + (35 - value.length) + '字';
     } else {
       this.setState({
-        topicTitle: 1,
+        topicTitle: 1
       })
       this.topicLengthTips = '';
     }
@@ -80,7 +80,7 @@ class PubTopicContent extends React.Component {
     var value = event.target.name;
     if(value == 'online') {
       this.setState({
-        Online: true ^ this.state.Online,
+        Online: true ^ this.state.Online
       })
     } else {
       this.setState({
@@ -161,7 +161,7 @@ class PubTopicContent extends React.Component {
                 <input type="text" className="frm-ipt " onChange={this.handleChangePrice.bind(this)} ref="price" name="price" placeholder="" />
               </span>
               元
-              <span className={priceClass}><i></i><span>请输入正确的价格 {this.topicLengthTips}</span></span>
+              <span className={priceClass}><i></i><span>请输入正确的价格 </span></span>
               <span className="pwd-tips frm-tips">请输入0-5000的价格,合适的价格会让提高你的预约成功率</span>
 
             </div>
