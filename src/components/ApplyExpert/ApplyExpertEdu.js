@@ -72,7 +72,7 @@ class ApplyExpertEdu extends React.Component {
       this.props.actions.fetchCollegeCountry(value).then(
         () => {
           this.setState({
-            schoolList: self.props.collegeByCountry,
+            schoolList: self.props.collegeByCountry
           });
         })
       return ;

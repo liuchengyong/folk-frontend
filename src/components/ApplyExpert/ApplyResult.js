@@ -49,10 +49,14 @@ class ApplyResult extends React.Component {
         			</li>
         		</ul>
         	</div>
-          <p>
-            你的申请已提交,请耐心等候.
-            此时你可以下载APP......
-          </p>
+          <div className="result-main">
+            <p>
+              你的申请已提交,请耐心等候。
+              将有一个默认密码发送到你填写的手机号中,也可以用改手机号找回密码,重置密码。<br />
+              你也可以 <a href="http://www.zhid58.com/downAPp">下载</a> 最新版的指点APP,登录查看。
+            </p>
+          </div>
+
         </div>
       </div>
     );

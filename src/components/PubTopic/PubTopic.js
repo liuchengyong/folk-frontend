@@ -85,14 +85,19 @@ class PubTopic extends React.Component {
       };
       save2Local('TopicData', data);
 
-    // this.applyExpertLocalData = getFromLocal('ApplyExpertData');
       var _data = assign(data, getFromLocal('ApplyExpertData'), getFromLocal('ApplyExpertDataTwo'));
       // console.log(_data);
       var self = this;
       this.props.actions.postExpertData(_data).then(() => {
-        // if()
+        if(self.props.applyExpert.code == 0 ) {
+          setTimeout(function() {
+            location.href = location.pathname  + '?step=4';
+          }, 300)
+        } else {
+          // console.log('请确认所填写信息');
+        }
         
-        console.log(self.props);
+        console.log(self.props.applyExpert);
       });
 
     }

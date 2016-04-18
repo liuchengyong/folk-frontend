@@ -12,8 +12,8 @@ module.exports = function(state = initialState, action) {
   switch(action.type) {
     case 'RECEIVE_APPLY_EXPERT': {
       //@TODO 将删除状态作为一个action
-      return action.parameter.success ?
-             assign({}, action.parameter.param, {isFetching: false}) :
+      return action.parameter.msg ?
+             assign({}, action.parameter, {isFetching: false}) :
              {isFetching: true}
     } break;
     case 'REQUEST_APPLY_EXPERT': {

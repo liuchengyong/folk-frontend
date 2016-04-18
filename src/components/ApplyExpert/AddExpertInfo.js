@@ -27,7 +27,6 @@ class AddExpertInfo extends React.Component {
   nextStep() {
     let expertInfo = this.refs.expertInfo;
 
-    console.log(expertInfo);
     if(expertInfo.refs.perPhoto.idImgUrl.length < 1) {
       this.nextTips = '请上传个人写真照片';
     } else if(!expertInfo.state.workYear) {

@@ -20,14 +20,34 @@ class ApplyExpertContainer extends Component {
   render() {
     const {actions, uploadToken, collegeByCountry, verifyExpert, applyExpert} = this.props;
     var query = this.props.location.query;
+    
+    var stepOneLocal = window.localStorage.getItem('ApplyExpertData');
+    var stepTwoLocal = window.localStorage.getItem('ApplyExpertDataTwo');
+    var TopicData = window.localStorage.getItem('TopicData');
+
+    // if(!stepOneLocal || !stepTwoLocal || !TopicData) {
+    //   window.location.href = "/applyExpert";
+    // }
+
     if(query.step == 1) {
-      return <ApplyExpert actions={actions} uploadToken={uploadToken} collegeByCountry={collegeByCountry}/>; // move to else default
+      return <ApplyExpert actions={actions} uploadToken={uploadToken} verifyExpert={verifyExpert} collegeByCountry={collegeByCountry}/>; // move to else default
     } else if(query.step == 2) {
+      if(!stepOneLocal) {
+        return window.location.href = "/applyExpert";
+      }
       return <AddExpertInfo actions={actions} uploadToken={uploadToken} />;
     } else if(query.step == 3) {
+      if(!stepTwoLocal) {
+        return window.location.href = "/applyExpert";
+      }
       return <PubTopic actions={actions} uploadToken={uploadToken} applyExpert={applyExpert}/>;
     } else if(query.step == 4) {
-      return <ApplyResult applyExpert={applyExpert}/>;
+      if(!TopicData) {
+        return window.location.href = "/applyExpert";
+      } else {
+        window.localStorage.clear('*');
+      }
+      return <ApplyResult applyExpert={applyExpert} />;
     } else {
       return <ApplyExpert actions={actions} uploadToken={uploadToken} verifyExpert={verifyExpert} collegeByCountry={collegeByCountry}/>; // move to else default
     }

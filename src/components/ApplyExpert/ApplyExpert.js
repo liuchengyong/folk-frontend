@@ -57,7 +57,7 @@ class ApplyComponent extends React.Component {
       bool = false
       //show ipt tips
     }
-    if(!regexHelper.mobile(mobile)) {
+    if(!regexHelper.golbalMobile(mobile)) {
       bool = false
 
       this.nextTips = '请填写正确的手机号';
@@ -221,8 +221,6 @@ class ApplyComponent extends React.Component {
       }
       assign(data, _eduInfo, {major: this.refs.baseContent.refs.studentInfo.refs.major.value});
     }
-
-    console.log(data);
 
     save2Local('ApplyExpertData', data);
 

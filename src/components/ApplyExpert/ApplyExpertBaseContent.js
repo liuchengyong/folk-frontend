@@ -9,9 +9,13 @@ import lodashArray from 'lodash/array';
 import Qiniu from 'react-qiniu';
 import config from 'config';
 import regexHelper from '../../common/regexHelper';
+import helper from '../../common/helper';
+
 import classNames from 'classnames';
 import Select from 'react-select';
+
 require('react-select/scss/default.scss');
+
 let student_ico = require('../../images/icon/student_ico.png');
 let parent_ico = require('../../images/icon/parent_ico.png');
 let teacher_ico = require('../../images/icon/teacher_ico.png');
@@ -29,9 +33,9 @@ class ApplyExpertBaseContent extends React.Component {
     super(props);
     this.state = {
         files: [],
-        preItem: [], //
+        preItem: [],
 
-        idFiles: [], // 
+        idFiles: [],
 
         avatarPreItem: [], //头像信息
 
@@ -59,23 +63,34 @@ class ApplyExpertBaseContent extends React.Component {
 
         bool: false,
 
-        prefix: 'YOUR_QINIU_KEY_PREFIX' // Op
+        prefix: 'ZHIDIAN_WEB' // Op
     };
     this.idImgUrl = [];
     this.bool = false;
-    console.log(this.props.actions);
   }
 
   onUpload(files) {
+
+
     files.map(function (f) {
-        f.onprogress = function() {
-        };
+      if(!/image/.test(f.type)) {
+        helper.showToast('只可以上传图片类型文件');
+        return false;
+      }
+      f.onprogress = function() {
+      };
     });
   }
   onDrop(files) {
+
+    if(!/image/.test(files[0].type)) {
+      return false;
+    }
+
     this.setState({
         files: files
     });
+
     files.map(file => {
       file.uploadPromise.then((data) => {
         this.idImgUrl.push(JSON.parse(data.text));
@@ -135,16 +150,12 @@ class ApplyExpertBaseContent extends React.Component {
         }
         break;
       case 'mobile':
-        if(regexHelper.mobile(value)) {
-          var verifyCode = this.props.actions.verifyExpert(value);
+        if(regexHelper.golbalMobile(value)) {
           var self = this;
           var timer = setInterval(function() {
             if(self.props.verifyExpert.isFetching) {
-              console.log('验证中');
             } else {
-              console.log('验证完毕')
               var verifyCode = self.props.verifyExpert;
-              console.log(verifyCode);
               if(verifyCode.code == 0) {
                 self.setState({
                   mobile: 2,
@@ -170,7 +181,7 @@ class ApplyExpertBaseContent extends React.Component {
 
           this.setState({
             mobile: 2,
-            verifyTips: '请填写正确的中国大陆地区手机号码'
+            verifyTips: '请填写正确的手机号码' //请填写正确的中国大陆地区手机号码
           })
         }
         break;
@@ -239,7 +250,7 @@ class ApplyExpertBaseContent extends React.Component {
     }
 
     if(this.state.preItem.length >= 3) {
-      // console.log('最多上传三张图片');
+      helper.showToast('最多上传三张图片');
       return false;
     }
 
@@ -272,15 +283,11 @@ class ApplyExpertBaseContent extends React.Component {
     }
   }
   handleCountryChange(value) {
-    console.log(value);
     var key = value.split(',');
-    console.log(key);
-    var code = key[0];
     this.setState({
       countryCode: key[3],
       countryKey: key[1]
     })
-    console.log('---------------');
   }
 
   componentDidUpdate() {
@@ -430,11 +437,11 @@ class ApplyExpertBaseContent extends React.Component {
             <div className="shortDesc-frm">
               <label  className="frm-label frm-wrap">签名</label>
               <span className="frm-ipt-box">
-                <input type="text" className="frm-ipt shortDesc" name="shortDesc" 
-                  onChange={this.handleChange.bind(this)} 
-                  value={this.props.localData && this.props.localData.shortDesc} 
-                  ref="shortDesc" 
-                  placeholder="一句话简短介绍自己" 
+                <input type="text" className="frm-ipt shortDesc" name="shortDesc"
+                  onChange={this.handleChange.bind(this)}
+                  value={this.props.localData && this.props.localData.shortDesc}
+                  ref="shortDesc"
+                  placeholder="一句话简短介绍自己"
                 />
 
               </span>
