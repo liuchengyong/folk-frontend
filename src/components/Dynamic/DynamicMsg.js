@@ -7,16 +7,17 @@
 import React from 'react';
 import Time from '../../common/timeFormate';
 class ContentComment extends React.Component {
-
+	DownApp() {
+		    this.props.actions.setDialogStatus(true);
+	}
 	render(){
 		// console.log(this);
 		let comments = this.props.dynamic.comments.results;
-		if(comments.length == 0) return;
 		let options = comments.map((comment,i) => {
 			comment = comment.comment;
 			let user = JSON.parse(comment.priv).user;
 			return (
-				<div className="msg-option" key={i}>
+				<div className="msg-option" key={i} onClick={this.DownApp.bind(this)}>
 					<div className="msg-option-header">
 						<img className="sender-avatar" src={user.avatar} />
 						<div className="sender-base">

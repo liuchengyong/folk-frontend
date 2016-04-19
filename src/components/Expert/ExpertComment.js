@@ -14,9 +14,7 @@ class ExpertComment extends React.Component {
   }
 
   render() {
-    
-
-
+  
     let dialog = null;
     if(this.props.dialog.isOpening){
       dialog = <Dialog actions={this.props.actions}/>

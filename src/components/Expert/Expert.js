@@ -22,7 +22,6 @@ import ExpertComment from './ExpertComment';
 class ExpertComponent extends React.Component {
 
   render() {
-    
     let dialog = this.props.dialog;
     let actions = this.props.actions;
     let expert = this.props.expert;
