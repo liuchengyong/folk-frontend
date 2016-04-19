@@ -25,25 +25,21 @@ class ApplyExpertContainer extends Component {
     var stepTwoLocal = window.localStorage.getItem('ApplyExpertDataTwo');
     var TopicData = window.localStorage.getItem('TopicData');
 
-    // if(!stepOneLocal || !stepTwoLocal || !TopicData) {
-    //   window.location.href = "/applyExpert";
-    // }
-
     if(query.step == 1) {
       return <ApplyExpert actions={actions} uploadToken={uploadToken} verifyExpert={verifyExpert} collegeByCountry={collegeByCountry}/>; // move to else default
     } else if(query.step == 2) {
       if(!stepOneLocal) {
-        return window.location.href = "/applyExpert";
+        return window.location.href = '/applyExpert';
       }
       return <AddExpertInfo actions={actions} uploadToken={uploadToken} />;
     } else if(query.step == 3) {
       if(!stepTwoLocal) {
-        return window.location.href = "/applyExpert";
+        return window.location.href = '/applyExpert';
       }
       return <PubTopic actions={actions} uploadToken={uploadToken} applyExpert={applyExpert}/>;
     } else if(query.step == 4) {
       if(!TopicData) {
-        return window.location.href = "/applyExpert";
+        return window.location.href = '/applyExpert';
       } else {
         window.localStorage.clear('*');
       }

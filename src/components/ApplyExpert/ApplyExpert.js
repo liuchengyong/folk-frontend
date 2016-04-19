@@ -287,7 +287,9 @@ class ApplyComponent extends React.Component {
   }
 
   componentDidMount() {
-
+    // React.addEventListener(document, "keyup", () => {
+    //   alert('test key up');
+    // })
     this.props.actions.fetchToken();
     // this.applyExpertLocalData = getFromLocal('ApplyExpertData');
     this.applyExpertLocalData = null;//getFromLocal('ApplyExpertData');
