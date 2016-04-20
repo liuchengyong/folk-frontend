@@ -19,7 +19,7 @@ export default {
   UploadToken: '/api/v1/upload/token',
   verifyExpert: '/api/v1/verify/expert',
   applyExpert: '/api/v2/expert',
-  
+  ActiveData: '/api/v1/article/',
   wechatAPI: {
     config: '/api/wechat/config',
     coupon: '/api/wechat/coupon',
