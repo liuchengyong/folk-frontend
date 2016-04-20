@@ -77,7 +77,7 @@ class AddExpertInfo extends React.Component {
     save2Local('ApplyExpertDataTwo', data);
 
     setTimeout(function() {
-      location.href = location.pathname  + '?step=3'; 
+      location.href = location.pathname  + '?step=3';
     }, 300)
 
 
@@ -135,7 +135,7 @@ class AddExpertInfo extends React.Component {
   componentDidMount() {
     // this.applyExpertLocalData = getFromLocal('ApplyExpertData');
     if(!getFromLocal('ApplyExpertData')) {
-      location.href = location.pathname; 
+      location.href = location.pathname;
     }
     this.props.actions.fetchToken();
 

@@ -11,7 +11,7 @@ import React from 'react';
 import Loading from '../Common/Loading';
 import assign from 'lodash/assign';
 import regexHelper from '../../common/regexHelper';
-import { save2Local, getFromLocal} from '../../common/helper';
+import { save2Local} from '../../common/helper';
 
 import ApplyExpertBaseContent from './ApplyExpertBaseContent';
 let logo_register = require('../../images/logo_register.png');
@@ -20,7 +20,6 @@ class ApplyComponent extends React.Component {
 
   constructor(props) {
     super(props);
-    console.log(this.props);
     this.state = {
       nextTips : '',
       showTips: false,
@@ -34,7 +33,7 @@ class ApplyComponent extends React.Component {
   //获取子组件的input 值
   getChildValue(parentKey, childKey)  {
     if(!this.refs[parentKey].refs[childKey]) {
-      return 
+      return ;
     }
     return this.refs[parentKey].refs[childKey].value.trim()
   }
@@ -42,7 +41,6 @@ class ApplyComponent extends React.Component {
   nextStep() {
 
     let baseContent = this.refs.baseContent;
-    console.log(baseContent);
 
     let username = this.getChildValue('baseContent', 'userName');
     let mobile = this.getChildValue('baseContent', 'mobile');
@@ -94,7 +92,6 @@ class ApplyComponent extends React.Component {
     }
     if(!baseContent.refs.upImage.idImgUrl[0] && !this.applyExpertLocalData) {
       bool = false
-      console.log(baseContent.refs.upImage);
       this.nextTips = '请上传正确的头像';
       baseContent.refs.upImage.setState({
         showTips: true
@@ -165,9 +162,7 @@ class ApplyComponent extends React.Component {
 
     let countryCode = this.refs.baseContent.state.countryKey;
 
-    let idCarFiles = this.refs.baseContent.state.idFiles; //array
-    let _idCarFiles = [];
-    let f = null;
+    // let idCarFiles = this.refs.baseContent.state.idFiles; //array
 
     let _idImgUrl = '';
     //
@@ -225,7 +220,7 @@ class ApplyComponent extends React.Component {
     save2Local('ApplyExpertData', data);
 
     setTimeout(function() {
-      location.href += '?step=2'; 
+      location.href += '?step=2';
     }, 300)
   }
 
@@ -287,11 +282,12 @@ class ApplyComponent extends React.Component {
   }
 
   componentDidMount() {
-
+    // React.addEventListener(document, "keyup", () => {
+    //   alert('test key up');
+    // })
     this.props.actions.fetchToken();
     // this.applyExpertLocalData = getFromLocal('ApplyExpertData');
     this.applyExpertLocalData = null;//getFromLocal('ApplyExpertData');
-    console.log(this.applyExpertLocalData);
     // this.props.actions.fetchCollegeCountry('CHINA')
 
   }

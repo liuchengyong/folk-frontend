@@ -64,7 +64,11 @@ render(
             cb(null, require('./containers/Dynamic'));
           })
         }}/>
-
+        <Route path="activity" name="activity" getComponent={(location, cb) => {
+          require.ensure([], (require) => {
+            cb(null, require('./containers/Activity'));
+          })
+        }}/>
 
       </Route>
     </Router>

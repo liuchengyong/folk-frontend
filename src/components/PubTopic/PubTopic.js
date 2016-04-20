@@ -25,7 +25,6 @@ class PubTopic extends React.Component {
     this.state = {
       nextTips: ''
     }
-    console.log(props);
   }
 
   //获取子组件的input 值
@@ -97,7 +96,6 @@ class PubTopic extends React.Component {
           // console.log('请确认所填写信息');
         }
         
-        console.log(self.props.applyExpert);
       });
 
     }

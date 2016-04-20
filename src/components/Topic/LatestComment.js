@@ -41,7 +41,12 @@ class LatestComment extends React.Component {
       return <img src={noStar} key={i}/>
     }
   })
-
+    let lastComment = null;
+      try {
+        lastComment = decodeURIComponent(comment.comment.content);
+      } catch(e) {
+        lastComment = comment.comment.content;
+      }
     return (
       <div>
         <div className="comment-wrap">
@@ -59,7 +64,7 @@ class LatestComment extends React.Component {
             </div>
             <div className="clear"></div>
             <div className="comment-content">
-              <p>{comment.comment.content}</p>
+              <p>{lastComment}</p>
             </div>
           </div>
           <div className="more-comment">
