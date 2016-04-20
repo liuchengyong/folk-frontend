@@ -9,7 +9,7 @@ import DeviceAdapter from '../../common/deviceAdapter';
 
 // require('react-html5video/dist/ReactHtml5Video.css');
 let img_play = require('../../images/play.png');
-let ic_me_avatar_default = require("../../images/ic_me_avatar_default.png");
+let ic_me_avatar_default = require('../../images/ic_me_avatar_default.png');
 
 
 class DynamicContent extends React.Component {
@@ -20,7 +20,7 @@ class DynamicContent extends React.Component {
 	    };
 	  }
 	playVideo(){
-		console.log(this.refs.video);
+		// console.log(this.refs.video);
 		this.setState({
 			isCover:false
 		});
@@ -33,9 +33,6 @@ class DynamicContent extends React.Component {
 		let dynamic = this.props.dynamic;
 		let content = dynamic.activityEvent;
 		let teacher = dynamic.user;
-		// let name = dynamic.param.a
-		//console.log(this);
-// 	
 		let sud,contentMsg,videoCover,contentTitle;
 		if(dynamic.likedList.length > 0){
 			sud = <div className = "dynamic-support-detail">
@@ -50,12 +47,12 @@ class DynamicContent extends React.Component {
 			let mobileType = DeviceAdapter.getMobileType();
 			if(mobileType.iPhone || mobileType.iPad ){
 				contentMsg =<div className = "content-mode">
-								<video src= {content.url} controls="controls" 
-								ref={(el) => {
+								<video src={content.url} controls="controls"
+								ref={(el)=>{
 			                        this.videoEl = el;
 			                    }} poster={content.previewUrl}>
 									你的微信不支持视频播放
-								</video>		
+								</video>
 							</div>;
 			}else{
 				if(this.state.isCover){ //first click after status
@@ -65,13 +62,13 @@ class DynamicContent extends React.Component {
 								</div>;
 				}
 				contentMsg =<div className = "content-mode">
-								<video src= {content.url} controls="controls" 
+								<video src= {content.url} controls="controls"
 								ref={(el) => {
 			                        this.videoEl = el;
 			                    }}>
 									你的微信不支持视频播放
 								</video>
-								{videoCover}			
+								{videoCover}
 							</div>;
 			}
 
