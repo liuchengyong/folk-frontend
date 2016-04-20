@@ -129,13 +129,13 @@ class ApplyExpertBaseContent extends React.Component {
       'hide': (this.state.area == 0)
     });
 
-    var inviterClass = classNames({
-      'ipt-tips': 'ipt-tips',
-      'mobile': 'mobile',
-      'error': (this.state.mobile == 2),
-      'right': (this.state.mobile == 1),
-      'hide': (this.state.mobile == 0)
-    });
+    // var inviterClass = classNames({
+    //   'ipt-tips': 'ipt-tips',
+    //   'mobile': 'mobile',
+    //   'error': (this.state.mobile == 2),
+    //   'right': (this.state.mobile == 1),
+    //   'hide': (this.state.mobile == 0)
+    // });
 
     return (
       <div className="base-content">

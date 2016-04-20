@@ -9,7 +9,6 @@ var serialize = function (data) {
 };
 
 module.exports = (data) => {
-  console.log(data);
 
   return dispatch => {
     dispatch(requestApplyExpert());
@@ -18,7 +17,7 @@ module.exports = (data) => {
 			mode: 'cors',
 			headers: {
 			'Content-Type': 'application/x-www-form-urlencoded',
-			'Accept': 'application/json',
+			'Accept': 'application/json'
 			// 'X-Codingpedia': 'velue',
 			// 'Access-Control-Allow-Headers': 'accept, content-type,aa, bb, x-parse-session-token'
 			},

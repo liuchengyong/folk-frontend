@@ -55,7 +55,7 @@ var save2Local = (k, v) => {
   window.localStorage.setItem(k, data);
 
 }
-var getFromLocal = (k, v) => {
+var getFromLocal = (k) => {
   var data = window.localStorage.getItem(k);
   return JSON.parse(data);
 }

@@ -26,7 +26,8 @@ const reducers = {
   dynamic: require('../reducers/dynamic'),
   collegeByCountry: require('../reducers/fetchCollegeCountry'),
   verifyExpert: require('../reducers/verifyExpert'),
-  applyExpert: require('../reducers/applyExpert')
+  applyExpert: require('../reducers/applyExpert'),
+  active: require('../reducers/activity')
 };
 
 module.exports = combineReducers(extend(reducers, {routing: routerReducer}));
