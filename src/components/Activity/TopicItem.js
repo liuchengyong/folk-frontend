@@ -11,7 +11,6 @@ class TopicItem extends React.Component {
       var _topic = topic.topic;
       var expert = topic.expert.expert;
       var user = topic.expert.user;
-      console.log(user);
 
       var role = (expert.role == 'STUDENT') ? '名校' : '名师';
 
@@ -49,9 +48,9 @@ class TopicItem extends React.Component {
     );
   }
 
-  componentDidMount() {
-    DeviceAdapter.setFrontSize();
-  }
+  // componentDidMount() {
+  //   DeviceAdapter.setFrontSize();
+  // }
 }
 
 export default TopicItem;

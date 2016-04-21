@@ -26,7 +26,6 @@ class ActiveComponent extends React.Component {
     }
 
     return (
-
       <div className="activity">
         <TopBanner actions={actions} dialog={dialog}/>
         <ActiveBanner active={active}/>
@@ -37,13 +36,12 @@ class ActiveComponent extends React.Component {
 
   componentWillReceiveProps(nextProps) {
     console.log(nextProps);
-    console.log('------------');
-    if (!nextProps.loadedConfig && nextProps.active.results) {
+    if (!nextProps.loadedConfig && nextProps.active.article) {
       let active = nextProps.active;
       nextProps.configWechatSharing({
-        title: '【指点】嘘~~自己知道就好，一定不要和别人去说',
-        desc: 'desc',
-        link: 'link',
+        title: active.article.title,
+        desc: active.article.summary,
+        link: 'http://7xl9qr.com1.z0.glb.clouddn.com//ef2b61c1c021c3664e32aa6a1b6563db',
         imgUrl: active.article.topCover
       });
     }
@@ -58,3 +56,6 @@ class ActiveComponent extends React.Component {
 ActiveComponent.defaultProps = {};
 
 export default WechatWrapper(ActiveComponent);
+
+
+
