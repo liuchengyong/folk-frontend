@@ -11,27 +11,42 @@ import WechatWrapper from '../WechatWrapper';
 import Loading from '../Common/Loading';
 import DeviceAdapter from '../../common/deviceAdapter';
 import TopBanner from '../Common/TopBanner';
+import ActiveBanner from './ActiveBanner';
+import TopicItem from './TopicItem';
 
 class ActiveComponent extends React.Component {
   render() {
-    console.log(this.props);
     let dialog = this.props.dialog;
     let actions = this.props.actions;
     let active = this.props.active;
 
-    if (active.isFetching) {
+
+    if(active.isFetching) {
       return <Loading />
     }
+
     return (
 
       <div className="activity">
         <TopBanner actions={actions} dialog={dialog}/>
+        <ActiveBanner active={active}/>
+        <TopicItem active={active}/>
       </div>
     );
   }
 
-  componentWillReceiveProps() {
-
+  componentWillReceiveProps(nextProps) {
+    console.log(nextProps);
+    console.log('------------');
+    if (!nextProps.loadedConfig && nextProps.active.results) {
+      let active = nextProps.active;
+      nextProps.configWechatSharing({
+        title: '【指点】嘘~~自己知道就好，一定不要和别人去说',
+        desc: 'desc',
+        link: 'link',
+        imgUrl: active.article.topCover
+      });
+    }
   }
 
   componentDidMount() {
