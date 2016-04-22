@@ -48,8 +48,10 @@ class ActiveComponent extends React.Component {
   }
 
   componentDidMount() {
+    console.log(this.props.params.id);
+    var id = this.props.params.id || 'D1A5E0C3-1871-478D-8779-7075233AF3AE';
     DeviceAdapter.setFrontSize();
-    this.props.actions.fetchActiveData('D1A5E0C3-1871-478D-8779-7075233AF3AE');
+    this.props.actions.fetchActiveData(id);
   }
 }
 
