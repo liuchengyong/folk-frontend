@@ -13,10 +13,6 @@ class ActiveBanner extends React.Component {
     );
   }
 
-  componentWillReceiveProps() {
-    
-  }
-
   componentDidMount() {
     DeviceAdapter.setFrontSize();
   }

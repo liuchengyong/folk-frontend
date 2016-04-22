@@ -13,7 +13,10 @@ class TopicItem extends React.Component {
       var user = topic.expert.user;
 
       var role = (expert.role == 'STUDENT') ? '名校' : '名师';
-
+      var view = topic.expert.views;
+      if(view >= 10000) {
+        view = parseInt(view/10000) + '万';
+      }
       return (
         <div key={_topic.id} className="topic-item">
           <div className="item-header">
@@ -34,7 +37,7 @@ class TopicItem extends React.Component {
             </span>
             <div className="content">
               <span className="title">{_topic.title}</span>
-              <div className="view"><i></i>{topic.expert.views}人浏览过</div>
+              <div className="view"><i></i>{view}人浏览过</div>
             </div>
           </div>
         </div>

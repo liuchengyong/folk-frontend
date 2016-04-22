@@ -8,6 +8,7 @@ require('styles/_activity.scss');
 
 import React from 'react';
 import WechatWrapper from '../WechatWrapper';
+import config from 'config';
 import Loading from '../Common/Loading';
 import DeviceAdapter from '../../common/deviceAdapter';
 import TopBanner from '../Common/TopBanner';
@@ -38,11 +39,13 @@ class ActiveComponent extends React.Component {
     console.log(nextProps);
     if (!nextProps.loadedConfig && nextProps.active.article) {
       let active = nextProps.active;
+      var link = `${config.baseUrl}/activity/` + this.props.params.id;
+
       nextProps.configWechatSharing({
         title: active.article.title,
         desc: active.article.summary,
-        link: 'http://7xl9qr.com1.z0.glb.clouddn.com//ef2b61c1c021c3664e32aa6a1b6563db',
-        imgUrl: active.article.topCover
+        link: link,
+        imgUrl: active.article.sharedCover || active.article.topCover
       });
     }
   }
