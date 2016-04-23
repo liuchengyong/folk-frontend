@@ -15,8 +15,8 @@ import Activity from '../components/Activity/Activity';
 /* Populated by react-webpack-redux:reducer */
 class ActiveContainer extends Component {
   render() {
-    const { dialog, actions } = this.props;
-    return <Activity dialog={dialog} actions={actions}/>;
+    const { dialog, actions, active, params } = this.props;
+    return <Activity dialog={dialog} actions={actions} active={active} params={params}/>;
   }
 }
 
@@ -27,8 +27,8 @@ class ActiveContainer extends Component {
  */
 ActiveContainer.propTypes = {
   actions: PropTypes.object.isRequired,
-  active: PropTypes.object.isRequired
-  // params: PropTypes.object.isRequired
+  active: PropTypes.object.isRequired,
+  params: PropTypes.object.isRequired
 };
 function mapStateToProps(state) {
   /* Populated by react-webpack-redux:reducer */
