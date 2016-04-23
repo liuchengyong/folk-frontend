@@ -6,6 +6,7 @@
 
 import React from 'react';
 import Time from '../../common/timeFormate';
+let ic_me_avatar_default = require('../../images/ic_me_avatar_default.png');
 class ContentComment extends React.Component {
 	DownApp() {
 		    this.props.actions.setDialogStatus(true);
@@ -14,18 +15,17 @@ class ContentComment extends React.Component {
 		// console.log(this);
 		let comments = this.props.dynamic.comments.results;
 		let options = comments.map((comment,i) => {
-			comment = comment.comment;
-			let user = JSON.parse(comment.priv).user;
+			let user = JSON.parse(comment.comment.priv).user;
 			return (
 				<div className="msg-option" key={i} onClick={this.DownApp.bind(this)}>
 					<div className="msg-option-header">
-						<img className="sender-avatar" src={user.avatar} />
+						<img className="sender-avatar" src={user.avatar || ic_me_avatar_default} />
 						<div className="sender-base">
-							<span className="sender-name">{decodeURIComponent(user.loginName)}</span>
-							<span className="sender-time">{Time.formateBrokeTime_(comment.timeRecorded)}</span>
+							<span className="sender-name">{decodeURIComponent(user.loginName || comment.sender.name || "匿名")}</span>
+							<span className="sender-time">{Time.formateBrokeTime_(comment.comment.timeRecorded)}</span>
 						</div>
 					</div>
-					<div className="msg-text">{decodeURIComponent(comment.content)}</div>
+					<div className="msg-text">{decodeURIComponent(comment.comment.content)}</div>
 				</div>);
 		});
 
