@@ -73,7 +73,7 @@ class DynamicContent extends React.Component {
 			}
 
 		}else{  //content type is html
-			contentTitle = <div className="content-title">{content.title}</div>;
+			contentTitle = <div className="content-title">{decodeURIComponent(content.title)}</div>;
 		}
 		return (<div className="dynamic-content">
 				<div className="content-header">
