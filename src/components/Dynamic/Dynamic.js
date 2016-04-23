@@ -58,7 +58,7 @@ class DynamicComponent extends React.Component {
         // console.log(shareTitles);
         nextProps.configWechatSharing({
             title: shareTitles,
-            desc: dynamic.description,
+            desc: decodeURIComponent(dynamic.description),
             link: `${config.baseUrl}/dynamic/` + this.props.params.id,
             imgUrl: user.avatar
         });

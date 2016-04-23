@@ -81,12 +81,12 @@ class DynamicContent extends React.Component {
 					<div className = "teacher-base">
 						<span className = "teacher-name">{decodeURIComponent(teacher.loginName || teacher.name)}</span>
 						<div className = "teacher-tag">
-							<span className = "school">{dynamic.expert.title}</span>
+							<span className = "school">{decodeURIComponent(dynamic.expert.title)}</span>
 						</div>
 					</div>
 				</div>
 				{contentTitle}
-				<div className = "content-text" dangerouslySetInnerHTML={{__html: content.description}}></div>
+				<div className = "content-text" dangerouslySetInnerHTML={{__html: decodeURIComponent(content.description)}}></div>
 				{contentMsg}
 				<div className = "content-footer">
 					<span className = "dynamic-support" onClick={this.DownApp.bind(this)} >{dynamic.countOfLiked}</span>

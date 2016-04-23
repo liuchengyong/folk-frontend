@@ -21,11 +21,11 @@ class ContentComment extends React.Component {
 					<div className="msg-option-header">
 						<img className="sender-avatar" src={user.avatar} />
 						<div className="sender-base">
-							<span className="sender-name">{decodeURI(user.loginName)}</span>
+							<span className="sender-name">{decodeURIComponent(user.loginName)}</span>
 							<span className="sender-time">{Time.formateBrokeTime_(comment.timeRecorded)}</span>
 						</div>
 					</div>
-					<div className="msg-text">{decodeURI(comment.content)}</div>
+					<div className="msg-text">{decodeURIComponent(comment.content)}</div>
 				</div>);
 		});
 
