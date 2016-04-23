@@ -12,6 +12,8 @@
 	width: 100%;
 	padding: 1rem 0.22rem 0.22rem;
 	background-color: #f3f4f8;
+	word-break:break-all; 
+    word-wrap:break-word;
 	&:before{
 		position: absolute;
 		content: "";
