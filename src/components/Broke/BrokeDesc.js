@@ -49,7 +49,7 @@ class BrokeDesc extends React.Component {
               <div className="broke-content">
                 <span
                   className="reply-comment">{ct.parent.id !== id ? '回复' + JSON.parse(ct.parent.priv).user.loginName + '  ' : ''}</span>
-                {decodeURI(ct.comment.content)}
+                {decodeURIComponent(ct.comment.content)}
               </div>
               <div className="broke-comment-time">
                 {Time.formateBrokeTime(ct.comment.timeRecorded)}
@@ -76,7 +76,7 @@ class BrokeDesc extends React.Component {
           </div>
           <div className="broke-content">
             <div className="broke-text">
-              {decodeURI(desc.comment.content)}
+              {decodeURIComponent(desc.comment.content)}
             </div>
             {desc.comment.images.length > 0 &&
             <div className="broke-img">
