@@ -5,6 +5,7 @@
 import React from 'react';
 import Dialog from '../Common/Dialog';
 import Time from '../../common/timeFormate';
+import Code from '../../common/code';
 
 class BrokeDesc extends React.Component {
 

@@ -7,7 +7,7 @@ module.exports = (id) => {
     dispatch(requestDynamicData());
     return fetch(config.apiUrl + '/api/v1/activity/event/' + id +'?page=0&pageSize=3',{
           method: 'GET',
-          mode: 'cors',
+          mode: 'no-cors',
           headers: {
              'Content-Type': 'application/x-www-form-urlencoded',
              'Accept': 'application/json',
