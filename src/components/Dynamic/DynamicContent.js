@@ -79,7 +79,7 @@ class DynamicContent extends React.Component {
 				<div className="content-header">
 					<img className = "teacher-avter" src = {teacher.avatar} onClick={this.DownApp.bind(this)}/>
 					<div className = "teacher-base">
-						<span className = "teacher-name">{decodeURIComponent(teacher.loginName || teacher.name)}</span>
+						<span className = "teacher-name">{decodeURIComponent(teacher.name || teacher.loginName || '匿名')}</span>
 						<div className = "teacher-tag">
 							<span className = "school">{decodeURIComponent(dynamic.expert.title)}</span>
 						</div>

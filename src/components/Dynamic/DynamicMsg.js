@@ -1,8 +1,3 @@
-/**
-*
-*
-*
-*/
 
 import React from 'react';
 import Time from '../../common/timeFormate';
@@ -21,15 +16,13 @@ class ContentComment extends React.Component {
 					<div className="msg-option-header">
 						<img className="sender-avatar" src={user.avatar || ic_me_avatar_default} />
 						<div className="sender-base">
-							<span className="sender-name">{decodeURIComponent(user.loginName || comment.sender.name || "匿名")}</span>
+							<span className="sender-name">{decodeURIComponent(comment.sender.name || user.loginName || '匿名')}</span>
 							<span className="sender-time">{Time.formateBrokeTime_(comment.comment.timeRecorded)}</span>
 						</div>
 					</div>
 					<div className="msg-text">{decodeURIComponent(comment.comment.content)}</div>
 				</div>);
 		});
-
-
 		return (
 			<div className="msg">
 				<div className="msg-header">

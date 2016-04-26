@@ -14,14 +14,15 @@
 	background-color: #f3f4f8;
 	word-break:break-all; 
     word-wrap:break-word;
-	&:before{
-		position: absolute;
-		content: "";
-		top: 0;
-		left: 0;
-		right: 0;
-		bottom: 0;
-	}
+	// &:before{
+	// 	position: absolute;
+	// 	content: "";
+	// 	top: 0;
+	// 	left: 0;
+	// 	right: 0;
+	// 	bottom: 0;
+	// 	z-index: 0;
+	// }
 }
 // ================  dynamic detail start   ============================
 .dynamic-content{

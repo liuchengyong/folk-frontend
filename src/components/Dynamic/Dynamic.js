@@ -12,15 +12,14 @@ import Loading from '../Common/Loading';
 import Helmet from 'react-helmet';
 import config from 'config';
 import TopBanner from '../Common/TopBanner';
+import Delete from '../Common/Delete';
 
 import DynamicContent from './DynamicContent';
 import DynamicMsg from './DynamicMsg';
-// import ExpertHeader from './ExpertHeader';
-// import ExpertDesc from './ExpertDesc';
-// import ExpertTopic from './ExpertTopic';
-// import ExpertComment from './ExpertComment';
 
 import WechatWrapper from '../WechatWrapper';
+
+
 // import Dialog from '../Common/Dialog';
 
 class DynamicComponent extends React.Component {
@@ -29,22 +28,32 @@ class DynamicComponent extends React.Component {
     if(this.props.dynamic.isFetching) {
       return <Loading />;
     }
-    // return <Loading />;
+
     let dialog = this.props.dialog;
     let actions = this.props.actions;
     let dynamic = this.props.dynamic;
 
-    let msg;
+    if(!dynamic.activityEvent){
+      return (
+        <div className="delete_wrapper">
+          <Helmet title={'已删除动态'} />
+          <TopBanner dialog={dialog} actions={actions}/>
+          <Delete dialog={dialog} msg={'动态已被删除'}  actions={actions}/>
+        </div>
+      )
+    }
+
+    let comment = null;
     if(dynamic.comments.results.length != 0){
-      msg = <DynamicMsg dialog={dialog} actions={actions} dynamic={dynamic}/>;
+        comment = <DynamicMsg dialog={dialog} actions={actions} dynamic={dynamic}/>;
     }
 
     return (
       <div className="dynamic">
-        <Helmet title={(dynamic.user.loginName||dynamic.user.name)+'-'+dynamic.expert.title} />
+        <Helmet title={decodeURIComponent(dynamic.user.loginName||dynamic.user.name)+'-'+decodeURIComponent(dynamic.expert.title)} />
         <TopBanner dialog={dialog} actions={actions}/>
         <DynamicContent dialog={dialog} actions={actions} dynamic={dynamic} />
-        {msg}
+        {comment}
       </div>
     );
   }
