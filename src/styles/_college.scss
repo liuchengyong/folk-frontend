@@ -1,0 +1,247 @@
+.main-container{
+	position: relative;
+	display: block;
+	width: 100%;
+	min-height: 100%;
+	background-color: #f3f4f8;
+}
+.college{
+	position: relative;
+	display: block;
+	width: 100%;
+	padding: 1rem 0.22rem 0.23rem;
+	word-break:break-all; 
+    word-wrap:break-word;
+}
+.college-container{
+	position: relative;
+	display: block;
+	width: 100%;
+	height:auto;
+}
+
+.college-banner{
+	position: relative;
+	display: block;
+	margin:0.23rem -0.22rem 0;
+	height: 3.22rem;
+}
+.college-tag{
+	position: relative;
+	display: block;
+	width: 100%;
+	height:auto;
+	margin: 0.18rem 0 0; 
+	background-color: #FFFFFF;
+	border-radius: 5px;
+	padding: 0 0 0.3rem 1.6rem;
+	min-height: 2rem;
+}
+.college-logo{
+	position: absolute;
+	display: block;
+	top:0.44rem;
+	left: 0.31rem;
+	width: 1.11rem;
+	height: 1.11rem;
+}
+.college-base{
+	position: relative;
+	display: block;
+	width: 100%;
+	height: auto;
+}
+.college-name{
+	display: block;
+	padding: 0.3rem 0 0;
+	font-size: 0.32rem;
+	color: #18aef9;
+}
+.college-ename{
+	display: block;
+	padding: 0.19rem 0 0;
+	font-size: 0.26rem;
+	color: #cdcdcd;
+}
+.college-tag-list{
+	display: block;
+	font-size: 0.24rem;
+	color: #FFFFFF;
+	padding:0.11rem 0 0;
+	span{
+		min-width: 1.61rem;
+		display: inline-block;
+		border-radius: 5px;
+		height: 0.4rem;
+		text-align: center;
+		margin-right: 0.11rem;
+		padding: 0.1rem 0 0;
+	}
+	span:nth-child(1){
+		background-color: #ff6600;
+	}
+	span:nth-child(2){
+		background-color: #18aef9;
+	}
+	span:nth-child(3){
+		background-color: #5aceb8;
+	}
+}
+.college-type,.college-keySubjectCount{
+	display: block;
+	padding: 0.25rem 0 0;
+	font-size: 0.25rem;
+	color: #333333;
+}
+
+//---------------------学校简介-------------------------------
+.college-introduction{
+	position: relative;
+	display: block;
+	width: 100%;
+	height:auto;
+	margin: 0.22rem 0 0; 
+	background-color: #FFFFFF;
+	border-radius: 5px;
+	padding:0.3rem; 
+}
+.college-introduction-head{
+	display: block;
+	font-size: 0.32rem;
+	color: #1e1e1e;
+}
+.college-introduction-content{
+	display: block;
+	font-size: 0.3rem;
+	color: #666666;
+	padding-top: 0.38rem;
+	line-height: 1.5em;
+}
+.college-introduction-footer{
+	display: block;
+	font-size: 0.24rem;
+	color: #cdcdcd;
+	padding-top: 0.08rem;
+	text-align: center;
+	letter-spacing: 0.2em;
+	.arrow{
+		position: relative;
+		display: inline-block;
+		border-top: 2px solid #cdcdcd;
+		border-left: 2px solid #cdcdcd;
+		width: 0.15rem;
+		height: 0.15rem;
+		
+	}
+	.arrow.up{
+		top:0rem;
+		transform: rotate(45deg);
+		-ms-transform: rotate(45deg);		/* IE 9 */
+		-webkit-transform: rotate(45deg);	/* Safari and Chrome */
+		-o-transform: rotate(45deg);		/* Opera */
+		-moz-transform: rotate(45deg);	
+	}
+	.arrow.down{
+		top:-0.06rem;
+		transform: rotate(-135deg);
+		-ms-transform: rotate(-135deg);		/* IE 9 */
+		-webkit-transform: rotate(-135deg);	/* Safari and Chrome */
+		-o-transform: rotate(-135deg);		/* Opera */
+		-moz-transform: rotate(-135deg);	
+	}
+}
+
+// ===================  学校评论  ==================
+.college-topic{
+	position: relative;
+	display: block;
+	width: 100%;
+	height:auto;
+	margin: 0.2rem 0 0; 
+	background-color: #FFFFFF;
+	border-radius: 5px;
+	padding:0.3rem; 
+}
+.topic-title{
+	position: relative;;
+	font-size: 0.32rem;
+	color: #333333;
+	padding: 0 0 0.21rem 0.22rem;
+	border-bottom: 1px solid #cdcdcd;
+	&:before{
+	 	position: absolute;
+	 	top:0;
+	 	left: 0;
+	 	content: "";
+	 	width: 0.06rem;
+	 	height: 0.32rem;
+	 	background-color: #18aef9;
+	 	border-radius: 2px;
+	}
+}
+.topic{
+	position: relative;
+	width: 100%;
+	height: auto;
+	padding: 0.21rem 0 0.3rem 0;
+	border-bottom: 1px solid #cdcdcd;
+	&:last-child {
+		border-bottom: none;
+		padding-bottom: 0;
+	}
+}
+.topic-header{
+	position: relative;
+	padding: 0 0 0 0.73rem;
+	font-size: 0.26rem;
+	color: #999999;
+	width: 100%;
+	span{
+		padding-right: 0.15rem;
+	}
+}
+.avtar{
+	position: absolute;
+	display: block;
+	width: 0.5rem;
+	height: 0.5rem;
+	left: 0;
+	border-radius: 100%;
+}
+.teacher-name,.teacher-job{
+	display: inline-block;
+	height: 0.5rem;
+	padding-top: 0.12rem;
+}
+.topic-content{
+	position: relative;
+	padding: 0.16rem 0 0 0.73rem;
+	font-size: 0.33rem;
+	color: #333333;
+}
+.topic-role{
+	position: absolute;
+	left: 0;
+	width: 0.53rem;
+	// height: 0.33rem;
+	background-color: #00acfa;
+	border-radius: 5px;
+	text-align: center;
+	font-size: 0.19rem;
+	padding-top: 0.06rem;
+	color: #FFFFFF;
+	line-height: 1.5em;
+}
+.topic-text{
+	line-height: 1.5em;
+}
+.topic-footer{
+	padding: 0.2rem 0 0 0.73rem;
+	font-size: 0.22rem;
+	color: #999999;
+	
+}
+
+
+
+

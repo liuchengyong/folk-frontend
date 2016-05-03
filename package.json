@@ -62,10 +62,12 @@
     "qiniu": "^6.1.9",
     "react-addons-test-utils": "^0.14.0",
     "react-hot-loader": "^1.2.9",
+    "react-swipe": "^5.0.3",
     "replace": "^0.3.0",
     "rimraf": "^2.4.3",
     "sass-loader": "^3.1.2",
     "style-loader": "^0.13.0",
+    "swipe-js-iso": "^2.0.3",
     "url-loader": "^0.5.6",
     "webpack": "^1.12.0",
     "webpack-dev-server": "^1.12.0"

@@ -69,7 +69,11 @@ render(
             cb(null, require('./containers/Activity'));
           })
         }}/>
-
+        <Route path="college/:id" name="college" getComponent={(location, cb) => {
+          require.ensure([], (require) => {
+            cb(null, require('./containers/College'));
+          })
+        }}/>
       </Route>
     </Router>
   </Provider>,
