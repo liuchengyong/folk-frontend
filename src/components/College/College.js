@@ -34,10 +34,10 @@ class CollegeComponent extends React.Component {
     if(college.topicList.length > 0){
         topics = (<CollegeTopicComponent college={college} actions={actions} dialog={dialog} />);
     }
-        
+    console.log(college);    
     return (
       <div className="college">
-        <Helmet title={'大学信息'} />
+        <Helmet title={ '指点-'+decodeURIComponent(college.college.name) } />
         <TopBanner dialog={dialog} actions={actions}/>
         <CollegeContainerComponent college={college} actions={actions} dialog={dialog} />
         {topics}
