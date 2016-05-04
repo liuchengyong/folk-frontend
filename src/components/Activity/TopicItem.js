@@ -1,5 +1,4 @@
 import React from 'react';
-import DeviceAdapter from '../../common/deviceAdapter';
 
 class TopicItem extends React.Component {
   render() {
@@ -50,10 +49,6 @@ class TopicItem extends React.Component {
       </div>
     );
   }
-
-  // componentDidMount() {
-  //   DeviceAdapter.setFrontSize();
-  // }
 }
 
 export default TopicItem;

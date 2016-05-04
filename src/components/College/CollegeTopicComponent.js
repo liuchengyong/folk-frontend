@@ -1,6 +1,5 @@
 
 import React from 'react';
-import stringFramet from '../../common/string';
 
 let ic_me_avatar_default = require('../../images/ic_me_avatar_default.png');
 class CollegeComponent extends React.Component {
@@ -35,7 +34,7 @@ class CollegeComponent extends React.Component {
 							<span className="topic-text">{topic.tTitle}</span>
 						</div>
 						<div className="topic-footer">
-							<span>{topic.viewCount+"浏览"}</span>
+							<span>{topic.viewCount+'浏览'}</span>
 						</div>
 					</div>);
         });

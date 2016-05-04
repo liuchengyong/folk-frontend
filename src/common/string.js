@@ -39,8 +39,8 @@ exports.collegeTagsConversion = (value) => {
 			return '公立学校';
 		case 'InternationalTopUniversities':
 			return '国际顶级院校';
-		default :
-			return '';	
+		default:
+			return '';
 	}
 }
 
@@ -73,6 +73,6 @@ exports.collegeTypeConversion = (value) =>{
 		case 'Other':
 			return '其他';
 		default :
-			return '';	
+			return '';
 	}
 }

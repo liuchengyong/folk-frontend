@@ -66,7 +66,7 @@ class DynamicComponent extends React.Component {
         let shareTitles = (['【指点】噢～我鲜为人知的一面被你发现了','【指点】对于一个人了解全面些比较好，你也一样','【指点】经历的更多，人生才会充满欢笑'])[Math.floor(Math.random()*3)];
 
         // console.log(shareTitles);
-        let desc = nextProps.dynamic.activityEvent ? decodeURIComponent(dynamic.title || dynamic.description) : "动态已被删除";
+        let desc = nextProps.dynamic.activityEvent ? decodeURIComponent(dynamic.title || dynamic.description) : '动态已被删除';
         nextProps.configWechatSharing({
             title: shareTitles,
             desc:  desc,

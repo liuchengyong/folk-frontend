@@ -11,7 +11,6 @@ import Loading from '../Common/Loading';
 import Helmet from 'react-helmet';
 import config from 'config';
 import TopBanner from '../Common/TopBanner';
-import Delete from '../Common/Delete';
 
 import CollegeContainerComponent from './CollegeComponent';
 import CollegeTopicComponent from './CollegeTopicComponent';
@@ -36,7 +35,7 @@ class CollegeComponent extends React.Component {
         
     return (
       <div className="college">
-        <Helmet title={"大学信息"} />
+        <Helmet title={'大学信息'} />
         <TopBanner dialog={dialog} actions={actions}/>
         <CollegeContainerComponent college={college} actions={actions} dialog={dialog} />
         {topics}
@@ -47,7 +46,7 @@ class CollegeComponent extends React.Component {
   componentWillReceiveProps(nextProps) {
     if (!nextProps.loadedConfig && !nextProps.college.isFetching) {
         let college = nextProps.college,
-            desc = college.college.description ? decodeURIComponent(college.college.description) : "指点君觉得这所学校棒棒哒~";
+            desc = college.college.description ? decodeURIComponent(college.college.description) : '指点君觉得这所学校棒棒哒~';
         nextProps.configWechatSharing({
             title: college.college.name+'和我预想的不一样啊',
             desc:  desc,

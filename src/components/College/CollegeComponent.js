@@ -30,7 +30,7 @@ class CollegeComponent extends React.Component {
 
 		if(college.keySubjectCount != 0){
 			keySubjectCount = (<div className="college-keySubjectCount">重点学科： {college.keySubjectCount}个 </div>);
-		}	
+		}
 		let swipeOptions  = {
 				startSlide: 0,
 				speed: 400,
@@ -38,20 +38,18 @@ class CollegeComponent extends React.Component {
 				continuous: true,
 				disableScroll: false,
 				stopPropagation: false
-			};	
+			};
 		let style = {
             container: {
                 overflow: 'hidden',
                 visibility: 'hidden',
                 position: 'relative'
             },
-
             wrapper: {
                 overflow: 'hidden',
                 position: 'relative',
-                height:'100%',
+                height:'100%'
             },
-
             child: {
                 float: 'left',
                 width: 'auto',
@@ -68,7 +66,6 @@ class CollegeComponent extends React.Component {
         collegeBanner = college.images.map((value,i)=>{
         	return (<img key={i} src={value} />);
         });
-        console.log(collegeBanner.length);
         if(collegeBanner.length == 0){
         	collegeBanner = (<img src={bannerDefault} />);
         }
@@ -82,7 +79,7 @@ class CollegeComponent extends React.Component {
         							收起<span className="arrow up"></span>
 								</div>);
         	}else{
-        		introduction = (<div className="college-introduction-content">{desc.slice(0,100)+"..."}</div>);
+        		introduction = (<div className="college-introduction-content">{desc.slice(0,100)+'...'}</div>);
 	        	introductionMore = (<div className="college-introduction-footer" onClick={this.openMore.bind(this)}>
 	        							更多<span className="arrow down"></span>
 									</div>);
