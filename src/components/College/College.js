@@ -34,7 +34,6 @@ class CollegeComponent extends React.Component {
     if(college.topicList.length > 0){
         topics = (<CollegeTopicComponent college={college} actions={actions} dialog={dialog} />);
     }
-    console.log(college);    
     return (
       <div className="college">
         <Helmet title={ '指点-'+decodeURIComponent(college.college.name) } />
@@ -48,7 +47,7 @@ class CollegeComponent extends React.Component {
   componentWillReceiveProps(nextProps) {
     if (!nextProps.loadedConfig && !nextProps.college.isFetching) {
         let college = nextProps.college,
-            desc = college.college.description ? decodeURIComponent(college.college.description.replace(/%/g,'%25')).replace(/<[^>]+>/g,'').replace(/\s/g,"") : '指点君觉得这所学校棒棒哒~';
+            desc = college.college.description ? decodeURIComponent(college.college.description.replace(/%/g,'%25')).replace(/<[^>]+>/g,'').replace(/\s/g,'') : '指点君觉得这所学校棒棒哒~';
         nextProps.configWechatSharing({
             title: college.college.name+'和我预想的不一样啊',
             desc:  desc,

@@ -75,7 +75,7 @@ class CollegeComponent extends React.Component {
         if(collegeBanner.length == 0){
         	collegeBanner = (<img src={bannerDefault} />);
         }
-        let desc = decodeURIComponent(college.description.replace(/%/g,'%25') || '我们正在接收卧底传回的数据，请期待...').replace(/<[^>]+>/g,'').replace(/\s/g,"");
+        let desc = decodeURIComponent(college.description.replace(/%/g,'%25') || '我们正在接收卧底传回的数据，请期待...').replace(/<[^>]+>/g,'').replace(/\s/g,'');
         if(desc.length < 100){
         	introduction = (<div className="college-introduction-content">{desc}</div>);
         }else{
@@ -100,8 +100,8 @@ class CollegeComponent extends React.Component {
 				<div className="college-tag">
 					<img className="college-logo" src={college.icon || logoDefault} />
 					<div className="college-base">
-						<span className="college-name">{decodeURIComponent(college.name)}</span>
-						<span className="college-ename">{decodeURIComponent(college.englishName)}</span>
+						<span className="college-name">{decodeURIComponent(college.name || '')}</span>
+						<span className="college-ename">{decodeURIComponent(college.englishName || '')}</span>
 						{collegeTagList}
 						<div className="college-type">
 							院校类型： {stringFramet.collegeTypeConversion(college.type)}类
