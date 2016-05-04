@@ -25,11 +25,17 @@ class ExpertComponent extends React.Component {
     let dialog = this.props.dialog;
     let actions = this.props.actions;
     let expert = this.props.expert;
-    if(this.props.expert.isFetching) {
+    if(expert.isFetching) {
       return <Loading />
     }
 
     let title = expert.expert.user.name + ' - ' + expert.expert.expert.title;
+
+    console.log(expert);
+    let topicsDom = null;
+    if(expert.topic.length > 0){
+      topicsDom = (<ExpertTopic expert={expert} />);
+    }
 
     return (
       <div className="expert">
@@ -37,7 +43,7 @@ class ExpertComponent extends React.Component {
         <TopBanner actions={actions} dialog={dialog}/>
         <ExpertHeader actions={actions} dialog={dialog} expert={expert}/>
         <ExpertDesc expert={expert} actions={actions} dialog={dialog}/>
-        <ExpertTopic expert={expert} />
+        {topicsDom}
         <ExpertComment expert={expert} dialog={dialog} actions={actions}/>
       </div>
     );
@@ -50,10 +56,6 @@ class ExpertComponent extends React.Component {
       var eduInfo = user.educationList[0];
       var descEdu = eduInfo &&  (user.name + '-' + eduInfo.college.name + '  ')
       nextProps.configWechatSharing({
-        // title: '我是' + user.name + '来自' + eduInfo.college.name +
-        //         ' ' + eduInfo.educationInfo.major +
-        //         ' ' + config.eduLevelMap[eduInfo.educationInfo.educationLevel] +
-        //         ' ' + '我在指点等你',
         title: '【指点】不要走那千篇一律的人生之路，我是' + user.name + '，给你指路',
         desc: (descEdu + expert.expert.shortIntroduction),
         link: `${config.baseUrl}/expert/` + this.props.params.id,
