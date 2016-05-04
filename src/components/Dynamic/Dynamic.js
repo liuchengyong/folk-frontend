@@ -68,7 +68,7 @@ class DynamicComponent extends React.Component {
             title: shareTitles,
             desc:  desc,
             link: `${config.baseUrl}/dynamic/` + this.props.params.id,
-            imgUrl: user.avatar
+            imgUrl: user.avatar ? user.avatar : null
         });
     }
   }
