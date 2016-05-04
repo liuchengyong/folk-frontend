@@ -18,9 +18,7 @@ import DynamicContent from './DynamicContent';
 import DynamicMsg from './DynamicMsg';
 
 import WechatWrapper from '../WechatWrapper';
-
-
-// import Dialog from '../Common/Dialog';
+let logo_icon = require('../../images/icon/logo_icon.png');
 
 class DynamicComponent extends React.Component {
 
@@ -68,7 +66,7 @@ class DynamicComponent extends React.Component {
             title: shareTitles,
             desc:  desc,
             link: `${config.baseUrl}/dynamic/` + this.props.params.id,
-            imgUrl: user.avatar ? user.avatar : null
+            imgUrl: user ? user.avatar : logo_icon
         });
     }
   }
