@@ -5,9 +5,6 @@
 */
 import React from 'react';
 import DeviceAdapter from '../../common/deviceAdapter';
-// import {default as Video, Controls, Play, Mute, Seek, Fullscreen, Time, Overlay}  from 'react-html5video/dist/ReactHtml5Video.js';
-
-// require('react-html5video/dist/ReactHtml5Video.css');
 let img_play = require('../../images/play.png');
 let ic_me_avatar_default = require('../../images/ic_me_avatar_default.png');
 
@@ -20,10 +17,7 @@ class DynamicContent extends React.Component {
 	    };
 	  }
 	playVideo(){
-		// console.log(this.refs.video);
-		this.setState({
-			isCover:false
-		});
+		this.setState({isCover:false});
 		this.videoEl.play();
 	}
 	DownApp() {
