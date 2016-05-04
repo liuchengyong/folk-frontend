@@ -31,7 +31,6 @@ class ExpertComponent extends React.Component {
 
     let title = expert.expert.user.name + ' - ' + expert.expert.expert.title;
 
-    console.log(expert);
     let topicsDom = null;
     if(expert.topic.length > 0){
       topicsDom = (<ExpertTopic expert={expert} />);
