@@ -2,7 +2,8 @@ import React from 'react';
 import ReactSwipe from 'react-swipe';
 import stringFramet from '../../common/string';
 
-let img1 = require('../../video/1.jpg');
+let bannerDefault = require('../../images/college-banner-default.png'),
+	logoDefault = require('../../images/college-logo-default.png');
 
 class CollegeComponent extends React.Component {
 	constructor(props) {
@@ -64,7 +65,7 @@ class CollegeComponent extends React.Component {
         });
         console.log(collegeBanner.length);
         if(collegeBanner.length == 0){
-        	collegeBanner = (<img src={img1} />);
+        	collegeBanner = (<img src={bannerDefault} />);
         }
         let desc = decodeURIComponent(college.description);
         if(desc.length < 100){
@@ -89,7 +90,7 @@ class CollegeComponent extends React.Component {
 					{collegeBanner }
 				</ReactSwipe>
 				<div className="college-tag">
-					<img className="college-logo" src={college.icon} />
+					<img className="college-logo" src={college.icon || logoDefault} />
 					<div className="college-base">
 						<span className="college-name">{decodeURIComponent(college.name)}</span>
 						<span className="college-ename">{decodeURIComponent(college.englishName)}</span>

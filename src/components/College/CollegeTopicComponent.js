@@ -21,10 +21,9 @@ class CollegeComponent extends React.Component {
 	render(){
 		let topics = this.props.college.topicList,
 			topicsDom = null;
-
 		topicsDom = topics.map((topic,i)=>{
 
-        	return (<div key={i} className="topic">
+        	return (<div key={i} className="topic" onClick={this.DownApp.bind(this)}>
 						<div className="topic-header">
 							<img className="avtar" src={topic.eAvatar || ic_me_avatar_default } />
 							<span className="teacher-name">{topic.eName || topic.eLoginname || '匿名'}</span>
@@ -33,7 +32,7 @@ class CollegeComponent extends React.Component {
 						</div>
 						<div className="topic-content">
 							<span className="topic-role">{topic.eRole == 'STUDENT' ? '名校' : (topic.eRole == 'TEACHER'?'名师':'家长')}</span>
-							<span className="topic-text">{topic.tTitle+"dsajskdjalkjasld姐仨看得见啦可是大家拉屎的靖丽世界大力士大家"}</span>
+							<span className="topic-text">{topic.tTitle}</span>
 						</div>
 						<div className="topic-footer">
 							<span>{topic.viewCount+"浏览"}</span>

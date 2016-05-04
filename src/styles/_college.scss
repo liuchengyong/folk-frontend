@@ -59,7 +59,7 @@
 }
 .college-ename{
 	display: block;
-	padding: 0.19rem 0 0;
+	padding: 0.11rem 0 0;
 	font-size: 0.26rem;
 	color: #cdcdcd;
 }
@@ -67,7 +67,7 @@
 	display: block;
 	font-size: 0.24rem;
 	color: #FFFFFF;
-	padding:0.11rem 0 0;
+	padding:0.2rem 0 0;
 	span{
 		min-width: 1.61rem;
 		display: inline-block;
@@ -75,7 +75,8 @@
 		height: 0.4rem;
 		text-align: center;
 		margin-right: 0.11rem;
-		padding: 0.1rem 0 0;
+		// padding: 0.1rem 0 0;
+		line-height: 0.4rem;
 	}
 	span:nth-child(1){
 		background-color: #ff6600;
@@ -114,7 +115,7 @@
 	display: block;
 	font-size: 0.3rem;
 	color: #666666;
-	padding-top: 0.38rem;
+	padding-top: 0.24rem;
 	line-height: 1.5em;
 }
 .college-introduction-footer{
@@ -127,8 +128,8 @@
 	.arrow{
 		position: relative;
 		display: inline-block;
-		border-top: 2px solid #cdcdcd;
-		border-left: 2px solid #cdcdcd;
+		border-top: 1px solid #cdcdcd;
+		border-left: 1px solid #cdcdcd;
 		width: 0.15rem;
 		height: 0.15rem;
 		
@@ -184,7 +185,7 @@
 	width: 100%;
 	height: auto;
 	padding: 0.21rem 0 0.3rem 0;
-	border-bottom: 1px solid #cdcdcd;
+	border-bottom: 1px solid #f0f0f0;
 	&:last-child {
 		border-bottom: none;
 		padding-bottom: 0;
@@ -236,10 +237,22 @@
 	line-height: 1.5em;
 }
 .topic-footer{
-	padding: 0.2rem 0 0 0.73rem;
+	position: relative;
+	display: block;
+	padding: 0.2rem 0 0 1.1rem;
 	font-size: 0.22rem;
+	line-height: 0.22rem;
 	color: #999999;
-	
+	&:before{
+		position: absolute;
+		display: block;
+		content: "";
+		left: 0.73rem;
+		width: 0.22rem;
+		height: 0.22rem;
+		background-image: url('../images/liulanliang.png');
+		background-size: 100% 100%;
+	}
 }
 
 
