@@ -25,7 +25,12 @@ class CollegeComponent extends React.Component {
 			collegeTag = null,
 			collegeBanner = null,
 			introduction = null,
-			introductionMore = null;
+			introductionMore = null,
+			keySubjectCount = null;
+
+		if(college.keySubjectCount != 0){
+			keySubjectCount = (<div className="college-keySubjectCount">重点学科： {college.keySubjectCount}个 </div>);
+		}	
 		let swipeOptions  = {
 				startSlide: 0,
 				speed: 400,
@@ -100,9 +105,7 @@ class CollegeComponent extends React.Component {
 						<div className="college-type">
 							院校类型： {stringFramet.collegeTypeConversion(college.type)}类
 						</div>
-						<div className="college-keySubjectCount">
-							重点学科： {college.keySubjectCount}个
-						</div>
+						{keySubjectCount}
 					</div>
 				</div>
 				<div className="college-introduction">

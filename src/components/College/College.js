@@ -45,21 +45,16 @@ class CollegeComponent extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    // console.log(nextProps);
-    // if (!nextProps.loadedConfig && !nextProps.dynamic.isFetching) {
-    //     let dynamic = nextProps.dynamic.activityEvent,
-    //         user = nextProps.dynamic.user;
-    //     let shareTitles = (['【指点】噢～我鲜为人知的一面被你发现了','【指点】对于一个人了解全面些比较好，你也一样','【指点】经历的更多，人生才会充满欢笑'])[Math.floor(Math.random()*3)];
-
-    //     // console.log(shareTitles);
-    //     let desc = nextProps.dynamic.activityEvent ? decodeURIComponent(dynamic.title || dynamic.description) : "动态已被删除";
-    //     nextProps.configWechatSharing({
-    //         title: shareTitles,
-    //         desc:  desc,
-    //         link: `${config.baseUrl}/dynamic/` + this.props.params.id,
-    //         imgUrl: user.avatar
-    //     });
-    // }
+    if (!nextProps.loadedConfig && !nextProps.college.isFetching) {
+        let college = nextProps.college,
+            desc = college.college.description ? decodeURIComponent(college.college.description) : "指点君觉得这所学校棒棒哒~";
+        nextProps.configWechatSharing({
+            title: college.college.name+'和我预想的不一样啊',
+            desc:  desc,
+            link: `${config.baseUrl}/college/` + this.props.params.id,
+            imgUrl: college.college.icon
+        });
+    }
   }
 
   componentDidMount() {

@@ -28,7 +28,7 @@ class CollegeComponent extends React.Component {
 							<img className="avtar" src={topic.eAvatar || ic_me_avatar_default } />
 							<span className="teacher-name">{topic.eName || topic.eLoginname || '匿名'}</span>
 							|
-							<span className="teacher-job">{topic.cName}</span>
+							<span className="teacher-job">{topic.eTitle}</span>
 						</div>
 						<div className="topic-content">
 							<span className="topic-role">{topic.eRole == 'STUDENT' ? '名校' : (topic.eRole == 'TEACHER'?'名师':'家长')}</span>
