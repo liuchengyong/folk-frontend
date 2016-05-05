@@ -47,7 +47,13 @@ class CollegeComponent extends React.Component {
   componentWillReceiveProps(nextProps) {
     if (!nextProps.loadedConfig && !nextProps.college.isFetching) {
         let college = nextProps.college,
-            desc = college.college.description ? decodeURIComponent(college.college.description.replace(/%/g,'%25')).replace(/<[^>]+>/g,'').replace(/\s/g,'') : '指点君觉得这所学校棒棒哒~';
+            desc = '指点君觉得这所学校棒棒哒~';
+        if(college.college.description){
+            desc = college.college.description.replace(/<[^>]+>/g,'').replace(/\s/g,'');
+            let span = document.createElement('span');
+            span.innerHTML = desc;
+            desc = (typeof span.textContent == 'string') ? span.textContent : span.innerText;
+        }
         nextProps.configWechatSharing({
             title: college.college.name+'和我预想的不一样啊',
             desc:  desc,

@@ -50,10 +50,32 @@
 	display: block;
 	width: 100%;
 	height: auto;
+	padding: 0.3rem 0 0;
 }
+.college-country{
+	position: relative;
+	display: block;
+	width: 100%;
+	height: auto;
+	padding: 0.2rem 0 0 0.4rem;
+}
+.country-logo{
+	position: absolute;
+	display: inline-block;
+	left: 0;
+	height: 0.33rem;
+	width: 0.33rem;
+}
+.country-name{
+	display: inline-block;
+	font-size: 0.26rem;
+	color: #333333;
+	line-height: 0.33rem;
+}
+
 .college-name{
 	display: block;
-	padding: 0.3rem 0 0;
+	padding: 0.2rem 0 0;
 	font-size: 0.32rem;
 	color: #18aef9;
 }
