@@ -4,11 +4,11 @@
 import React from 'react';
 import Dialog from '../Common/Dialog';
 import Time from '../../common/timeFormate';
-let hasStar = require('../../images/icon/started.png');
-let noStar = require('../../images/icon/star.png');
+let hasStar = require('../../images/icon/started.png'),
+    noStar = require('../../images/icon/star.png'),
+    ic_me_avatar_default = require('../../images/ic_me_avatar_default.png');
 
 class ExpertComment extends React.Component {
-
   DownApp() {
     this.props.actions.setDialogStatus(true);
   }
@@ -57,10 +57,10 @@ class ExpertComment extends React.Component {
               <span className="evaluate_title_text">评价</span>
           </div>
           <div className="evaluate_top">
-              <img className="evaluate_top_head_img" src={comment.sender.avatar} />
+              <img className="evaluate_top_head_img" src={comment.sender.avatar || ic_me_avatar_default} />
               <span className="evaluate_top_name">
                   {comment.sender.name}
-                  <small>{Time.formateDate(comment.topic.topic.onlineRule.timeCreated)}</small>
+                  <small>{Time.formateDate(comment.comment.timeRecorded)}</small>
               </span>
               <span className={'evaluate_top_start evaluate_top_start--' + commentStart}>
                   {stared}
@@ -70,7 +70,7 @@ class ExpertComment extends React.Component {
               参与的话题：{commentTopic.title}
           </div>
           <div className="evaluate_content">
-              {commentTopic.description}
+              {decodeURIComponent(comment.comment.content)}
           </div>
           {commentCount > 1 &&
             <span onClick={this.DownApp.bind(this)} className="evaluate_more">查看更多评论</span>

@@ -4,7 +4,8 @@
 import React from 'react';
 import Dialog from '../Common/Dialog';
 import config from 'config';
-let coverImg = require('../../images/cover.jpg');
+let coverImg = require('../../images/cover.jpg'),
+    ic_me_avatar_default = require('../../images/ic_me_avatar_default.png');
 class ExpertHeader extends React.Component {
 
   DownApp() {
@@ -45,7 +46,7 @@ class ExpertHeader extends React.Component {
           </div>
           <div className="back_wall_icon">
               <div className="back_wall_head">
-                  <img className="back_wall_head_img" src={user.avatar} />
+                  <img className="back_wall_head_img" src={user.avatar || ic_me_avatar_default } />
               </div>
               <span className="back_wall_focus">
                   {expert.favoriteCount}

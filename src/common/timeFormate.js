@@ -123,10 +123,11 @@ Date.prototype.Format = function(fmt) {
  * 日期标准化
  */
  exports.formateDate = (ts) => {
-  let date = new Date(ts);
-  const year = date.getFullYear();
-  const month = date.getMonth() + 1;
-  const _date = date.getDate();
-  return year + '-' + month + '-' + _date;
+  try{
+    return new Date(ts).Format('yyyy-MM-dd');
+  }catch(e){
+    return 'unknow';
+  }
+  
  }
 
