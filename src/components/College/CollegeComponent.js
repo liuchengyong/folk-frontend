@@ -140,8 +140,9 @@ class CollegeComponent extends React.Component {
 			countryBase = null;
     	}
         if(college.country != 'CHINA' && countryBase){
+        	let countryLogo = require('../../images/countryIcon/'+countryBase.icon);
         	countryDom = (<div className="college-country">
-        					<img className="country-logo" src={'../../images/countryIcon/'+countryBase.icon} />
+        					<img className="country-logo" src={countryLogo} />
         					<span className="country-name">{countryBase.name}</span>
         				</div>);
         	collegeTypeDom = null;
