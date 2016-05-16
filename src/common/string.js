@@ -44,6 +44,11 @@ exports.collegeTagsConversion = (value) => {
 	}
 }
 
+/**
+ * [description] 院校类型的转换
+ * @param  {[type]} value [description]
+ * @return {[type]}       [description]
+ */
 exports.collegeTypeConversion = (value) =>{
 	switch(value){
 		case 'University':
@@ -74,5 +79,18 @@ exports.collegeTypeConversion = (value) =>{
 			return '其他';
 		default :
 			return '';
+	}
+}
+
+/**
+ * [description] 对中文字符进行decodeURIComponent解码
+ * @param  {[type]} value [description]
+ * @return {[type]}       [description]
+ */
+exports.decodeString = (value) =>{
+	try{
+		return decodeURIComponent(value);
+	}catch(e){
+		return value;
 	}
 }

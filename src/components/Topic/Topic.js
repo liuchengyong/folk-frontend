@@ -40,7 +40,7 @@ class TopicComponent extends React.Component {
         <Helmet title={title}/>
         <TopBanner actions={this.props.actions} dialog={dialog} />
         <TopicDesc topic={topic} expert={expert}/>
-        { _LatestComment }
+        { _LatestComment}
         <LatestMsg message={message} />
         <Menu dialog={dialog} actions={this.props.actions} />
       </div>

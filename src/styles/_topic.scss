@@ -102,11 +102,23 @@
     }
   }
   .order-count {
+    position: relative;
     margin-top: 16px;
-    // margin-bottom: 16px;
     float: right;
     font-size: 11px;
     color: #333;
+    padding-left: 18px;
+    &:before{
+      position: absolute;
+      left: 0;
+      content: "";
+      height: 11px;
+      width: 11px;
+      background-image: url(../images/icon/ic_number.png);
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: 100% 100%;
+    }
   }
 }
 

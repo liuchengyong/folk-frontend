@@ -6,6 +6,7 @@
 
 import React from 'react';
 import Dialog from '../Common/Dialog';
+
 let hasStar = require('../../images/icon/started.png');
 let noStar = require('../../images/icon/star.png');
 
@@ -56,7 +57,7 @@ class LatestComment extends React.Component {
               <img src={comment.sender.avatar}/>
               <div className="comment-text">
                 <div className="comment-name">{comment.sender.name}</div>
-                <div className="comment-time">2016-02-26</div>
+                <div className="comment-time"></div>
               </div>
               <div className="comment-start">
                 {stared}

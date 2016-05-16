@@ -6,7 +6,7 @@ const requestTopicData = require('./requestTopicData');
  * @param	{tid: topic id}
  */
 module.exports = function(tid) {
-	let url = config.apiUrl + config.TopicData + tid + '?relateTopicNum=0&relateCommentNum=0';
+	let url = config.apiUrl + config.TopicData + tid + '?relateTopicNum=3&relateCommentNum=3';
 
   return dispatch => {
   	dispatch(requestTopicData())
