@@ -11,6 +11,7 @@ import TopBanner from './Common/TopBanner';
 import Helmet from 'react-helmet';
 import Loading from './Common/Loading';
 require('styles/_consultation.scss');
+let logo_icon = require('../../images/icon/logo_icon.png');
 
 class Consultation extends React.Component {
   render() {
@@ -57,7 +58,7 @@ class Consultation extends React.Component {
         title: '【指点】' + nextProps.consultation.param.article.title,
         desc: nextProps.consultation.param.article.summary,
         link: `${config.baseUrl}/consultation/` + nextProps.params.id,
-        imgUrl: nextProps.consultation.param.article.cover
+        imgUrl: nextProps.consultation.param.article.cover || logo_icon
       });
     }
   }
