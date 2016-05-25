@@ -55,7 +55,7 @@ class Consultation extends React.Component {
     if (!nextProps.loadedConfig && nextProps.consultation.param.article) {
       nextProps.configWechatSharing({
         title: '【指点】' + nextProps.consultation.param.article.title,
-        desc: nextProps.consultation.param.article.content,
+        desc: nextProps.consultation.param.article.summary,
         link: `${config.baseUrl}/consultation/` + nextProps.params.id,
         imgUrl: nextProps.consultation.param.article.cover
       });

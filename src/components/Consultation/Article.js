@@ -3,7 +3,7 @@
  */
 import React from 'react';
 import marked from 'marked';
-import {formateBrokeTime} from '../../common/timeFormate';
+import {formateBrokeTime_} from '../../common/timeFormate';
 
 const Article = (props) => (
   <article id='article'>
@@ -11,7 +11,7 @@ const Article = (props) => (
       <span className='article_title'>{props.article.title}</span>
       <small>
         <span>来自：<span className='article_channel'>{props.article.channel}</span></span>
-        <span className='article_timeRecorded'>{formateBrokeTime(props.article.timeRecorded)}</span>
+        <span className='article_timeRecorded'>{formateBrokeTime_(props.article.timeRecorded)}</span>
       </small>
     </h2>
     {/*todo cache marked content*/}
