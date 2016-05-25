@@ -11,7 +11,7 @@ import TopBanner from './Common/TopBanner';
 import Helmet from 'react-helmet';
 import Loading from './Common/Loading';
 require('styles/_consultation.scss');
-let logo_icon = require('../../images/icon/logo_icon.png');
+let logo_icon = require('../images/icon/logo_icon.png');
 
 class Consultation extends React.Component {
   render() {
