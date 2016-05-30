@@ -1,7 +1,7 @@
 import {default as config} from 'config';
 const receiveTopicData = require('./receiveTopicData');
 const requestTopicData = require('./requestTopicData');
-
+import headers from '../globalHeader';
 /**
  * @param	{tid: topic id}
  */
@@ -10,7 +10,10 @@ module.exports = function(tid) {
 
   return dispatch => {
   	dispatch(requestTopicData())
-    return fetch(url)
+    return fetch(url,{
+    	method: 'GET',
+        headers: headers
+    })
       .then(response => response.json())
       .then(json => dispatch(receiveTopicData(json)));
   }

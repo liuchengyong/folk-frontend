@@ -2,6 +2,7 @@ import config from 'config';
 import helper from '../../common/helper';
 import requestLoginData from './requestLoginData';
 import receiveLoginData from './receiveLoginData';
+import headers from '../globalHeader';
 
 var serialize = function (data) {
     return Object.keys(data).map(function (keyName) {
@@ -24,10 +25,7 @@ module.exports = (data, type) => {
     return fetch(config.apiUrl + registerData, {
       	method: 'POST',
       	mode: 'cors',
-    		headers: {
-    		'Content-Type': 'application/x-www-form-urlencoded',
-    		'Accept': 'application/json'
-    		},
+    		headers: headers,
     		credentials: 'same-origin',
     		body: serialize(data)
       })
