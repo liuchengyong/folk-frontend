@@ -18,12 +18,12 @@ let logo_icon = require('../../images/icon/logo_icon.png');
 class TopicComponent extends React.Component {
   render() {
 
-    let topic = this.props.topic.topic;
-    let expert = this.props.topic.expert;
-    let comment = this.props.topic.comment;
-    let message = this.props.topic.relateMessages;
-
-    let dialog = this.props.dialog;
+    let topic = this.props.topic.topic,
+        expert = this.props.topic.expert,
+        comment = this.props.topic.comment,
+        message = this.props.topic.relateMessages,
+        tags = this.props.topic.tag,
+        dialog = this.props.dialog;
 
     if(this.props.topic.isFetching) {
       return <Loading />
@@ -41,7 +41,7 @@ class TopicComponent extends React.Component {
       <div className="topic-wrapper">
         <Helmet title={title}/>
         <TopBanner actions={this.props.actions} dialog={dialog} />
-        <TopicDesc topic={topic} expert={expert}/>
+        <TopicDesc topic={topic} expert={expert} tags={tags}/>
         { _LatestComment}
         <LatestMsg message={message} />
         <Menu dialog={dialog} actions={this.props.actions} />

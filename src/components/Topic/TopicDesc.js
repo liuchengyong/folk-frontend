@@ -10,8 +10,9 @@ let ic_me_avatar_default = require('../../images/ic_me_avatar_default.png');
 
 class TopicDesc extends React.Component {
   render() {
-    let topic = this.props.topic;
-    let expert = this.props.expert;
+    let topic = this.props.topic,
+        expert = this.props.expert,
+        tags = this.props.tags.subtag;
     //是否显示求指点
     let appointCount = null;
     if(topic.appointmentTimes > 0) {
@@ -23,6 +24,11 @@ class TopicDesc extends React.Component {
     }
     return (
       <div className="topic-desc">
+        <div className="topic-tag">
+         {tags.map((str,i)=>{
+            return i > 3 ? null : <span key={i}>{str}</span>;
+         })}
+        </div>
         <div className="desc-header">
           <div className="expert-info">
             <div className="price">
@@ -37,12 +43,12 @@ class TopicDesc extends React.Component {
           </div>
         </div>
         <div className="title">
-          <h1>{stringFramet.decodeString(topic.title)}</h1>
+          <span className="order-title">{stringFramet.decodeString(topic.title)}</span>
           <span className="order-time">{Time.duration2time(topic.duration)}</span>
+          <span className="order-num">{topic.appointmentTimes+'人求指点'}</span>
         </div>
         <div className="topic-content">
-          <p>
-            {stringFramet.decodeString(topic.description)}
+          <p dangerouslySetInnerHTML={{__html:topic.description}}>
           </p>
         </div>
           {appointCount}

@@ -8,7 +8,7 @@ module.exports = (id) => {
     dispatch(requestCollegeData());
     return fetch(config.apiUrl + '/api/v1/college/' + id +'/detail?page=0&pageSize=3',{
         method: 'GET',
-        headers: headers 
+        headers: headers
       })
       .then(response => response.json())
       .then(json => dispatch(receiveCollegeData(json)));

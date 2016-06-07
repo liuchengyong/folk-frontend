@@ -8,7 +8,7 @@ module.exports = (id) => {
     dispatch(requestExpertData());
     return fetch(config.apiUrl + config.ExpertData + id +'?pageSize=10',{
  		method: 'GET',
-        headers: headers 
+        headers: headers
     })
       .then(response => response.json())
       .then(json => dispatch(receiveExpertData(json)));

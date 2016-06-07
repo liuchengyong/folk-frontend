@@ -15,10 +15,10 @@
   height: auto;
   overflow: hidden;
   max-width: 500px;
-  margin: 0 auto;
-    
+  margin: 0 auto; 
 }
 .topic-desc {
+  position: relative;
   width: 100%;
   height: auto;
   margin-top: 0 atuo;
@@ -29,9 +29,50 @@
   border-radius: 8px;
   padding-bottom: 15px;
   margin-top: .2rem;
+  .topic-tag{
+    position: absolute;
+    right: 0;
+    top:-5px;
+    span{
+      &:before{
+        position: absolute;
+        content: "";
+        width:0;
+        height: 0;
+        border-left: 5px solid transparent;
+        border-right: 5px solid transparent;
+        border-bottom: 5px solid #5eceb8;
+        left: -5px;
+        top:0;
+      }
+      &:after{
+        position: absolute;
+        content: "";
+        width:0;
+        height: 0;
+        border-left: 5px solid transparent;
+        border-right: 5px solid transparent;
+        border-bottom: 5px solid #5eceb8;
+        right: -5px;
+        top:0;
+      }
+      position: relative;
+      display: block;
+      height: 27px;
+      font-size: 13px;
+      padding: 7px 10px;
+      color: #ffffff;
+      background-color: #5eceb8;
+      border-bottom-right-radius: 5px;
+      border-bottom-left-radius: 5px;
+      float: right;
+      margin-right: 15px;
+    }
+  }
+
   .desc-header {
     width: 100%;
-    padding-top: 19px;
+    padding-top: 30px;
     box-sizing: border-box;
     .expert-text {
       display: table-cell;
@@ -71,32 +112,61 @@
   }
 
   .title {
-      max-height: 60px;
-      line-height: 60px;
-      h1 {
-        font-size: 16px; 
-        font-weight: bold;  
-        color: #333;
-        margin: 0;
+      display: block;
+      span{
         display: inline-block;
-        max-width: 74%;
-        overflow:hidden;
-        white-space:nowrap;
-        text-overflow:ellipsis;
-        text-overflow: ellipsis;
-        -ms-text-overflow: ellipsis;
-        -o-text-overflow: ellipsis;
+        overflow: hidden;
       }
-      .order-time {
-        float: right;
+      .order-title{ 
+        display: block;
+        padding-top:18px;    
+        font-size: 17px; 
+        color: #333333;
+        line-height: 1.5em;
+        word-break: break-all; 
+        word-wrap:break-word;
+      }
+      .order-time,.order-num{
+        position: relative;
+        padding-top: 10px;
         font-size: 11px;
         color: #999;
+        padding-left: 13px;
+        &:before{
+          position: absolute;
+          display: block;
+          content: "";
+          left: 0;
+          top:10px;
+          width: 11px;
+          height: 11px;
+          background-image: url(../images/icon/time.png);
+          background-size: 100% 100%;
+          background-repeat: no-repeat;
+        }
+      }
+      .order-num{
+        margin-left:3em;  
+        &:before{
+          background-image: url(../images/icon/ic_number.png);
+        }
       }
   }
   .topic-content {
+    padding-top: 2em;
+    img{
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+    a{
+      text-decoration: none;
+      color: #18aef9;
+      padding: 0 0.5em;
+    }
     p {
-      line-height: 1.5;
-      font-size: 15px;
+      line-height: 1.5em;
+      font-size: 16px;
       margin: 0;
       color: #666;
     }
@@ -141,20 +211,20 @@
     border-left: 3px solid #18aef9;
     padding-left: 8px;
     font-size: 15px;
+    margin-bottom: 1em;
   }
   .comment-user-info, .msg-user-info {
     border-top: 1px solid #f0f0f0;
-    padding-top: 19px;
+    padding-top: 1em;
   }
 .comment-content {
-  margin-top: .4rem;
+  margin:1.5em 0 1em;
 }
+  .comment-inf:nth-child(1){
+    padding-top: 19px;
+  }
   .comment-info, .msg-info {
     width: 100%;
-    // padding: 0 19px;
-    padding-top: 19px;
-    padding-bottom: 10px;
-    // border: 1px solid red;
     box-sizing: border-box;
     border-bottom: 1px solid #f0f0f0;
     .comment-text {
@@ -206,14 +276,32 @@
     }
   }
   .msg-content {
-    margin-top: .35rem;
+    margin: 1em 0;
+    word-break: break-all; 
+    word-wrap:break-word;
+  }
+  .msg-reply{
+    display: block;
+    padding:1em 0;
+    border-top: 1px dashed #efefef;
+    word-break: break-all; 
+    word-wrap:break-word;
+    span{
+      font-size: 14px;
+      padding:0 0.1em;
+      line-height: 1.5em;
+    }
+    span:nth-child(1),span:nth-child(3){
+        color: #18aef9;
+    }
   }
   .comment-content, .msg-content {
     p {
       color: #666;
       font-size: 15px;
       line-height: 1.5;
-      word-wrap: break-word;
+      word-break: break-all; 
+      word-wrap:break-word;
     }
   }
 

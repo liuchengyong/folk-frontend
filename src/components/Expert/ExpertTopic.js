@@ -4,12 +4,18 @@
 import React from 'react';
 import classNames from 'classnames';
 import Time from '../../common/timeFormate';
-import StringLib from '../../common/string';
 
 let pnt_ic = require('../../images/icon/ic_number.png');
 
 class ExpertTopic extends React.Component {
-
+  getContent(str){
+    str = str.replace(/<[^>]+>/g,'')
+              .replace(/&gt;/g,'>')
+              .replace(/&lt;/g,'<')
+              .replace(/&nbsp;/g,' ')
+              .replace(/&amp;/g,'&');
+    return str.length > 120 ? (str.substring(0,117) + '...') : str;
+  }
 
   render() {
    
@@ -36,7 +42,7 @@ class ExpertTopic extends React.Component {
             {Time.duration2time(tp.duration)}
         </div>
         <div className="topics_item_content">
-            {StringLib.substring(tp.description, 100)}
+            {this.getContent(tp.description)}
         </div>
         <div className="topics_item_request_number">
             <img src={pnt_ic} /> {times}人求指点

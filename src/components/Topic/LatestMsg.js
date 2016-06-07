@@ -18,6 +18,17 @@ class LatestMsg extends React.Component {
         );
     if(message.length > 0) {
       content = message.map((msg,i) => {
+      let reply = null;
+      if(msg.child != null && msg.child.receiver != null){
+        let receiver = msg.child.receiver;
+        let o_receiver = msg.comment.receiver;
+        reply = (<div className="msg-reply">
+                <span>{stringFramet.decodeString(o_receiver.name || o_receiver.loginName || '匿名')}</span>
+                <span>:</span>
+                <span>{'@'+stringFramet.decodeString(receiver.name || receiver.loginName || '匿名')}</span>
+                <span>{stringFramet.decodeString(msg.child.content)}</span>
+              </div>);
+      }
       return i > 2? null : (
           <div key={msg.comment.id} className="msg-info">
               <div className="comment-user-info">
@@ -30,6 +41,7 @@ class LatestMsg extends React.Component {
               <div className="msg-content">
                 <p>{stringFramet.decodeString(msg.comment.content)}</p>
               </div>
+              {reply}
             </div>
           );
         })

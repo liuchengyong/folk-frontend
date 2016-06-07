@@ -8,7 +8,7 @@ module.exports = (key) => {
   	dispatch(requestKeyWordData());
     return fetch(config.apiUrl + config.found + key +'&page=0&pageSize=20',{
 		method: 'GET',
-        headers: headers 
+        headers: headers
     })
       .then(response => response.json())
       .then(json => dispatch(receiveKeyWordData(json)));
