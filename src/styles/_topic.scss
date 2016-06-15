@@ -32,17 +32,17 @@
   .topic-tag{
     position: absolute;
     right: 0;
-    top:-5px;
+    top:- 0.07rem;
     span{
       &:before{
         position: absolute;
         content: "";
         width:0;
         height: 0;
-        border-left: 5px solid transparent;
-        border-right: 5px solid transparent;
-        border-bottom: 5px solid #5eceb8;
-        left: -5px;
+        border-left: 0.07rem solid transparent;
+        border-right: 0.07rem solid transparent;
+        border-bottom: 0.07rem solid #5eceb8;
+        left: -0.07rem;
         top:0;
       }
       &:after{
@@ -50,24 +50,24 @@
         content: "";
         width:0;
         height: 0;
-        border-left: 5px solid transparent;
-        border-right: 5px solid transparent;
-        border-bottom: 5px solid #5eceb8;
-        right: -5px;
+        border-left: 0.07rem solid transparent;
+        border-right: 0.07rem solid transparent;
+        border-bottom: 0.07rem solid #5eceb8;
+        right: -0.07rem;
         top:0;
       }
       position: relative;
       display: block;
-      height: 23px;
-      font-size: 13px;
-      padding: 0 10px;
-      line-height: 23px;
+      height: 0.4rem;
+      font-size: 0.18rem;
+      padding: 0 0.2rem;
+      line-height: 0.4rem;
       color: #ffffff;
       background-color: #5eceb8;
       border-bottom-right-radius: 5px;
       border-bottom-left-radius: 5px;
       float: right;
-      margin-right: 15px;
+      margin-right: 0.2rem;
     }
   }
 
@@ -155,8 +155,11 @@
   }
   .topic-content {
     padding-top: 2em;
+    line-height: 1.5em;
+    font-size: 16px;
     img{
       display: block;
+      margin: 0.5em 0 0 0;
       width: 100%;
       height: auto;
     }
@@ -165,10 +168,8 @@
       color: #18aef9;
       padding: 0 0.5em;
     }
-    p {
-      line-height: 1.5em;
-      font-size: 16px;
-      margin: 0;
+    p { 
+      margin: 0.5em 0 0 0;
       color: #666;
     }
   }
