@@ -9,7 +9,7 @@ module.exports = (id) => {
         headers: headers
       })
       .then(response => response.json())
-      .then(json => json.success ? fetchCommentsData(dispatch,json.param) : "");
+      .then(json => json.success ? fetchCommentsData(dispatch,json.param) : '');
   }
 }
 

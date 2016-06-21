@@ -37,11 +37,11 @@ class AnswerComponent extends React.Component {
         commentsDom = null;
     if(comments.totalSize > 0){
         commentsDom = (<CommentsComponent actions={actions} comments={comments} />);
-    }    
+    }
 
     return (
       <div className="answer-container">
-        <Helmet title={ '指点-' } />
+        <Helmet title={ '指点-' + answer.question.title} />
         <TopBanner dialog={dialog} actions={actions} />
         <QuestionComponent question={answer} />
         <div className="answer">
@@ -55,14 +55,13 @@ class AnswerComponent extends React.Component {
           </div>
         </div>
         {commentsDom}
-      </div> 
+      </div>
     );
   }
 
   componentWillReceiveProps(nextProps) {
     if (!nextProps.loadedConfig && !nextProps.answer.isFetching) {
         let answer = nextProps.answer.answer;
-        console.log(answer);
         nextProps.configWechatSharing({
             title: `【指点】 你的益答 | ${answer.question.title}`,
             desc:  answer.answererTitle,
