@@ -1,0 +1,227 @@
+.main-container{
+	position: relative;
+	display: block;
+	width: 100%;
+	min-height: 100%;
+	background-color: #f3f4f8;
+}
+.answer-container{
+	position: relative;
+	width: 100%;
+	height: auto;
+	min-height: 100%;
+	background-color: #f3f4f8;
+	padding: 1.2rem .2rem .2rem;
+}
+.question{
+	position: relative;
+	overflow: hidden;
+	width: 100%;
+	height: auto;
+	background-color: #ffffff;
+	padding: 0.3rem;
+	border-radius: 5px;
+}
+.question-header{
+	position: relative;
+	display: block;
+	overflow: hidden;
+	height: 0.6rem;
+	padding: 0 1.2rem 0 0.8rem;
+	.question-person-icon{
+		position: absolute;
+		display: block;
+		width: 0.6rem;
+		height: 0.6rem;
+		border-radius: 0.6rem;
+		left: 0;
+		top:0;
+	}
+	.question-title{
+		display: block;
+		line-height: 0.6rem;
+		color: #969696;
+		font-size: 0.24rem;
+		white-space:nowrap;
+		overflow:hidden; 
+		text-overflow:ellipsis;
+	}
+	.question-price{
+		position: absolute;
+		display: block;
+		width: 1.2rem;
+		right: 0;
+		top:0;
+		font-size: 0.36rem;
+		color: #ff6600;
+		line-height: 0.6rem;
+		text-align: right;
+	}
+}
+.question-text{
+	padding-top: 0.2rem;
+	display: block;
+	font-size: 0.34rem;
+	color: #333333;
+	line-height: 1.5em;
+}
+
+.answer{
+	position: relative;
+	overflow: hidden;
+	width: 100%;
+	height: auto;
+	background-color: #ffffff;
+	padding: 0.3rem;    
+	margin-top: 0.2rem;
+	border-radius: 5px;
+}
+.answer-header{
+	position: relative;
+	display: block;
+	overflow: hidden;
+	height: 1rem;
+	padding: 0 0 0 1.2rem;
+	.answer-person-icon{
+		position: absolute;
+		display: block;
+		width: 1rem;
+		height: 1rem;
+		border-radius: 1rem;
+		left: 0;
+		top:0;
+	}
+	.answer-person-name{
+		display: block;
+		font-size: 0.34rem;
+		color: #323232;
+		height: 0.6rem;
+		line-height: 0.6rem;
+		white-space:nowrap;
+		overflow:hidden; 
+		text-overflow:ellipsis;
+	}
+	.answer-person-major{
+		display: block;
+		font-size: 0.26rem;
+		color: #666666;
+		height: 0.4rem;
+		white-space:nowrap;
+		overflow:hidden; 
+		text-overflow:ellipsis;
+	}
+}
+
+.answer-pay{
+	padding-top: 0.24rem;
+	position: relative;
+	display: block;
+	text-align: center;
+	span{
+		display: inline-block;
+		padding: 0.2rem 0.7rem;
+		font-size: 0.32rem;
+		color: #18aef9;
+		background-image: url(../images/price_back.png);
+		background-size: auto 100%;
+		background-repeat: repeat-x;
+		background-position: 0 0;
+	}
+}
+
+.comments{
+	position: relative;
+	overflow: hidden;
+	width: 100%;
+	height: auto;
+	background-color: #ffffff;
+	padding: 0 0.3rem;    
+	margin-top: 0.2rem;
+	border-radius: 5px;
+
+}
+.comments-header{
+	position: relative;
+	display: inline-block;
+	width: 100%;
+	height: 0.79rem;
+	font-size: 0.32rem;
+	color:#333333;
+	padding: 0.28rem 0 0.2rem 0.16rem;
+	border-bottom: #e6e6e6 solid 1px;
+	&:before{
+		position: absolute;
+		content: "";
+		width: 0.05rem;
+		height: 0.32rem;
+		background-color: #18aef9;
+		border-radius: 3px;
+		left: 0;
+		top:0.27rem;
+	}
+
+}
+
+.comment{
+	position: relative;
+	overflow: hidden;
+	width: 100%;
+	height: auto;
+	display: block;
+	padding: 0.26rem 0 0.24rem;
+	border-bottom: #f0f0f0 solid 1px;
+}
+// .comment:last-child{
+// 	border-bottom: none;
+// 	padding-bottom: 0;
+// }
+.comment-header{
+	position: relative;
+	display: block;
+	overflow: hidden;
+	height: 0.8rem;
+	padding: 0 0 0 1rem;
+	.comment-persion-icon{
+		position: absolute;
+		display: block;
+		top:0;
+		left: 0;
+		width: 0.8rem;
+		height: 0.8rem;
+		border-radius: 0.8rem;
+	}
+	.comment-person-name{
+		display: block;
+		font-size: 0.26rem;
+		color: #333333;
+		line-height: 0.5rem;
+		height: 0.5rem;
+		white-space:nowrap;
+		overflow:hidden; 
+		text-overflow:ellipsis;
+	}
+	.comment-publish-time{
+		display: block;
+		font-size: 0.2rem;
+		color: #999999;
+		height: 0.3rem;
+		white-space:nowrap;
+		overflow:hidden; 
+		text-overflow:ellipsis;
+	} 
+}
+.comment-text{
+	padding-top: 0.2rem;
+	display: block;
+	font-size: 0.28rem;
+	color: #333333;
+	line-height: 1.5em;
+}
+.comments-footer{
+	display: block;
+	font-size: 0.28rem;
+	color: #18aef9;
+	text-align: center;
+	line-height: 0.8rem;
+}
+

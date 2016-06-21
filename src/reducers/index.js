@@ -28,7 +28,8 @@ const reducers = {
   verifyExpert: require('../reducers/verifyExpert'),
   applyExpert: require('../reducers/applyExpert'),
   active: require('../reducers/activity'),
-  college: require('../reducers/college')
+  college: require('../reducers/college'),
+  answer: require('../reducers/answer')
 };
 
 module.exports = combineReducers(extend(reducers, {routing: routerReducer}));

@@ -54,24 +54,29 @@ render(
             cb(null, require('./containers/Login'));
           })
         }}/>
-        <Route path="applyExpert" name="applyExpert" getComponent={(location, cb) => {
+        <Route path="applyExpert" name="applyExpert" getComponent={(location, cb) => { // 
           require.ensure([], (require) => {
             cb(null, require('./containers/ApplyExpert'));
           })
         }}/>
-        <Route path="dynamic/:id" name="dynamic" getComponent={(location, cb) => {
+        <Route path="dynamic/:id" name="dynamic" getComponent={(location, cb) => { // 动态详情
           require.ensure([], (require) => {
             cb(null, require('./containers/Dynamic'));
           })
         }}/>
-        <Route path="activity/:id" name="activity" getComponent={(location, cb) => {
+        <Route path="activity/:id" name="activity" getComponent={(location, cb) => { // 专题详情
           require.ensure([], (require) => {
             cb(null, require('./containers/Activity'));
           })
         }}/>
-        <Route path="college/:id" name="college" getComponent={(location, cb) => {
+        <Route path="college/:id" name="college" getComponent={(location, cb) => { //学校详情
           require.ensure([], (require) => {
             cb(null, require('./containers/College'));
+          })
+        }}/>
+        <Route path="answer/:id" name="answer" getComponent={(location, cb) => { // 益达回答详情
+          require.ensure([], (require) => {
+            cb(null, require('./containers/Answer'));
           })
         }}/>
       </Route>
