@@ -35,7 +35,7 @@ let config = Object.assign({}, baseConfig, {
     new HtmlWebpackPlugin({
       filename: '../main.html',
       title: '指点我吧',
-      template: 'index-tmp.ejs'
+      template: 'index-tmp-test.ejs'
     })
   ],
   module: defaultSettings.getDefaultModules()
