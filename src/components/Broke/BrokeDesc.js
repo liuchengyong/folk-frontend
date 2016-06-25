@@ -4,7 +4,7 @@
  */
 import React from 'react';
 import Dialog from '../Common/Dialog';
-import Time from '../../common/timeFormate';
+import {formateTime} from '../../common/timeFormate';
 
 class BrokeDesc extends React.Component {
 
@@ -52,7 +52,7 @@ class BrokeDesc extends React.Component {
                 {decodeURIComponent(ct.comment.content)}
               </div>
               <div className="broke-comment-time">
-                {Time.formateBrokeTime(ct.comment.timeRecorded)}
+                {formateTime(ct.comment.timeRecorded)}
               </div>
             </div>
           </li>
@@ -71,7 +71,7 @@ class BrokeDesc extends React.Component {
               {JSON.parse(desc.comment.priv).user.loginName}
             </div>
             <div className="desc-time">
-              {Time.formateBrokeTime(desc.comment.timeRecorded)}
+              {formateTime(desc.comment.timeRecorded)}
             </div>
           </div>
           <div className="broke-content">

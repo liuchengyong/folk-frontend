@@ -4,7 +4,7 @@
 import React, { Component, PropTypes } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import Consultation from '../components/Consultation';
+import Consultation from '../components/Consultation/Consultation';
 
 class ConsultationDetail extends Component {
   render() {

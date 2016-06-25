@@ -64,9 +64,9 @@ class AnswerComponent extends React.Component {
         let answer = nextProps.answer.answer;
         nextProps.configWechatSharing({
             title: `【指点】 你的益答 | ${answer.question.title}`,
-            desc:  answer.answererTitle,
+            desc: answer.answererName + '|' + answer.answererTitle,
             link: `${config.baseUrl}/answer/` + this.props.params.id,
-            imgUrl: answer.questionerAvater || logo_icon
+            imgUrl: answer.answererAvater || logo_icon
         });
     }
   }

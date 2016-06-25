@@ -20,12 +20,12 @@ class ExpertDesc extends React.Component {
    let expert = this.props.expert.expert;
    let expertInfo = expert.expert;
     return (
-    <div className="teacher_introduce">
+    <div className="expert-introduce">
       {dialog}
-        <div className="teacher_introduce_title">
-           <span className="teacher_introduce_title_text">点师介绍</span>
+        <div className="expert-introduce-title">
+           <span className="expert-introduce-title-text">点师介绍</span>
         </div>
-        <div className="teacher_introduce_content">
+        <div className="expert-introduce-content">
               <p>
                 <img src={expertInfo.descriptionPicture} />
             </p>
@@ -34,7 +34,7 @@ class ExpertDesc extends React.Component {
             </p>
 
         </div>
-        <span onClick={this.DownApp.bind(this)} className="teacher_introduce_more">
+        <span onClick={this.DownApp.bind(this)} className="expert-introduce-more">
             更多动态
         </span>
     </div>

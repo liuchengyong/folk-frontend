@@ -44,7 +44,6 @@ function mapDispatchToProps(dispatch) {
     fetchExpertData: require('../actions/expert/fetchExpertData.js'),
     requestExpertData: require('../actions/expert/requestExpertData.js'),
     receiveExpertData: require('../actions/expert/receiveExpertData.js'),
-
     setDialogStatus: require('../actions/dialog/setDialogStatus.js')
   };
   const actionMap = { actions: bindActionCreators(actions, dispatch) };

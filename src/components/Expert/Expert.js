@@ -4,7 +4,7 @@
  */
 
 require('normalize.css');
-require('styles/expert/_expert.scss');
+require('styles/_expert.scss');
 
 import React from 'react';
 import DeviceAdapter from '../../common/deviceAdapter';
@@ -17,11 +17,15 @@ import ExpertDesc from './ExpertDesc';
 import WechatWrapper from '../WechatWrapper';
 import ExpertTopic from './ExpertTopic';
 import ExpertComment from './ExpertComment';
-// import Dialog from '../Common/Dialog';
+import ExpertAnswer from './ExpertAnswer';
+import { decodeString } from '../../common/string';
+// import ExpertTeacher from './ExpertTeacher';
 
+let logo_icon = require('../../images/icon/logo_icon.png');
 class ExpertComponent extends React.Component {
 
   render() {
+
     let dialog = this.props.dialog;
     let actions = this.props.actions;
     let expert = this.props.expert;
@@ -31,11 +35,22 @@ class ExpertComponent extends React.Component {
 
     let title = expert.expert.user.name + ' - ' + expert.expert.expert.title;
 
-    let topicsDom = null;
-    if(expert.topic.length > 0){
+    let topicsDom = null,
+        expertComment = null,
+        expertAnswer = null;
+    if(expert.topics.length > 0){
       topicsDom = (<ExpertTopic expert={expert} />);
     }
+    if(expert.comment.results.length > 0){
+      expertComment = (<ExpertComment expert={expert} actions={actions}/>);
+    }
+    if(expert.answers.results.length > 0){
+      expertAnswer = (<ExpertAnswer answers={expert.answers} actions={actions} />);
+    }
 
+    // if(expert.recommendExperts.results.length > 0){
+    //   expertTeacher = (<ExpertTeacher teachers={expert.recommendExperts} />)
+    // }
     return (
       <div className="expert">
         <Helmet title={title}/>
@@ -43,22 +58,20 @@ class ExpertComponent extends React.Component {
         <ExpertHeader actions={actions} dialog={dialog} expert={expert}/>
         <ExpertDesc expert={expert} actions={actions} dialog={dialog}/>
         {topicsDom}
-        <ExpertComment expert={expert} dialog={dialog} actions={actions}/>
+        {expertComment}
+        {expertAnswer}
       </div>
     );
   }
 
   componentWillReceiveProps(nextProps) {
-    if (!nextProps.loadedConfig && nextProps.expert.expert) {
+    if (!nextProps.loadedConfig && !nextProps.expert.isFetching) {
       var expert = nextProps.expert.expert;
-      var user = expert.user;
-      var eduInfo = user.educationList[0];
-      var descEdu = eduInfo &&  (user.name + '-' + eduInfo.college.name + '  ')
       nextProps.configWechatSharing({
-        title: '【指点】不要走那千篇一律的人生之路，我是' + user.name + '，给你指路',
-        desc: (descEdu + expert.expert.shortIntroduction),
-        link: `${config.baseUrl}/expert/` + this.props.params.id,
-        imgUrl: user.avatar
+        title: `【指点】不要走那千篇一律的人生之路，我是 ${ decodeString(expert.user.name || expert.user.loginName || '匿名')} | ${expert.expert.title}`,
+        desc: expert.expert.description,
+        link: `${config.baseUrl}/expert/${this.props.params.id}`,
+        imgUrl: expert.user.avatar || logo_icon
       });
     }
   }

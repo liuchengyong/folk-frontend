@@ -6,7 +6,7 @@ export default {
   found: '/api/v1/topic/list/keyword?keyword=',
   TopicData: '/api/v1/topic/',
   BrokeData: '/api/v1/headline/list/descendant?commentId=',
-  ExpertData: '/api/v1/expert/',
+  ExpertData: '/api/v2/expert/',
   Consultation: '/api/v1/article/',
   Captch: '/api/v1/captcha/register',
   RegisterByMobile: '/api/v1/user/register',

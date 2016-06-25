@@ -14,6 +14,7 @@ import DeviceAdapter from '../../common/deviceAdapter';
 import TopBanner from '../Common/TopBanner';
 import ActiveBanner from './ActiveBanner';
 import TopicItem from './TopicItem';
+let logo_icon = require('../../images/icon/logo_icon.png');
 
 class ActiveComponent extends React.Component {
   render() {
@@ -38,13 +39,11 @@ class ActiveComponent extends React.Component {
   componentWillReceiveProps(nextProps) {
     if (!nextProps.loadedConfig && nextProps.active.article) {
       let active = nextProps.active;
-      var link = `${config.baseUrl}/activity/` + this.props.params.id;
-
       nextProps.configWechatSharing({
-        title: active.article.title,
+        title: '【指点】' + active.article.title,
         desc: active.article.summary,
-        link: link,
-        imgUrl: active.article.sharedCover || active.article.topCover
+        link: `${config.baseUrl}/activity/${this.props.params.id}`,
+        imgUrl: active.article.sharedCover || active.article.cover || logo_icon
       });
     }
   }

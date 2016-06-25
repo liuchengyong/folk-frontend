@@ -93,4 +93,27 @@ exports.decodeString = (value) =>{
 	}catch(e){
 		return value;
 	}
-}
+};
+
+/**
+ * [description]  把 html 转化成 text
+ * @param  {[type]} html [description]
+ * @return {[type]}      [description]
+ */
+exports.paresHtmlToText =(html)=>{
+	let desc = html.replace(/<[^>]+>/g,'').replace(/\s/g,'');
+    let span = document.createElement('span');
+    span.innerHTML = desc;
+   	return (typeof span.textContent == 'string') ? span.textContent : span.innerText;
+};
+
+exports.getFirstImgSrc = (html)=>{
+	if(html.search('<img') == -1){
+		return '';
+	}
+	let container = document.createElement('div');
+	container.innerHTML = html;
+	return container.querySelector('img').src;
+};
+
+

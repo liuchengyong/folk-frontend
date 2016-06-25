@@ -6,7 +6,7 @@ import headers from '../globalHeader';
 module.exports = (id) => {
   return dispatch => {
     dispatch(requestExpertData());
-    return fetch(config.apiUrl + config.ExpertData + id +'?pageSize=10',{
+    return fetch(config.apiUrl + config.ExpertData + id,{
  		method: 'GET',
         headers: headers
     })

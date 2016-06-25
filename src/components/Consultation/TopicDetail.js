@@ -6,6 +6,7 @@ import config from 'config';
 import {Link} from 'react-router';
 import defaultIcon from '../../images/icon/logo_icon.png';
 import icPingLun from '../../images/ic_pinglun.png'
+import {decodeString} from '../../common/string';
 
 const TopicDetail = (props) => (
 
@@ -16,7 +17,7 @@ const TopicDetail = (props) => (
             <img className='topics_avatar' src={props.expert.user.avatar || defaultIcon}/>
         </span>
         <div className='personbox'>
-          <span className='topics_name'>{decodeURI(props.expert.user.loginName || props.expert.user.name || '匿名')}</span>
+          <span className='topics_name'>{decodeString(props.expert.user.loginName || props.expert.user.name || '匿名')}</span>
           <span>｜</span>
           <span className='topics_title'>{props.shortDesc}</span>
         </div>

@@ -1,200 +1,309 @@
 .detailbox{
-  position: relative;
-  width: 100%;
-  height: auto;
-  color: #464646;
-  padding: 11px 11px;
-  min-height: 100%;
-  box-sizing: border-box;
-  &:before{
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    background-color: #f3f4f8;
-    content: "";
-    display: block;
-    z-index: -1;
-  }
-  article{
-    display: block;
+    margin-top: 1rem;
+    position: relative;
     width: 100%;
     height: auto;
-    overflow: hidden;
-    background-color: #FFFFFF;
-    padding: 23px 15px 38px;
-    z-index: 2;
-    border:solid 1px #dcdcdc;
-    border-radius: 5px;
-    margin-top: 1rem;
-    h2{
-      position: relative;
-      font-size: 22px;
-      line-height: 1.5em;
-      small{
-        position: relative;
-        font-size: 10px;
-        display: block;
-        line-height: 1em;
-        color: #cdcdcd;
-        padding: 8px 0 0 0;
-        & > span{
-          display: inline-block;
-          &:nth-child(1){
-            padding-right: 20px;
-          }
-        }
-      }
-
-    }
-    pre{
-      padding: 10px 0 0 0;
-      display: block;
-      white-space: normal;
-      line-height: 1.5em;
-    }
-    p:first-child{
-      padding: 20px 0 0 0;
-    }
-    p{
-      color: #666666;
-      width: 100%;
-      line-height: 1.8em;
-      font-size: 15px;
-      display: inline-block;
-      padding: 10px 0 0 0;
-      text-align: left;
-      img{
+    min-height: 100%;
+    padding: 11px 11px;
+    color: #464646;
+    background-color: #f3f4f8;
+    word-break: break-all; 
+    word-wrap:break-word;
+    article{
         display: block;
         width: 100%;
         height: auto;
-        margin: 10px 0;
-      }
-    }
-  }
-  .talkbox{
-    a {
-      text-decoration: inherit;
-    }
-    display: block;
-    width: 100%;
-    height: auto;
-    overflow: hidden;
-    background-color: #FFFFFF;
-    padding: 15px 15px 15px;
-    z-index: 2;
-    border:solid 1px #dcdcdc;
-    border-radius: 5px;
-    margin-top: 11px;
-    .talk-title{
-      display: block;
-      padding: 0 0 10px 0;
-      span{
-        position: relative;
-        display: block;
-        padding-left: 10px;
-        line-height: 1em;
-        font-size: 18px;
-        &:before{
-          position: absolute;
-          display: block;
-          content: "";
-          background-color: #18aef9;
-          left: -4px;
-          width: 4px;
-          height: 100%;
-          border-radius: 4px;
-        }
-      }
-    }
-    .talk-item:last-child{
-      padding: 0;
-    }
-    .talk-item{
-      display: block;
-      padding: 0 0 15px;
-      border-top:solid 1px #f0f0f0;
-      .talk-head{
-        position: relative;
-        height: auto;
-        padding: 8px 0 0 54px;
         overflow: hidden;
-        .person-headimg{
-          position: absolute;
-          display: block;
-          height: 30px;
-          width: 40px;
-          text-align: center;
-          left: 5px;
-          img{
+        background-color: #FFFFFF;
+        padding: 23px 15px 38px;
+        z-index: 2;
+        border-radius: 5px;
+        h2{
+            position: relative;
+            font-size: 22px;
+            line-height: 1.5em;
+            small{
+                position: relative;
+                font-size: 10px;
+                display: block;
+                line-height: 1em;
+                color: #cdcdcd;
+                padding: 8px 0 0 0;
+                & > span{
+                    display: inline-block;
+                    &:nth-child(1){
+                        padding-right: 20px;
+                    }
+                }
+            }
+        }
+        pre{
+            padding: 10px 0 0 0;
+            display: block;
+            white-space: normal;
+            line-height: 1.5em;
+            color: #666666;
+            font-size: 14px;
+            word-break: break-all; 
+            word-wrap:break-word;
+        }
+        p:first-child{
+            padding: 20px 0 0 0;
+        }
+        p{
+            color: #666666;
+            width: 100%;
+            line-height: 1.8em;
+            font-size: 16px;
             display: inline-block;
-            height: 100%;
-            width: auto;
-            border-radius: 30px;
-          }
+            padding: 10px 0 0 0;
+            text-align: left;
+            word-break: break-all; 
+            word-wrap:break-word;
+            img{
+                display: block;
+                width: 100%;
+                height: auto;
+                margin: 10px 0;
+            }
         }
-        .personbox{
-          min-height: 35px;
-          font-size: 13px;
-          color: #828282;
-          padding: 8px 0;
-        }
-
-      }
-      .talk-body{
-        position: relative;
-        min-height: 28px;
-        display: block;
-        overflow: hidden;
-        height: auto;
-        padding: 2px 0 0;
-        .tag{
-          position: absolute;
-          color: #FFFFFF;
-          background-color: #00abf9;
-          display: inline-block;
-          width: 40px;
-          font-size: 12px;
-          left: 5px;
-          text-align: center;
-          border-radius: 15px;
-          padding: 1px 0;
-          top: 6px;
-        }
-        .talk{
-          color: #666666;
-          display: block;
-          padding: 0 0 0 54px;
-          line-height: 1.5em;
-          font-size: 16px;
-          text-align: left;
-        }
-      }
-      .talk-foot{
-        position: relative;
-        min-height: 20px;
-        display: block;
-        overflow: hidden;
-        height: auto;
-        padding: 0 0 0 54px;
-        text-align: left;
-        .answerimg{
-          position: relative;
-          display: inline-block;
-          height: 13px;
-          width: auto;
-          top: 3px;
-        }
-        .answenum {
-          display: inline-block;
-          color: #d0d0d0;
-          font-size: 13px;
-        }
-      }
     }
-  }
+    .talkbox{
+        a {
+            text-decoration: inherit;
+        }
+        display: block;
+        width: 100%;
+        height: auto;
+        overflow: hidden;
+        background-color: #FFFFFF;
+        padding: 15px 15px 15px;
+        z-index: 2;
+        border-radius: 5px;
+        margin-top: 11px;
+        .talk-title{
+            display: block;
+            padding: 0 0 10px 0;
+            span{
+                position: relative;
+                display: block;
+                padding-left: 10px;
+                line-height: 1em;
+                font-size: 18px;
+                &:before{
+                    position: absolute;
+                    display: block;
+                    content: "";
+                    background-color: #18aef9;
+                    left: -4px;
+                    width: 4px;
+                    height: 100%;
+                    border-radius: 4px;
+                }
+            }
+        }
+        .topics{
+            position: relative;;
+            display: block;
+            overflow: hidden;
+            width: 100%;
+            height: auto;
+        }
+        .talk-item:last-child{
+            padding: 0;
+        }
+        .talk-item{
+            display: block;
+            padding: 0 0 15px;
+            border-top:solid 1px #f0f0f0;
+            .talk-head{
+                position: relative;
+                height: auto;
+                padding: 8px 0 0 54px;
+                overflow: hidden;
+                .person-headimg{
+                    position: absolute;
+                    display: block;
+                    height: 30px;
+                    width: 40px;
+                    text-align: center;
+                    left: 5px;
+                    img{
+                        display: inline-block;
+                        height: 30px;
+                        width: 30px;
+                        border-radius: 30px;
+                    }
+                }
+                .personbox{
+                    min-height: 35px;
+                    font-size: 13px;
+                    color: #828282;
+                    padding: 8px 0;
+                    display:block;
+                    white-space:nowrap; 
+                    overflow:hidden; 
+                    text-overflow:ellipsis;
+                }
 
+            }
+            .talk-body{
+                position: relative;
+                min-height: 28px;
+                display: block;
+                overflow: hidden;
+                height: auto;
+                padding: 2px 0 0;
+                .tag{
+                    position: absolute;
+                    color: #FFFFFF;
+                    background-color: #00abf9;
+                    display: inline-block;
+                    font-size: 12px;
+                    width: 33px;
+                    left: 7px;
+                    text-align: center;
+                    border-radius: 15px;
+                    padding: 1px 0;
+                    top: 6px;
+                }
+                .talk{
+                    color: #666666;
+                    display: block;
+                    padding: 0 0 0 54px;
+                    line-height: 1.5em;
+                    font-size: 16px;
+                    text-align: left;
+                }
+            }
+            .talk-foot{
+                position: relative;
+                min-height: 20px;
+                display: block;
+                overflow: hidden;
+                height: auto;
+                padding: 0 0 0 54px;
+                text-align: left;
+                .answerimg{
+                    position: relative;
+                    display: inline-block;
+                    height: 13px;
+                    width: auto;
+                    top: 3px;
+                }
+                .answenum {
+                    display: inline-block;
+                    color: #d0d0d0;
+                    font-size: 13px;
+                }
+            }
+        }
+    }
+    .commentbox{
+        width: 100%;
+        height: auto;
+        overflow: hidden;
+        background-color: #FFFFFF;
+        padding: 15px 15px 0;
+        z-index: 2;
+        border-radius: 5px;
+        margin-top: 11px;
+        .comment-title{
+            display: block;
+            padding: 0 0 10px 0;
+            border-bottom:solid 1px #f0f0f0;
+            span{
+                position: relative;
+                display: block;
+                padding-left: 10px;
+                line-height: 1em;
+                font-size: 18px;
+                &:before{
+                    position: absolute;
+                    display: block;
+                    content: "";
+                    background-color: #18aef9;
+                    left: -4px;
+                    width: 4px;
+                    height: 100%;
+                    border-radius: 4px;
+                }
+            }
+        }
 
+        .comments{
+            position:relative;
+            display: block;
+            width: 100%;
+            height: auto;
+            .comment:nth-last-child(1){
+                border:none;
+            }
+        }
+        .comment{
+            position:relative;
+            display: block;
+            padding: 0 0 10px 0;
+            border-bottom:solid 1px #f0f0f0;
+        }
+        .comment-header{
+            position:relative;
+            width: 100%;
+            min-height: 60px;
+            padding:0 50px;
+        }
+        .comment-icon{
+            position:absolute;
+            display: block;
+            height:40px;
+            width: 40px;
+            border-radius:40px;
+            left: 0;
+            top: 10px;
+        }
+        .comment-header-center{
+            position:relative;
+            display: block;
+            width: 100%;
+            min-height: 60px;
 
+        }
+        .comment-name{
+            display: block;
+            font-size: 18px;
+            color:#333333;
+            padding:17px 0 6px; 
+            width: 100%;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow:ellipsis;
+        }
+        .comment-date{
+            display: block;
+            font-size: 12px;
+            color:#cdcdcd;
+        }
+        .comment-like{
+            position: absolute;
+            display: block;
+            top: 12px;
+            right: 3px;
+            background-image: url('../images/dianzan.png');
+            background-repeat: no-repeat;
+            padding: 5px 0 5px 20px;
+            font-size: 14px;
+            background-size: 15px 14px;
+            background-position:0 3px;
+            color: #cdcdcd;
+            height: 24px;
+            min-width: 15px;
+        }
+        .comment-content{
+            position:relative;
+            display: block;
+            font-size: 14px;
+            color: #666666;
+            line-height: 1.5em;
+        }
+    }
 }

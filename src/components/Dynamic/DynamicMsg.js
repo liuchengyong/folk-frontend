@@ -1,6 +1,6 @@
 
 import React from 'react';
-import Time from '../../common/timeFormate';
+import {formateTime} from '../../common/timeFormate';
 let ic_me_avatar_default = require('../../images/ic_me_avatar_default.png');
 class ContentComment extends React.Component {
 	DownApp() {
@@ -17,7 +17,7 @@ class ContentComment extends React.Component {
 						<img className="sender-avatar" src={user.avatar || ic_me_avatar_default} />
 						<div className="sender-base">
 							<span className="sender-name">{decodeURIComponent(comment.sender.name || user.loginName || '匿名')}</span>
-							<span className="sender-time">{Time.formateBrokeTime_(comment.comment.timeRecorded)}</span>
+							<span className="sender-time">{formateTime(comment.comment.timeRecorded)}</span>
 						</div>
 					</div>
 					<div className="msg-text">{decodeURIComponent(comment.comment.content)}</div>

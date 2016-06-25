@@ -7,7 +7,9 @@ require('normalize.css');
 require('styles/_dynamic.scss');
 
 import React from 'react';
+
 import DeviceAdapter from '../../common/deviceAdapter';
+import { decodeString,paresHtmlToText,getFirstImgSrc} from '../../common/string';
 import Loading from '../Common/Loading';
 import Helmet from 'react-helmet';
 import config from 'config';
@@ -18,7 +20,6 @@ import DynamicContent from './DynamicContent';
 import DynamicMsg from './DynamicMsg';
 
 import WechatWrapper from '../WechatWrapper';
-let logo_icon = require('../../images/icon/logo_icon.png');
 
 class DynamicComponent extends React.Component {
 
@@ -58,16 +59,28 @@ class DynamicComponent extends React.Component {
 
   componentWillReceiveProps(nextProps) { // 考虑删除
     if (!nextProps.loadedConfig && !nextProps.dynamic.isFetching) {
-        let dynamic = nextProps.dynamic.activityEvent,
+        let share = {
+            link: `${config.baseUrl}/dynamic/${this.props.params.id}`
+        };
+        if(!nextProps.dynamic.activityEvent){
+            share.title = '【指点】 动态已被删除';
+            share.desc = '动态已被删除';
+            share.imgUrl = 'http://7xqxpm.com1.z0.glb.clouddn.com/headline_128.png';
+        }else{
+          let dynamic = nextProps.dynamic.activityEvent,
+            expert = nextProps.dynamic.expert,
             user = nextProps.dynamic.user;
-        let shareTitles = (['【指点】噢～我鲜为人知的一面被你发现了','【指点】对于一个人了解全面些比较好，你也一样','【指点】经历的更多，人生才会充满欢笑'])[Math.floor(Math.random()*3)];
-        let desc = nextProps.dynamic.activityEvent ? decodeURIComponent(dynamic.title || dynamic.description) : '动态已被删除';
-        nextProps.configWechatSharing({
-            title: shareTitles,
-            desc:  desc,
-            link: `${config.baseUrl}/dynamic/` + this.props.params.id,
-            imgUrl: user ? user.avatar : logo_icon
-        });
+          if(dynamic.type == 'VIDEO'){
+            share.title = `【指点】 ${decodeString(user.name || user.loginName || '匿名')} | ${expert.title} 分享了一个视频`;
+            share.desc = decodeString(dynamic.description);
+            share.imgUrl = 'http://7xqxpm.com1.z0.glb.clouddn.com/headline_128.png';
+          }else{
+            share.title = `【指点】 ${decodeString(dynamic.title)}`;
+            share.desc = paresHtmlToText(decodeString(dynamic.description));
+            share.imgUrl = getFirstImgSrc(decodeString(dynamic.description)) || 'http://7xqxpm.com1.z0.glb.clouddn.com/headline_128.png'
+          }
+        }
+        nextProps.configWechatSharing(share);
     }
   }
 

@@ -11,8 +11,9 @@ import WechatWrapper from '../WechatWrapper';
 import LatestComment from './LatestComment';
 import LatestMsg from './LatestMsg';
 import DeviceAdapter from '../../common/deviceAdapter';
-import { decodeString } from '../../common/string.js';
+import { decodeString,paresHtmlToText } from '../../common/string';
 import Menu from '../Common/Menu';
+
 let logo_icon = require('../../images/icon/logo_icon.png');
 
 class TopicComponent extends React.Component {
@@ -50,15 +51,14 @@ class TopicComponent extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (!nextProps.loadedConfig && nextProps.topic.topic) {
+    if (!nextProps.loadedConfig && !nextProps.topic.isFetching) {
       var topic = nextProps.topic.topic,
           expert = nextProps.topic.expert;
       nextProps.configWechatSharing({
-        // title: topic.title,
-        title: '【指点】思考了这么久，却不及这一次的灌顶之语',
-        desc: topic.title + '[' + decodeString(expert.user.name) +'-' + decodeString(expert.expert.title) +']',
-        link: `${config.baseUrl}/topic/` + this.props.params.id,
-        imgUrl: expert.expert.descriptionPicture || logo_icon
+        title: `【指点】${topic.title} | ${decodeString(expert.user.name || expert.user.loginName || '匿名')}|${expert.expert.title}`,
+        desc: paresHtmlToText(topic.description),
+        link: `${config.baseUrl}/topic/${this.props.params.id}`,
+        imgUrl: expert.user.avatar || logo_icon
       });
     }
   }

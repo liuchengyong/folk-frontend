@@ -29,17 +29,17 @@ render(
             cb(null, require('./containers/Broke'));
           })
         }}/>
-        <Route path="topic/:id" name="topic" getComponent={(location, cb) => {
+        <Route path="topic/:id" name="topic" getComponent={(location, cb) => { // 话题详情页
           require.ensure([], (require) => {
             cb(null, require('./containers/Topic'));
           })
         }}/>
-        <Route path="expert/:id" name="expert" getComponent={(location, cb) => {
+        <Route path="expert/:id" name="expert" getComponent={(location, cb) => { // 点师详情
           require.ensure([], (require) => {
             cb(null, require('./containers/Expert'));
           })
         }}/>
-        <Route path="consultation/:id" name="consultation" getComponent={(location, cb) => {
+        <Route path="consultation/:id" name="consultation" getComponent={(location, cb) => { // 资讯详情
           require.ensure([], (require) => {
             cb(null, require('./containers/Consultation'));
           })

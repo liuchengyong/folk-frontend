@@ -15,5 +15,4 @@ const Topics = (props) => (
     })()}
   </div>
 );
-
 export default Topics;

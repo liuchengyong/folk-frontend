@@ -2,7 +2,6 @@
  * 导师详情 评论部分
  */
 import React from 'react';
-import Dialog from '../Common/Dialog';
 import Time from '../../common/timeFormate';
 let hasStar = require('../../images/icon/started.png'),
     noStar = require('../../images/icon/star.png'),
@@ -14,13 +13,6 @@ class ExpertComment extends React.Component {
   }
 
   render() {
-  
-    let dialog = null;
-    if(this.props.dialog.isOpening){
-      dialog = <Dialog actions={this.props.actions}/>
-    } else {
-      dialog = null;
-    }
 
     //todo 讲数据扁平化
    let expert = this.props.expert;
@@ -52,9 +44,9 @@ class ExpertComment extends React.Component {
 
    if(comment) {
     commentContent = (
-       <div className="evaluate ">
-          <div className="evaluate_title">
-              <span className="evaluate_title_text">评价</span>
+       <div className="expert-evaluate">
+          <div className="expert-evaluate-title">
+              <span className="expert-evaluate-title-text">评价</span>
           </div>
           <div className="evaluate_top">
               <img className="evaluate_top_head_img" src={comment.sender.avatar || ic_me_avatar_default} />
@@ -81,7 +73,6 @@ class ExpertComment extends React.Component {
    }
     return (
       <div >
-        {dialog}
         {commentContent}
       </div>
     );
