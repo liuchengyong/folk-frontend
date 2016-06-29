@@ -16,7 +16,7 @@ import QuestionComponent from './Question';
 import CommentsComponent from './Comments';
 
 import WechatWrapper from '../WechatWrapper';
-// import wx from 'weixin-js-sdk';
+import wx from 'weixin-js-sdk';
 import headers from '../../actions/globalHeader';
 
 let logo_icon = require('../../images/icon/logo_icon.png');
@@ -65,35 +65,33 @@ class AnswerComponent extends React.Component {
     .then(data => {
       console.log(data);
       data = data.param;
-      WeixinJSBridge.invoke(
-         'getBrandWCPayRequest', {
-            appId: data.appid,     //公众号名称，由商户传入 
-            nonceStr: data.myNoncestr, //随机串    
-            package:'prepay_id=' + data.prepay_id,    
-            signType: 'MD5',         //微信签名方式：    
-            timestamp:data.myTimestamp,         //时间戳，自1970年以来的秒数       
-            paySign: data.mySign //微信签名 
-         },
-         function(res){ 
-             alert(res);    
-             if(res.err_msg == 'get_brand_wcpay_request：ok' ) {
-                alert("success");
-             }     // 使用以上方式判断前端返回,微信团队郑重提示：res.err_msg将在用户支付成功后返回    ok，但并不保证它绝对可靠。 
-         }
-      ); 
+      // WeixinJSBridge.invoke(
+      //    'getBrandWCPayRequest', {
+      //       appId: data.appid,     //公众号名称，由商户传入 
+      //       nonceStr: data.myNoncestr, //随机串    
+      //       package:'prepay_id=' + data.prepay_id,    
+      //       signType: 'MD5',         //微信签名方式：    
+      //       timestamp:data.myTimestamp,         //时间戳，自1970年以来的秒数       
+      //       paySign: data.mySign //微信签名 
+      //    },
+      //    function(res){ 
+      //        alert(res);    
+      //        if(res.err_msg == 'get_brand_wcpay_request：ok' ) {
+      //           alert("success");
+      //        }     // 使用以上方式判断前端返回,微信团队郑重提示：res.err_msg将在用户支付成功后返回    ok，但并不保证它绝对可靠。 
+      //    }
+      // ); 
 
-
-      // wx.chooseWXPay({
-      //     appId:data.appid,
-      //     timeStamp: data.myTimestamp, // 支付签名时间戳，注意微信jssdk中的所有使用timestamp字段均为小写。但最新版的支付后台生成签名使用的timeStamp字段名需大写其中的S字符
-      //     nonceStr: data.myNoncestr, // 支付签名随机串，不长于 32 位
-      //     package: `prepay_id=${data.prepay_id}`, // 统一支付接口返回的prepay_id参数值，提交格式如：prepay_id=***）
-      //     signType: 'MD5', // 签名方式，默认为'SHA1'，使用新版支付需传入'MD5'
-      //     paySign: data.mySign, // 支付签名
-      //     success: function (res) {
-      //         alert(res);
-      //     }
-      // });
+      wx.chooseWXPay({
+          timestamp: data.myTimestamp, // 支付签名时间戳，注意微信jssdk中的所有使用timestamp字段均为小写。但最新版的支付后台生成签名使用的timeStamp字段名需大写其中的S字符
+          nonceStr: data.myNoncestr, // 支付签名随机串，不长于 32 位
+          package: `prepay_id=${data.prepay_id}`, // 统一支付接口返回的prepay_id参数值，提交格式如：prepay_id=***）
+          signType: 'MD5', // 签名方式，默认为'SHA1'，使用新版支付需传入'MD5'
+          paySign: data.mySign, // 支付签名
+          success: function (res) {
+              alert(res);
+          }
+      });
     });
     
   }
