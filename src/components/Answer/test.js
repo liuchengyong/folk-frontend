@@ -51,7 +51,8 @@ class AnswerComponent extends React.Component {
       body: title,
       price: 100
     };
-    return fetch(config.apiUrl + '/api/v1/fund/order/answer/weixin/h5', {
+    //config.apiUrl
+    return fetch('http://test.zhid58.com:8080' + '/api/v1/fund/order/answer/weixin/h5', {
       method: 'Post',
       headers: headers,
       body:this.serialize(options)
@@ -66,7 +67,7 @@ class AnswerComponent extends React.Component {
       data = data.param;
       WeixinJSBridge.invoke(
          'getBrandWCPayRequest', {
-            appId:data.appid,     //公众号名称，由商户传入     
+            appId: data.appid,     //公众号名称，由商户传入     
             timeStamp:data.myTimestamp,         //时间戳，自1970年以来的秒数     
             nonceStr: data.myNoncestr, //随机串     
             package:'prepay_id=' + data.prepay_id,     
