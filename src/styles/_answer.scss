@@ -91,12 +91,26 @@
 		left: 0;
 		top:0;
 	}
+	.answer-person{
+		position: relative;
+		display: block;
+		height: 0.6rem;
+		line-height: 0.6rem;
+	}
 	.answer-person-name{
+		float: left;
 		display: block;
 		font-size: 0.34rem;
 		color: #323232;
-		height: 0.6rem;
-		line-height: 0.6rem;
+		white-space:nowrap;
+		overflow:hidden; 
+		text-overflow:ellipsis;
+	}
+	.answer-person-paymentTimes{
+		float: right;
+		display: block;
+		font-size: 0.26rem;
+		color: #ff6600;
 		white-space:nowrap;
 		overflow:hidden; 
 		text-overflow:ellipsis;
