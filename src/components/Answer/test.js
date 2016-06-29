@@ -69,8 +69,8 @@ class AnswerComponent extends React.Component {
             appId:data.appid,     //公众号名称，由商户传入     
             timeStamp:data.myTimestamp,         //时间戳，自1970年以来的秒数     
             nonceStr: data.myNoncestr, //随机串     
-            package:'prepay_id='+data.prepay_id,     
-            signType:"MD5",         //微信签名方式：     
+            package:'prepay_id=' + data.prepay_id,     
+            signType: 'MD5',         //微信签名方式：     
             paySign: data.mySign //微信签名 
          },
          function(res){ 
