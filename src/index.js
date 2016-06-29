@@ -13,11 +13,9 @@ import { syncHistoryWithStore } from 'react-router-redux';
 // console.log(configureStore());
 const store = configureStore();
 const history = syncHistoryWithStore(browserHistory, store);
-
 render(
   <Provider store={store}>
     <Router history={history}>
-
       <Route path="/" component={App}>
         <Route path="found" getComponent={(location, cb) => {
           require.ensure([], (require) => {
@@ -77,6 +75,11 @@ render(
         <Route path="answer/:id" name="answer" getComponent={(location, cb) => { // 益达回答详情
           require.ensure([], (require) => {
             cb(null, require('./containers/Answer'));
+          })
+        }}/>
+        <Route path="testanswertest/:id" name="answer" getComponent={(location, cb) => { // 益达回答详情
+          require.ensure([], (require) => {
+            cb(null, require('./containers/test'));
           })
         }}/>
       </Route>

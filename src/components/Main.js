@@ -11,6 +11,14 @@ class AppComponent extends React.Component {
       </div>
     );
   }
+  componentWillMount(){
+  	let ua = navigator.userAgent.toLowerCase(),
+  		loca =  this.props.location.pathname;
+    if (ua.match(/MicroMessenger/i) == 'micromessenger' &&
+    	loca.match(/answer/i) == 'answer') {
+		  this.props.actions.fetchWeixinData();
+    }
+  }
 }
 
 AppComponent.defaultProps = {};

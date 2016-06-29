@@ -23,6 +23,7 @@ export default {
   wechatAPI: {
     config: '/api/wechat/config',
     coupon: '/api/wechat/coupon',
+    base:'/api/wechat/base',
     SDK: 'http://res.wx.qq.com/open/js/jweixin-1.0.0.js'
   },
   words: [

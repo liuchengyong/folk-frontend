@@ -13,8 +13,8 @@ import Answer from '../components/Answer/Answer';
 /* Populated by react-webpack-redux:reducer */
 class AnswerContainer extends Component {
   render() {
-    const {actions, answer, params, dialog } = this.props;
-    return <Answer actions={actions} dialog={dialog} answer={answer} params={params} />;
+    const {actions, answer, params, dialog , user} = this.props;
+    return <Answer actions={actions} dialog={dialog} answer={answer} params={params} user={user}/>;
   }
 }
 
@@ -32,7 +32,8 @@ function mapStateToProps(state) {
   /* Populated by react-webpack-redux:reducer */
   const props = {
     answer: state.answer,
-    dialog: state.dialog
+    dialog: state.dialog,
+    user: state.user
   };
   return props;
 }

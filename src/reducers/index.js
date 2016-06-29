@@ -13,6 +13,7 @@ import extend from 'lodash/extend';
 /* Populated by react-webpack-redux:reducer */
 const reducers = {
   home: require('../reducers/home'),
+  user: require('../reducers/user'),
   school: require('../reducers/found'),
   topic: require('../reducers/topic'),
   dialog: require('../reducers/dialog'),
