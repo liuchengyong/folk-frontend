@@ -37,7 +37,6 @@ class AnswerComponent extends React.Component {
     if(comments.totalSize > 0){
         commentsDom = (<CommentsComponent actions={actions} comments={comments} />);
     }
-    console.log(answer);
     return (
       <div className="answer-container">
         <Helmet title={ '指点-' + answer.question.title} />
@@ -48,7 +47,7 @@ class AnswerComponent extends React.Component {
               <img className="answer-person-icon" src={answer.answererAvater} />
               <div className="answer-person">
                 <span className="answer-person-name">{answer.answererName}</span>
-                <span className="answer-person-paymentTimes">{answer.paymentTimes == 0 ? "" : answer.paymentTimes + '人瞅瞅'}</span>
+                <span className="answer-person-paymentTimes">{answer.paymentTimes == 0 ? '' : answer.paymentTimes + '人瞅瞅'}</span>
               </div>
               <span className="answer-person-major">{answer.answererTitle}</span>
           </div>
