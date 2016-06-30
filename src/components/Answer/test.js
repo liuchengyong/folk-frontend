@@ -59,11 +59,11 @@ class AnswerComponent extends React.Component {
     });
   }
 
-  fetchPayStatu(openId,answerId,tradeStatus){
+  fetchPayStatu(openId,answerId){
     var options = {
       openId: openId,
       answerId: answerId,
-      tradeStatus: tradeStatus,
+      tradeStatus: 'TRADE_SUCCESS',
       sms:true,
       notification:true,
       debug:false
@@ -89,18 +89,26 @@ class AnswerComponent extends React.Component {
             "package":'prepay_id='+data.prepay_id,     
             "signType":'MD5',         //微信签名方式:     
             "paySign":data.mySign, //微信签名 
-         },res => {
-            let tradeStatus =  'TRADE_CLOSED';
-            if(res.err_msg == 'get_brand_wcpay_request：ok' ) {
-                tradeStatus = 'TRADE_FINISHED';
-                alert('交易成功');
+         },function(res){
+            if (res.err_msg == "get_brand_wcpay_request:ok") {
+              alert("支付成功");
+            } else if (res.err_msg == "get_brand_wcpay_request:cancel") {
+              alert("支付取消");
+            } else {
+              alert("支付未完成");
             }
-            this.fetchPayStatu(this.props.user.openid,this.props.answer.answer.answerId,tradeStatus)
-            .then(response => response.json())
-            .then(data => {
-                if(tradeStatus == 'TRADE_FINISHED')
-                  this.props.actions.fetchAnswerDetailData(this.props.answer,this.props.user.openid);
-            })
+
+
+            // if(res.err_msg == 'get_brand_wcpay_request：ok' ) {
+            //     tradeStatus = 'TRADE_FINISHED';
+            //     alert('交易成功');
+            // }
+            // this.fetchPayStatu(this.props.user.openid,this.props.answer.answer.answerId)
+            // .then(response => response.json())
+            // .then(data => {
+            //     if(tradeStatus == 'TRADE_FINISHED')
+            //       this.props.actions.fetchAnswerDetailData(this.props.answer,this.props.user.openid);
+            // })
 
          });
     });

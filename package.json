@@ -1,7 +1,7 @@
 {
   "name": "folkFrontend",
   "private": true,
-  "version": "0.0.66",
+  "version": "0.0.67",
   "description": "folk frontend",
   "main": "",
   "scripts": {
