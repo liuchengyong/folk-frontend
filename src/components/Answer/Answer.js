@@ -113,8 +113,6 @@ class AnswerComponent extends React.Component {
     if(params.isFetching) {
         return <Loading />;
     }
-    
-
     if(!user.isFetching && params.answerDetail == undefined){
       this.props.actions.fetchAnswerDetailData(params,user.openid);
       return <Loading />;
