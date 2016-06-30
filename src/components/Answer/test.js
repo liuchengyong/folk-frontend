@@ -76,10 +76,6 @@ class AnswerComponent extends React.Component {
   }
 
   getPayOrder(){
-    let fetchPayStatu = this.fetchPayStatu,
-        fetchAnswerDetailData = this.fetchAnswerDetailData,
-        user = this.props.user,
-        answer = this.props.answer;
     this.fetchOrderConfig(this.props.user,this.props.answer.answer.answerId,this.props.answer.answer.question.title)
     .then(response => response.json())
     .then(data => {
@@ -96,30 +92,29 @@ class AnswerComponent extends React.Component {
          },function(res){
             if (res.err_msg == "get_brand_wcpay_request:ok") {
               alert("支付成功");
-              fetchPayStatu(user.openid,answer.answer.answerId)
+              alert(this.fetchPayStatu);
+              alert(this.props.params.id);
+              // fetchPayStatu(user.openid,answer.answer.answerId)
+              // .then(response => response.json())
+              // .then(data => {
+              //   alert(data.msg+"调用支付完成接口，开始调用－－－－－");
+              //   fetchAnswerDetailData(answer,user.openid);
+              // })
+              this.fetchPayStatu(this.props.user.openid,this.props.answer.answer.answerId)
               .then(response => response.json())
               .then(data => {
-                alert(data.msg+"调用支付完成接口，开始调用－－－－－");
-                fetchAnswerDetailData(answer,user.openid);
-              })
+                this.props.actions.fetchAnswerDetailData(this.props.answer,this.props.user.openid)
+              });
             } else if (res.err_msg == "get_brand_wcpay_request:cancel") {
               alert("支付取消");
             } else {
               alert("支付未完成");
+              this.fetchPayStatu(this.props.user.openid,this.props.answer.answer.answerId)
+              .then(response => response.json())
+              .then(data => {
+                this.props.actions.fetchAnswerDetailData(this.props.answer,this.props.user.openid)
+              });
             }
-
-
-            // if(res.err_msg == 'get_brand_wcpay_request：ok' ) {
-            //     tradeStatus = 'TRADE_FINISHED';
-            //     alert('交易成功');
-            // }
-            // this.fetchPayStatu(this.props.user.openid,this.props.answer.answer.answerId)
-            // .then(response => response.json())
-            // .then(data => {
-            //     if(tradeStatus == 'TRADE_FINISHED')
-            //       this.props.actions.fetchAnswerDetailData(this.props.answer,this.props.user.openid);
-            // })
-
          });
     });
     
