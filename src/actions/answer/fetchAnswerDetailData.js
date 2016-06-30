@@ -13,7 +13,7 @@ module.exports = (answer,openId) => {
 }
 
 function receiveAnswerDetailData(parameter,answer){
-  answer.success = parameter.success;
-  answer.answerDetail = parameter.param || {answer:{description:null}};
+  answer.success = true;
+  answer.answerDetail = parameter.param || { answer:{description:null} };
 	return {type: 'RECEIVE_ANSWER_DETAIL_DATA', parameter:answer};
 }
