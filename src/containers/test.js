@@ -41,7 +41,8 @@ function mapDispatchToProps(dispatch) {
   /* Populated by react-webpack-redux:action */
   const actions = {
     fetchAnswerData: require('../actions/answer/fetchAnswerData.js'),
-    setDialogStatus: require('../actions/dialog/setDialogStatus.js')
+    setDialogStatus: require('../actions/dialog/setDialogStatus.js'),
+    fetchAnswerDetailData: require('../actions/answer/fetchAnswerDetailData.js')
   };
   const actionMap = { actions: bindActionCreators(actions, dispatch) };
   return actionMap;

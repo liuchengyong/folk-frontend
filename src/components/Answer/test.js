@@ -52,7 +52,23 @@ class AnswerComponent extends React.Component {
       price: 100
     };
     //config.apiUrl
-    return fetch('http://test.zhid58.com:8080' + '/api/v1/fund/order/answer/weixin/h5', {
+    return fetch(config.apiUrl + '/api/v1/fund/order/answer/weixin/h5', {
+      method: 'Post',
+      headers: headers,
+      body:this.serialize(options)
+    });
+  }
+
+  fetchPayStatu(openId,answerId,tradeStatus){
+    var options = {
+      openId: openId,
+      answerId: answerId,
+      tradeStatus: tradeStatus,
+      sms:true,
+      notification:true,
+      debug:false
+    };
+    return fetch(config.apiUrl + '/api/v1/payment/confirm/paid/h5', {
       method: 'Post',
       headers: headers,
       body:this.serialize(options)
@@ -73,43 +89,51 @@ class AnswerComponent extends React.Component {
             "package":'prepay_id='+data.prepay_id,     
             "signType":'MD5',         //微信签名方式:     
             "paySign":data.mySign, //微信签名 
-         },
-         function(res){ 
-             alert(res);    
-             if(res.err_msg == 'get_brand_wcpay_request：ok' ) {
-                alert("success");
-             }else{
-                alert("error");
-             }     // 使用以上方式判断前端返回,微信团队郑重提示：res.err_msg将在用户支付成功后返回    ok，但并不保证它绝对可靠。 
-         }
-      ); 
+         },res => {
+            let tradeStatus =  'TRADE_CLOSED';
+            if(res.err_msg == 'get_brand_wcpay_request：ok' ) {
+                tradeStatus = 'TRADE_FINISHED';
+                alert('交易成功');
+            }
+            this.fetchPayStatu(this.props.user.openid,this.props.answer.answer.answerId,tradeStatus)
+            .then(response => response.json())
+            .then(data => {
+                if(tradeStatus == 'TRADE_FINISHED')
+                  this.props.actions.fetchAnswerDetailData(this.props.answer,this.props.user.openid);
+            })
 
-      // wx.chooseWXPay({
-      //     timestamp: data.myTimestamp, // 支付签名时间戳，注意微信jssdk中的所有使用timestamp字段均为小写。但最新版的支付后台生成签名使用的timeStamp字段名需大写其中的S字符
-      //     nonceStr: data.myNoncestr, // 支付签名随机串，不长于 32 位
-      //     package: `prepay_id=${data.prepay_id}`, // 统一支付接口返回的prepay_id参数值，提交格式如：prepay_id=***）
-      //     signType: 'MD5', // 签名方式，默认为'SHA1'，使用新版支付需传入'MD5'
-      //     paySign: data.mySign, // 支付签名
-      //     success: function (res) {
-      //         alert(res);
-      //     }
-      // });
+         });
     });
     
   }
 
+
+
   render() {
-    console.log(this.props);
-    let params = this.props.answer;
+    // console.log(this.props);
+    let params = this.props.answer,
+        user = this.props.user;
     if(params.isFetching) {
         return <Loading />;
+    }
+    console.log(this.props);
+
+    if(!user.isFetching && params.answerDetail == undefined){
+      this.props.actions.fetchAnswerDetailData(params,user.openid);
+      return <Loading />;
     }
    
     let dialog = this.props.dialog,
         actions = this.props.actions,
         answer = params.answer,
         comments = this.props.answer.comments,
-        commentsDom = null;
+        commentsDom = null,
+        answerPayDom = (<div className="answer-pay"><span onClick={this.goPay.bind(this)}>1元去瞅瞅</span></div>);
+    
+    if(!user.isFetching && params.answerDetail.answer.description != null){
+      answerPayDom = (<div className="answer-text" dangerouslySetInnerHTML={{__html: params.answerDetail.answer.description}}></div>)
+    }    
+
     if(comments.totalSize > 0){
         commentsDom = (<CommentsComponent actions={actions} comments={comments} />);
     }
@@ -125,9 +149,7 @@ class AnswerComponent extends React.Component {
               <span className="answer-person-name">{answer.answererName}</span>
               <span className="answer-person-major">{answer.answererTitle}</span>
           </div>
-          <div className="answer-pay">
-              <span onClick={this.goPay.bind(this)}>1元去瞅瞅</span>
-          </div>
+          {answerPayDom}
         </div>
         {commentsDom}
       </div>

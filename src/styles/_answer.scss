@@ -143,6 +143,32 @@
 		background-position: 0 0;
 	}
 }
+.answer-text{
+	padding-top: 0.24rem;
+	position: relative;
+	display: block;
+	font-size: 0.28rem;
+	color: #666666;
+	line-height: 1.5em;
+	overflow: hidden;
+	word-break: break-all; 
+    word-wrap:break-word;
+	p{
+		padding-top: 1em;
+	}
+	img{
+		display: block;
+		padding-top: 1em;
+		width: 100%;
+		height: auto;
+	}
+	p:first-child{
+		padding-top: 0;
+	}
+	img:first-child{
+		padding-top: 0;
+	}
+}
 
 .comments{
 	position: relative;

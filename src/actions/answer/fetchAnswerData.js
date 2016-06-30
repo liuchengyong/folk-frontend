@@ -13,7 +13,6 @@ module.exports = (id) => {
   }
 }
 
-//http://test.zhid58.com:8080//api/v1/answer/comment/list?answerId=25452F92-D281-428C-92A5-377E948E13B4&page=0&pageSize=5
 function fetchCommentsData(dispatch,answer){
     fetch(`${config.apiUrl}/api/v1/answer/comment/list?answerId=${answer.answerId}&page=0&pageSize=3`,{
       method: 'GET',
