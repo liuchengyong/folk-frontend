@@ -27,7 +27,7 @@ class CommentsComponent extends React.Component {
 		        <div className="comments-header">评论</div>
 		        {commentsDom}
 		        <div className="comments-footer" onClick={this.DownApp.bind(this)}>
-		            点击加载更多
+		            发现更多精彩回答
 		        </div>
 		    </div>);
 	}
