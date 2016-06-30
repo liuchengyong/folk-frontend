@@ -16,7 +16,6 @@ import QuestionComponent from './Question';
 import CommentsComponent from './Comments';
 
 import WechatWrapper from '../WechatWrapper';
-import wx from 'weixin-js-sdk';
 import headers from '../../actions/globalHeader';
 
 let logo_icon = require('../../images/icon/logo_icon.png');
@@ -79,41 +78,26 @@ class AnswerComponent extends React.Component {
     this.fetchOrderConfig(this.props.user,this.props.answer.answer.answerId,this.props.answer.answer.question.title)
     .then(response => response.json())
     .then(data => {
-      console.log(data);
       data = data.param;
       WeixinJSBridge.invoke(
          'getBrandWCPayRequest', {
-            "appId":data.appid,     //公众号名称，由商户传入     
-            "timeStamp":data.myTimestamp,         //时间戳，自1970年以来的秒数     
-            "nonceStr":data.myNoncestr, //随机串     
-            "package":'prepay_id='+data.prepay_id,     
-            "signType":'MD5',         //微信签名方式:     
-            "paySign":data.mySign, //微信签名 
+            'appId':data.appid,     //公众号名称，由商户传入
+            'timeStamp':data.myTimestamp,         //时间戳，自1970年以来的秒数
+            'nonceStr':data.myNoncestr,//随机串
+            'package':'prepay_id='+data.prepay_id,
+            'signType':'MD5',         //微信签名方式:
+            'paySign':data.mySign //微信签名
          },res => {
-            if (res.err_msg == "get_brand_wcpay_request:ok") {
-              alert("支付成功");
-              alert(this.fetchPayStatu);
-              alert(this.props.params.id);
-              // fetchPayStatu(user.openid,answer.answer.answerId)
-              // .then(response => response.json())
-              // .then(data => {
-              //   alert(data.msg+"调用支付完成接口，开始调用－－－－－");
-              //   fetchAnswerDetailData(answer,user.openid);
-              // })
+            if (res.err_msg == 'get_brand_wcpay_request:ok') {
               this.fetchPayStatu(this.props.user.openid,this.props.answer.answer.answerId)
               .then(response => response.json())
-              .then(data => {
+              .then(() => {
                 this.props.actions.fetchAnswerDetailData(this.props.answer,this.props.user.openid)
               });
-            } else if (res.err_msg == "get_brand_wcpay_request:cancel") {
-              alert("支付取消");
+            } else if (res.err_msg == 'get_brand_wcpay_request:cancel') {
+              
             } else {
-              alert("支付未完成");
-              this.fetchPayStatu(this.props.user.openid,this.props.answer.answer.answerId)
-              .then(response => response.json())
-              .then(data => {
-                this.props.actions.fetchAnswerDetailData(this.props.answer,this.props.user.openid)
-              });
+              
             }
          });
     });
@@ -145,7 +129,7 @@ class AnswerComponent extends React.Component {
     
     if(!user.isFetching && params.answerDetail.answer.description != null){
       answerPayDom = (<div className="answer-text" dangerouslySetInnerHTML={{__html: params.answerDetail.answer.description}}></div>)
-    }    
+    }
 
     if(comments.totalSize > 0){
         commentsDom = (<CommentsComponent actions={actions} comments={comments} />);
