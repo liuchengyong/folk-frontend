@@ -89,7 +89,7 @@ class AnswerComponent extends React.Component {
             "package":'prepay_id='+data.prepay_id,     
             "signType":'MD5',         //微信签名方式:     
             "paySign":data.mySign, //微信签名 
-         },function(res){
+         },res => {
             if (res.err_msg == "get_brand_wcpay_request:ok") {
               alert("支付成功");
               alert(this.fetchPayStatu);
