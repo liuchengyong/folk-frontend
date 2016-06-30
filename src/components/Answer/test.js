@@ -107,7 +107,7 @@ class AnswerComponent extends React.Component {
 
 
   render() {
-    // console.log(this.props);
+    console.log(this.props);
     let params = this.props.answer,
         user = this.props.user;
     if(params.isFetching) {
