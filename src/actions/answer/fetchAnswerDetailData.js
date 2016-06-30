@@ -8,12 +8,12 @@ module.exports = (answer,openId) => {
         headers: headers
       })
       .then(response => response.json())
-      .then(json => json.success ? dispatch(receiveAnswerDetailData(json,answer)) : '');
+      .then(json => dispatch(receiveAnswerDetailData(json,answer)));
   }
 }
 
 function receiveAnswerDetailData(parameter,answer){
   answer.success = parameter.success;
-  answer.answerDetail = parameter.param;
+  answer.answerDetail = parameter.param || {answer:{description:null}};
 	return {type: 'RECEIVE_ANSWER_DETAIL_DATA', parameter:answer};
 }
