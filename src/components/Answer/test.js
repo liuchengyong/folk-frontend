@@ -76,6 +76,10 @@ class AnswerComponent extends React.Component {
   }
 
   getPayOrder(){
+    let fetchPayStatu = this.fetchPayStatu,
+        fetchAnswerDetailData = this.fetchAnswerDetailData,
+        user = this.props.user,
+        answer = this.props.answer;
     this.fetchOrderConfig(this.props.user,this.props.answer.answer.answerId,this.props.answer.answer.question.title)
     .then(response => response.json())
     .then(data => {
@@ -92,6 +96,12 @@ class AnswerComponent extends React.Component {
          },function(res){
             if (res.err_msg == "get_brand_wcpay_request:ok") {
               alert("支付成功");
+              fetchPayStatu(user.openid,answer.answer.answerId)
+              .then(response => response.json())
+              .then(data => {
+                alert(data.msg+"调用支付完成接口，开始调用－－－－－");
+                fetchAnswerDetailData(answer,user.openid);
+              })
             } else if (res.err_msg == "get_brand_wcpay_request:cancel") {
               alert("支付取消");
             } else {
@@ -124,7 +134,7 @@ class AnswerComponent extends React.Component {
     if(params.isFetching) {
         return <Loading />;
     }
-    console.log(this.props);
+    
 
     if(!user.isFetching && params.answerDetail == undefined){
       this.props.actions.fetchAnswerDetailData(params,user.openid);
