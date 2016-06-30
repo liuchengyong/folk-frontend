@@ -143,7 +143,10 @@ class AnswerComponent extends React.Component {
         <div className="answer">
           <div className="answer-header">
               <img className="answer-person-icon" src={answer.answererAvater} />
-              <span className="answer-person-name">{answer.answererName}</span>
+              <div className="answer-person">
+                <span className="answer-person-name">{answer.answererName}</span>
+                <span className="answer-person-paymentTimes">{answer.paymentTimes == 0 ? '' : answer.paymentTimes + '人瞅瞅'}</span>
+              </div>
               <span className="answer-person-major">{answer.answererTitle}</span>
           </div>
           {answerPayDom}
