@@ -24,8 +24,7 @@ class CommentFrom extends React.Component {
 					content: this.refs.content.value.trim(),
 					answerId: this.props.answer.answer.answerId
 				};
-				//user.openid
-			this.props.actions.fetchAnswerCommentData(this.props.answer.answer,'oaQcGuKWnWiv1rXqbDoEXjNPfJNE',comment);
+			this.props.actions.fetchAnswerCommentData(this.props.answer.answer,this.props.user.openid,comment);
 			this.props.actions.fetchAnswerCommentFrom(this.props.answer,{isOpenFrom:false});
 			
 		}
