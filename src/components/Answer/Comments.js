@@ -5,6 +5,10 @@ import {decodeString} from '../../common/string';
 let ic_me_avatar_default = require('../../images/ic_me_avatar_default.png');
 class CommentsComponent extends React.Component {
 	
+	openCommentFrom(){
+	    this.props.actions.fetchAnswerCommentFrom(this.props.answer,{isOpenFrom:true});
+	}
+
 	DownApp() {
 	    this.props.actions.setDialogStatus(true);
 	}
@@ -24,7 +28,10 @@ class CommentsComponent extends React.Component {
 
 		return (
 			 <div className="comments">
-		        <div className="comments-header">评论</div>
+		        <div className="comments-header">
+		        	评论
+		        	{this.props.isShow ? (<span className="go-commit-comment-btn" onClick={this.openCommentFrom.bind(this)} >去评论</span>):null}
+		        </div>
 		        {commentsDom}
 		        <div className="comments-footer" onClick={this.DownApp.bind(this)}>
 		            发现更多精彩回答

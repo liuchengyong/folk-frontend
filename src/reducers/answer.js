@@ -1,6 +1,10 @@
 import assign from 'lodash/assign';
 
-const initialState = {isFetching: true};
+const initialState = {
+  isFetching: true,
+  isOpenFrom: false,
+  isOpenLoad: false
+};
 
 
 module.exports = function(state = initialState, action) {
@@ -9,16 +13,18 @@ module.exports = function(state = initialState, action) {
   switch(action.type) {
     case 'RECEIVE_ANSWER_DATA': {
       //@TODO 将删除状态作为一个action
-      return action.parameter.success ? assign({}, action.parameter, {isFetching: false}) :
-             {isFetching: true};
+      return assign({},state,action.parameter, {isFetching: false});
     } break;
-    case 'REQUEST_ANSWER_DATA': {
-      return assign({}, state, {isFetching: true});
+    case 'RECEIVE_COMMENT_DATA':{
+      return assign({},state,action.parameter);
     } break;
     case 'RECEIVE_ANSWER_DETAIL_DATA':{
       return action.parameter.success ? assign({}, action.parameter, {isFetching: false}) :
              {isFetching: true}
     } break;
+    case 'CHANGE_COMMENT_FROM':{
+      return assign({},state,action.parameter);
+    }break;
     default: {
       /* Return original state if no actions were consumed. */
       return state;

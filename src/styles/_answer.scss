@@ -169,6 +169,14 @@
 		padding-top: 0;
 	}
 }
+.answer-footer{
+	font-size: 0.28rem;
+	color: #18aef9;
+	text-align: center;
+	line-height: 0.8rem;
+}
+
+
 
 .comments{
 	position: relative;
@@ -179,7 +187,6 @@
 	padding: 0 0.3rem;    
 	margin-top: 0.2rem;
 	border-radius: 5px;
-
 }
 .comments-header{
 	position: relative;
@@ -200,7 +207,12 @@
 		left: 0;
 		top:0.27rem;
 	}
-
+	.go-commit-comment-btn{
+		position: absolute;
+		right: 0.2rem;
+		top:0.27rem;
+		color: #18aef9;
+	}
 }
 
 .comment{
@@ -212,10 +224,6 @@
 	padding: 0.26rem 0 0.24rem;
 	border-bottom: #f0f0f0 solid 1px;
 }
-// .comment:last-child{
-// 	border-bottom: none;
-// 	padding-bottom: 0;
-// }
 .comment-header{
 	position: relative;
 	display: block;
@@ -265,4 +273,86 @@
 	text-align: center;
 	line-height: 0.8rem;
 }
+
+.comment-from{
+	.comment-from-bg{
+		position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: #000000;
+        opacity: .5;
+        z-index: 1000;
+	}
+	.comment-from-content{
+		position: fixed;
+		background-color: #ffffff;
+        top: 1rem;
+        left: 50%;
+        border-radius: 5px;
+        width: 6rem;
+        height: 4.2rem;
+        margin-left: -3rem;
+        z-index: 1000;
+        overflow: hidden;
+        padding: 1.1rem 0 0 0;
+	}
+	.comment-from-title{
+		position: absolute;
+		display: block;
+		text-align: center;
+		width: 100%;
+		font-size: 0.4rem;
+		line-height: 1.1rem;
+		top:0;
+		color: #333333;
+	}
+	.comment-from-text-box{
+		position: relative;
+		display: block;
+		overflow: hidden;
+		width: 5.6rem;
+		height: 2rem;
+		margin: 0 0.2rem;
+		background-color: #ffffff;
+	}
+	.comment-from-text{
+		position: absolute;
+		display: block;
+		width: 6rem;
+		height: 2rem;
+		left: -0.2rem;
+		font-size: 0.3rem;
+		line-height: 1.5em;
+		padding: 0.2rem 0.5rem;
+		outline: none;
+		border:none;
+		background-color: #f0f0f0;	
+	}
+	.comment-from-btn{
+		position: relative;
+		display: block;
+		height: 1rem;
+		line-height: 1rem;
+		width: 100%;
+		text-align: center;
+		font-size: 0.35rem;
+		span{
+			display: inline-block;
+			width: 3rem;
+			height: 1rem;
+		}
+	}
+	
+	.comment-from-btn-cancle,{
+		color: #999999;
+	}
+	.comment-from-btn-ok{
+		color: #18aef9;
+	}
+}
+
+
+
 

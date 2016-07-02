@@ -8,12 +8,14 @@ require('styles/_answer.scss');
 import React from 'react';
 import DeviceAdapter from '../../common/deviceAdapter';
 import Loading from '../Common/Loading';
+import RequestLoading from '../Common/RequestLoading';
 import Helmet from 'react-helmet';
 import config from 'config';
 import TopBanner from '../Common/TopBanner';
 
 import QuestionComponent from './Question';
 import CommentsComponent from './Comments';
+import CommentFrom from './CommentFrom';
 
 import WechatWrapper from '../WechatWrapper';
 import headers from '../../actions/globalHeader';
@@ -21,10 +23,13 @@ import headers from '../../actions/globalHeader';
 let logo_icon = require('../../images/icon/logo_icon.png');
 
 class AnswerComponent extends React.Component {
+
+  openCommentFrom(){
+    this.props.actions.fetchAnswerCommentFrom(this.props.answer,{isOpenFrom:true});
+  }
   DownApp() {
       this.props.actions.setDialogStatus(true);
   }
-
   goPay(){
     let user = this.props.user;
     if(user.isFetching){
@@ -100,11 +105,8 @@ class AnswerComponent extends React.Component {
               
             }
          });
-    });
-    
+    }); 
   }
-
-
 
   render() {
     console.log(this.props);
@@ -129,10 +131,11 @@ class AnswerComponent extends React.Component {
       answerPayDom = (<div className="answer-text" dangerouslySetInnerHTML={{__html: params.answerDetail.answer.description}}></div>)
     }
 
-    if(comments.totalSize > 0){
-        commentsDom = (<CommentsComponent actions={actions} comments={comments} />);
-    }
+    // if(!user.isFetching) params.answerDetail.answer.description = '<p>我们都江堰的确如此。我的心里都会很久没有理由去掉血沫！？！？</p><img src="http://statics.zhid58.com/4592FDEE-4526-4049-A840-78A01EC69A99"><p>&nbsp;<br>你民工哦，我们的话可以接受的话可以接受的话可以接受的话可以接受的话可以接受的话可以接受的话可以接受的话可以接受的话</p><img src="http://statics.zhid58.com/7F0B7597-CC97-4790-A010-3B5861ED8DBF">';
 
+    if(comments.totalSize > 0){
+        commentsDom = (<CommentsComponent actions={actions} comments={comments} isShow={ !user.isFetching && params.answerDetail.answer.description != null}/>);
+    }
     return (
       <div className="answer-container">
         <Helmet title={ '指点-' + answer.question.title} />
@@ -149,11 +152,15 @@ class AnswerComponent extends React.Component {
           </div>
           {answerPayDom}
         </div>
+        { !user.isFetching && params.answerDetail.answer.description != null && comments.totalSize == 0? (<div className="answer-footer" onClick={this.openCommentFrom.bind(this)}>
+            看完吐槽一下吧
+        </div>) : null}
         {commentsDom}
+        {params.isOpenLoad ? (<RequestLoading text={'[指点]努力处理中'}/>): null}
+        {params.isOpenFrom ? (<CommentFrom actions={actions} answer={params} user={user}/>):null}
       </div>
     );
   }
-
   componentWillReceiveProps(nextProps) {
     if (!nextProps.loadedConfig && !nextProps.answer.isFetching) {
         let answer = nextProps.answer.answer;
@@ -165,7 +172,6 @@ class AnswerComponent extends React.Component {
         });
     }
   }
-
   componentDidMount() {
       DeviceAdapter.setFrontSize();
       this.props.actions.fetchAnswerData(this.props.params.id);

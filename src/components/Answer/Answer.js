@@ -130,7 +130,7 @@ class AnswerComponent extends React.Component {
     }
 
     if(comments.totalSize > 0){
-        commentsDom = (<CommentsComponent actions={actions} comments={comments} />);
+        commentsDom = (<CommentsComponent actions={actions} comments={comments} isShow={false}/>);
     }
 
     return (

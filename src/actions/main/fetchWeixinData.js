@@ -17,7 +17,7 @@ module.exports = () => {
 function dealWithData(response,dispatch){
 	switch (response.code) {
       case '403':
-        location = response.href;
+        location.href = response.href;
         break;
       case '405':
         alert('不能获取微信的基本信息');

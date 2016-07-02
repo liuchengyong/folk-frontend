@@ -42,7 +42,9 @@ function mapDispatchToProps(dispatch) {
   const actions = {
     fetchAnswerData: require('../actions/answer/fetchAnswerData.js'),
     setDialogStatus: require('../actions/dialog/setDialogStatus.js'),
-    fetchAnswerDetailData: require('../actions/answer/fetchAnswerDetailData.js')
+    fetchAnswerDetailData: require('../actions/answer/fetchAnswerDetailData.js'),
+    fetchAnswerCommentFrom: require('../actions/answer/fetchAnswerCommentFrom.js'),
+    fetchAnswerCommentData: require('../actions/answer/fetchAnswerCommentData.js')
   };
   const actionMap = { actions: bindActionCreators(actions, dispatch) };
   return actionMap;
