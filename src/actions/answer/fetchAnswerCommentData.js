@@ -31,7 +31,7 @@ function fetchCommentsData(dispatch,answer){
       if(json.success){
         dispatch(receiveCommentData({answer:answer,comments:json.param}))
       }else{
-        console.log('error');
+        console.log('获取评论失败');
       }
     });
 }

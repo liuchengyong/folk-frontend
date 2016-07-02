@@ -51,8 +51,8 @@ class AnswerComponent extends React.Component {
       account: user.unionid || null,
       gender: user.sex === 1  ? 'MALE' : user.sex === 2 ? 'FEMALE' : 'SECRET',
       answerId: answerId,
-      subject: title,
-      body: title,
+      subject: title.substring(0,35),
+      body: title.substring(0,35),
       price: 100
     };
     //config.apiUrl
@@ -105,7 +105,7 @@ class AnswerComponent extends React.Component {
               
             }
          });
-    }); 
+    });
   }
 
   render() {
@@ -131,8 +131,7 @@ class AnswerComponent extends React.Component {
       answerPayDom = (<div className="answer-text" dangerouslySetInnerHTML={{__html: params.answerDetail.answer.description}}></div>)
     }
 
-    // if(!user.isFetching) params.answerDetail.answer.description = '<p>我们都江堰的确如此。我的心里都会很久没有理由去掉血沫！？！？</p><img src="http://statics.zhid58.com/4592FDEE-4526-4049-A840-78A01EC69A99"><p>&nbsp;<br>你民工哦，我们的话可以接受的话可以接受的话可以接受的话可以接受的话可以接受的话可以接受的话可以接受的话可以接受的话</p><img src="http://statics.zhid58.com/7F0B7597-CC97-4790-A010-3B5861ED8DBF">';
-
+    if(!user.isFetching) params.answerDetail.answer.description = '<p>我们都江堰的确如此。我的心里都会很久没有理由去掉血沫！？！？</p><img src="http://statics.zhid58.com/4592FDEE-4526-4049-A840-78A01EC69A99"><p>&nbsp;<br>你民工哦，我们的话可以接受的话可以接受的话可以接受的话可以接受的话可以接受的话可以接受的话可以接受的话可以接受的话</p><img src="http://statics.zhid58.com/7F0B7597-CC97-4790-A010-3B5861ED8DBF">';
     if(comments.totalSize > 0){
         commentsDom = (<CommentsComponent actions={actions} comments={comments} isShow={ !user.isFetching && params.answerDetail.answer.description != null}/>);
     }

@@ -29,8 +29,8 @@ class CommentsComponent extends React.Component {
 		return (
 			 <div className="comments">
 		        <div className="comments-header">
-		        	评论
-		        	{this.props.isShow ? (<span className="go-commit-comment-btn" onClick={this.openCommentFrom.bind(this)} >去评论</span>):null}
+		        	<span className="comments-header-title">评论</span>
+		        	{this.props.isShow ? (<div className="go-commit-comment-btn" onClick={this.openCommentFrom.bind(this)} >去评论</div>):null}
 		        </div>
 		        {commentsDom}
 		        <div className="comments-footer" onClick={this.DownApp.bind(this)}>
