@@ -61,7 +61,7 @@
 .question-text{
 	padding-top: 0.2rem;
 	display: block;
-	font-size: 0.34rem;
+	font-size: 0.36rem;
 	color: #333333;
 	line-height: 1.5em;
 }
@@ -147,12 +147,14 @@
 	padding-top: 0.24rem;
 	position: relative;
 	display: block;
-	font-size: 0.28rem;
-	color: #666666;
-	line-height: 1.5em;
+	font-size: 16px;
+	color: #333333;
+	letter-spacing: 1px;
+	line-height: 1.7em;
 	overflow: hidden;
 	word-break: break-all; 
     word-wrap:break-word;
+	font-weight: 100;
 	p{
 		padding-top: 1em;
 	}
