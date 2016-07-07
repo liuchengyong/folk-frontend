@@ -8,7 +8,6 @@ import marked from 'marked';
 
 import {formateTime} from '../../common/timeFormate';
 
-
 import Topics from './Topics';
 import ConsultationComments from './ConsultationComments';
 import WechatWrapper from '../WechatWrapper';
@@ -71,7 +70,7 @@ class Consultation extends React.Component {
   componentWillReceiveProps(nextProps) {
     if (!nextProps.loadedConfig && !nextProps.consultation.isFetching) {
       nextProps.configWechatSharing({
-        title: '【指点】' + nextProps.consultation.article.title,
+        title: `【指点】${nextProps.consultation.article.title}`,
         desc: nextProps.consultation.article.summary,
         link: `${config.baseUrl}/consultation/${nextProps.params.id}`,
         imgUrl: nextProps.consultation.article.sharedCover|| nextProps.consultation.article.cover || logo_icon

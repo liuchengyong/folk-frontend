@@ -71,13 +71,13 @@ class DynamicComponent extends React.Component {
             expert = nextProps.dynamic.expert,
             user = nextProps.dynamic.user;
           if(dynamic.type == 'VIDEO'){
-            share.title = `【指点】 ${decodeString(user.name || user.loginName || '匿名')} | ${expert.title} 分享了一个视频`;
+            share.title = `【指点】${decodeString(user.name || user.loginName || '匿名')} | ${expert.title} 分享了一个视频`;
             share.desc = decodeString(dynamic.description);
             share.imgUrl = 'http://7xqxpm.com1.z0.glb.clouddn.com/headline_128.png';
           }else{
-            share.title = `【指点】 ${decodeString(dynamic.title)}`;
+            share.title = `【指点】${decodeString(dynamic.title)}`;
             share.desc = paresHtmlToText(decodeString(dynamic.description));
-            share.imgUrl = getFirstImgSrc(decodeString(dynamic.description)) || 'http://7xqxpm.com1.z0.glb.clouddn.com/headline_128.png'
+            share.imgUrl = getFirstImgSrc(decodeString(dynamic.description)) || 'http://7xqxpm.com1.z0.glb.clouddn.com/headline_128.png';
           }
         }
         nextProps.configWechatSharing(share);

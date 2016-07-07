@@ -40,7 +40,7 @@ class ActiveComponent extends React.Component {
     if (!nextProps.loadedConfig && nextProps.active.article) {
       let active = nextProps.active;
       nextProps.configWechatSharing({
-        title: '【指点】' + active.article.title,
+        title: `【指点】${active.article.title}`,
         desc: active.article.summary,
         link: `${config.baseUrl}/activity/${this.props.params.id}`,
         imgUrl: active.article.sharedCover || active.article.cover || logo_icon

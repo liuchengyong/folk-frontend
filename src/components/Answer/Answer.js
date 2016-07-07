@@ -162,9 +162,9 @@ class AnswerComponent extends React.Component {
     if (!nextProps.loadedConfig && !nextProps.answer.isFetching) {
         let answer = nextProps.answer.answer;
         nextProps.configWechatSharing({
-            title: `【指点】 你的益答 | ${answer.question.title}`,
+            title: `【指点】你的益答 | ${answer.question.title}`,
             desc: answer.answererName + '|' + answer.answererTitle,
-            link: `${config.baseUrl}/answer/` + this.props.params.id,
+            link: `${config.baseUrl}/answer/${this.props.params.id}`,
             imgUrl: answer.answererAvater || logo_icon
         });
     }

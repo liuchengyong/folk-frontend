@@ -55,7 +55,7 @@ class BrokeComponent extends React.Component {
         var imgUrl = 'http://7xqxpm.com1.z0.glb.clouddn.com/headline_128.png';
       } else {
         var desc = '该爆料已被删除';
-        var link = `${config.baseUrl}/broke/` + this.props.params.id;
+        var link = `${config.baseUrl}/broke/${this.props.params.id}`;
         var imgUrl = 'http://7xqxpm.com1.z0.glb.clouddn.com/headline_128.png';
       }
       nextProps.configWechatSharing({
@@ -68,7 +68,6 @@ class BrokeComponent extends React.Component {
   }
 
   componentDidMount() {
-    // this.props.actions.fetchCoupon();
     DeviceAdapter.setFrontSize();
     this.props.actions.fetchBrokeData(this.props.params.id);
   }

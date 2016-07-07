@@ -26,11 +26,13 @@ let WechatWrapper = InnerComponent => class extends React.Component {
       this.fetchWechatConfig()
         .then(response => response.json())
         .then(SDK => {
-          // SDK.debug = true;
           wx.config(SDK);
           wx.ready(() => {
             wx.onMenuShareAppMessage(data);
             wx.onMenuShareTimeline(data);
+            wx.onMenuShareQQ(data);
+            wx.onMenuShareWeibo(data);
+            wx.onMenuShareQZone(data);
             self.setState({loadedConfig: true});
           });
           wx.error((err)=> {

@@ -55,9 +55,9 @@ class CollegeComponent extends React.Component {
             desc = (typeof span.textContent == 'string') ? span.textContent : span.innerText;
         }
         nextProps.configWechatSharing({
-            title: '【指点】'+college.college.name+'和我预想的不一样啊',
+            title: `【指点】${college.college.name}和我预想的不一样啊`,
             desc:  desc,
-            link: `${config.baseUrl}/college/` + this.props.params.id,
+            link: `${config.baseUrl}/college/${this.props.params.id}`,
             imgUrl: college.college.colorIcon || college.college.icon ||logo_icon
         });
     }
