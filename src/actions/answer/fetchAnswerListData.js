@@ -15,6 +15,7 @@ module.exports = (openId,page,pageSize) => {
 
 function receiveAnswerListData(pageSize,parameter){
 	parameter.answerList.pageSize = pageSize;
+  parameter.pageType = 'list';
 	return {type: 'RECEIVE_ANSWER_LIST_DATA', parameter};
 }
 

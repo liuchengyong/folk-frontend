@@ -9,11 +9,13 @@ module.exports = (openId,page,pageSize) => {
         headers: assign(headers,{openId:openId})
       })
       .then(response => response.json())
-      .then(json => json.success ? dispatch(receiveAnswerListData({answerList:json.param})) : '');
+      .then(json => json.success ? dispatch(receiveAnswerListOfMeData(pageSize,{answerList:json.param})) : '');
   }
 }
 
-function receiveAnswerListOfMeData(parameter){
+function receiveAnswerListOfMeData(pageSize,parameter){
+	parameter.answerList.pageSize = pageSize;
+	parameter.pageType = 'melist';
 	return {type: 'RECEIVE_ANSWER_LIST_DATA', parameter};
 }
 

@@ -29,7 +29,7 @@ module.exports = function(state = initialState, action) {
       return assign({},initialState,action.parameter);
     }break;
     case 'RECEIVE_ANSWER_LIST_DATA':{ // 初始化益达精选列表
-      return assign({},initialState,action.parameter,{isFetching: false, pageType:'list'});
+      return assign({},initialState,action.parameter,{isFetching: false});
     }break;
     default: {
       /* Return original state if no actions were consumed. */

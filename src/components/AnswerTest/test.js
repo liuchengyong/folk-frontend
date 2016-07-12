@@ -58,7 +58,7 @@ class AnswerComponent extends React.Component {
                   <span>精选</span>
                 </div>
                 <div className="answer-menu answer-menu-me" onClick={this.changePageState.bind(this,'me')}>
-                  <img src={params.pageType == 'me' ? ic_me_blue : ic_me_gray}/>
+                  <img src={ params.pageType == 'me' ||  params.pageType == 'melist' ? ic_me_blue : ic_me_gray}/>
                   <span>我的</span>
                 </div>
           </div>);
@@ -67,7 +67,8 @@ class AnswerComponent extends React.Component {
         <Helmet title={ '指点-' } />
         <TopBanner dialog={this.props.dialog} actions={this.props.actions} />
         {params.pageType == 'list' ? (<AnswerListComponent data={this.props.answer} actions={this.props.actions} user={this.props.user}/>) : null}
-        {params.pageType == 'me' ? (<AnswerSelfComponent user={this.props.user} />) : null}
+        {params.pageType == 'melist' ? (<AnswerListComponent data={this.props.answer} actions={this.props.actions} user={this.props.user}/>) : null}
+        {params.pageType == 'me' ? (<AnswerSelfComponent user={this.props.user} actions={this.props.actions} />) : null}
         {params.pageType == 'detail' ? (<AnswerDetailComponent user={this.props.user} data={this.props.answer} actions={this.props.actions}/>) : null}
         {answerMenus}
         {params.isOpenLoad ? (<RequestLoading text={params.loadText}/>): null}
@@ -77,7 +78,6 @@ class AnswerComponent extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log('componentWillReceiveProps');
     if (!nextProps.loadedConfig && !nextProps.answer.isFetching) {
         let answer = nextProps.answer.answer;
         nextProps.configWechatSharing({
