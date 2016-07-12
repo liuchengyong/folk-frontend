@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactInterval from 'react-interval';
+import config from 'config';
 
-let ic_me_avatar_default = require('../../images/ic_me_avatar_default.png');
 require('styles/answer/_answerPayControl.scss');
 
 

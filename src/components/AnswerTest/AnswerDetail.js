@@ -13,6 +13,9 @@ import {decodeString} from '../../common/string';
 import {DecimalFormat} from '../../common/mathFormate';
 
 class AnswerDetailComponent extends React.Component {
+	DownApp() {
+    	this.props.actions.setDialogStatus(true);
+  	}
 	constructor(props) {
 	    super(props);
 	    this.state = {
@@ -103,7 +106,7 @@ class AnswerDetailComponent extends React.Component {
 						}):null
 			        }
 			        {
-			        	comments.totalSize > 0 ? (<div className="answer-detail-comments-footer">
+			        	comments.totalSize > 0 ? (<div className="answer-detail-comments-footer"  onClick={this.DownApp.bind(this)}>
 					            发现更多精彩回答
 					        </div>)	: null
 			        }

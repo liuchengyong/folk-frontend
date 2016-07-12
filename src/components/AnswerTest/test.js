@@ -35,6 +35,7 @@ let logo_icon = require('../../images/icon/logo_icon.png'),
     ic_jingxuan_blue = require('../../images/jingxuan_blue.png');
 
 class AnswerComponent extends React.Component {
+
   changePageState(pageType){
     if(pageType == this.props.answer.pageType) return;
     this.props.actions.fetchAnswerPageState({isFetching:true});
