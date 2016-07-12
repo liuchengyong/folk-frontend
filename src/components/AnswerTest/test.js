@@ -21,7 +21,6 @@ import AnswerDetailComponent from './AnswerDetail';
 
 import WechatWrapper from '../WechatWrapper';
 
-
 let logo_icon = require('../../images/icon/logo_icon.png'),
     ic_me_gray = require('../../images/me_gray.png'),
     ic_me_blue = require('../../images/me_blue.png'),
@@ -85,7 +84,7 @@ class AnswerComponent extends React.Component {
             title: `【指点】 你的益答 | `,
             desc: `【指点】 你的益答 `,
             link: `${config.baseUrl}/answer/` + this.props.params.id,
-            imgUrl: answer.answererAvater || logo_icon
+            imgUrl: logo_icon
         });
     }
   }
