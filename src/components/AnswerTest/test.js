@@ -11,6 +11,7 @@ import Loading from '../Common/Loading';
 import RequestLoading from '../Common/RequestLoading';
 import Helmet from 'react-helmet';
 import TopBanner from '../Common/TopBanner';
+import config from 'config';
 
 import CommentsComponent from './Comments';
 import CommentFrom from './CommentFrom';
@@ -77,16 +78,16 @@ class AnswerComponent extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    // console.log('componentWillReceiveProps');
-    // if (!nextProps.loadedConfig && !nextProps.answer.isFetching) {
-    //     let answer = nextProps.answer.answer;
-    //     nextProps.configWechatSharing({
-    //         title: `【指点】 你的益答 | ${answer.question.title}`,
-    //         desc: answer.answererName + '|' + answer.answererTitle,
-    //         link: `${config.baseUrl}/answer/` + this.props.params.id,
-    //         imgUrl: answer.answererAvater || logo_icon
-    //     });
-    // }
+    console.log('componentWillReceiveProps');
+    if (!nextProps.loadedConfig && !nextProps.answer.isFetching) {
+        let answer = nextProps.answer.answer;
+        nextProps.configWechatSharing({
+            title: `【指点】 你的益答 | `,
+            desc: `【指点】 你的益答 `,
+            link: `${config.baseUrl}/answer/` + this.props.params.id,
+            imgUrl: answer.answererAvater || logo_icon
+        });
+    }
   }
 
   componentDidMount() {

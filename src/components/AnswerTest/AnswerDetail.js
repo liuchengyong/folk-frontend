@@ -24,6 +24,14 @@ class AnswerDetailComponent extends React.Component {
 	    };
 	}
 	openCommentFrom(){
+		console.log();
+		if(this.props.data.answerDetail.answer.description == null){
+			this.props.actions.fetchAnswerCommentFrom(this.props.data,{isOpenLoad:true,loadText:'亲！支付完才能评论。。'});
+			setTimeout(()=>{
+				this.props.actions.fetchAnswerCommentFrom(this.props.data,{isOpenLoad:false,loadText:'亲！支付完才能评论。。'});
+			},1000);
+			return;
+		}
     	this.props.actions.fetchAnswerCommentFrom(this.props.data,{isOpenFrom:true});
   	}
   	audioOpera(type){
