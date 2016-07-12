@@ -28,7 +28,7 @@ function fetchCommentsData(dispatch,answer){
     .then(response => response.json())
     .then(json =>{
       // json.success ? dispatch(receiveCommentData({answer:answer,comments:json.param}))
-      if(json.success){
+      if(json.success){  
         dispatch(receiveCommentData({answer:answer,comments:json.param}))
       }else{
         console.log('获取评论失败');

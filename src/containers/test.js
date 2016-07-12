@@ -7,8 +7,7 @@
 import React, {Component,PropTypes} from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-// import Expert from '../components/Expert/Expert';
-import Answer from '../components/Answer/test';
+import Answer from '../components/AnswerTest/test';
 
 /* Populated by react-webpack-redux:reducer */
 class AnswerContainer extends Component {
@@ -44,7 +43,9 @@ function mapDispatchToProps(dispatch) {
     setDialogStatus: require('../actions/dialog/setDialogStatus.js'),
     fetchAnswerDetailData: require('../actions/answer/fetchAnswerDetailData.js'),
     fetchAnswerCommentFrom: require('../actions/answer/fetchAnswerCommentFrom.js'),
-    fetchAnswerCommentData: require('../actions/answer/fetchAnswerCommentData.js')
+    fetchAnswerCommentData: require('../actions/answer/fetchAnswerCommentData.js'),
+    fetchAnswerPageState: require('../actions/answer/fetchAnswerPageState.js'),
+    fetchAnswerListData: require('../actions/answer/fetchAnswerListData.js')
   };
   const actionMap = { actions: bindActionCreators(actions, dispatch) };
   return actionMap;

@@ -13,7 +13,7 @@ module.exports = function(state = initialState, action) {
   switch(action.type) {
     case 'RECEIVE_ANSWER_DATA': {
       //@TODO 将删除状态作为一个action
-      return assign({},state,action.parameter, {isFetching: false});
+      return assign({},state,action.parameter, {isFetching: false,pageType:'detail'});
     } break;
     case 'RECEIVE_COMMENT_DATA':{
       return assign({},state,action.parameter);
@@ -24,6 +24,12 @@ module.exports = function(state = initialState, action) {
     } break;
     case 'CHANGE_COMMENT_FROM':{
       return assign({},state,action.parameter);
+    }break;
+    case 'CHANGE_ANSWER_PAGE_STATE':{
+      return assign({},initialState,action.parameter);
+    }break;
+    case 'RECEIVE_ANSWER_LIST_DATA':{ // 初始化益达精选列表
+      return assign({},initialState,action.parameter,{isFetching: false, pageType:'list'});
     }break;
     default: {
       /* Return original state if no actions were consumed. */

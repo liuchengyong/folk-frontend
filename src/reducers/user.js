@@ -3,7 +3,17 @@
  * If you change the type from object to something else, do not forget to update
  * src/container/App.js accordingly.
  */
-const initialState = {isFetching: true};
+const initialState = {
+  isFetching: false,
+  city: 'Darwin',
+  country: '',  
+  headimgurl: 'http://wx.qlogo.cn/mmopen/PiajxSqBRaELMo5oBNFPuwxYMeKllKL6lL6sTYSrO03nICbBzlFj3ibdntyvMfLlEgGwb8ePtFVlZpdEibsNKS5XQ/0',
+  language: 'zh_CN',
+  nickname: '源',
+  openid: 'olsAEuFTTxKLoCOyAt0syhgMqXtQ',
+  province: 'Northern Territory',
+  sex: 1
+};
 import assign from 'lodash/assign';
 
 module.exports = function(state = initialState, action) {

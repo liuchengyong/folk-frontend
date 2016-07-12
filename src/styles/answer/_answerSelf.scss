@@ -1,0 +1,94 @@
+.answer-self{
+	position: relative;
+	height: auto;
+	min-height: 100%;
+	margin:0 -0.2rem;
+}
+.answer-self-header{
+	position: relative;
+	display: block;
+	width: 100%;
+	height: auto;
+	overflow: hidden;
+	background-color: #ffffff;
+}
+.answer-self-avatar{
+	display: block;
+	margin: 0.6rem auto 0;
+	width: 2.11rem;
+	height: 2.11rem;
+	border-radius: 2.11rem;
+	padding: 0.08rem;
+	border:1px solid #e6e6e6;
+}
+.answer-self-name{
+	margin-top: 0.37rem;
+	font-size: 0.37rem;
+	color: #333333;
+	display: block;
+	text-align: center;
+}
+.answer-self-line{
+	margin: 0.3rem auto;
+	display: block;
+	width: 0.58rem;
+	height: 0.06rem;
+	background-color: #ffc600;
+}
+.answer-self-list{
+	margin-top: 0.2rem;
+	background-color: #fff;
+	padding: 0 0 0 0.42rem;
+	color: #333333;
+	font-size: 0.34rem;
+	line-height: 0.34rem;
+}
+.answer-self-paided,.answer-self-phone{
+	position: relative;
+	display: block;
+	width: 100%;
+	height: 1.12rem;
+	padding: 0.45rem 0 0 0.55rem;
+}
+.answer-self-paided{
+	border-bottom:1px solid #cfcfcf;
+}
+.answer-self-paided-icon,.answer-self-phone-icon{
+	position: absolute;
+	left:0;	
+	display: block;
+}
+.answer-self-paided-icon{
+	top:0.47rem;
+	width: 0.36rem;
+	height: 0.22rem;
+}
+.answer-self-phone-icon{
+	width: 0.44rem;
+	height: 0.44rem;
+	top:0.4rem;
+}
+.answer-self-paided-title{
+	display: block;
+}
+.answer-self-paided-arrow,.answer-self-phone-title{
+	width: 0.2rem;
+	height: 0.34rem;
+}
+.answer-self-paided-arrow,.answer-self-phone-number{
+	position: absolute;
+	display: block;
+	right: 0.4rem;
+	color: #666666;
+	font-size: 0.3rem;
+	top:0.45rem;
+}
+
+
+
+
+
+
+
+
+

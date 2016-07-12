@@ -1,0 +1,91 @@
+.answer-list{
+	position: relative;
+	width: 100%;
+	height: auto;
+	min-height: 100%;
+	overflow: hidden;
+}
+.answer-list-item{
+	position: relative;
+	display: block;
+	width: 100%;
+	height: auto;
+	background-color: #ffffff;
+	border-radius: 5px;
+	padding: 0.2rem 0.27rem 0.3rem;
+	margin-top: 0.2rem;
+}
+.item-text{
+	position: relative;
+	display: block;
+	font-size: 0.34rem;
+	color: #333333;
+	line-height: 1.5em;
+}
+
+.item-header{
+	position: relative;
+	display: block;
+	padding: 0.2rem 0 0 1rem;
+	min-height: 1rem;
+}
+.item-person-avatar{
+	position: absolute;
+	display: block;
+	width: 0.8rem;
+	height: 0.8rem;
+	border-radius: 0.8rem;
+	left: 0;
+}
+.item-person-name{
+	display: block;
+	font-size: 0.3rem;
+	color: #666666;
+	height: 0.5rem;
+	line-height: 0.5rem;
+}
+.item-person-title,
+.item-paymentTimes,
+.item-unworth{
+	display: inline-block;
+	font-size: 0.22rem;
+	color: #999999;
+	height: 0.3rem;
+	line-height: 0.3rem;
+	padding-right: 0.3rem;
+}
+.item-header-price{
+	position: absolute;
+	display: inline-block;
+	height: 0.5rem;
+	line-height: 0.5rem;
+	right: 0;
+	top:0.2rem;
+	font-size: 0.36rem;
+	color: #ff6600;	
+}
+
+
+.answer-list-load-more{
+	display: block;
+	width: 100%;
+	background-color: #ffffff;
+	font-size: 0.25rem;
+	color: #999999;
+	padding: 0.25rem 0;
+	text-align: center;
+	margin-top: 0.2rem;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+

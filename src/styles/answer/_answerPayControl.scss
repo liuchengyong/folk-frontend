@@ -1,0 +1,76 @@
+.answer-content-control-text,
+.answer-content-control-audio{
+	position: relative;
+	display: block;
+	margin-top: 0.3rem;
+	width: 5.6rem;
+	height: 0.8rem;
+	background-size: 100% auto;
+	background-repeat: no-repeat;
+	.answer-content-control-desc{
+		padding-left: 0.95rem;
+		line-height:0.8rem;
+		color: #ffffff;
+		font-size: 0.3rem;
+	}
+}
+.answer-content-control-text{
+	background-image: url(../../images/answer-text-back.png);
+}
+
+.answer-content-control-audio{
+	background-image: url(../../images/answer-audio-back.png);
+	.answer-content-control-audio-timer{
+		position: absolute;
+		display: block;
+		width: 0.8rem;
+		top:0;
+		right: 0;
+		line-height:0.8rem;
+		color: #ffffff;
+		font-size: 0.3rem;
+		text-align: center;
+	}
+	&.answer-content-control-audio-paid{
+		background-image: url(../../images/answer-audio-back-paid.png);
+	}
+	&.answer-content-control-audio-play{
+		background-image: url(../../images/audio-play.gif);
+	}
+}
+
+.answer-content-control-description{
+	padding-top: 0.24rem;
+	position: relative;
+	display: block;
+	font-size: 16px;
+	color: #333333;
+	letter-spacing: 1px;
+	line-height: 1.7em;
+	overflow: hidden;
+	word-break: break-all; 
+    word-wrap:break-word;
+	font-weight: 100;
+	p{
+		padding-top: 1em;
+	}
+	img{
+		display: block;
+		padding-top: 1em;
+		width: 100%;
+		height: auto;
+	}
+	p:first-child{
+		padding-top: 0;
+	}
+	img:first-child{
+		padding-top: 0;
+	}
+	a{
+		text-decoration: none;
+		color: #18aef9;
+	}
+}
+.answer-detail-audio-controls{
+	visibility: hidden;
+}

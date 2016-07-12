@@ -77,7 +77,7 @@ render(
             cb(null, require('./containers/Answer'));
           })
         }}/>
-        <Route path="testanswertest/:id" name="answer" getComponent={(location, cb) => { // 益达回答详情
+        <Route path="testanswertest/:id" name="testanswertest" getComponent={(location, cb) => { // 益达回答详情
           require.ensure([], (require) => {
             cb(null, require('./containers/test'));
           })
