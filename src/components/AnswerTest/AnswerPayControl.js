@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactInterval from 'react-interval';
 import config from 'config';
+import headers from '../../actions/globalHeader';
 
 require('styles/answer/_answerPayControl.scss');
 
@@ -13,7 +14,6 @@ class AnswerPayControlComponent extends React.Component {
 	    	duration:0,
 	    };
 	}
-
 	goPay(){
 	    let user = this.props.user;
 	    if(user.isFetching){
@@ -92,8 +92,6 @@ class AnswerPayControlComponent extends React.Component {
           	return encodeURIComponent(keyName) + '=' + encodeURIComponent(data[keyName])
       	}).join('&');
   	}
-
-
 	changePageState(id){
 	    this.props.actions.fetchAnswerPageState({isFetching:true});
 	    this.props.actions.fetchAnswerData(id);
@@ -119,7 +117,6 @@ class AnswerPayControlComponent extends React.Component {
   	}
 
 	render(){
-		console.log(this.props);
 		let answer = this.props.answer;
 		let answerDom = null;
 		if(answer.answer.type == 'RICH_TEXT' && answer.answer.description == null){

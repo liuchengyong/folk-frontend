@@ -6,27 +6,20 @@ require('normalize.css');
 require('styles/answer/_answer.scss')
 
 import React from 'react';
-import {Link} from 'react-router';
 import DeviceAdapter from '../../common/deviceAdapter';
 import Loading from '../Common/Loading';
 import RequestLoading from '../Common/RequestLoading';
 import Helmet from 'react-helmet';
-import config from 'config';
 import TopBanner from '../Common/TopBanner';
 
-import QuestionComponent from './QuestionComponent';
 import CommentsComponent from './Comments';
 import CommentFrom from './CommentFrom';
 import AnswerListComponent from './AnswerList';
 import AnswerSelfComponent from './AnswerSelf';
 import AnswerDetailComponent from './AnswerDetail';
 
-
-
-
-
 import WechatWrapper from '../WechatWrapper';
-import headers from '../../actions/globalHeader';
+
 
 let logo_icon = require('../../images/icon/logo_icon.png'),
     ic_me_gray = require('../../images/me_gray.png'),
@@ -98,8 +91,6 @@ class AnswerComponent extends React.Component {
 
   componentDidMount() {
       DeviceAdapter.setFrontSize();
-      let pageType = this.props.params.id == 'list' ? 'list' :  this.props.params.id == 'me' ? 'me' : 'detail';
-      // this.props.actions.fetchAnswerPageState({pageType:pageType});
       if(this.props.params.id == 'list'){
         this.props.actions.fetchAnswerListData(this.props.user.openid,0,20);
       }else if(this.props.params.id == 'me'){
