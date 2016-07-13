@@ -16,13 +16,19 @@ module.exports = (answer,unWorth,openId) => {
   }
 }
 
+function clickUnWorthData(answer){
+  answer.isClickUnWorth = true;
+  return {type: 'UPDATE_ANSWER_UNWORTH', parameter:answer};
+}
+
 function updateUnworthData(answer,unWorth){
   if(unWorth){
+    answer.answer.unworthCount--;
     answer.answerDetail.unworth = false;
-    answer.answer.unworthCount = answer.answer.unworthCountCopy - 1;
   }else{
+    answer.answer.unworthCount ++;
     answer.answerDetail.unworth = true;
-    answer.answer.unworthCount = answer.answer.unworthCountCopy + 1;
   }
+  answer.isClickUnWorth = false;
   return {type: 'UPDATE_ANSWER_UNWORTH', parameter:answer};
 }; 

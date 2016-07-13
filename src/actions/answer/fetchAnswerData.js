@@ -22,6 +22,5 @@ function fetchCommentsData(dispatch,answer){
 }
 
 function receiveAnswerData(parameter){
-  parameter.answer.unworthCountCopy = parameter.answer.unworthCount;
 	return {type: 'RECEIVE_ANSWER_DATA', parameter};
 }

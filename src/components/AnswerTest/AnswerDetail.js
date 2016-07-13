@@ -16,7 +16,6 @@ class AnswerDetailComponent extends React.Component {
 	DownApp() {
     	this.props.actions.setDialogStatus(true);
   	}
-	
 	openCommentFrom(){
 		if(this.props.user.isFetching || this.props.data.answerDetail.answer.description == null){
 			this.props.actions.fetchAnswerCommentFrom(this.props.data,{isOpenLoad:true,loadText:'亲！支付完才能评论。。'});
@@ -30,6 +29,7 @@ class AnswerDetailComponent extends React.Component {
   	}
 
   	clickUnWorth(){
+  		if(this.props.data.isClickUnWorth) return;
   		if(this.props.user.isFetching || this.props.data.answerDetail.answer.description == null){
   			this.props.actions.fetchAnswerCommentFrom(this.props.data,{isOpenLoad:true,loadText:'亲！支付完才能操作哟。。'});
 			setTimeout(()=>{

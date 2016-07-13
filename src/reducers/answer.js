@@ -3,7 +3,8 @@ import assign from 'lodash/assign';
 const initialState = {
   isFetching: true,
   isOpenFrom: false,
-  isOpenLoad: false
+  isOpenLoad: false,
+  isClickUnWorth: false
 };
 
 
