@@ -85,7 +85,7 @@ class AnswerComponent extends React.Component {
         if(this.props.params.id == 'list' || this.props.params.id == 'me'){
           wconfig.title = '益达-你的教育专家';
           wconfig.desc = '益达-你的教育专家';
-          wconfig.link = `${config.baseUrl}/answer/${this.props.params.id}`;
+          wconfig.link = `${config.baseUrl}/testanswertest/${this.props.params.id}`;
           wconfig.imgUrl = logo_icon;
         }else{
           let answer = nextProps.answer;
@@ -93,7 +93,7 @@ class AnswerComponent extends React.Component {
             (answer.answerType == 'AUDIO' ? '听听':'瞅瞅') + '|' +
             answer.answer.question.title;
           wconfig.desc = answer.answer.answererName + '|' + answer.answer.answererTitle;
-          wconfig.link = `${config.baseUrl}/answer/${this.props.params.id}`;
+          wconfig.link = `${config.baseUrl}/testanswertest/${this.props.params.id}`;
           wconfig.imgUrl = answer.answer.answererAvater || logo_icon;
         }
         nextProps.configWechatSharing(wconfig);
