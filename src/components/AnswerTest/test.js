@@ -13,7 +13,6 @@ import Helmet from 'react-helmet';
 import TopBanner from '../Common/TopBanner';
 import config from 'config';
 
-import CommentsComponent from './Comments';
 import CommentFrom from './CommentFrom';
 import AnswerListComponent from './AnswerList';
 import AnswerSelfComponent from './AnswerSelf';
@@ -44,10 +43,12 @@ class AnswerComponent extends React.Component {
     console.log(this.props);
     let params = this.props.answer,
         user = this.props.user;
+    if(params.isFetching && !user.isFetching && params.pageType == 'list' && params.answerList == undefined){
+        this.props.actions.fetchAnswerListData(this.props.user.openid,0,20);
+    }
     if(params.isFetching) {
         return <Loading />;
     }
-
     if(!user.isFetching && params.pageType == 'detail' && params.answerDetail == undefined){
       this.props.actions.fetchAnswerDetailData(params,user.openid);
       return <Loading />;
@@ -65,7 +66,7 @@ class AnswerComponent extends React.Component {
           </div>);
     return (
       <div className="answer-container">
-        <Helmet title={'益达-你的教育专家'} />
+        <Helmet title={'益答--你的教育专家'} />
         <TopBanner dialog={this.props.dialog} actions={this.props.actions} />
         {params.pageType == 'list' ? (<AnswerListComponent data={this.props.answer} actions={this.props.actions} user={this.props.user}/>) : null}
         {params.pageType == 'melist' ? (<AnswerListComponent data={this.props.answer} actions={this.props.actions} user={this.props.user}/>) : null}
@@ -79,12 +80,13 @@ class AnswerComponent extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
+    console.log(nextProps);
     if (!nextProps.loadedConfig && !nextProps.answer.isFetching) {
-        console.log(nextProps.answer);
+        console.log(nextProps.answer);                  
         let wconfig = {};
         if(this.props.params.id == 'list' || this.props.params.id == 'me'){
-          wconfig.title = '益达-你的教育专家';
-          wconfig.desc = '益达-你的教育专家';
+          wconfig.title = '益答-你的教育专家';
+          wconfig.desc = '益答-你的教育专家';
           wconfig.link = `${config.baseUrl}/testanswertest/${this.props.params.id}`;
           wconfig.imgUrl = logo_icon;
         }else{
@@ -103,7 +105,7 @@ class AnswerComponent extends React.Component {
   componentDidMount() {
       DeviceAdapter.setFrontSize();
       if(this.props.params.id == 'list'){
-        this.props.actions.fetchAnswerListData(this.props.user.openid,0,20);
+        
       }else if(this.props.params.id == 'me'){
         this.props.actions.fetchAnswerPageState({isFetching:false,pageType:'me'});
       }else{

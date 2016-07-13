@@ -35,7 +35,7 @@ class AnswerSelfComponent extends React.Component {
 						<div className="answer-self-phone">
 							<img className="answer-self-phone-icon" src={ic_me_phone}/>
 							<span className="answer-self-phone-title">客服电话</span>
-							<a className="answer-self-phone-number">010-59421689</a>
+							<a href="tel:010-59421689" className="answer-self-phone-number">010-59421689</a>
 						</div>
 					</div>
 	    		</div>);

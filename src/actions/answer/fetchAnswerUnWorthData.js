@@ -19,12 +19,10 @@ module.exports = (answer,unWorth,openId) => {
 function updateUnworthData(answer,unWorth){
   if(unWorth){
     answer.answerDetail.unworth = false;
-    answer.answerDetail.unworthCount--;
-    answer.answer.unworthCount--;
+    answer.answer.unworthCount = answer.answer.unworthCountCopy - 1;
   }else{
     answer.answerDetail.unworth = true;
-    answer.answerDetail.unworthCount++;
-    answer.answer.unworthCount++;
+    answer.answer.unworthCount = answer.answer.unworthCountCopy + 1;
   }
   return {type: 'UPDATE_ANSWER_UNWORTH', parameter:answer};
 }; 

@@ -55,13 +55,13 @@ class AnswerListComponent extends React.Component {
 			        </div>);
 				})}
 				{this.props.data.answerList.totalSize == 0 ? null : (<div className="answer-list-load-more" onClick={this.loadNextPage.bind(this)}>
-					{this.state.isLoadMore?'点击加载跟多':'已经没有了哦'}
+					{this.state.isLoadMore?'点击加载更多':'已经没有了哦'}
 				</div>)}
 				
 				{this.props.data.answerList.totalSize == 0 &&  this.props.data.pageType == 'melist' ? (<div className="answer-list-null">
 						<img className="answer-list-null-back" src={ic_me_answer_list_null}/>
-						<span className="answer-list-null-desc">你暂时还没有益达内容哟</span>
-						<span className="answer-list-null-btn" onClick={this.changePageState.bind(this,'list')}>去看看热门益达吧</span>
+						<span className="answer-list-null-desc">你暂时还没有益答内容哟</span>
+						<span className="answer-list-null-btn" onClick={this.changePageState.bind(this,'list')}>去看看热门益答吧</span>
 					</div>) : null}
 				
     		</div>);
