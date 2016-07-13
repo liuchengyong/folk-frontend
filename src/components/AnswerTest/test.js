@@ -81,22 +81,22 @@ class AnswerComponent extends React.Component {
   componentWillReceiveProps(nextProps) {
     if (!nextProps.loadedConfig && !nextProps.answer.isFetching) {
         console.log(nextProps.answer);
-        let config = {};
+        let wconfig = {};
         if(this.props.params.id == 'list' || this.props.params.id == 'me'){
-          config.title = '益达-你的教育专家';
-          config.desc = '益达-你的教育专家';
-          config.link = `${config.baseUrl}/answer/${this.props.params.id}`;
-          config.imgUrl = logo_icon;
+          wconfig.title = '益达-你的教育专家';
+          wconfig.desc = '益达-你的教育专家';
+          wconfig.link = `${config.baseUrl}/answer/${this.props.params.id}`;
+          wconfig.imgUrl = logo_icon;
         }else{
           let answer = nextProps.answer;
-          config.title = '【指点】 益答' + 
+          wconfig.title = '【指点】 益答' + 
             (answer.answerType == 'AUDIO' ? '听听':'瞅瞅') + '|' +
             answer.answer.question.title;
-          config.desc = answer.answer.answererName + '|' + answer.answer.answererTitle;
-          config.link = `${config.baseUrl}/answer/${this.props.params.id}`;
-          config.imgUrl = answer.answer.answererAvater || logo_icon;
+          wconfig.desc = answer.answer.answererName + '|' + answer.answer.answererTitle;
+          wconfig.link = `${config.baseUrl}/answer/${this.props.params.id}`;
+          wconfig.imgUrl = answer.answer.answererAvater || logo_icon;
         }
-        nextProps.configWechatSharing(config);
+        nextProps.configWechatSharing(wconfig);
     }
   }
 
