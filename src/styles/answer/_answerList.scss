@@ -77,9 +77,32 @@
 	margin-top: 0.2rem;
 }
 
-
-
-
+.answer-list-null-back{
+	display: block;
+	width: 1.88rem;
+	height: 1.92rem;
+	margin: 3rem auto 0; 
+}
+.answer-list-null-desc{
+	display: block;
+	width: 100%;
+	font-size: 0.28rem;
+	text-align: center;
+	margin: 0.37rem 0 0;
+	color: #d4d4d4;
+}
+.answer-list-null-btn{
+	display: block;
+	width: 2.88rem;
+	height: 0.78rem;
+	margin:1rem auto;
+	background-color: #18aef9;
+	color: #ffffff;
+	font-size: 0.3rem;
+	text-align: center;
+	line-height: 0.78rem;
+	border-radius: 5px;
+}
 
 
 

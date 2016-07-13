@@ -16,47 +16,39 @@ class AnswerDetailComponent extends React.Component {
 	DownApp() {
     	this.props.actions.setDialogStatus(true);
   	}
-	constructor(props) {
-	    super(props);
-	    this.state = {
-	    	isPlay:false,
-	    	duration:0,
-	    };
-	}
+	
 	openCommentFrom(){
-		console.log();
-		if(this.props.data.answerDetail.answer.description == null){
+		if(this.props.user.isFetching || this.props.data.answerDetail.answer.description == null){
 			this.props.actions.fetchAnswerCommentFrom(this.props.data,{isOpenLoad:true,loadText:'亲！支付完才能评论。。'});
 			setTimeout(()=>{
 				this.props.actions.fetchAnswerCommentFrom(this.props.data,{isOpenLoad:false,loadText:'亲！支付完才能评论。。'});
 			},1000);
-			return;
+		}else{
+			this.props.actions.fetchAnswerCommentFrom(this.props.data,{isOpenFrom:true});
 		}
-    	this.props.actions.fetchAnswerCommentFrom(this.props.data,{isOpenFrom:true});
+    	
   	}
-  	audioOpera(type){
-  		this.state.duration = this.props.data.answerDetail.answer.duration;
-  		if(type == 'click'){
-  			console.log('click');
-  			if(this.state.isPlay){
-	  			this.refs.audioControl.load();
-	  		}else{
-	  			this.refs.audioControl.play();
-	  		}
-	  		this.setState({isPlay:!this.state.isPlay});
-  		}else if('end'){
-  			this.setState({isPlay:false});
-  		}else if(type == 'start'){
-  			console.log('start');
-			this.setState({isPlay:true});
+
+  	clickUnWorth(){
+  		if(this.props.user.isFetching){
+  			this.props.actions.fetchAnswerCommentFrom(this.props.data,{isOpenLoad:true,loadText:'亲！支付完才能操作哟。。'});
+			setTimeout(()=>{
+				this.props.actions.fetchAnswerCommentFrom(this.props.data,{isOpenLoad:false,loadText:'亲！支付完才能操作哟。。'});
+			},1000);
+  		}else{
+  			this.props.actions.fetchAnswerUnWorthData(this.props.data,this.props.data.answerDetail.unworth,this.props.user.openid);
   		}
   	}
+  		
+ 	
 	render(){
+		console.log(this.props);
 		let data = this.props.data,
+			user = this.props.user,
+			actions = this.props.actions,
 		 	question = data.answer,
 		 	answer = data.answer,
 		 	comments = data.comments,
-		 	actions = this.props.actions,
 		 	answerDetail = data.answerDetail;
 
 		return (
@@ -76,12 +68,12 @@ class AnswerDetailComponent extends React.Component {
 		                <span className="answer-detail-answer-person-name">{answer.answererName}</span>
 		                <div className="answer-detail-answer-person-right">
 		                	<span className="answer-detail-answer-person-paymentTimes">{answer.paymentTimes == 0 ? ' ' : (answer.paymentTimes + '人' + (answer.answerType == 'RICH_TEXT' ? '瞅瞅':'听听'))}</span>
-		                	<span className="answer-detail-answer-person-unworth">{answer.unworthCount == 0 ? '' : answer.unworthCount + '人别闹'}</span>
+		                	<span className={`answer-detail-answer-person-unworth ${ user.isFetching ? 'answer-detail-answer-person-unworth-none' : (answerDetail.unworth ? '' : 'answer-detail-answer-person-unworth-none')}`} onClick={this.clickUnWorth.bind(this)}>{answer.unworthCount == 0 ? '' : answer.unworthCount + '人别闹'}</span>
 		                </div>
 		              </div>
 		              <span className="answer-detail-answer-person-major">{answer.answererTitle}</span>
 		          </div>
-		          <AnswerPayControlComponent answer={answerDetail} actions={this.props.actions} isShow={true} user={this.props.user}/>
+		          <AnswerPayControlComponent answer={answerDetail || {answer:{type:answer.answerType,description:null,duration:answer.duration}}} actions={this.props.actions} isShow={true} user={this.props.user}/>
 		        </div>
 		       	<div className="answer-detail-comments">
 			        <div className="answer-detail-comments-header">
@@ -89,13 +81,13 @@ class AnswerDetailComponent extends React.Component {
 			        	<div className="answer-detail-comment-btn" onClick={this.openCommentFrom.bind(this)}>评论</div>
 			        </div>
 			        {
-			        	comments.totalSize == 0 && answerDetail.answer.description == null ? (<div className="answer-detail-comments-null">
+			        	comments.totalSize == 0 && ( user.isFetching ? true : answerDetail.answer.description == null)? (<div className="answer-detail-comments-null">
 				        	<img className="answer-detail-comments-null-back" src={ic_comments_null_back}/>
 				        	<span className="answer-detail-comments-null-msg">暂无评论，瞅瞅后才能评论哟！！！</span>
 				        </div>) : null
 			        }
 			        {
-			        	comments.totalSize == 0 && answerDetail.answer.description != null ? (<div className="answer-detail-comments-paid-null">
+			        	comments.totalSize == 0 && !user.isFetching && answerDetail.answer.description != null ? (<div className="answer-detail-comments-paid-null">
 				        	<img className="answer-detail-comments-paid-null-back" src={ic_comments_paid_null_back}/>
 				        	<span className="answer-detail-comments-paid-null-msg">暂无评论，赶快评论一下吧！！！</span>
 				        </div>) : null

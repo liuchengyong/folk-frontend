@@ -1,6 +1,7 @@
 import React from 'react';
 
-let ic_me_avatar_default = require('../../images/ic_me_avatar_default.png');
+let ic_me_avatar_default = require('../../images/ic_me_avatar_default.png'),
+	ic_me_answer_list_null = require('../../images/me-paid-list-null.png');
 require('styles/answer/_answerList.scss');
 
 import AnswerPayControlComponent from './AnswerPayControl';
@@ -19,14 +20,20 @@ class AnswerListComponent extends React.Component {
 	changePageState(pageType,id){
 	    if(pageType == this.props.data.pageType) return;
 	    this.props.actions.fetchAnswerPageState({isFetching:true});
-	    this.props.actions.fetchAnswerData(id);
+	    if(pageType == 'detail'){
+	    	this.props.actions.fetchAnswerData(id);
+	    }else if(pageType == 'list'){
+	    	this.props.actions.fetchAnswerListData(this.props.user.openid,0,20);
+	    }
+	    
   	}
   	loadNextPage(){
   		if(this.props.data.answerList.pageSize >= this.props.data.answerList.totalSize){
 			this.setState({isLoadMore:false});
   			return;
   		}
-  		this.props.actions.fetchAnswerListData(this.props.user.openid,0,this.props.data.answerList.pageSize + 20);
+  		this.props.data.pageType == 'list' ? this.props.actions.fetchAnswerListData(this.props.user.openid,0,this.props.data.answerList.pageSize + 20) 
+  			:this.props.actions.fetchAnswerListOfMeData(this.props.user.openid,0,this.props.data.answerList.pageSize + 5);
   	}
 	render(){
 		let list = this.props.data.answerList.results;
@@ -35,7 +42,7 @@ class AnswerListComponent extends React.Component {
 				{list.map(answer =>{
 					let answerDom = null;
 					return (<div className="answer-list-item" key={answer.answer.id}>
-						<div className="item-text" onClick={this.changePageState.bind(this,'detail',answer.answer.questionId)}>{decodeString(answer.question)}</div>
+						<div className="item-text" onClick={this.changePageState.bind(this,'detail',answer.answer.questionId)}>{decodeString(answer.question.title || answer.question)}</div>
 			            <div className="item-header" onClick={this.changePageState.bind(this,'detail',answer.answer.questionId)}>
 			            	<img className="item-person-avatar" src={answer.answererAvater || ic_me_avatar_default} />
 		            		<span className="item-person-name">{answer.answererName}</span>
@@ -47,9 +54,16 @@ class AnswerListComponent extends React.Component {
 			           	<AnswerPayControlComponent answer={answer} isShow={false} actions={this.props.actions} user={this.props.user}/>
 			        </div>);
 				})}
-				<div className="answer-list-load-more" onClick={this.loadNextPage.bind(this)}>
+				{this.props.data.answerList.totalSize == 0 ? null : (<div className="answer-list-load-more" onClick={this.loadNextPage.bind(this)}>
 					{this.state.isLoadMore?'点击加载跟多':'已经没有了哦'}
-				</div>
+				</div>)}
+				
+				{this.props.data.answerList.totalSize == 0 &&  this.props.data.pageType == 'melist' ? (<div className="answer-list-null">
+						<img className="answer-list-null-back" src={ic_me_answer_list_null}/>
+						<span className="answer-list-null-desc">你暂时还没有益达内容哟</span>
+						<span className="answer-list-null-btn" onClick={this.changePageState.bind(this,'list')}>去看看热门益达吧</span>
+					</div>) : null}
+				
     		</div>);
 	} 
 }

@@ -31,10 +31,11 @@ class AnswerComponent extends React.Component {
 
   changePageState(pageType){
     if(pageType == this.props.answer.pageType) return;
-    this.props.actions.fetchAnswerPageState({isFetching:true});
     if(pageType == 'list'){
+      this.props.actions.fetchAnswerPageState({isFetching:true});
       this.props.actions.fetchAnswerListData(this.props.user.openid,0,20);
     }else if(pageType == 'me'){
+      this.props.user.isFetching ? this.props.actions.setDialogStatus(true) :
       this.props.actions.fetchAnswerPageState({isFetching:false,pageType:'me'});
     }
   }

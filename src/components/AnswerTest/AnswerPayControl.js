@@ -119,6 +119,8 @@ class AnswerPayControlComponent extends React.Component {
 	render(){
 		let answer = this.props.answer;
 		let answerDom = null;
+
+
 		if(answer.answer.type == 'RICH_TEXT' && answer.answer.description == null){
 			answerDom = (<div className="answer-content-control-text" onClick={this.goPay.bind(this)}>
             		<span className="answer-content-control-desc">1元去瞅瞅</span>
@@ -129,7 +131,7 @@ class AnswerPayControlComponent extends React.Component {
             		<span className="answer-content-control-desc" onClick={this.changePageState.bind(this,answer.answer.questionId)}>查看详情</span>
             	</div>);
 		}else if(answer.answer.type == 'AUDIO' && answer.answer.description == null){
-			answerDom = (<div className="answer-content-control-audio">
+			answerDom = (<div className="answer-content-control-audio" onClick={this.goPay.bind(this)}>
             		<span className="answer-content-control-desc">1元去听听</span>
             		<span className='answer-content-control-audio-timer'>{answer.answer.duration+'\'\''}</span>
             	</div>);

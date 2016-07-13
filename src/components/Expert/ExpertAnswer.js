@@ -3,6 +3,7 @@
  */
 import React from 'react';
 import {DecimalFormat} from '../../common/mathFormate';
+import {decodeString} from '../../common/string';
 
 
 let ic_me_avatar_default = require('../../images/ic_me_avatar_default.png');
@@ -17,9 +18,9 @@ class ExpertAnswer extends React.Component {
       return (<div className = "expert-answer-item" key={answer.answer.id}>
           <div className = "expert-answer-item-question-text">{answer.question}</div>
           <div className = "expert-answer-item-answer">
-            <img className="expert-answer-item-answer-avater" src={answer.answererAvater || ic_me_avatar_default} />
+            <img className="expert-answer-item-answer-avater" src={answer.questioner.avatar || ic_me_avatar_default} />
             <div className="expert-answer-item-answer-title">
-                <span className="expert-answer-item-answer-name">{answer.questioner.name || answer.questioner.loginName || '匿名'}</span>
+                <span className="expert-answer-item-answer-name">{decodeString(answer.questioner.name || answer.questioner.loginName || '匿名')}</span>
                 <span className="expert-answer-item-answer-pirce">{`¥${DecimalFormat((answer.amount/100),2)}`}</span>
             </div>
              <div className="expert-answer-item-answer-tag">

@@ -15,9 +15,8 @@ class AnswerSelfComponent extends React.Component {
 	    super(props);
 	}
 	goSelf(){
-		console.log('213123');
 		this.props.actions.fetchAnswerPageState({isFetching:true});
-		this.props.actions.fetchAnswerListOfMeData(this.props.user.openid,0,20);
+		this.props.actions.fetchAnswerListOfMeData(this.props.user.openid,0,5);
 	}
 	render(){
 		let user = this.props.user;

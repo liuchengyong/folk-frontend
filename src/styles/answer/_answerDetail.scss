@@ -123,12 +123,15 @@
 			content: " ";
 			width: 0.26rem;
 			height: 0.26rem;
-			background-image: url(../../images/answer-unworth.png);
+			background-image: url(../../images/answer-unworth-blue.png);
 			background-size: 0.26rem 0.26rem;
 			background-repeat: no-repeat;
 			background-position: 0 0;
 			left:0;
 			top:0;
+		}
+		&.answer-detail-answer-person-unworth-none:before{
+			background-image: url(../../images/answer-unworth-gray.png);
 		}
 	}
 	.answer-detail-answer-person-major{

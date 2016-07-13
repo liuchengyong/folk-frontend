@@ -31,6 +31,9 @@ module.exports = function(state = initialState, action) {
     case 'RECEIVE_ANSWER_LIST_DATA':{ // 初始化益达精选列表
       return assign({},initialState,action.parameter,{isFetching: false});
     }break;
+    case 'UPDATE_ANSWER_UNWORTH':{
+      return assign({},action.parameter);
+    }break;
     default: {
       /* Return original state if no actions were consumed. */
       return state;
