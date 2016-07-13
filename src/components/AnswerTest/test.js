@@ -105,7 +105,7 @@ class AnswerComponent extends React.Component {
   componentDidMount() {
       DeviceAdapter.setFrontSize();
       if(this.props.params.id == 'list'){
-        
+        this.props.actions.fetchAnswerPageState({pageType:'list'});
       }else if(this.props.params.id == 'me'){
         this.props.actions.fetchAnswerPageState({isFetching:false,pageType:'me'});
       }else{
