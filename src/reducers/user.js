@@ -25,7 +25,7 @@ module.exports = function(state = initialState, action) {
       return assign({}, action.parameter, {isFetching: false});
     } break;
     case 'REQUEST_USER_DATA': {
-      return assign({}, state, {isFetching: true});
+      return assign({}, action.parameter, {isFetching: true});
     } break;
     default: {
       /* Return original state if no actions were consumed. */

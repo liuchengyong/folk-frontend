@@ -43,6 +43,7 @@ class AnswerComponent extends React.Component {
     console.log(this.props);
     let params = this.props.answer,
         user = this.props.user;
+
     if(params.isFetching) {
         return <Loading />;
     }
@@ -100,10 +101,10 @@ class AnswerComponent extends React.Component {
 
   componentDidMount() {
       DeviceAdapter.setFrontSize();
-      if(this.props.params.id == 'list'){
-        setTimeout(
-            this.props.actions.fetchAnswerListData(this.props.user.openid,0,20);
-          , 1000);
+      if(this.props.params.id == 'list'){ 
+        setTimeout(()=>{
+          this.props.actions.fetchAnswerListData(this.props.user.openid,0,20);
+        },1000);
       }else if(this.props.params.id == 'me'){
         this.props.actions.fetchAnswerPageState({isFetching:false,pageType:'me'});
       }else{
