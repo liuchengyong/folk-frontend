@@ -80,6 +80,7 @@ class AnswerComponent extends React.Component {
 
   componentWillReceiveProps(nextProps) {
     if (!nextProps.loadedConfig && !nextProps.answer.isFetching) {
+        console.log(nextProps.answer);
         let config = {};
         if(this.props.params.id == 'list' || this.props.params.id == 'me'){
           config.title = '益达-你的教育专家';
@@ -90,10 +91,10 @@ class AnswerComponent extends React.Component {
           let answer = nextProps.answer;
           config.title = '【指点】 益答' + 
             (answer.answerType == 'AUDIO' ? '听听':'瞅瞅') + '|' +
-            answer.question.title;
-          config.desc = answer.answererName + '|' + answer.answererTitle;
+            answer.answer.question.title;
+          config.desc = answer.answer.answererName + '|' + answer.answer.answererTitle;
           config.link = `${config.baseUrl}/answer/${this.props.params.id}`;
-          config.imgUrl = answer.answererAvater || logo_icon;
+          config.imgUrl = answer.answer.answererAvater || logo_icon;
         }
         nextProps.configWechatSharing(config);
     }
