@@ -127,8 +127,8 @@ class AnswerPayControlComponent extends React.Component {
             	</div>);
 		}else if(answer.answer.type == 'RICH_TEXT' && answer.answer.description != null){
 			answerDom =this.props.isShow ? (<div className="answer-content-control-description" dangerouslySetInnerHTML={{__html: answer.answer.description}}></div>) 
-			: (<div className="answer-content-control-text">
-            		<span className="answer-content-control-desc" onClick={this.changePageState.bind(this,answer.answer.questionId)}>查看详情</span>
+			: (<div className="answer-content-control-text" onClick={this.changePageState.bind(this,answer.answer.questionId)}>
+            		<span className="answer-content-control-desc">查看详情</span>
             	</div>);
 		}else if(answer.answer.type == 'AUDIO' && answer.answer.description == null){
 			answerDom = (<div className="answer-content-control-audio" onClick={this.goPay.bind(this)}>

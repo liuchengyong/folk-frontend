@@ -43,7 +43,7 @@ class AnswerComponent extends React.Component {
     console.log(this.props);
     let params = this.props.answer,
         user = this.props.user;
-    if(params.isFetching && !user.isFetching && params.pageType == 'list' && params.answerList == undefined){
+    if(!user.isFetching && params.pageType == 'list' && params.answerList.pageSize == 20){
         this.props.actions.fetchAnswerListData(this.props.user.openid,0,20);
     }
     if(params.isFetching) {
@@ -80,7 +80,6 @@ class AnswerComponent extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log(nextProps);
     if (!nextProps.loadedConfig && !nextProps.answer.isFetching) {
         console.log(nextProps.answer);                  
         let wconfig = {};
