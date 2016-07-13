@@ -65,7 +65,7 @@ class AnswerComponent extends React.Component {
           </div>);
     return (
       <div className="answer-container">
-        <Helmet title={ '指点-' } />
+        <Helmet title={'益达-你的教育专家'} />
         <TopBanner dialog={this.props.dialog} actions={this.props.actions} />
         {params.pageType == 'list' ? (<AnswerListComponent data={this.props.answer} actions={this.props.actions} user={this.props.user}/>) : null}
         {params.pageType == 'melist' ? (<AnswerListComponent data={this.props.answer} actions={this.props.actions} user={this.props.user}/>) : null}
@@ -80,13 +80,22 @@ class AnswerComponent extends React.Component {
 
   componentWillReceiveProps(nextProps) {
     if (!nextProps.loadedConfig && !nextProps.answer.isFetching) {
-        let answer = nextProps.answer.answer;
-        nextProps.configWechatSharing({
-            title: `【指点】 你的益答 | `,
-            desc: `【指点】 你的益答 `,
-            link: `${config.baseUrl}/answer/` + this.props.params.id,
-            imgUrl: logo_icon
-        });
+        let config = {};
+        if(this.props.params.id == 'list' || this.props.params.id == 'me'){
+          config.title = '益达-你的教育专家';
+          config.desc = '益达-你的教育专家';
+          config.link = `${config.baseUrl}/answer/${this.props.params.id}`;
+          config.imgUrl = logo_icon;
+        }else{
+          let answer = nextProps.answer;
+          config.title = '【指点】 益答' + 
+            (answer.answerType == 'AUDIO' ? '听听':'瞅瞅') + '|' +
+            answer.question.title;
+          config.desc = answer.answererName + '|' + answer.answererTitle;
+          config.link = `${config.baseUrl}/answer/${this.props.params.id}`;
+          config.imgUrl = answer.answererAvater || logo_icon;
+        }
+        nextProps.configWechatSharing(config);
     }
   }
 
