@@ -81,7 +81,7 @@ class AnswerComponent extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if ( !nextProps.loadedConfig || !nextProps.answer.isFetching && this.props.answer.pageType != nextProps.answer.pageType){
+    if (!nextProps.loadedConfig || (!nextProps.answer.isFetching && this.props.answer.pageType != nextProps.answer.pageType)){
         let wconfig = {};
         if(nextProps.answer.pageType == 'detail'){
           let answer = nextProps.answer;
