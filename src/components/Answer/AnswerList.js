@@ -48,7 +48,7 @@ class AnswerListComponent extends React.Component {
 		            		<span className="item-person-title">{answer.answererTitle}</span>
 		            		<span className="item-paymentTimes">{`${answer.paymentTimes}人${answer.answer.type == 'AUDIO' ? '听听' : '瞅瞅'}`}</span>
 		            		<span className="item-unworth">{`${answer.unworthCount}人别闹`}</span>
-		            		<span className="item-header-price">{`¥${DecimalFormat(answer.glanceAmount/100,2)}`}</span>
+		            		<span className="item-header-price">{`¥${DecimalFormat((answer.amount || answer.questionAmount)/100,2)}`}</span>
 			            </div>
 			           	<AnswerPayControlComponent pageType={'list'} answer={answer} isShow={false} actions={this.props.actions} user={this.props.user}/>
 			        </div>);
