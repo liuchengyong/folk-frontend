@@ -4,16 +4,7 @@
  * src/container/App.js accordingly.
  */
 const initialState = {
-  isFetching: true,
-  // isFetching:false,
-  // city: "Darwin",
-  // country: "",
-  // headimgurl: "http://wx.qlogo.cn/mmopen/PiajxSqBRaELMo5oBNFPuwxYMeKllKL6lL6sTYSrO03nICbBzlFj3ibdntyvMfLlEgGwb8ePtFVlZpdEibsNKS5XQ/0",
-  // language: "zh_CN",
-  // nickname: "源",
-  // openid: "olsAEuFTTxKLoCOyAt0syhgMqXtQ",
-  // province: "Northern Territory",
-  // sex: 1
+  isFetching: true
 };
 import assign from 'lodash/assign';
 

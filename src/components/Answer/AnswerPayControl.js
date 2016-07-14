@@ -75,21 +75,14 @@ class AnswerPayControlComponent extends React.Component {
 	              this.fetchPayStatu(this.props.user.openid,this.props.answer.answer.id)
 	              .then(response => response.json())
 	              .then(() => {
-	              	console.log(this.props);
 	              	this.props.pageType == 'list' ?
 	              	this.props.actions.fetchAnswerData(this.props.answer.answer.questionId)
 	              	: this.props.actions.fetchAnswerDetailData(this.props.answer.answer.id,this.props.user.openid);
 	              });
-	            } else if (res.err_msg == 'get_brand_wcpay_request:cancel') {
-	              
-	            } else {
-	              
 	            }
 	        });
 	    });
 	}
-
-
 	serialize(data) {
       	return Object.keys(data).map(function (keyName) {
           	return encodeURIComponent(keyName) + '=' + encodeURIComponent(data[keyName])
@@ -119,8 +112,7 @@ class AnswerPayControlComponent extends React.Component {
 	render(){
 		let answer = this.props.answer;
 		let answerDom = null;
-
-
+		
 		if(answer.answer.type == 'RICH_TEXT' && answer.answer.description == null){
 			answerDom = (<div className="answer-content-control-text" onClick={this.goPay.bind(this)}>
             		<span className="answer-content-control-desc">1元去瞅瞅</span>

@@ -6,7 +6,6 @@ class CommentFrom extends React.Component {
 	    this.state = {
 	    	vaildContentError:false
 	    };
-
   	}
 
 	btn_click(type){
@@ -21,12 +20,11 @@ class CommentFrom extends React.Component {
 				return;
 			}
 			let	comment = {
-					content: this.refs.content.value.trim(),
+					content: encodeURIComponent(this.refs.content.value.trim()),
 					answerId: this.props.answer.answer.answerId
 				};
 			this.props.actions.fetchAnswerCommentData(this.props.answer.answer,this.props.user.openid,comment);
 			this.props.actions.fetchAnswerCommentFrom(this.props.answer,{isOpenFrom:false});
-			
 		}
 	}
 
@@ -35,15 +33,14 @@ class CommentFrom extends React.Component {
 		 <div className="comment-from">
 	    	<div className="comment-from-bg"></div>
 	    	<div className="comment-from-content">
-	    		<div className="comment-from-title">评论</div>
 	    		<div className="comment-from-text-box">
 	    			<textarea className="comment-from-text" ref="content" placeholder={this.state.vaildContentError? '评论不能为空。。':'请写下你的内心留白...'}/>
 	    		</div>
 	    		<div className="comment-from-btn">
 	    			<span className="comment-from-btn-cancle" onClick={this.btn_click.bind(this,'cancle')}>取消</span>
-	    			<span className="comment-from-btn-ok" onClick={this.btn_click.bind(this,'ok')}>确定</span>
+	    			<span className="comment-from-btn-ok" onClick={this.btn_click.bind(this,'ok')}>发布</span>
 	    		</div>
-	    	</div>       
+	    	</div>
 	    </div>);
 	}
 }

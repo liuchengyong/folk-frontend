@@ -11,7 +11,7 @@ let WechatWrapper = InnerComponent => class extends React.Component {
     this.state = {
       loadedConfig: false,
       isWeixin: navigator.userAgent.toLowerCase().match(/MicroMessenger/i) == 'micromessenger'
-    }; 
+    };
   }
 
   fetchWechatConfig() {

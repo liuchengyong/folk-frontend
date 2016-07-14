@@ -40,7 +40,7 @@ class CommentFrom extends React.Component {
 	    			<span className="comment-from-btn-cancle" onClick={this.btn_click.bind(this,'cancle')}>取消</span>
 	    			<span className="comment-from-btn-ok" onClick={this.btn_click.bind(this,'ok')}>发布</span>
 	    		</div>
-	    	</div>       
+	    	</div>
 	    </div>);
 	}
 }

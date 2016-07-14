@@ -16,7 +16,7 @@ module.exports = (answer,openId,comment) => {
         body: serialize(comment)
       })
       .then(response => response.json())
-      .then(json => json.success ? fetchCommentsData(dispatch,answer) : console.log('评论提交失败'));
+      .then(json => json.success ? fetchCommentsData(dispatch,answer) : '');
   }
 }
 
@@ -30,8 +30,6 @@ function fetchCommentsData(dispatch,answer){
       // json.success ? dispatch(receiveCommentData({answer:answer,comments:json.param}))
       if(json.success){
         dispatch(receiveCommentData({answer:answer,comments:json.param}))
-      }else{
-        console.log('获取评论失败');
       }
     });
 }

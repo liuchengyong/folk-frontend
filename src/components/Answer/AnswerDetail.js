@@ -41,7 +41,6 @@ class AnswerDetailComponent extends React.Component {
   		
  	
 	render(){
-		console.log(this.props);
 		let data = this.props.data,
 			user = this.props.user,
 		 	question = data.answer,
