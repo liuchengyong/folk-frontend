@@ -20,7 +20,7 @@ class AnswerPayControlComponent extends React.Component {
 	        this.props.actions.setDialogStatus(true);
 	        return;
 	    }
-	    this.props.actions.fetchAnswerCommentFrom(this.props.data,{isOpenLoad:true,loadText:'[益达]正在用力请求微信支付'});
+	    this.props.actions.fetchAnswerCommentFrom(this.props.data,{isOpenLoad:true,loadText:'[益答]正在用力请求微信支付'});
 	    this.getPayOrder();
   	}
   	fetchOrderConfig(user,answerId,title){
@@ -61,7 +61,7 @@ class AnswerPayControlComponent extends React.Component {
 	    .then(response => response.json())
 	    .then(data => {
 	      	data = data.param;
-	      	this.props.actions.fetchAnswerCommentFrom(this.props.data,{isOpenLoad:false,loadText:'[益达]正在用力请求微信支付'});
+	      	this.props.actions.fetchAnswerCommentFrom(this.props.data,{isOpenLoad:false,loadText:'[益答]正在用力请求微信支付'});
 	      	WeixinJSBridge.invoke(
 	         	'getBrandWCPayRequest', {
 	            'appId':data.appid,     //公众号名称，由商户传入

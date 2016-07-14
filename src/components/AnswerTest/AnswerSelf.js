@@ -23,7 +23,7 @@ class AnswerSelfComponent extends React.Component {
 		return (<div className="answer-self">
 					<div className="answer-self-header">
 						<img className="answer-self-avatar" src={user.headimgurl || ic_me_avatar_default}/>
-						<span className="answer-self-name">{user.nickname}</span>
+						<span className="answer-self-name">{decodeString(user.nickname)}</span>
 						<span className="answer-self-line"></span>
 					</div>
 					<div className="answer-self-list">

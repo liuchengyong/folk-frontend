@@ -9,8 +9,9 @@ let WechatWrapper = InnerComponent => class extends React.Component {
   constructor() {
     super();
     this.state = {
-      loadedConfig: false
-    };
+      loadedConfig: false,
+      isWeixin: navigator.userAgent.toLowerCase().match(/MicroMessenger/i) == 'micromessenger'
+    }; 
   }
 
   fetchWechatConfig() {
@@ -50,6 +51,7 @@ let WechatWrapper = InnerComponent => class extends React.Component {
   render() {
     return <InnerComponent {...this.props}
       loadedConfig={this.state.loadedConfig}
+      isWeixin = {this.state.isWeixin}
       configWechatSharing={this.configWechatSharing.bind(this)}/>
   }
 };

@@ -14,7 +14,7 @@ module.exports = function(state = initialState, action) {
   switch(action.type) {
     case 'RECEIVE_ANSWER_DATA': {
       //@TODO 将删除状态作为一个action
-      return assign({},state,action.parameter, {isFetching: false,pageType:'detail'});
+      return assign({},state,action.parameter, {isFetching: false, pageType:'detail', answerDetail:null});
     } break;
     case 'RECEIVE_COMMENT_DATA':{
       return assign({},state,action.parameter);

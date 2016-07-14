@@ -27,7 +27,6 @@ let logo_icon = require('../../images/icon/logo_icon.png'),
     ic_jingxuan_blue = require('../../images/jingxuan_blue.png');
 
 class AnswerComponent extends React.Component {
-
   changePageState(pageType){
     if(pageType == this.props.answer.pageType) return;
     if(pageType == 'list'){
@@ -38,11 +37,16 @@ class AnswerComponent extends React.Component {
       this.props.actions.fetchAnswerPageState({isFetching:false,pageType:'me'});
     }
   }
-
   render() {
     console.log(this.props);
     let params = this.props.answer,
         user = this.props.user;
+    if(this.props.isWeixin && !user.isFetching && params.pageType == 'list' && params.answerList == undefined){
+      this.props.actions.fetchAnswerListData(this.props.user.openid,0,20);
+    }
+    if(!this.props.isWeixin && params.pageType == 'list' && params.answerList == undefined){
+      this.props.actions.fetchAnswerListData(this.props.user.openid,0,20);
+    }
 
     if(params.isFetching) {
         return <Loading />;
@@ -78,22 +82,21 @@ class AnswerComponent extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (!nextProps.loadedConfig && !nextProps.answer.isFetching) {
-        console.log(nextProps.answer);                  
+    if (!nextProps.answer.isFetching && this.props.answer.pageType != nextProps.answer.pageType) {              
         let wconfig = {};
-        if(this.props.params.id == 'list' || this.props.params.id == 'me'){
-          wconfig.title = '益答-你的教育专家';
-          wconfig.desc = '益答-你的教育专家';
-          wconfig.link = `${config.baseUrl}/testanswertest/${this.props.params.id}`;
-          wconfig.imgUrl = logo_icon;
-        }else{
+        if(nextProps.answer.pageType == 'detail'){
           let answer = nextProps.answer;
           wconfig.title = '【指点】 益答' + 
             (answer.answerType == 'AUDIO' ? '听听':'瞅瞅') + '|' +
             answer.answer.question.title;
           wconfig.desc = answer.answer.answererName + '|' + answer.answer.answererTitle;
-          wconfig.link = `${config.baseUrl}/testanswertest/${this.props.params.id}`;
+          wconfig.link = `${config.baseUrl}/testanswertest/${answer.answer.question.id}`;
           wconfig.imgUrl = answer.answer.answererAvater || logo_icon;
+        }else{
+          wconfig.title = '益答-你的教育专家';
+          wconfig.desc = '益答-你的教育专家';
+          wconfig.link = `${config.baseUrl}/testanswertest/list`;
+          wconfig.imgUrl = logo_icon;
         }
         nextProps.configWechatSharing(wconfig);
     }
@@ -102,9 +105,7 @@ class AnswerComponent extends React.Component {
   componentDidMount() {
       DeviceAdapter.setFrontSize();
       if(this.props.params.id == 'list'){ 
-        setTimeout(()=>{
-          this.props.actions.fetchAnswerListData(this.props.user.openid,0,20);
-        },1000);
+        this.props.actions.fetchAnswerPageState({pageType:'list'});
       }else if(this.props.params.id == 'me'){
         this.props.actions.fetchAnswerPageState({isFetching:false,pageType:'me'});
       }else{

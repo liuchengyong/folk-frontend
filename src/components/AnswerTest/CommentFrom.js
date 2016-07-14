@@ -20,7 +20,7 @@ class CommentFrom extends React.Component {
 				return;
 			}
 			let	comment = {
-					content: this.refs.content.value.trim(),
+					content: encodeURIComponent(this.refs.content.value.trim()),
 					answerId: this.props.answer.answer.answerId
 				};
 			this.props.actions.fetchAnswerCommentData(this.props.answer.answer,this.props.user.openid,comment);

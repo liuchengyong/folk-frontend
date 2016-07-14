@@ -67,8 +67,8 @@ class AnswerDetailComponent extends React.Component {
 		              <div className="answer-detail-answer-person">
 		                <span className="answer-detail-answer-person-name">{answer.answererName}</span>
 		                <div className="answer-detail-answer-person-right">
-		                	<span className="answer-detail-answer-person-paymentTimes">{answer.paymentTimes == 0 ? ' ' : (answer.paymentTimes + '人' + (answer.answerType == 'RICH_TEXT' ? '瞅瞅':'听听'))}</span>
-		                	<span className={`answer-detail-answer-person-unworth ${ user.isFetching ? 'answer-detail-answer-person-unworth-none' : (answerDetail.unworth ? '' : 'answer-detail-answer-person-unworth-none')}`} onClick={this.clickUnWorth.bind(this)}>{answer.unworthCount == 0 ? '' : answer.unworthCount + '人别闹'}</span>
+		                	<span className="answer-detail-answer-person-paymentTimes">{answer.paymentTimes + '人' + (answer.answerType == 'RICH_TEXT' ? '瞅瞅':'听听')}</span>
+		                	<span className={`answer-detail-answer-person-unworth ${ user.isFetching ? 'answer-detail-answer-person-unworth-none' : (answerDetail.unworth ? '' : 'answer-detail-answer-person-unworth-none')}`} onClick={this.clickUnWorth.bind(this)}>{answer.unworthCount + '人别闹'}</span>
 		                </div>
 		              </div>
 		              <span className="answer-detail-answer-person-major">{answer.answererTitle}</span>
@@ -83,7 +83,7 @@ class AnswerDetailComponent extends React.Component {
 			        {
 			        	comments.totalSize == 0 && ( user.isFetching ? true : answerDetail.answer.description == null)? (<div className="answer-detail-comments-null">
 				        	<img className="answer-detail-comments-null-back" src={ic_comments_null_back}/>
-				        	<span className="answer-detail-comments-null-msg">暂无评论，瞅瞅后才能评论哟！！！</span>
+				        	<span className="answer-detail-comments-null-msg">暂无评论，支付后才能评论哟！！！</span>
 				        </div>) : null
 			        }
 			        {
