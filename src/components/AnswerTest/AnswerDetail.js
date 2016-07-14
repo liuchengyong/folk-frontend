@@ -73,7 +73,7 @@ class AnswerDetailComponent extends React.Component {
 		              </div>
 		              <span className="answer-detail-answer-person-major">{answer.answererTitle}</span>
 		          </div>
-		          <AnswerPayControlComponent answer={answerDetail || {answer:{type:answer.answerType,description:null,duration:answer.duration}}} actions={this.props.actions} isShow={true} user={this.props.user}/>
+		          <AnswerPayControlComponent pageType={'detail'} answer={answerDetail || {answer:{type:answer.answerType,description:null,duration:answer.duration}}} actions={this.props.actions} isShow={true} user={this.props.user}/>
 		        </div>
 		       	<div className="answer-detail-comments">
 			        <div className="answer-detail-comments-header">

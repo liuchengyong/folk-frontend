@@ -75,7 +75,10 @@ class AnswerPayControlComponent extends React.Component {
 	              this.fetchPayStatu(this.props.user.openid,this.props.answer.answer.id)
 	              .then(response => response.json())
 	              .then(() => {
-	                this.props.actions.fetchAnswerData(this.props.answer.answer.questionId);
+	              	console.log(this.props);
+	              	this.props.pageType == 'list' ? 
+	              	this.props.actions.fetchAnswerData(this.props.answer.answer.questionId)
+	              	: this.props.actions.fetchAnswerDetailData(this.props.answer.answer.id,this.props.user.openid);
 	              });
 	            } else if (res.err_msg == 'get_brand_wcpay_request:cancel') {
 	              

@@ -51,7 +51,7 @@ class AnswerListComponent extends React.Component {
 		            		<span className="item-unworth">{`${answer.unworthCount}人别闹`}</span>
 		            		<span className="item-header-price">{`¥${DecimalFormat(answer.glanceAmount/100,2)}`}</span>
 			            </div>
-			           	<AnswerPayControlComponent answer={answer} isShow={false} actions={this.props.actions} user={this.props.user}/>
+			           	<AnswerPayControlComponent pageType={'list'} answer={answer} isShow={false} actions={this.props.actions} user={this.props.user}/>
 			        </div>);
 				})}
 				{this.props.data.answerList.totalSize == 0 ? null : (<div className="answer-list-load-more" onClick={this.loadNextPage.bind(this)}>

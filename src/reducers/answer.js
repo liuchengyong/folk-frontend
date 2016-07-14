@@ -20,8 +20,7 @@ module.exports = function(state = initialState, action) {
       return assign({},state,action.parameter);
     } break;
     case 'RECEIVE_ANSWER_DETAIL_DATA':{
-      return action.parameter.success ? assign({}, action.parameter, {isFetching: false}) :
-             {isFetching: true}
+      return assign({}, state, action.parameter, {isFetching: false});
     } break;
     case 'CHANGE_COMMENT_FROM':{
       return assign({},state,action.parameter);

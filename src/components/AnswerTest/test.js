@@ -52,7 +52,7 @@ class AnswerComponent extends React.Component {
         return <Loading />;
     }
     if(!user.isFetching && params.pageType == 'detail' && params.answerDetail == undefined){
-      this.props.actions.fetchAnswerDetailData(params,user.openid);
+      this.props.actions.fetchAnswerDetailData(params.answer.answerId,user.openid);
       return <Loading />;
     }
 
