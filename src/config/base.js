@@ -2,6 +2,7 @@
 
 // Settings configured here will be merged into the final config object.
 export default {
+  shareLogeIcon:'http://apk.zhid58.com/zhidian-512.png',
   homeData: '/api/v2/home',
   found: '/api/v1/topic/list/keyword?keyword=',
   TopicData: '/api/v1/topic/',

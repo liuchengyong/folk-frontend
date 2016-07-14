@@ -119,8 +119,6 @@ class AnswerPayControlComponent extends React.Component {
 	render(){
 		let answer = this.props.answer;
 		let answerDom = null;
-
-
 		if(answer.answer.type == 'RICH_TEXT' && answer.answer.description == null){
 			answerDom = (<div className="answer-content-control-text" onClick={this.goPay.bind(this)}>
             		<span className="answer-content-control-desc">1元去瞅瞅</span>

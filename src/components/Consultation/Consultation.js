@@ -16,8 +16,6 @@ import TopBanner from '../Common/TopBanner';
 import Loading from '../Common/Loading';
 
 require('../../styles/_consultation.scss');
-let logo_icon = require('../../images/icon/logo_icon.png');
-
 
 class Consultation extends React.Component {
   render() {
@@ -73,7 +71,7 @@ class Consultation extends React.Component {
         title: `【指点】${nextProps.consultation.article.title}`,
         desc: nextProps.consultation.article.summary,
         link: `${config.baseUrl}/consultation/${nextProps.params.id}`,
-        imgUrl: nextProps.consultation.article.sharedCover|| nextProps.consultation.article.cover || logo_icon
+        imgUrl: nextProps.consultation.article.sharedCover|| nextProps.consultation.article.cover || config.shareLogeIcon
       });
     }
   }

@@ -14,7 +14,6 @@ import DeviceAdapter from '../../common/deviceAdapter';
 import TopBanner from '../Common/TopBanner';
 import ActiveBanner from './ActiveBanner';
 import TopicItem from './TopicItem';
-let logo_icon = require('../../images/icon/logo_icon.png');
 
 class ActiveComponent extends React.Component {
   render() {
@@ -43,7 +42,7 @@ class ActiveComponent extends React.Component {
         title: `【指点】${active.article.title}`,
         desc: active.article.summary,
         link: `${config.baseUrl}/activity/${this.props.params.id}`,
-        imgUrl: active.article.sharedCover || active.article.cover || logo_icon
+        imgUrl: active.article.sharedCover || active.article.cover || config.shareLogeIcon
       });
     }
   }

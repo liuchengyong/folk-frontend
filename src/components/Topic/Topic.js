@@ -14,8 +14,6 @@ import DeviceAdapter from '../../common/deviceAdapter';
 import { decodeString,paresHtmlToText } from '../../common/string';
 import Menu from '../Common/Menu';
 
-let logo_icon = require('../../images/icon/logo_icon.png');
-
 class TopicComponent extends React.Component {
   render() {
 
@@ -58,7 +56,7 @@ class TopicComponent extends React.Component {
         title: `【指点】${topic.title} | ${decodeString(expert.user.name || expert.user.loginName || '匿名')}|${expert.expert.title}`,
         desc: paresHtmlToText(topic.description),
         link: `${config.baseUrl}/topic/${this.props.params.id}`,
-        imgUrl: expert.user.avatar || logo_icon
+        imgUrl: expert.user.avatar || config.shareLogeIcon
       });
     }
   }

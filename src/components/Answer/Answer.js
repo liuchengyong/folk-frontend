@@ -20,8 +20,7 @@ import AnswerDetailComponent from './AnswerDetail';
 
 import WechatWrapper from '../WechatWrapper';
 
-let logo_icon = require('../../images/icon/logo_icon.png'),
-    ic_me_gray = require('../../images/me_gray.png'),
+let ic_me_gray = require('../../images/me_gray.png'),
     ic_me_blue = require('../../images/me_blue.png'),
     ic_jingxuan_gray = require('../../images/jingxuan_gray.png'),
     ic_jingxuan_blue = require('../../images/jingxuan_blue.png');
@@ -31,7 +30,7 @@ class AnswerComponent extends React.Component {
     if(pageType == this.props.answer.pageType) return;
     if(pageType == 'list'){
       this.props.actions.fetchAnswerPageState({isFetching:true});
-      this.props.actions.fetchAnswerListData(this.props.user.openid,0,20);
+      this.props.actions.fetchAnswerListData(this.props.user.openid,0,10);
     }else if(pageType == 'me'){
       this.props.user.isFetching ? this.props.actions.setDialogStatus(true) :
       this.props.actions.fetchAnswerPageState({isFetching:false,pageType:'me'});
@@ -41,10 +40,10 @@ class AnswerComponent extends React.Component {
     let params = this.props.answer,
         user = this.props.user;
     if(this.props.isWeixin && !user.isFetching && params.pageType == 'list' && params.answerList == undefined){
-      this.props.actions.fetchAnswerListData(this.props.user.openid,0,20);
+      this.props.actions.fetchAnswerListData(this.props.user.openid,0,10);
     }
     if(!this.props.isWeixin && params.pageType == 'list' && params.answerList == undefined){
-      this.props.actions.fetchAnswerListData(this.props.user.openid,0,20);
+      this.props.actions.fetchAnswerListData(this.props.user.openid,0,10);
     }
 
     if(params.isFetching) {
@@ -90,12 +89,12 @@ class AnswerComponent extends React.Component {
             answer.answer.question.title;
           wconfig.desc = answer.answer.answererName + '|' + answer.answer.answererTitle;
           wconfig.link = `${config.baseUrl}/answer/${answer.answer.question.id}`;
-          wconfig.imgUrl = answer.answer.answererAvater || logo_icon;
+          wconfig.imgUrl = answer.answer.answererAvater || config.shareLogeIcon;
         }else{
-          wconfig.title = '益答-你的教育专家';
-          wconfig.desc = '益答-你的教育专家';
+          wconfig.title = '【指点】你的益答，我的益答';
+          wconfig.desc = '传递真实透明的教育经验';
           wconfig.link = `${config.baseUrl}/answer/list`;
-          wconfig.imgUrl = logo_icon;
+          wconfig.imgUrl = config.shareLogeIcon;
         }
         nextProps.configWechatSharing(wconfig);
     }

@@ -19,9 +19,7 @@ import ExpertTopic from './ExpertTopic';
 import ExpertComment from './ExpertComment';
 import ExpertAnswer from './ExpertAnswer';
 import { decodeString } from '../../common/string';
-// import ExpertTeacher from './ExpertTeacher';
 
-let logo_icon = require('../../images/icon/logo_icon.png');
 class ExpertComponent extends React.Component {
 
   render() {
@@ -71,7 +69,7 @@ class ExpertComponent extends React.Component {
         title: `【指点】不要走那千篇一律的人生之路，我是 ${ decodeString(expert.user.name || expert.user.loginName || '匿名')} | ${expert.expert.title}`,
         desc: expert.expert.description,
         link: `${config.baseUrl}/expert/${this.props.params.id}`,
-        imgUrl: expert.user.avatar || logo_icon
+        imgUrl: expert.user.avatar || config.shareLogeIcon
       });
     }
   }

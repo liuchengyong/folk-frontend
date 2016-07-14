@@ -22,16 +22,16 @@ class AnswerListComponent extends React.Component {
 	    if(pageType == 'detail'){
 	    	this.props.actions.fetchAnswerData(id);
 	    }else if(pageType == 'list'){
-	    	this.props.actions.fetchAnswerListData(this.props.user.openid,0,20);
+	    	this.props.actions.fetchAnswerListData(this.props.user.openid,0,10);
 	    }
-	    
   	}
   	loadNextPage(){
   		if(this.props.data.answerList.pageSize >= this.props.data.answerList.totalSize){
 			this.setState({isLoadMore:false});
   			return;
   		}
-  		this.props.data.pageType == 'list' ? this.props.actions.fetchAnswerListData(this.props.user.openid,0,this.props.data.answerList.pageSize + 20)
+  		this.props.actions.fetchAnswerCommentFrom(this.props.data,{isOpenLoad:true,loadText:'[益答]正在努力搬运中。。'});
+  		this.props.data.pageType == 'list' ? this.props.actions.fetchAnswerListData(this.props.user.openid,0,this.props.data.answerList.pageSize + 10)
   			:this.props.actions.fetchAnswerListOfMeData(this.props.user.openid,0,this.props.data.answerList.pageSize + 5);
   	}
 	render(){
