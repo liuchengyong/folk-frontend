@@ -31,7 +31,7 @@ class AnswerListComponent extends React.Component {
 			this.setState({isLoadMore:false});
   			return;
   		}
-  		this.props.actions.fetchAnswerCommentFrom(this.props.data,{isOpenLoad:true,loadText:'[益答]正在努力搬运中。。'});
+  		this.props.actions.fetchAnswerCommentFrom(this.props.data,{isOpenLoad:true,loadText:'[益答]正在努力搬运中'});
   		this.props.data.pageType == 'list' ? this.props.actions.fetchAnswerListData(this.props.user.openid,0,this.props.data.answerList.pageSize + 10)
   			:this.props.actions.fetchAnswerListOfMeData(this.props.user.openid,0,this.props.data.answerList.pageSize + 5);
   	}

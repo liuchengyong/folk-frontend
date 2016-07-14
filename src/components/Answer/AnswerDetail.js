@@ -17,9 +17,9 @@ class AnswerDetailComponent extends React.Component {
   	}
 	openCommentFrom(){
 		if(this.props.user.isFetching || this.props.data.answerDetail.answer.description == null){
-			this.props.actions.fetchAnswerCommentFrom(this.props.data,{isOpenLoad:true,loadText:'亲！支付完才能评论。。'});
+			this.props.actions.fetchAnswerCommentFrom(this.props.data,{isOpenLoad:true,loadText:'亲！支付完才能评论'});
 			setTimeout(()=>{
-				this.props.actions.fetchAnswerCommentFrom(this.props.data,{isOpenLoad:false,loadText:'亲！支付完才能评论。。'});
+				this.props.actions.fetchAnswerCommentFrom(this.props.data,{isOpenLoad:false,loadText:'亲！支付完才能评论'});
 			},1000);
 		}else{
 			this.props.actions.fetchAnswerCommentFrom(this.props.data,{isOpenFrom:true});
@@ -30,9 +30,9 @@ class AnswerDetailComponent extends React.Component {
   	clickUnWorth(){
   		if(this.props.data.isClickUnWorth) return;
   		if(this.props.user.isFetching || this.props.data.answerDetail.answer.description == null){
-  			this.props.actions.fetchAnswerCommentFrom(this.props.data,{isOpenLoad:true,loadText:'亲！支付完才能操作哟。。'});
+  			this.props.actions.fetchAnswerCommentFrom(this.props.data,{isOpenLoad:true,loadText:'亲！支付完才能操作哟'});
 			setTimeout(()=>{
-				this.props.actions.fetchAnswerCommentFrom(this.props.data,{isOpenLoad:false,loadText:'亲！支付完才能操作哟。。'});
+				this.props.actions.fetchAnswerCommentFrom(this.props.data,{isOpenLoad:false,loadText:'亲！支付完才能操作哟'});
 			},1000);
   		}else{
   			this.props.actions.fetchAnswerUnWorthData(this.props.data,this.props.data.answerDetail.unworth,this.props.user.openid);

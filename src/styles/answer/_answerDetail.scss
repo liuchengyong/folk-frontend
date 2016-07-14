@@ -118,6 +118,7 @@
 		padding-left: 0.37rem;
 		min-width: 0.26rem;
 		height:0.26rem; 
+		color: #18aef9;
 		&:before{
 			position: absolute;
 			content: " ";
@@ -129,6 +130,9 @@
 			background-position: 0 0;
 			left:0;
 			top:0;
+		}
+		&.answer-detail-answer-person-unworth-none{
+			color: #999999;
 		}
 		&.answer-detail-answer-person-unworth-none:before{
 			background-image: url(../../images/answer-unworth-gray.png);

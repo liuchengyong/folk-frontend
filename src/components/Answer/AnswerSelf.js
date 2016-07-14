@@ -30,11 +30,11 @@ class AnswerSelfComponent extends React.Component {
 							<span className="answer-self-paided-title">我瞅过的</span>
 							<img className="answer-self-paided-arrow" src={ic_arrow_right}/>
 						</div>
-						<div className="answer-self-phone">
+						<a className="answer-self-phone" href="tel:010-59421689">
 							<img className="answer-self-phone-icon" src={ic_me_phone}/>
 							<span className="answer-self-phone-title">客服电话</span>
-							<a href="tel:010-59421689" className="answer-self-phone-number">010-59421689</a>
-						</div>
+							<span className="answer-self-phone-number">010-59421689</span>
+						</a>
 					</div>
 	    		</div>);
 	}

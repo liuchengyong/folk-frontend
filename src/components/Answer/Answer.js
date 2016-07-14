@@ -55,18 +55,18 @@ class AnswerComponent extends React.Component {
     }
 
     let answerMenus = (<div className="answer-menus">
-                <div className="answer-menu answer-menu-jinxuan" onClick={this.changePageState.bind(this,'list')}>
+                <div className={`answer-menu answer-menu-jinxuan ${params.pageType == 'list' ? 'answer-menu-blue':''}`} onClick={this.changePageState.bind(this,'list')}>
                   <img src={params.pageType == 'list' ? ic_jingxuan_blue : ic_jingxuan_gray}/>
                   <span>精选</span>
                 </div>
-                <div className="answer-menu answer-menu-me" onClick={this.changePageState.bind(this,'me')}>
+                <div className={`answer-menu answer-menu-me ${params.pageType == 'me' || params.pageType == 'melist' ? 'answer-menu-blue':''}`} onClick={this.changePageState.bind(this,'me')}>
                   <img src={ params.pageType == 'me' ||  params.pageType == 'melist' ? ic_me_blue : ic_me_gray}/>
                   <span>我的</span>
                 </div>
           </div>);
     return (
       <div className="answer-container">
-        <Helmet title={'益答--你的教育专家'} />
+        <Helmet title={'【指点】你的益答，我的益答'} />
         <TopBanner dialog={this.props.dialog} actions={this.props.actions} />
         {params.pageType == 'list' ? (<AnswerListComponent data={this.props.answer} actions={this.props.actions} user={this.props.user}/>) : null}
         {params.pageType == 'melist' ? (<AnswerListComponent data={this.props.answer} actions={this.props.actions} user={this.props.user}/>) : null}

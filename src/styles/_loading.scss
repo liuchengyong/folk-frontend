@@ -42,5 +42,75 @@
         line-height: 1rem;
         z-index: 1001;
         padding: 0 0.5rem 0;
+        .wrap-text-animate{
+            backface-visibility: hidden;
+            -o-backface-visibility: hidden;
+            -moz-backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+
+            animation-fill-mode: both;
+            transform: translate3d(0, 0, 0);
+            perspective: 1000;
+            transform-origin:center center;
+
+            -o-animation-fill-mode: both;
+            -o-transform: translate3d(0, 0, 0);
+            -o-perspective: 1000;
+            -o-transform-origin:center center;  
+
+            -moz-animation-fill-mode: both;
+            -moz-transform: translate3d(0, 0, 0);
+            -moz-perspective: 1000;
+            -o-transform-origin:center center;  
+
+            -webkit-animation-fill-mode: both;
+            -webkit-transform: translate3d(0, 0, 0);
+            -webkit-perspective: 1000;
+            -webkit-transform-origin:center center;
+        }
+        .wrap-text-animate:nth-child(1){
+            -webkit-animation: changeOpacity .8s linear infinite alternate .6s;
+            -moz-animation: changeOpacity .8s linear infinite alternate .6s;
+            -o-animation: changeOpacity .8s linear infinite alternate .6s;
+            animation: changeOpacity .8s linear infinite alternate .6s;
+        }
+        .wrap-text-animate:nth-child(2){
+            -webkit-animation: changeOpacity .8s linear infinite alternate .4s;
+            -moz-animation: changeOpacity .8s linear infinite alternate .4s;
+            -o-animation: changeOpacity .8s linear infinite alternate .4s;
+            animation: changeOpacity .8s linear infinite alternate .4s;
+        }
+        .wrap-text-animate:nth-child(3){
+            -webkit-animation: changeOpacity .8s linear infinite alternate .2s;
+            -moz-animation: changeOpacity .8s linear infinite alternate .2s;
+            -o-animation: changeOpacity .8s linear infinite alternate .2s;
+            animation: changeOpacity .8s linear infinite alternate .2s;
+        }
     }
+}
+
+
+@-webkit-keyframes changeOpacity {
+    0% {opacity: 1;}    
+    33% {opacity: 0.6;}
+    66% {opacity: 0.3;}
+    100% {opacity: 0;}
+}
+@-moz-keyframes changeOpacity {
+    0% {opacity: 1;}    
+    33% {opacity: 0.6;}
+    66% {opacity: 0.3;}
+    100% {opacity: 0;}
+}
+@-o-keyframes changeOpacity {
+    0% {opacity: 1;}    
+    33% {opacity: 0.6;}
+    66% {opacity: 0.3;}
+    100% {opacity: 0;}
+}
+@keyframes changeOpacity {
+    0% {opacity: 1;}    
+    33% {opacity: 0.6;}
+    66% {opacity: 0.3;}
+    100% {opacity: 0;}
 }
