@@ -1,0 +1,267 @@
+.main-container{
+	position: relative;
+	display: block;
+	width: 100%;
+	min-height: 100%;
+	background-color: #f3f4f8;
+}
+.customer-container{
+	position: relative;
+	width: 100%;
+	height: auto;
+	min-height: 100%;
+	background-color: #f3f4f8;
+	margin-top:1rem;
+	padding: 0 0 0.3rem 0;
+}
+
+.customer-header{
+	position: relative;
+	display: block;
+	width: 100%;
+	height: auto;
+	background-color: #ffffff;
+	padding:0.3rem 0;
+}
+.customer-header-avatar{
+	display: block;
+	width: 1.4rem;
+	height: 1.4rem;
+	border-radius: 1.4rem;
+	margin:0 auto;
+}
+.customer-header-name{
+	display: block;
+	text-align: center;
+	font-size: 0.4rem;
+	color: #1e1e1e;
+	margin-top: 0.3rem;
+}
+.customer-header-position{
+	display: block;
+	text-align: center;
+	font-size: 0.3rem;
+	color: #666666;
+	margin-top: 0.3rem;
+}
+
+
+.customer-wrapper{
+	position: relative;
+	margin: 0.2rem;
+	background-color: #ffffff;
+	padding: 0.3rem 0.2rem 0.2rem;
+	border-radius: 5px;
+	.customer-wrapper-header{
+		&:before{
+			position: absolute;
+			content: "";
+			width: 0.06rem;
+			height: 0.3rem;
+			border-radius: 0.06rem;
+			background-color: #18aef9;
+			left:0;
+			top:0;
+		}
+		position: relative;
+		padding: 0 0 0.2rem 0.2rem;
+		font-size: 0.3rem;
+		color: #333333;
+		border-bottom: 1px solid #dcdcdc;
+		line-height: 0.3rem;
+	}	
+	.customer-wrapper-more{
+		position: absolute;
+		font-size: 0.28rem;
+		color: #666666;
+		right: 0.06rem;
+		top:0;
+		letter-spacing: 2px;
+	}
+}
+
+.customer-introduction{
+	display: block;
+	margin-top:0.2rem;
+	font-size: 0.32rem;
+	line-height: 1.5em;
+	color: #666666;
+}
+.customer-expert:last-child{
+	border-bottom: none;
+}
+.customer-expert{
+	position: relative;
+	min-height: 1.38rem;
+	padding: 0.2rem 0;
+	border-bottom: 1px solid #dcdcdc;
+	.customer-expert-avatar{
+		position: absolute;
+		display: block;
+		height: 0.98rem;
+		width: 0.98rem;
+		border-radius: 0.98rem;
+	}
+	.customer-expert-person{
+		position: absolute;
+		display: block;
+		height: 0.98;
+		left:1.2rem;
+	}
+	.customer-expert-name{
+		display: block;
+		font-size: 0.34rem;
+		color: #333333;
+		line-height: 0.58rem;
+	}
+	.customer-expert-title{
+		display: block;
+		font-size: 0.28rem;
+		color: #666666;
+		line-height: 0.4rem;
+	}
+
+	.customer-expert-like,.customer-expert-appointment{
+		position: absolute;
+		display: block;
+		padding: 0.2rem 0 0;
+		height: 0.98rem;
+		text-align: center;
+		font-size: 0.35rem;
+		color: #18aef9;
+		&:after{
+			display: block;
+			font-size: 0.28rem;
+			color: #666666;
+			padding:0.1rem 0 0 0.3rem;
+			background-position: 0 0.1rem;
+			background-repeat: no-repeat;
+			background-size:0.28rem 0.28rem;
+			line-height: 0.28rem;
+		}
+	}
+	.customer-expert-like{
+		width: 1rem;
+		left:4.18rem;
+		&:after{
+			content: "关注";
+			background-image:url(../images/ic_interest.png);
+		}
+	}
+	.customer-expert-appointment{
+		width: 1.2rem;
+		left:5.36rem;
+		&:after{
+			content: "求指点";
+			background-image:url(../images/icon/ic_number.png);
+		}
+	}
+}
+
+.customer-topic{
+	position: relative;
+	padding: 0.2rem 0;
+	border-bottom: 1px solid #dcdcdc;
+}
+.customer-topic:last-child{
+	border-bottom: none;
+}
+.customer-topic-header{
+	position: relative;
+	padding-left: 1.1rem;
+	min-height: 0.88rem;
+	.customer-topic-avatar{
+		position: absolute;
+		width: 0.88rem;
+		height: 0.88rem;
+		border-radius: 0.88rem;
+		left: 0;
+	}
+	.customer-topic-name{
+		display: block;
+		font-size: 0.3rem;
+		color: #333333;
+		line-height: 0.56rem;
+	}
+	.customer-topic-title{
+		display: block;
+		font-size: 0.24rem;
+		color: #666666;
+		line-height: 0.32rem;
+	}
+}
+.customer-topic-content{
+	position: relative;
+	margin-top: 0.3rem;
+	font-size: 0.34rem;
+	color: #333333;
+	.customer-topic-price{
+		position: absolute;
+		color: #18aef9;
+		right: 0;
+		font-size: 0.32rem;
+	}
+}
+.customer-topic-des{
+	margin-top: 0.25rem;
+	font-size: 0.32rem;
+	color: #666666;
+	line-height: 1.5em;
+	height: 4.5em;
+	overflow : hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-line-clamp: 3;
+	-webkit-box-orient: vertical;
+}
+.customer-null{
+	position: relative;
+	margin-top: 1.87rem;
+	width: 100%;
+	height: 2.1rem;
+	background-image: url(../images/comment-null.png);
+	background-size: 2.9rem 1.28rem ;
+	background-position: center 0;
+	background-repeat: no-repeat;
+	padding-top: 1.75rem;
+	span{
+		display: block;
+		text-align: center;
+		font-size: 0.3rem;
+		color: #d5d5d5;
+	}
+}
+.customer-topic-bottom{
+	position: relative;
+	margin-top: 0.2rem;
+	min-height: 0.3rem;
+}
+.customer-topic-duration,.customer-topic-appointmentTimes{
+	position: absolute;
+	color: #666666;
+	font-size: 0.3rem;
+	background-repeat: no-repeat;
+	background-size: 0.3rem 0.3rem;
+	background-position: 0 0;
+	padding-left: 0.4rem;
+	line-height: 0.3rem;
+}
+
+.customer-topic-duration{
+	left: 0;
+	background-image: url(../images/icon/time.png);
+	
+}
+.customer-topic-appointmentTimes{
+	right: 0;
+	background-image: url(../images/icon/ic_number.png);
+}
+
+
+
+
+
+
+
+
+

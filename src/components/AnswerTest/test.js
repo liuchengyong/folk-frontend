@@ -28,7 +28,7 @@ let ic_me_gray = require('../../images/me_gray.png'),
 class AnswerComponent extends React.Component {
   changePageState(pageType){
     if(pageType == this.props.answer.pageType) return;
-    if(pageType == 'list'){
+    if(pageType == 'list'){ 
       this.props.actions.fetchAnswerPageState({isFetching:true});
       this.props.actions.fetchAnswerListData(this.props.user.openid,0,10);
     }else if(pageType == 'me'){

@@ -22,7 +22,7 @@ render(
             cb(null, require('./containers/Found'));
           })
         }}/>
-        <Route path="broke/:id" name="broke" getComponent={(location, cb) => {
+        <Route path="broke/:id" name="broke" getComponent={(location, cb) => { // 爆料详情
           require.ensure([], (require) => {
             cb(null, require('./containers/Broke'));
           })
@@ -82,6 +82,12 @@ render(
             cb(null, require('./containers/test'));
           })
         }}/>
+        <Route path="customer/:id" name="customer" getComponent={(location, cb) => { // 点友详情
+          require.ensure([], (require) => {
+            cb(null, require('./containers/Customer'));
+          })
+        }}/>
+
       </Route>
     </Router>
   </Provider>,
