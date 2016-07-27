@@ -39,6 +39,14 @@ class ExpertDynamic extends React.Component {
               </div>);
           })
         }
+        {
+          this.props.dynamic.totalSize == 0 ? (
+            <div className="expert-dynamic-null">
+              <span>哎呀～点师好懒还没有发布任何动态</span>
+              <span>下次估计就好啦＊^_^＊</span>
+              <span>去其他页面看看吧</span>
+            </div>) : null
+        }
       </div>);
   }
 }

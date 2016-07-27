@@ -39,6 +39,13 @@ class ExpertAnswer extends React.Component {
             </div>);
           })
         }
+        {
+          this.props.answers.totalSize == 0 ? (
+            <div className="expert-answer-null">
+              <span className="expert-answer-desc">点师现在空闲着呢，快去问ta问题吧</span>
+              <span className="expert-answer-btn" onClick={this.DownApp.bind(this)}>去问一个</span>
+            </div>) : null
+        }
       </div>);
   }
 }
