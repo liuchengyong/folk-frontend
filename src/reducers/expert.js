@@ -3,7 +3,10 @@
  * @author HuangGuorui
  */
 
-const initialState = {isFetching: true};
+const initialState = {
+  isFetching: true,
+  current:'detail'
+};
 import assign from 'lodash/assign';
 
 module.exports = function(state = initialState, action) {
@@ -12,12 +15,10 @@ module.exports = function(state = initialState, action) {
   switch(action.type) {
     case 'RECEIVE_EXPERT_DATA': {
       //@TODO 将删除状态作为一个action
-      return action.parameter.success ?
-             assign({}, action.parameter.param, {isFetching: false}) :
-             {isFetching: true}
+      return assign({}, state ,action.parameter, {isFetching: false});
     } break;
-    case 'REQUEST_EXPERT_DATA': {
-      return assign({}, state, {isFetching: true});
+    case 'CHANGE_EXPERT_TAB': {
+      return assign({}, state, action.parameter);
     } break;
     default: {
       /* Return original state if no actions were consumed. */

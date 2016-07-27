@@ -117,7 +117,7 @@ class CustomerComponent extends React.Component {
     if (!nextProps.loadedConfig && !nextProps.customer.isFetching) {
       var customer = nextProps.customer;
       nextProps.configWechatSharing({
-        title: `【指点】 找名师，来指点，我是${decodeString(customer.user.name || customer.user.loginName || '匿名')} | ${customer.user.position}`,
+        title: `【指点】 找名师，来指点，我是${decodeString(customer.user.name || customer.user.loginName || '匿名')} | ${customer.user.position || '职业未知'}`,
         desc: customer.user.introduction,
         link: `${config.baseUrl}/customer/${this.props.params.id}`,
         imgUrl: customer.user.avatar || config.shareLogeIcon
