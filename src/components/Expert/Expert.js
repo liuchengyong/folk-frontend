@@ -23,12 +23,8 @@ import WechatWrapper from '../WechatWrapper';
 import ExpertTopic from './ExpertTopic';
 import ExpertAnswer from './ExpertAnswer';
 import ExpertDynamic from './ExpertDynamic';
-
-
-
 let ic_me_avatar_default = require('../../images/ic_me_avatar_default.png');
 class ExpertComponent extends React.Component {
-
   DownApp() {
     this.props.actions.setDialogStatus(true);
   }
