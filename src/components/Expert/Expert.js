@@ -37,9 +37,7 @@ class ExpertComponent extends React.Component {
       return <Loading />
     }
     let expertInfo = expert.expert;
-
     let title = expert.expert.user.name + ' - ' + expert.expert.expert.title;
-    
     return (
       <div className="expert-container">
         <Helmet title={title}/>
