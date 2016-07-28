@@ -4,25 +4,31 @@
 import React from 'react';
 import {duration2time,formateDate} from '../../common/timeFormate';
 import {paresHtmlToText,decodeString} from '../../common/string';
+import { Link } from 'react-router';
 let hasStar = require('../../images/icon/started.png'),
     noStar = require('../../images/icon/star.png'),
     ic_me_avatar_default = require('../../images/ic_me_avatar_default.png');
 
 class ExpertTopic extends React.Component {
+   DownApp() {
+    this.props.actions.setDialogStatus(true);
+  }
+
   render() {
    let {topics, comments, experts} = this.props;
+
     return (
 	    <div className="expert-topic">
         <div className="expert-topic-list">
           {
             topics.map(topic=>{
               return (
-                <div className="expert-topic-item" key={topic.id}>
-                  <span className="expert-topic-item-header-title">{topic.title}</span>
-                  <span className="expert-topic-item-header-price">{`¥${topic.amount/100}/次`}</span>
-                  <span className="expert-topic-item-time">{duration2time(topic.duration)}</span>
-                  <div className="expert-topic-item-content">{paresHtmlToText(topic.description)}</div>
-                </div>);
+                  <Link className="expert-topic-item" to={`/topic/${topic.id}`} key={topic.id}>
+                    <span className="expert-topic-item-header-title">{topic.title}</span>
+                    <span className="expert-topic-item-header-price">{`¥${topic.amount/100}/次`}</span>
+                    <span className="expert-topic-item-time">{duration2time(topic.duration)}</span>
+                    <div className="expert-topic-item-content">{paresHtmlToText(topic.description)}</div>
+                  </Link>);
             })
           }
         </div>
@@ -49,7 +55,7 @@ class ExpertTopic extends React.Component {
                     </div>);
                 })}
                 {comments.totalSize > 1 ? (
-                  <div className="export-comment-more">查看更多评价</div>): null}
+                  <div className="export-comment-more" onClick={this.DownApp.bind(this)}>查看更多评价</div>): null}
               </div>) : null
         }
         {
@@ -59,12 +65,12 @@ class ExpertTopic extends React.Component {
              {
                 experts.results.map(recommend=>{
                   return (
-                    <div className="expert-recommend" key={recommend.topic.id}>
+                    <Link className="expert-recommend" key={recommend.topic.id} to={`/topic/${recommend.topic.id}`}>
                       <img className="expert-recommend-avatar" src={recommend.expert.user.avatar || ic_me_avatar_default}/>
                       <span className="expert-recommend-title">{recommend.topic.title}</span>
                       <span className="expert-recommend-name">{decodeString(recommend.expert.user.name || recommend.expert.user.loginName || '匿名')}</span>
                       <span className="expert-recommend-ptitle">{recommend.expert.expert.title}</span>
-                    </div>);
+                    </Link>);
                 })
              }
             </div>) : null

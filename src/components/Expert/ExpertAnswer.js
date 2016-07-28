@@ -5,7 +5,7 @@ import React from 'react';
 import {DecimalFormat} from '../../common/mathFormate';
 import {decodeString} from '../../common/string';
 import {formateTime} from '../../common/timeFormate';
-
+import { Link } from 'react-router';
 
 
 let ic_me_avatar_default = require('../../images/ic_me_avatar_default.png');
@@ -18,7 +18,7 @@ class ExpertAnswer extends React.Component {
     return (
       <div className="expert-answer-list">
         {this.props.answers.results.map((answer,index) =>{
-            return index > 10 ? null : (<div className = "expert-answer" key={answer.answer.id}>
+            return index > 10 ? null : (<Link className = "expert-answer" key={answer.answer.id} to={`/answer/${answer.answer.questionId}`}>
               <div className = "expert-answer-header">
                 <img className="expert-answer-header-avatar" src={answer.questioner.avatar || ic_me_avatar_default} />
                 <span className="expert-answer-header-name">{decodeString(answer.questioner.name || answer.questioner.loginName || '匿名') + '提问了问题'}</span>
@@ -36,8 +36,11 @@ class ExpertAnswer extends React.Component {
               <span className="expert-answer-time">{formateTime(answer.answer.timeAnswered)}</span>
               <span className="expert-answer-unworth">{`${answer.unworthCount}人别闹`}</span>
               <span className="expert-answer-paytime">{`${answer.paymentTimes}人${answer.answer.type == 'RICH_TEXT' ? '瞅瞅':'听听'}`}</span>
-            </div>);
+            </Link>);
           })
+        }
+        {
+          this.props.answers.totalSize > 10 ? (<span className="expert-answer-more" onClick={this.DownApp.bind(this)}>查看更多</span>) : null
         }
         {
           this.props.answers.totalSize == 0 ? (

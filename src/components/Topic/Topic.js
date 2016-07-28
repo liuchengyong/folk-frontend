@@ -35,7 +35,6 @@ class TopicComponent extends React.Component {
     if(comment.results.length > 0) {
       _LatestComment = <LatestComment comment={comment} dialog={dialog} actions={this.props.actions}/>;
     }
-
     return (
       <div className="topic-wrapper">
         <Helmet title={title}/>

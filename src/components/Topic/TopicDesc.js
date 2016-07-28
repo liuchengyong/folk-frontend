@@ -12,7 +12,7 @@ class TopicDesc extends React.Component {
   render() {
     let topic = this.props.topic,
         expert = this.props.expert,
-        tags = this.props.tags.subtag;
+        tags = this.props.tags.subtag || [];
     //是否显示求指点
     let appointCount = null;
     if(topic.appointmentTimes > 0) {

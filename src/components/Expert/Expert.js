@@ -39,7 +39,7 @@ class ExpertComponent extends React.Component {
     let expertInfo = expert.expert;
 
     let title = expert.expert.user.name + ' - ' + expert.expert.expert.title;
-
+    
     return (
       <div className="expert-container">
         <Helmet title={title}/>
@@ -63,11 +63,10 @@ class ExpertComponent extends React.Component {
             <div className="expert-introduce">
               <img className="expert-introduce-descriptionPicture" src={expertInfo.expert.descriptionPicture} />
               <p className="expert-introduce-description">{expertInfo.expert.description}</p>
-            </div>
-            ) : null
+            </div>) : null
         }
         {
-          expert.current == 'topic' ? (<ExpertTopic topics={expert.topics} comments={expert.comment} experts={expert.recommendExperts}/>) : null
+          expert.current == 'topic' ? (<ExpertTopic topics={expert.topics} comments={expert.comment} experts={expert.recommendExperts} actions={actions} />) : null
         }
         {
           expert.current == 'answer' ? (<ExpertAnswer answers={expert.answers} actions={actions} />) : null
