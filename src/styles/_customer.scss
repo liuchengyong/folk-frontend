@@ -195,6 +195,12 @@
 	margin-top: 0.3rem;
 	font-size: 0.34rem;
 	color: #333333;
+	display: block;
+	padding-right: 1.2rem;
+	white-space:nowrap;
+	overflow:hidden;
+	text-overflow:ellipsis;
+
 	.customer-topic-price{
 		position: absolute;
 		color: #18aef9;

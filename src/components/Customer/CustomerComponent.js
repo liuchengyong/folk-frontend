@@ -46,7 +46,7 @@ class CustomerComponent extends React.Component {
           <div className="customer-wrapper-header">
             自我介绍
           </div>
-          <div className="customer-introduction">{user.introduction}</div>
+          <div className="customer-introduction">{user.introduction || '这家伙很懒，还没有添加自我介绍～～'}</div>
         </div>
         {
           expertList.totalSize > 0 ? (

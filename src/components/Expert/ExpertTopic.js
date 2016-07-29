@@ -25,7 +25,7 @@ class ExpertTopic extends React.Component {
               return (
                   <Link className="expert-topic-item" to={`/topic/${topic.id}`} key={topic.id}>
                     <span className="expert-topic-item-header-title">{topic.title}</span>
-                    <span className="expert-topic-item-header-price">{`¥${topic.amount/100}/次`}</span>
+                    <span className="expert-topic-item-header-price">{`¥${topic.amount}/次`}</span>
                     <span className="expert-topic-item-time">{duration2time(topic.duration)}</span>
                     <div className="expert-topic-item-content">{paresHtmlToText(topic.description)}</div>
                   </Link>);
